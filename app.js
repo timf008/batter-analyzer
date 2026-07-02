@@ -561,6 +561,50 @@ async function showCompareModal() {
 }
 
 // -------------------------------
+// Leaders Button
+// -------------------------------
+async function loadLeaders() {
+    const season = document.getElementById("seasonSelect").value;
+
+    const data = await fetch(
+        `https://batter-analyzer-backend.onrender.com/api/leaders?season=${season}`
+    ).then(r => r.json());
+
+    if (!Array.isArray(data)) {
+        alert("No leaderboard data available.");
+        return;
+    }
+
+    buildLeadersTable(data);
+}
+
+// -------------------------------
+// Leaders Table
+// -------------------------------
+function buildLeadersTable(arr) {
+    const tbody = document.getElementById("leadersBody");
+    tbody.innerHTML = "";
+
+    arr.forEach(p => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${p.Name}</td>
+            <td>${stripZero(p.BA.toFixed(3))}</td>
+            <td>${stripZero(p.OBP.toFixed(3))}</td>
+            <td>${stripZero(p.SLG.toFixed(3))}</td>
+            <td>${p.Kpct.toFixed(1)}</td>
+            <td>${p.BBpct.toFixed(1)}</td>
+        `;
+
+        tbody.appendChild(row);
+    });
+
+    document.getElementById("leadersModal").style.display = "flex";
+}
+
+
+// -------------------------------
 // Batter Tier Assignment
 // -------------------------------
 function getBatterTier(score) {
@@ -677,6 +721,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("loadBtn").addEventListener("click", handleLoad);
     document.getElementById("resetBtn").addEventListener("click", handleReset);
     document.getElementById("compareBtn").addEventListener("click", showCompareModal);
+document.getElementById("leadersBtn").addEventListener("click", loadLeaders);
+
+
 
     // ⭐ Updated: Batter Analyzer timestamp
     loadLastUpdated(currentSeason);
@@ -687,9 +734,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Close modals
     document.getElementById("trendClose").onclick = () =>
         document.getElementById("trendModal").style.display = "none";
+document.getElementById("leadersClose").addEventListener("click", () => {
+    document.getElementById("leadersModal").style.display = "none";
 
     document.getElementById("compareClose").onclick = () =>
         document.getElementById("compareModal").style.display = "none";
 });
+
+window.addEventListener("click", (e) => {
+    const modal = document.getElementById("leadersModal");
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
 
 
