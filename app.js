@@ -78,8 +78,19 @@ function updateBattery(id, score) {
 // Universal metric updater
 // -------------------------------
 function updateMetric(rawId, batteryId, scoreId, rawValue, scoreValue) {
-    document.getElementById(rawId).textContent = rawValue;
-    document.getElementById(scoreId).textContent = safeFixed(scoreValue, 1);
+    const rawEl = document.getElementById(rawId);
+    const scoreEl = document.getElementById(scoreId);
+
+    rawEl.textContent = rawValue;
+    scoreEl.textContent = safeFixed(scoreValue, 1);
+
+    // ⭐ Glow effect for perfect 10
+    if (scoreValue >= 10) {
+        scoreEl.classList.add("glow-10");
+    } else {
+        scoreEl.classList.remove("glow-10");
+    }
+
     updateBattery(batteryId, safeScore(scoreValue));
 }
 
