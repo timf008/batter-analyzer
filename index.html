@@ -38,6 +38,7 @@
 
         <button id="loadBtn">Load🔍</button>
         <button id="trendBtn">Trend📈</button>
+        <button id="leadersBtn">Leaders</button>
 
         <div class="spinner" id="spinner1"></div>
     </section>
@@ -157,6 +158,31 @@
             </table>
         </div>
     </div>
+
+
+<div id="leadersModal" class="modal">
+    <div class="modal-content leaders-modal">
+        <span id="leadersClose" class="close">&times;</span>
+        <h2 id="leadersTitle">Leaders</h2>
+
+        <table class="leaders-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>BA</th>
+                    <th>OBP</th>
+                    <th>SLG</th>
+                    <th>K%</th>
+                    <th>BB%</th>
+                </tr>
+            </thead>
+            <tbody id="leadersBody">
+                <!-- JS will inject rows here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
     <footer class="footer">
         <small>Data source: Stathead (Sports Reference). Batter Analyzer – personal analytics tool.</small>
