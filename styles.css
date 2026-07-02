@@ -25,12 +25,6 @@ body {
     padding: 20px;
 }
 
-.glow-10 {
-    box-shadow: 0 0 12px 4px rgba(0, 255, 0, 0.75);
-    transition: box-shadow 0.3s ease;
-}
-
-
 
 /* -----------------------------------------
    Header
