@@ -392,14 +392,25 @@ function buildSeasonComparison(curr, prev, season, lastSeason) {
             arrow === "▼" ? "trend-down" :
             "trend-flat";
 
+        // ⭐ Correct formatting rules
+        let dispA, dispB;
+
+        if (s.key === "Kpct" || s.key === "BBpct") {
+            dispA = isNaN(a) ? "--" : a.toFixed(1);
+            dispB = isNaN(b) ? "--" : b.toFixed(1);
+        } else {
+            dispA = isNaN(a) ? "--" : stripZero(a.toFixed(3));
+            dispB = isNaN(b) ? "--" : stripZero(b.toFixed(3));
+        }
+
         return `
-    <tr>
-        <td>${s.label}</td>
-        <td>${isNaN(a) ? "--" : stripZero(a.toFixed(3))}</td>
-        <td>${isNaN(b) ? "--" : stripZero(b.toFixed(3))}</td>
-        <td class="${arrowClass}">${arrow}</td>
-    </tr>
-`;
+        <tr>
+            <td>${s.label}</td>
+            <td>${dispA}</td>
+            <td>${dispB}</td>
+            <td class="${arrowClass}">${arrow}</td>
+        </tr>
+        `;
     }).join("");
 
     return `
@@ -418,6 +429,7 @@ function buildSeasonComparison(curr, prev, season, lastSeason) {
         </table>
     `;
 }
+
 
 
 // -------------------------------
