@@ -79,16 +79,16 @@ function updateBattery(id, score) {
 // -------------------------------
 function updateMetric(rawId, batteryId, scoreId, rawValue, scoreValue) {
     document.getElementById(rawId).textContent = rawValue;
-    document.getElementById(scoreId).textContent = safeFixed(scoreValue, 3);
+    document.getElementById(scoreId).textContent = safeFixed(scoreValue, 1);
     updateBattery(batteryId, safeScore(scoreValue));
 }
 
 // -------------------------------
 // Individual metric wrappers (Batting 5‑metric model)
 // -------------------------------
-function updateBA(raw, score)      { updateMetric("raw-ba",    "battery-ba",    "score-ba",    raw, score); }
-function updateOBP(raw, score)     { updateMetric("raw-obp",   "battery-obp",   "score-obp",   raw, score); }
-function updateSLG(raw, score)     { updateMetric("raw-slg",   "battery-slg",   "score-slg",   raw, score); }
+function updateBA(raw, score)      { updateMetric("raw-ba",    "battery-ba",    "score-ba",    stripZero(raw), score); }
+function updateOBP(raw, score)     { updateMetric("raw-obp",   "battery-obp",   "score-obp",   stripZero(raw), score); }
+function updateSLG(raw, score)     { updateMetric("raw-slg",   "battery-slg",   "score-slg",   stripZero(raw), score); }
 function updateKpct(raw, score)    { updateMetric("raw-kpct",  "battery-kpct",  "score-kpct",  raw, score); }
 function updateBBpct(raw, score)   { updateMetric("raw-bbpct", "battery-bbpct", "score-bbpct", raw, score); }
 
@@ -239,6 +239,18 @@ function scoreBBpct(bbpct) {
     const score = 10 * (bbpct - 5) / (12 - 5);
     return clamp(score, 0, 10);
 }
+
+// -------------------------------
+// Utility helpers
+// -------------------------------
+function clamp(x, min, max) {
+    return Math.max(min, Math.min(max, x));
+}
+
+function stripZero(x) {
+    return String(x).replace(/^0+/, "");
+}
+
 
 // -------------------------------
 // Main: Load player + update UI (backend-only)
