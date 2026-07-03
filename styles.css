@@ -404,6 +404,80 @@ button.reset:hover {
     color: #cccccc;
 }
 
+/* -----------------------------------------
+   Leaders Modal (Dark Theme)
+----------------------------------------- */
+
+#leadersModal .modal-content {
+    width: 600px;
+    max-width: 90%;
+    background: #1e1e1e !important;   /* same dark background */
+    padding: 20px;
+    border-radius: 10px;
+    color: white;                      /* same text color */
+    position: relative;
+    z-index: 99999;                    /* ensures it sits above batteries */
+}
+
+/* Title */
+#leadersTitle {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+/* Close button */
+#leadersClose {
+    float: right;
+    font-size: 1.6em;
+    cursor: pointer;
+    color: #bbb;
+}
+
+#leadersClose:hover {
+    color: #fff;
+}
+
+/* -----------------------------------------
+   Leaders Modal Layout
+----------------------------------------- */
+
+.leaders-section {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Metric rows inside modal */
+#leadersModal .metric-row {
+    background: #2a2a2a;               /* darker row background */
+    border-radius: 10px;
+    padding: 10px 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* Labels inside modal */
+#leadersModal .metric-label,
+#leadersModal .metric-raw,
+#leadersModal .metric-score {
+    color: #e6e6e6;
+}
+
+/* -----------------------------------------
+   Battery Styling Inside Dark Modal
+----------------------------------------- */
+
+#leadersModal .battery {
+    background: #333 !important;       /* dark battery background */
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.6) !important;
+}
+
+#leadersModal .battery::after {
+    border-radius: 10px !important;
+}
 
 
 
