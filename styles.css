@@ -192,7 +192,8 @@ button.reset:hover {
 }
 
 .metric-row .battery {
-    flex: 1;   /* battery grows to fill space */
+    width: 160px;
+    flex: 0 0 auto;
 }
 
 
