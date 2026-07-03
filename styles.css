@@ -159,106 +159,75 @@ button.reset:hover {
 .metric-label {
     font-weight: 600;
     width: 70px;
-    display: inline-block;
 }
 
-/* Metric battery container */
+.metric-raw {
+    font-weight: 600;
+    width: 50px;
+    text-align: right;
+}
+
+.metric-score {
+    font-weight: 700;
+    width: 40px;
+    text-align: right;
+}
+
+/* -----------------------------------------
+   Unified Battery System (metrics + overall)
+----------------------------------------- */
+
 .battery {
+    flex: 1;
     height: 16px;
     background: #dfe6ef;
     border-radius: 10px;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
 
-    --fillWidth: 0%;
-    --fillColor: #00c853;
+    --fill: 0%;
+    --color: #00c853;
 }
 
-/* ⭐ Metric battery fill bar */
 .battery::after {
     content: "";
     position: absolute;
     left: 0;
     top: 0;
     height: 100%;
-    width: var(--fillWidth);
-    background: var(--fillColor);
+    width: var(--fill);
+    background: var(--color);
     transition: width 0.4s ease;
     border-radius: 10px;
 }
-
-.metric-raw {
-    font-weight: 600;
-    color: #333;
-    text-align: right;
-    width: 50px;
-    display: inline-block;
-}
-
-.metric-score {
-    text-align: right;
-    font-weight: 700;
-    font-size: 1.05em;
-    width: 40px;
-    display: inline-block;
-}
-
-/* ⭐ Restore metric grid width */
-.metric-row .battery {
-    width: 400px;
-    flex-shrink: 0;
-}
-
 
 /* -----------------------------------------
    Overall Section
 ----------------------------------------- */
 
 .overall {
-    width: 100%;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.overall-top p {
-    flex: 0 0 auto;
-}
-
-/* ⭐ Overall battery container */
 .overall-battery {
     height: 26px;
-    width: 100%;
-    max-width: 600px;
-    background: #dfe6ef;
-    border-radius: 12px;
-    margin-bottom: 18px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
-
     --fill: 0%;
+    --color: linear-gradient(90deg, #ffb400, #ff8c00);
 }
 
-/* ⭐ Overall battery fill bar (separate from metric battery) */
 .overall-battery::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: var(--fill);
-    background: linear-gradient(90deg, #ffb400, #ff8c00);
-    border-radius: 12px;
-    transition: width 0.4s ease;
+    background: var(--color);
 }
 
 .scouting-note label {
     font-weight: 700;
-    display: block;
     margin-bottom: 4px;
 }
+
 
 
 
