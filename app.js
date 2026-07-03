@@ -615,9 +615,15 @@ function buildLeadersTable(arr) {
 
     // Assign badges
     top10.forEach((p, i) => {
-        p.Badge = i === 0 ? "🔥 #1" :
-                  i <= 2 ? "⭐ Top 3" :
-                  "🏅 Top 10";
+        if (i === 0) {
+            p.Badge = "🔥 #1";
+        } else if (i === 1) {
+            p.Badge = "⭐ #2";
+        } else if (i === 2) {
+            p.Badge = "⭐ #3";
+        } else {
+            p.Badge = "🏅 Top 10";
+        }
     });
 
     // Build table
@@ -625,22 +631,22 @@ function buildLeadersTable(arr) {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-    <td>${p.Player}</td>
-    <td>${stripZero(p.BA.toFixed(3))}</td>
-    <td>${stripZero(p.OBP.toFixed(3))}</td>
-    <td>${stripZero(p.SLG.toFixed(3))}</td>
-    <td>${p.Kpct.toFixed(1)}</td>
-    <td>${p.BBpct.toFixed(1)}</td>
-    <td>${p.Score.toFixed(0)}</td>
-    <td>${p.Badge || ""}</td>
-`;
-
+            <td>${p.Player}</td>
+            <td>${stripZero(p.BA.toFixed(3))}</td>
+            <td>${stripZero(p.OBP.toFixed(3))}</td>
+            <td>${stripZero(p.SLG.toFixed(3))}</td>
+            <td>${p.Kpct.toFixed(1)}</td>
+            <td>${p.BBpct.toFixed(1)}</td>
+            <td>${p.Score.toFixed(0)}</td>
+            <td>${p.Badge}</td>
+        `;
 
         tbody.appendChild(row);
     });
 
     document.getElementById("leadersModal").style.display = "flex";
 }
+
 
 
 
