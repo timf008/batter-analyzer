@@ -95,12 +95,30 @@ function updateBBpct(raw, score)   { updateMetric("raw-bbpct", "battery-bbpct", 
 
 
 // -------------------------------
-// Overall score + tier
+// Overall score + tier + XP
 // -------------------------------
-function updateOverall(score) {
-    document.getElementById("overallScore").textContent = safeFixed(score, 1);
-    updateBattery("battery-overall", safeScore(score));
+function updateOverall(player) {
+    // Overall Score (0–10)
+    document.getElementById("overallScore").textContent = safeFixed(player.OverallScore, 1);
+
+    // Battery fill
+    updateBattery("battery-overall", safeScore(player.OverallScore));
+
+    // XP calculation
+    const xp =
+        (player.BA * 1000) +
+        (player.OBP * 1000) +
+        (player.SLG * 1000) +
+        (player.BBpct * 2) -
+        (player.Kpct * 1.5);
+
+    // Display XP
+    document.getElementById("overallXP").textContent = Math.round(xp);
+
+    // Tier (unchanged)
+    document.getElementById("overallTier").textContent = player.Tier;
 }
+
 
 // -------------------------------
 // Tier → CSS class mapping
