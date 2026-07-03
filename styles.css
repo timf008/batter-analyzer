@@ -229,18 +229,19 @@ button.reset:hover {
     max-width: 600px;
 }
 
-/* ⭐ Overall battery — fixes missing bar */
+/* ⭐ Overall battery — FIXED (now visible) */
 .overall-battery {
     height: 26px;
+    width: 100%;          /* ⭐ REQUIRED — prevents collapse */
     max-width: 600px;
 
-    /* gradient fill */
     --color: linear-gradient(90deg, #ffb400, #ff8c00);
 }
 
 .overall-battery::after {
     background: var(--color);
 }
+
 
 .scouting-note label {
     font-weight: 700;
