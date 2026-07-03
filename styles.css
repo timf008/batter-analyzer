@@ -417,9 +417,15 @@ button.reset:hover {
     background: #dfe6ef;
     border-radius: 10px;
     overflow: hidden;
+
+    /* ⭐ REQUIRED DIMENSIONS */
     height: 20px;
-    width: 100%;
+    width: 120px;
+
+    /* ⭐ Prevent flexbox from collapsing it */
+    flex-shrink: 0;
 }
+
 
 .battery::before {
     content: "";
