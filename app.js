@@ -256,7 +256,8 @@ function stripZero(x) {
 // Main: Load player + update UI (backend-only)
 // -------------------------------
 async function handleLoad() {
-    showSpinner("spinner1");
+    const spin = document.getElementById("spinner1");
+    spin.classList.add("spin");
 
     try {
         const name = document.getElementById("playerName").value.trim();
@@ -269,30 +270,25 @@ async function handleLoad() {
 
         const data = await loadBatter(name, season);
 
-        // ⭐ Correct error handling
         if (!data || data.error || (Array.isArray(data) && data.length === 0)) {
             alert("Batter not found.");
             return;
         }
 
-        // ⭐ Always normalize to object
         const p = Array.isArray(data) ? data[0] : data;
 
-        // ⭐ Batting 5-metric scoring
         const baScore   = scoreBA(p.BA);
         const obpScore  = scoreOBP(p.OBP);
         const slgScore  = scoreSLG(p.SLG);
         const kpctScore = scoreKpct(p.Kpct);
         const bbpctScore= scoreBBpct(p.BBpct);
 
-        // ⭐ Update UI
         updateBA(safeFixed(p.BA, 3), baScore);
         updateOBP(safeFixed(p.OBP, 3), obpScore);
         updateSLG(safeFixed(p.SLG, 3), slgScore);
         updateKpct(safeFixed(p.Kpct, 1), kpctScore);
         updateBBpct(safeFixed(p.BBpct, 1), bbpctScore);
 
-        // ⭐ Compute overall
         const overall = computeWeightedOverall({
             baScore,
             obpScore,
@@ -308,9 +304,10 @@ async function handleLoad() {
     } catch (err) {
         console.error("Error loading player:", err);
     } finally {
-        hideSpinner("spinner1");
+        spin.classList.remove("spin");
     }
 }
+
 
 // -------------------------------
 // Trend Handler (Season Comparison)
