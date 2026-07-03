@@ -177,34 +177,6 @@ button.reset:hover {
    Unified Battery System (metrics + overall)
 ----------------------------------------- */
 
-.battery {
-    position: relative;
-    background: #dfe6ef;
-    border-radius: 10px;
-    overflow: hidden;
-
-    /* unified dimensions */
-    height: 16px;
-    flex: 1;
-
-    /* unified variables */
-    --fill: 0%;
-    --color: #00c853;
-
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
-}
-
-.battery::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: var(--fill);
-    background: var(--color);
-    transition: width 0.4s ease;
-    border-radius: 10px;
-}
 
 /* ⭐ Metric battery width — fixes narrow bars */
 .metric-row .battery {
