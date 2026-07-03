@@ -196,7 +196,6 @@ button.reset:hover {
     flex: 0 0 auto;
 }
 
-
 /* -----------------------------------------
    Overall Section
 ----------------------------------------- */
@@ -214,16 +213,18 @@ button.reset:hover {
 
 .overall-battery {
     height: 26px;
-    width: 100%;        /* or 400px if you prefer */
-    max-width: 600px;   /* optional */
+    width: 100%;
+    max-width: 600px;
     background: #dfe6ef;
     border-radius: 12px;
     margin-bottom: 18px;
     position: relative;
     overflow: hidden;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
-}
 
+    /* NEW — this is the fix */
+    --fill: 0%;
+}
 
 .overall-battery::after {
     content: "";
@@ -231,7 +232,10 @@ button.reset:hover {
     left: 0;
     top: 0;
     height: 100%;
-    width: 0%; /* JS updates */
+
+    /* CHANGED — now uses the variable */
+    width: var(--fill);
+
     background: linear-gradient(90deg, #ffb400, #ff8c00);
     border-radius: 12px;
     transition: width 0.4s ease;
@@ -242,6 +246,7 @@ button.reset:hover {
     display: block;
     margin-bottom: 4px;
 }
+
 
 /* -----------------------------------------
    Trend Modal
