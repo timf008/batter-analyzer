@@ -92,13 +92,25 @@ function updateSLG(raw, score)     { updateMetric("raw-slg",   "battery-slg",   
 function updateKpct(raw, score)    { updateMetric("raw-kpct",  "battery-kpct",  "score-kpct",  raw, score); }
 function updateBBpct(raw, score)   { updateMetric("raw-bbpct", "battery-bbpct", "score-bbpct", raw, score); }
 
+// -------------------------------
+// Overall battery updater (CSS variable version)
+// -------------------------------
+function updateOverallBattery(score) {
+    const el = document.getElementById("battery-overall");
+    if (!el) return;
+
+    const fill = (score / 10) * 100;
+
+    el.style.setProperty("--fill", `${fill}%`);
+}
+
 
 // -------------------------------
 // Overall score + tier
 // -------------------------------
 function updateOverall(score) {
     document.getElementById("overallScore").textContent = safeFixed(score, 1);
-    updateBattery("battery-overall", safeScore(score));
+    updateOverallBattery(safeScore(score));
 }
 
 // -------------------------------
