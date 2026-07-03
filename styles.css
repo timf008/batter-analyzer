@@ -604,7 +604,6 @@ button.reset:hover {
     height: 26px !important;
     width: 100% !important;
     max-width: 600px !important;
-    --color: linear-gradient(90deg, #ffb400, #ff8c00) !important;
 }
 
 .overall-battery::after {
