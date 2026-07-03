@@ -589,7 +589,7 @@ function buildLeadersTable(arr) {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>${p.Name}</td>
+            <td>${p.Player}</td>
             <td>${stripZero(p.BA.toFixed(3))}</td>
             <td>${stripZero(p.OBP.toFixed(3))}</td>
             <td>${stripZero(p.SLG.toFixed(3))}</td>
@@ -602,6 +602,7 @@ function buildLeadersTable(arr) {
 
     document.getElementById("leadersModal").style.display = "flex";
 }
+
 
 
 // -------------------------------
