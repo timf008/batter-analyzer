@@ -511,6 +511,13 @@ button.reset:hover {
     text-align: center;
 }
 
+#leadersModal {
+    display: flex;
+    justify-content: center;   /* centers the table horizontally */
+    align-items: center;        /* centers vertically if needed */
+}
+
+
 
 /* -----------------------------------------
    Trend Emoji Buttons
