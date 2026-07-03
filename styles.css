@@ -417,6 +417,8 @@ button.reset:hover {
     background: #dfe6ef;
     border-radius: 10px;
     overflow: hidden;
+    height: 20px;
+    width: 100%;
 }
 
 .battery::before {
