@@ -150,7 +150,7 @@ button.reset:hover {
 .metric-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     padding: 10px 14px;
     background: #f9fbfe;
     border-radius: 10px;
@@ -537,29 +537,6 @@ button.reset:hover {
   box-sizing: border-box;
   text-align: center;
   position: relative;
-}
-
-.rank-table {
-    margin: 0 auto;      /* centers the table */
-    width: 100%;         /* makes it fill the modal */
-    border-collapse: collapse;
-}
-
-
-.close {
-    font-size: 1.6em;
-    cursor: pointer;
-    color: #444;
-}
-
-#rankClose {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
-    font-size: 1.6em;
-    color: #444;
-    z-index: 10; /* ensure it's above everything */
 }
 
 .no-data-message {
