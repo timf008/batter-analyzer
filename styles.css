@@ -420,36 +420,6 @@ button.reset:hover {
 
 
 /* -----------------------------------------
-   Batteries
------------------------------------------ */
-.battery {
-    position: relative;
-    background: #dfe6ef;
-    border-radius: 10px;
-    overflow: hidden;
-
-    /* ⭐ REQUIRED DIMENSIONS */
-    height: 20px;
-    width: 120px;
-
-    /* ⭐ Prevent flexbox from collapsing it */
-    flex-shrink: 0;
-}
-
-
-.battery::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: var(--fillWidth, 0%);
-    background-color: var(--fillColor, #d50000); /* default red */
-    transition: width .4s ease, background-color .2s ease;
-    border-radius: 10px;
-}
-
-/* -----------------------------------------
    Trend Emoji Buttons
 ----------------------------------------- */
 .trend-btn {
