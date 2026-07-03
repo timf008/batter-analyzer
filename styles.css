@@ -131,7 +131,6 @@ button.reset:hover {
     padding: 0 14px;
 }
 
-
 /* -----------------------------------------
    Metric Grid
 ----------------------------------------- */
@@ -171,9 +170,24 @@ button.reset:hover {
     overflow: hidden;
     position: relative;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
+
+    /* REQUIRED for metric battery fill */
+    --fillWidth: 0%;
+    --fillColor: #00c853;
 }
 
-/* Raw stat */
+.battery::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: var(--fillWidth);
+    background: var(--fillColor);
+    transition: width 0.4s ease;
+    border-radius: 10px;
+}
+
 .metric-raw {
     font-weight: 600;
     color: #333;
@@ -182,7 +196,6 @@ button.reset:hover {
     display: inline-block;
 }
 
-/* Score */
 .metric-score {
     text-align: right;
     font-weight: 700;
@@ -191,10 +204,10 @@ button.reset:hover {
     display: inline-block;
 }
 
-/* ⭐ PATCHED: metric batteries now flex instead of forcing width */
+/* ⭐ FIXED: metric batteries no longer force layout width */
 .metric-row .battery {
-    flex: 1;            /* allows row to stretch naturally */
-    min-width: 200px;   /* prevents collapsing */
+    flex: 1;
+    min-width: 200px;
 }
 
 
@@ -213,7 +226,7 @@ button.reset:hover {
     flex: 0 0 auto;
 }
 
-/* ⭐ PATCHED: overall battery now stretches fully */
+/* ⭐ FIXED: overall battery restored + stretches fully */
 .overall-battery {
     height: 26px;
     width: 100%;
@@ -225,8 +238,7 @@ button.reset:hover {
     overflow: hidden;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
 
-    --fill: 0%;         /* CSS variable for JS */
-    flex: 1;            /* ensures full stretch */
+    --fill: 0%;
 }
 
 .overall-battery::after {
@@ -235,7 +247,7 @@ button.reset:hover {
     left: 0;
     top: 0;
     height: 100%;
-    width: var(--fill); /* JS updates this */
+    width: var(--fill);
     background: linear-gradient(90deg, #ffb400, #ff8c00);
     border-radius: 12px;
     transition: width 0.4s ease;
