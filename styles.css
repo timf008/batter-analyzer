@@ -232,7 +232,7 @@ button.reset:hover {
 /* ⭐ Overall battery — FIXED (now visible) */
 .overall-battery {
     height: 26px;
-    width: 100%;          /* ⭐ REQUIRED — prevents collapse */
+    width: 600px;
     max-width: 600px;
 
     --color: linear-gradient(90deg, #ffb400, #ff8c00);
