@@ -15,19 +15,14 @@ body {
 }
 
 .container {
-    width: 700px;
-    margin: 60px auto;
+    width: 680px;
+    margin: 40px auto;
     background: #ffffff;
-
-    /* unified padding */
-    padding: 15px;
-
+    padding: 35px 45px;
     border-radius: 14px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     border: 3px solid #000000;
-
-    /* prevents pixel drift */
-    box-sizing: border-box;
+    padding: 20px;
 }
 
 
