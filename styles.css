@@ -208,18 +208,14 @@ button.reset:hover {
     gap: 12px;
 }
 
-
-.overall-top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    font-size: 1.1em;
-    font-weight: 600;
+.overall-top p {
+    flex: 0 0 auto;
 }
 
 .overall-battery {
     height: 26px;
-    width: 600px;   /* pick your size */
+    width: 100%;        /* or 400px if you prefer */
+    max-width: 600px;   /* optional */
     background: #dfe6ef;
     border-radius: 12px;
     margin-bottom: 18px;
@@ -227,7 +223,6 @@ button.reset:hover {
     overflow: hidden;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
 }
-
 
 
 .overall-battery::after {
