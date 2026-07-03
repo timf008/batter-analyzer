@@ -648,6 +648,14 @@ button.reset:hover {
 /* -----------------------------------------
    FINAL OVERRIDE — Forces overall battery to render
 ----------------------------------------- */
+.overall-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
 
 .battery {
     position: relative !important;
