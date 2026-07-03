@@ -60,19 +60,20 @@ function updateBattery(id, score) {
     const fill = (score / 10) * 100;
 
     let color;
-    if (score < 3) {
-        color = "#d50000";      // red
-    } else if (score < 5.5) {
-        color = "#ff9800";      // orange
-    } else if (score < 7.5) {
-        color = "#ffb400";      // yellow-orange
-    } else {
-        color = "#00c853";      // green
-    }
+    if (score < 3) color = "#d50000";
+    else if (score < 5.5) color = "#ff9800";
+    else if (score < 7.5) color = "#ffb400";
+    else color = "#00c853";
 
-    el.style.setProperty("--fillWidth", `${fill}%`);
-    el.style.setProperty("--fillColor", color);
+    el.style.setProperty("--fill", `${fill}%`);
+    el.style.setProperty("--color", color);
 }
+
+function updateOverall(score) {
+    document.getElementById("overallScore").textContent = safeFixed(score, 1);
+    updateBattery("battery-overall", safeScore(score));
+}
+
 
 // -------------------------------
 // Universal metric updater
