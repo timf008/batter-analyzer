@@ -18,12 +18,18 @@ body {
     width: 680px;
     margin: 40px auto;
     background: #ffffff;
-    padding: 35px 45px;
+
+    /* unified padding */
+    padding: 20px;
+
     border-radius: 14px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     border: 3px solid #000000;
-    padding: 20px;
+
+    /* prevents pixel drift */
+    box-sizing: border-box;
 }
+
 
 
 /* -----------------------------------------
