@@ -201,6 +201,14 @@ button.reset:hover {
    Overall Section
 ----------------------------------------- */
 
+.overall {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
 .overall-top {
     display: flex;
     justify-content: space-between;
@@ -211,7 +219,7 @@ button.reset:hover {
 
 .overall-battery {
     height: 26px;
-    width: 400px;   /* pick your size */
+    width: 600px;   /* pick your size */
     background: #dfe6ef;
     border-radius: 12px;
     margin-bottom: 18px;
