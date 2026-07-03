@@ -171,7 +171,6 @@ button.reset:hover {
     position: relative;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
 
-    /* REQUIRED for metric battery fill */
     --fillWidth: 0%;
     --fillColor: #00c853;
 }
@@ -204,10 +203,10 @@ button.reset:hover {
     display: inline-block;
 }
 
-/* ⭐ FIXED: metric batteries no longer force layout width */
+/* ⭐ FIXED: metric batteries now have a stable width again */
 .metric-row .battery {
-    flex: 1;
-    min-width: 200px;
+    width: 400px;       /* restores your original grid spacing */
+    flex-shrink: 0;     /* prevents collapsing */
 }
 
 
@@ -226,7 +225,7 @@ button.reset:hover {
     flex: 0 0 auto;
 }
 
-/* ⭐ FIXED: overall battery restored + stretches fully */
+/* ⭐ FIXED: overall battery stretches fully AND stays visible */
 .overall-battery {
     height: 26px;
     width: 100%;
@@ -258,6 +257,7 @@ button.reset:hover {
     display: block;
     margin-bottom: 4px;
 }
+
 
 
 
