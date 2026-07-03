@@ -149,7 +149,7 @@ button.reset:hover {
 .metric-row {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     padding: 10px 14px;
     background: #f9fbfe;
     border-radius: 10px;
@@ -202,6 +202,13 @@ button.reset:hover {
     border-radius: 10px;
 }
 
+/* Metric battery width */
+.metric-row .battery {
+    height: 16px;
+    flex: 1;
+    min-width: 350px;   /* ⭐ matches screenshot width */
+}
+
 /* -----------------------------------------
    Overall Section
 ----------------------------------------- */
@@ -213,9 +220,15 @@ button.reset:hover {
     gap: 12px;
 }
 
+.overall-top {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+}
+
 .overall-battery {
     height: 26px;
-    --fill: 0%;
+    max-width: 600px;
     --color: linear-gradient(90deg, #ffb400, #ff8c00);
 }
 
