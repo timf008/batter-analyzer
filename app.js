@@ -692,9 +692,10 @@ function handleReset() {
     document.querySelectorAll(".metric-score").forEach(el => el.textContent = "--");
 
     document.querySelectorAll(".battery").forEach(el => {
-        el.style.setProperty("--fillWidth", "0%");
-        el.style.setProperty("--fillColor", "#d50000");
-    });
+    el.style.setProperty("--fill", "0%");
+    el.style.setProperty("--color", "#d50000");
+});
+
 
     document.getElementById("overallScore").textContent = "--";
     document.getElementById("overallTier").innerHTML = "";
