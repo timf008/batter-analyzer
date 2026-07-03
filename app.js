@@ -313,7 +313,8 @@ async function handleLoad() {
 // Trend Handler (Season Comparison)
 // -------------------------------
 async function handleTrend() {
-    showSpinner("spinner1");
+    const spin = document.getElementById("spinner1");
+    spin.classList.add("spin");
 
     try {
         const rawName = document.getElementById("playerName").value.trim();
@@ -356,10 +357,13 @@ async function handleTrend() {
         document.getElementById("trendBody").innerHTML = html;
         document.getElementById("trendModal").style.display = "flex";
 
+    } catch (err) {
+        console.error("Trend error:", err);
     } finally {
-        hideSpinner("spinner1");
+        spin.classList.remove("spin");
     }
 }
+
 
 // -------------------------------
 // Trend Table (Season Comparison)
@@ -428,12 +432,12 @@ function buildSeasonComparison(curr, prev, season, lastSeason) {
 }
 
 
-
 // -------------------------------
 // Compare Button (Batting Version)
 // -------------------------------
 async function showCompareModal() {
-    showSpinner("spinner1");
+    const spin = document.getElementById("spinner1");
+    spin.classList.add("spin");
     console.log("COMPARE BUTTON CLICKED");
 
     function formatName(name) {
@@ -508,14 +512,13 @@ async function showCompareModal() {
 
         // ⭐ RAW + FORMATTED VALUES (Batting)
         const stats = [
-    ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
-    ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
-    ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
-    ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
-    ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
-    ["Overall Score", overall1, overall2, overall1.toFixed(1),            overall2.toFixed(1)]
-];
-
+            ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
+            ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
+            ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
+            ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
+            ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
+            ["Overall Score", overall1, overall2, overall1.toFixed(1),            overall2.toFixed(1)]
+        ];
 
         const tbody = document.getElementById("compareBody");
         tbody.innerHTML = "";
@@ -553,26 +556,38 @@ async function showCompareModal() {
     } catch (err) {
         console.error("Compare error:", err);
     } finally {
-        hideSpinner("spinner1");
+        spin.classList.remove("spin");
     }
 }
+
 
 // -------------------------------
 // Leaders Button
 // -------------------------------
 async function loadLeaders() {
-    const season = document.getElementById("seasonSelect").value;
+    const spin = document.getElementById("spinner1");
+    spin.classList.add("spin");
 
-    const data = await fetch(
-        `https://batter-analyzer-backend.onrender.com/api/leaders?season=${season}`
-    ).then(r => r.json());
+    try {
+        const season = document.getElementById("seasonSelect").value;
 
-    if (!Array.isArray(data)) {
-        alert("No leaderboard data available.");
-        return;
+        const data = await fetch(
+            `https://batter-analyzer-backend.onrender.com/api/leaders?season=${season}`
+        ).then(r => r.json());
+
+        if (!Array.isArray(data)) {
+            alert("No leaderboard data available.");
+            return;
+        }
+
+        buildLeadersTable(data);
+
+    } catch (err) {
+        console.error("Leaders error:", err);
+        alert("Error loading leaderboard.");
+    } finally {
+        spin.classList.remove("spin");
     }
-
-    buildLeadersTable(data);
 }
 
 // -------------------------------
@@ -664,16 +679,6 @@ document.getElementById("swapBtn").onclick = function () {
     document.getElementById("loadBtn").click();
 };
 
-// -------------------------------
-// Spinner Helpers
-// -------------------------------
-function showSpinner(id) {
-    document.getElementById(id).style.display = "inline-block";
-}
-
-function hideSpinner(id) {
-    document.getElementById(id).style.display = "none";
-}
 
 // -------------------------------
 // Reset UI
