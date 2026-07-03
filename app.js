@@ -585,23 +585,50 @@ function buildLeadersTable(arr) {
     const tbody = document.getElementById("leadersBody");
     tbody.innerHTML = "";
 
+    // Compute score
     arr.forEach(p => {
+        p.Score =
+            (p.BA * 1000) +
+            (p.OBP * 1000) +
+            (p.SLG * 1000) +
+            (p.BBpct * 2) -
+            (p.Kpct * 1.5);
+    });
+
+    // Top 10
+    const top10 = [...arr]
+        .sort((a, b) => b.Score - a.Score)
+        .slice(0, 10);
+
+    // Assign badges
+    top10.forEach((p, i) => {
+        p.Badge = i === 0 ? "🔥 #1" :
+                  i <= 2 ? "⭐ Top 3" :
+                  "🏅 Top 10";
+    });
+
+    // Build table
+    top10.forEach(p => {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>${p.Player}</td>
-            <td>${stripZero(p.BA.toFixed(3))}</td>
-            <td>${stripZero(p.OBP.toFixed(3))}</td>
-            <td>${stripZero(p.SLG.toFixed(3))}</td>
-            <td>${p.Kpct.toFixed(1)}</td>
-            <td>${p.BBpct.toFixed(1)}</td>
-        `;
+    <td>${p.Player}</td>
+    <td>${stripZero(p.BA.toFixed(3))}</td>
+    <td>${stripZero(p.OBP.toFixed(3))}</td>
+    <td>${stripZero(p.SLG.toFixed(3))}</td>
+    <td>${p.Kpct.toFixed(1)}</td>
+    <td>${p.BBpct.toFixed(1)}</td>
+    <td>${p.Score.toFixed(0)}</td>
+    <td>${p.Badge || ""}</td>
+`;
+
 
         tbody.appendChild(row);
     });
 
     document.getElementById("leadersModal").style.display = "flex";
 }
+
 
 
 
