@@ -178,16 +178,20 @@ button.reset:hover {
 ----------------------------------------- */
 
 .battery {
-    flex: 1;
-    height: 16px;
+    position: relative;
     background: #dfe6ef;
     border-radius: 10px;
-    position: relative;
     overflow: hidden;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
 
+    /* unified dimensions */
+    height: 16px;
+    flex: 1;
+
+    /* unified variables */
     --fill: 0%;
     --color: #00c853;
+
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
 }
 
 .battery::after {
@@ -202,11 +206,10 @@ button.reset:hover {
     border-radius: 10px;
 }
 
-/* Metric battery width */
+/* ⭐ Metric battery width — fixes narrow bars */
 .metric-row .battery {
+    min-width: 400px;   /* matches your screenshot */
     height: 16px;
-    flex: 1;
-    min-width: 350px;   /* ⭐ matches screenshot width */
 }
 
 /* -----------------------------------------
@@ -226,9 +229,12 @@ button.reset:hover {
     max-width: 600px;
 }
 
+/* ⭐ Overall battery — fixes missing bar */
 .overall-battery {
     height: 26px;
     max-width: 600px;
+
+    /* gradient fill */
     --color: linear-gradient(90deg, #ffb400, #ff8c00);
 }
 
@@ -240,6 +246,7 @@ button.reset:hover {
     font-weight: 700;
     margin-bottom: 4px;
 }
+
 
 
 
@@ -551,49 +558,6 @@ button.reset:hover {
     white-space: pre-line;
 }
 
-
-/* -----------------------------------------
-   Preload Progress Bar
------------------------------------------ */
-.preload-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.75);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 99999;
-}
-
-.preload-box {
-    width: 420px;
-    background: #111;
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-    color: white;
-    font-size: 1.2rem;
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
-}
-
-.preload-bar {
-    width: 100%;
-    height: 18px;
-    background: #333;
-    border-radius: 10px;
-    margin-top: 15px;
-    overflow: hidden;
-}
-
-#preloadFill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
-    transition: width 0.15s ease-out;
-}
 
 /* -----------------------------------------
    Latest Update Timestamp
