@@ -397,6 +397,35 @@ button.reset:hover {
     color: #cccccc;
 }
 
+/* -----------------------------------------
+   Leaders Modal Spacing Fix
+----------------------------------------- */
+
+#leadersModal .modal-content {
+    padding: 25px 30px;        /* more breathing room */
+}
+
+#leadersTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#leadersTable th,
+#leadersTable td {
+    padding: 10px 12px;        /* fixes cramped cells */
+    text-align: center;
+}
+
+#leadersTable tr {
+    height: 42px;              /* consistent row height */
+}
+
+#leadersTable td:last-child {
+    font-size: 1.1em;          /* badge column slightly larger */
+    padding-left: 6px;
+}
+
 
 /* -----------------------------------------
    Trend Emoji Buttons
