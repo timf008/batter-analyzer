@@ -622,3 +622,10 @@ button.reset:hover {
     z-index: 11;
 }
 
+/* FINAL FIX — force overall battery height */
+.overall .overall-battery {
+    height: 26px !important;
+    min-height: 26px !important;
+}
+
+
