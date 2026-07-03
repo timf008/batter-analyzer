@@ -10,6 +10,9 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,4 +26,4 @@ jobs:
           path: .
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
