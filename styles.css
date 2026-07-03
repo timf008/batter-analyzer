@@ -511,6 +511,15 @@ button.reset:hover {
     text-align: center;
 }
 
+#leadersModal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 80%;          /* increase width */
+    max-width: 700px;    /* prevent over-expansion */
+    margin: 0 auto;      /* center modal */
+}
+
 
 
 /* -----------------------------------------
