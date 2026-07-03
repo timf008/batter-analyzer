@@ -157,7 +157,6 @@ button.reset:hover {
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-
 .metric-label {
     font-weight: 600;
     width: 70px;
@@ -174,6 +173,7 @@ button.reset:hover {
     box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
 }
 
+/* Raw stat */
 .metric-raw {
     font-weight: 600;
     color: #333;
@@ -182,7 +182,7 @@ button.reset:hover {
     display: inline-block;
 }
 
-
+/* Score */
 .metric-score {
     text-align: right;
     font-weight: 700;
@@ -191,10 +191,12 @@ button.reset:hover {
     display: inline-block;
 }
 
+/* ⭐ PATCHED: metric batteries now flex instead of forcing width */
 .metric-row .battery {
-    width: 400px;
-    flex: 0 0 auto;
+    flex: 1;            /* allows row to stretch naturally */
+    min-width: 200px;   /* prevents collapsing */
 }
+
 
 /* -----------------------------------------
    Overall Section
@@ -211,6 +213,7 @@ button.reset:hover {
     flex: 0 0 auto;
 }
 
+/* ⭐ PATCHED: overall battery now stretches fully */
 .overall-battery {
     height: 26px;
     width: 100%;
@@ -222,8 +225,8 @@ button.reset:hover {
     overflow: hidden;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
 
-    /* NEW — this is the fix */
-    --fill: 0%;
+    --fill: 0%;         /* CSS variable for JS */
+    flex: 1;            /* ensures full stretch */
 }
 
 .overall-battery::after {
@@ -232,10 +235,7 @@ button.reset:hover {
     left: 0;
     top: 0;
     height: 100%;
-
-    /* CHANGED — now uses the variable */
-    width: var(--fill);
-
+    width: var(--fill); /* JS updates this */
     background: linear-gradient(90deg, #ffb400, #ff8c00);
     border-radius: 12px;
     transition: width 0.4s ease;
@@ -246,6 +246,7 @@ button.reset:hover {
     display: block;
     margin-bottom: 4px;
 }
+
 
 
 /* -----------------------------------------
