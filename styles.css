@@ -228,6 +228,13 @@ button.reset:hover {
 /* -----------------------------------------
    Trend Modal
 ----------------------------------------- */
+.modal-container {
+    position: fixed;
+    z-index: 99999;
+    background: #fff; /* prevents transparency */
+}
+
+
 
 .modal {
     position: fixed;
@@ -611,16 +618,6 @@ button.reset:hover {
     background: var(--color) !important;
 }
 
-/* Fix invisible overlay covering overall battery */
-.overall {
-    position: relative;
-    z-index: 10;
-}
-
-.overall-battery {
-    position: relative;
-    z-index: 11;
-}
 
 /* FINAL FIX — force overall battery height */
 .overall .overall-battery {
