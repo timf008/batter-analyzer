@@ -211,6 +211,7 @@ button.reset:hover {
 
 .overall-battery {
     height: 26px;
+    width:  500px
     background: #dfe6ef;
     border-radius: 12px;
     margin-bottom: 18px;
