@@ -206,6 +206,7 @@ button.reset:hover {
     height: 26px;
     width: 600px;
     max-width: 600px;
+    margin: 0 auto !important;
 }
 
 .overall-battery::after {
