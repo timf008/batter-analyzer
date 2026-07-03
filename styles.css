@@ -162,7 +162,7 @@ button.reset:hover {
     display: inline-block;
 }
 
-/* Glossy battery bars */
+/* Metric battery container */
 .battery {
     height: 16px;
     background: #dfe6ef;
@@ -175,6 +175,7 @@ button.reset:hover {
     --fillColor: #00c853;
 }
 
+/* ⭐ Metric battery fill bar */
 .battery::after {
     content: "";
     position: absolute;
@@ -203,10 +204,10 @@ button.reset:hover {
     display: inline-block;
 }
 
-/* ⭐ FIXED: metric batteries now have a stable width again */
+/* ⭐ Restore metric grid width */
 .metric-row .battery {
-    width: 400px;       /* restores your original grid spacing */
-    flex-shrink: 0;     /* prevents collapsing */
+    width: 400px;
+    flex-shrink: 0;
 }
 
 
@@ -225,7 +226,7 @@ button.reset:hover {
     flex: 0 0 auto;
 }
 
-/* ⭐ FIXED: overall battery stretches fully AND stays visible */
+/* ⭐ Overall battery container */
 .overall-battery {
     height: 26px;
     width: 100%;
@@ -240,6 +241,7 @@ button.reset:hover {
     --fill: 0%;
 }
 
+/* ⭐ Overall battery fill bar (separate from metric battery) */
 .overall-battery::after {
     content: "";
     position: absolute;
@@ -257,6 +259,7 @@ button.reset:hover {
     display: block;
     margin-bottom: 4px;
 }
+
 
 
 
