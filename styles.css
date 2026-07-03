@@ -504,6 +504,13 @@ button.reset:hover {
     text-align: center;
 }
 
+/* Leaders Table Centered in Modal */
+#leadersTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
 
 
 /* -----------------------------------------
