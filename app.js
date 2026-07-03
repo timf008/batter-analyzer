@@ -634,11 +634,6 @@ function buildLeadersTable(arr) {
 
         row.innerHTML = `
             <td>${p.Player}</td>
-            <td>${stripZero(p.BA.toFixed(3))}</td>
-            <td>${stripZero(p.OBP.toFixed(3))}</td>
-            <td>${stripZero(p.SLG.toFixed(3))}</td>
-            <td>${p.Kpct.toFixed(1)}</td>
-            <td>${p.BBpct.toFixed(1)}</td>
             <td>${p.Score.toFixed(0)}</td>
             <td>${p.Badge}</td>
         `;
