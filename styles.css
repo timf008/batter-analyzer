@@ -639,3 +639,14 @@ button.reset:hover {
     background: var(--color) !important;
 }
 
+/* Fix invisible overlay covering overall battery */
+.overall {
+    position: relative;
+    z-index: 10;
+}
+
+.overall-battery {
+    position: relative;
+    z-index: 11;
+}
+
