@@ -1,5 +1,5 @@
 /* -----------------------------------------
-   Batter Analyzer CSS Styles
+   Pitcher Analyzer CSS Styles
 ----------------------------------------- */
 
 /* -----------------------------------------
@@ -24,7 +24,6 @@ body {
     border: 3px solid #000000;
     padding: 20px;
 }
-
 
 
 /* -----------------------------------------
@@ -131,6 +130,7 @@ button.reset:hover {
     height: 38px;
     padding: 0 14px;
 }
+ 
 
 /* -----------------------------------------
    Metric Grid
@@ -149,6 +149,7 @@ button.reset:hover {
 
 .metric-row {
     display: flex;
+    grid-template-columns: 120px 70px 1fr 60px;
     align-items: center;
     gap: 8px;
     padding: 10px 14px;
@@ -160,38 +161,37 @@ button.reset:hover {
 .metric-label {
     font-weight: 600;
     width: 70px;
-    display: inline block;
+    display: inline-block;
 }
 
 .metric-raw {
     font-weight: 600;
-    width: 50px;
+    color: #333;
     text-align: right;
+    width: 50px;
+    display: inline-block;
 }
+
 
 .metric-score {
-    font-weight: 700;
-    width: 40px;
     text-align: right;
+    font-weight: 700;
+    font-size: 1.05em;
+    width: 40px;
+    display: inline-block;
 }
 
-/* -----------------------------------------
-   Unified Battery System (metrics + overall)
------------------------------------------ */
-
-
-/* ⭐ Metric battery width — fixes narrow bars */
 .metric-row .battery {
-    min-width: 400px;   /* matches your screenshot */
-    height: 16px;
+    flex: 1;   /* battery grows to fill space */
 }
+
 
 /* -----------------------------------------
    Overall Section
 ----------------------------------------- */
 
 .overall {
-    margin-top: 25px;
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -222,21 +222,9 @@ button.reset:hover {
 }
 
 
-
-
-
-
-
 /* -----------------------------------------
    Trend Modal
 ----------------------------------------- */
-.modal-container {
-    position: fixed;
-    z-index: 99999;
-    background: #fff; /* prevents transparency */
-}
-
-
 
 .modal {
     position: fixed;
@@ -388,7 +376,6 @@ button.reset:hover {
     width: 100%;
 }
 
-
 /* -----------------------------------------
    Compare Win - Lose Indicator
 ----------------------------------------- */
@@ -407,7 +394,7 @@ button.reset:hover {
 }
 
 /* -----------------------------------------
-   Leaders Modal (Dark Theme)
+   Leaders Modal
 ----------------------------------------- */
 
 #leadersModal .modal-content {
@@ -469,6 +456,25 @@ button.reset:hover {
     z-index: 9999;
 }
 
+/* -----------------------------------------
+   New Battery System
+----------------------------------------- */
+.battery {
+    width: 120px;
+    height: 24px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #111;
+
+    background: linear-gradient(
+        to right,
+        var(--color, #00c853) var(--fill, 0%),
+        transparent var(--fill, 0%)
+    );
+
+    transition: background 0.4s ease;
+}
 
 
 /* -----------------------------------------
@@ -532,6 +538,29 @@ button.reset:hover {
   box-sizing: border-box;
   text-align: center;
   position: relative;
+}
+
+.rank-table {
+    margin: 0 auto;      /* centers the table */
+    width: 100%;         /* makes it fill the modal */
+    border-collapse: collapse;
+}
+
+
+.close {
+    font-size: 1.6em;
+    cursor: pointer;
+    color: #444;
+}
+
+#rankClose {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 1.6em;
+    color: #444;
+    z-index: 10; /* ensure it's above everything */
 }
 
 .no-data-message {
@@ -603,20 +632,6 @@ button.reset:hover {
     to   { transform: rotate(360deg); }
 }
 
-
-
-
-/* -----------------------------------------
-   Footer
------------------------------------------ */
-
-.footer {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 0.85em;
-    color: #777;
-}
-
 /* -----------------------------------------
    FINAL OVERRIDE — Forces overall battery to render
 ----------------------------------------- */
@@ -632,9 +647,9 @@ button.reset:hover {
 .battery {
     position: relative !important;
     background: #dfe6ef !important;
-    border-radius: 10px !important;
+    border-radius: 4px !important;
     overflow: hidden !important;
-
+    border: none;
     height: 16px !important;
     flex: 1 !important;
 
@@ -675,3 +690,15 @@ button.reset:hover {
 }
 
 
+
+
+/* -----------------------------------------
+   Footer
+----------------------------------------- */
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.85em;
+    color: #777;
+}
