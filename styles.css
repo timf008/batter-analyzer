@@ -160,6 +160,7 @@ button.reset:hover {
 .metric-label {
     font-weight: 600;
     width: 70px;
+    display: inline block;
 }
 
 .metric-raw {
@@ -462,17 +463,11 @@ button.reset:hover {
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.6);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 9999;
 }
-
-
-
-
-
-
 
 
 
