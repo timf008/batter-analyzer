@@ -254,6 +254,34 @@ function stripZero(x) {
     return String(x).replace(/^0+/, "");
 }
 
+// -------------------------------
+// Calculate Batter XP
+// -------------------------------
+async function handleLoadBatter() {
+    const name = document.getElementById("playerName").value;
+    const season = document.getElementById("seasonSelect").value;
+
+    const batters = await loadBatter(name, season);
+
+    if (!batters || batters.length === 0) {
+        document.getElementById("xpScore").textContent = "--";
+        return;
+    }
+
+    const p = batters[0];
+
+    // Score formula
+    const score =
+        (p.BA * 1000) +
+        (p.OBP * 1000) +
+        (p.SLG * 1000) +
+        (p.BBpct * 2) -
+        (p.Kpct * 1.5);
+
+    // No decimals
+    document.getElementById("xpScore").textContent = Math.round(score);
+}
+
 
 // -------------------------------
 // Main: Load player + update UI (backend-only)
@@ -761,6 +789,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("compareBtn").addEventListener("click", showCompareModal);
     document.getElementById("leadersBtn").addEventListener("click", loadLeaders);
     document.getElementById("trendBtn").addEventListener("click", handleTrend);
+    document.getElementById("loadBtn").addEventListener("click", handleLoadBatter);
+
 
     // Timestamp
     loadLastUpdated(currentSeason);
