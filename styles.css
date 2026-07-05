@@ -175,7 +175,9 @@ button.reset:hover {
     text-align: right;
 }
 
-
+.metric-row .battery {
+    flex: 1;
+}
 
 /* -----------------------------------------
    Overall Section
