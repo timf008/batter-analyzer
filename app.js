@@ -616,7 +616,7 @@ function buildLeadersTable(arr) {
     // Top 10
     const top10 = [...filtered]
         .sort((a, b) => b.Score - a.Score)
-        .slice(0, 10);
+        .slice(0, 20);
 
     // Assign badges
     top10.forEach((p, i) => {
