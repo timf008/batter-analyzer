@@ -600,8 +600,11 @@ function buildLeadersTable(arr) {
     const tbody = document.getElementById("leadersBody");
     tbody.innerHTML = "";
 
+    // ⭐ Filter: only batters with >50 AB
+    const filtered = arr.filter(p => p.AB > 50);
+
     // Compute score
-    arr.forEach(p => {
+    filtered.forEach(p => {
         p.Score =
             (p.BA * 1000) +
             (p.OBP * 1000) +
@@ -611,21 +614,17 @@ function buildLeadersTable(arr) {
     });
 
     // Top 10
-    const top10 = [...arr]
+    const top10 = [...filtered]
         .sort((a, b) => b.Score - a.Score)
         .slice(0, 10);
 
     // Assign badges
     top10.forEach((p, i) => {
-        if (i === 0) {
-            p.Badge = "🔥 #1";
-        } else if (i === 1) {
-            p.Badge = "⭐ #2";
-        } else if (i === 2) {
-            p.Badge = "⭐ #3";
-        } else {
-            p.Badge = "🏅 Top 10";
-        }
+        p.Badge =
+            i === 0 ? "🔥 #1" :
+            i === 1 ? "⭐ #2" :
+            i === 2 ? "⭐ #3" :
+            "🏅 Top 10";
     });
 
     // Build table
