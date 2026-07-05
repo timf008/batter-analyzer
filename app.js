@@ -662,7 +662,7 @@ function buildLeadersTable(arr) {
 
         row.innerHTML = `
             <td>${p.Player}</td>
-            <td>${p.Score.toFixed(0)}</td>
+            <td>${Math.round(p.Score)}</td>
             <td>${p.Badge || ""}</td>   <!-- ⭐ Only Top 10 show badges -->
         `;
 
@@ -671,6 +671,7 @@ function buildLeadersTable(arr) {
 
     document.getElementById("leadersModal").style.display = "flex";
 }
+
 
 
 
