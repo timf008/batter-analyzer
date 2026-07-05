@@ -600,11 +600,8 @@ function buildLeadersTable(arr) {
     const tbody = document.getElementById("leadersBody");
     tbody.innerHTML = "";
 
-    // ⭐ Filter: only batters with >50 AB
-    const filtered = arr.filter(p => p.AB > 50);
-
     // Compute score
-    filtered.forEach(p => {
+    arr.forEach(p => {
         p.Score =
             (p.BA * 1000) +
             (p.OBP * 1000) +
@@ -613,12 +610,16 @@ function buildLeadersTable(arr) {
             (p.Kpct * 1.5);
     });
 
-    // Top 10
-    const top10 = [...filtered]
-        .sort((a, b) => b.Score - a.Score)
-        .slice(0, 20);
+    // Sort all players
+    const sorted = [...arr].sort((a, b) => b.Score - a.Score);
 
-    // Assign badges
+    // ⭐ Top 20 displayed
+    const top20 = sorted.slice(0, 20);
+
+    // ⭐ Top 10 get badges
+    const top10 = sorted.slice(0, 10);
+
+    // Assign badges only to Top 10
     top10.forEach((p, i) => {
         p.Badge =
             i === 0 ? "🔥 #1" :
@@ -627,14 +628,14 @@ function buildLeadersTable(arr) {
             "🏅 Top 10";
     });
 
-    // Build table
-    top10.forEach(p => {
+    // Build table (Top 20)
+    top20.forEach(p => {
         const row = document.createElement("tr");
 
         row.innerHTML = `
             <td>${p.Player}</td>
             <td>${p.Score.toFixed(0)}</td>
-            <td>${p.Badge}</td>
+            <td>${p.Badge || ""}</td>   <!-- ⭐ Only Top 10 show badges -->
         `;
 
         tbody.appendChild(row);
@@ -642,6 +643,7 @@ function buildLeadersTable(arr) {
 
     document.getElementById("leadersModal").style.display = "flex";
 }
+
 
 
 
