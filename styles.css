@@ -175,16 +175,7 @@ button.reset:hover {
     text-align: right;
 }
 
-/* -----------------------------------------
-   Unified Battery System (metrics + overall)
------------------------------------------ */
 
-
-/* ⭐ Metric battery width — fixes narrow bars */
-.metric-row .battery {
-    min-width: 400px;   /* matches your screenshot */
-    height: 16px;
-}
 
 /* -----------------------------------------
    Overall Section
