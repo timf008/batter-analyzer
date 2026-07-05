@@ -627,7 +627,7 @@ button.reset:hover {
     background: #dfe6ef;
     border-radius: 4px;
     overflow: hidden;
-    height: 24px;
+    height: 14px;
     width: 120px;
 
     --fill: 0%;
