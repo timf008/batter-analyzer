@@ -270,17 +270,18 @@ async function handleLoadBatter() {
 
     const p = batters[0];
 
-    // Score formula
-    const score =
+    // Compute XP exactly once
+    p.XP =
         (p.BA * 1000) +
         (p.OBP * 1000) +
         (p.SLG * 1000) +
         (p.BBpct * 2) -
         (p.Kpct * 1.5);
 
-    // No decimals
-    document.getElementById("xpScore").textContent = Math.round(score);
+    // Display rounded XP
+    document.getElementById("xpScore").textContent = Math.round(p.XP);
 }
+
 
 
 // -------------------------------
@@ -628,9 +629,9 @@ function buildLeadersTable(arr) {
     const tbody = document.getElementById("leadersBody");
     tbody.innerHTML = "";
 
-    // Compute score
+    // Compute XP for each batter
     arr.forEach(p => {
-        const score =
+        p.XP =
             (p.BA * 1000) +
             (p.OBP * 1000) +
             (p.SLG * 1000) +
@@ -638,16 +639,14 @@ function buildLeadersTable(arr) {
             (p.Kpct * 1.5);
     });
 
-    // Sort all players
-    const sorted = [...arr].sort((a, b) => b.Score - a.Score);
+    // Sort by XP
+    const sorted = [...arr].sort((a, b) => b.XP - a.XP);
 
-    // ⭐ Top 20 displayed
+    // Top 20
     const top20 = sorted.slice(0, 20);
 
-    // ⭐ Top 10 get badges
+    // Top 10 badges
     const top10 = sorted.slice(0, 10);
-
-    // Assign badges only to Top 10
     top10.forEach((p, i) => {
         p.Badge =
             i === 0 ? "🔥 #1" :
@@ -656,25 +655,19 @@ function buildLeadersTable(arr) {
             "🏅 Top 10";
     });
 
-    // Build table (Top 20)
+    // Build table
     top20.forEach(p => {
         const row = document.createElement("tr");
-
         row.innerHTML = `
             <td>${p.Player}</td>
-            <td>${Math.round(p.Score)}</td>
-            <td>${p.Badge || ""}</td>   <!-- ⭐ Only Top 10 show badges -->
+            <td>${Math.round(p.XP)}</td>
+            <td>${p.Badge || ""}</td>
         `;
-
         tbody.appendChild(row);
     });
 
     document.getElementById("leadersModal").style.display = "flex";
 }
-
-
-
-
 
 
 
