@@ -667,6 +667,7 @@ function buildLeadersTable(arr) {
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${p.Player}</td>
+            <td>${p.Team}</td>
             <td>${Math.round(p.XP)}</td>
             <td>${p.Badge || ""}</td>
         `;
