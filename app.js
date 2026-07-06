@@ -633,6 +633,9 @@ function buildLeadersTable(arr) {
     const tbody = document.getElementById("leadersBody");
     tbody.innerHTML = "";
 
+     // Only pitchers with >50 AB
+    const filtered = arr.filter(p => p.AB > 50);
+
     // Compute XP for each batter
     arr.forEach(p => {
         const xp =
