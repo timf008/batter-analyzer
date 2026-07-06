@@ -271,7 +271,7 @@ async function handleLoadBatter() {
     const p = batters[0];
 
     // Score formula
-    const score =
+    p.Score =
         (p.BA * 1000) +
         (p.OBP * 1000) +
         (p.SLG * 1000) +
