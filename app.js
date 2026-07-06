@@ -255,7 +255,7 @@ function stripZero(x) {
 }
 
 // -------------------------------
-// Calculate Batter XP (MATCHES PITCHER STYLE)
+// Calculate Batter XP
 // -------------------------------
 async function handleLoadBatter() {
     const name = document.getElementById("playerName").value;
@@ -278,12 +278,13 @@ async function handleLoadBatter() {
         (p.BBpct * 2) -
         (p.Kpct * 1.5);
 
-    // Add 1000 (same as pitcher)
-    const finalXP = xp + 1000;
+    // No +1000 for batters
+    const finalXP = xp;
 
     // Display rounded XP
     document.getElementById("xpScore").textContent = Math.round(finalXP);
 }
+
 
 
 
@@ -641,8 +642,8 @@ function buildLeadersTable(arr) {
             (p.BBpct * 2) -
             (p.Kpct * 1.5);
 
-        // Add 1000 and round (same as pitcher)
-        p.XP = Math.round(xp + 1000);
+        // No +1000 for batters
+        p.XP = Math.round(xp);
     });
 
     // Sort by XP
@@ -674,6 +675,7 @@ function buildLeadersTable(arr) {
 
     document.getElementById("leadersModal").style.display = "flex";
 }
+
 
 
 
