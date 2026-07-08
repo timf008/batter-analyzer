@@ -49,6 +49,9 @@ async function loadBatter(name, season) {
     const data = await res.json();
     const normalized = Array.isArray(data) ? data : [data];
 
+    // ⭐ Debug: See what user is available when awarding tokens
+    console.log("Awarding tokens to:", currentUser);
+
     // Only award tokens if a user is logged in
     if (currentUser && currentUser.id) {
         try {
@@ -71,6 +74,7 @@ async function loadBatter(name, season) {
 
     return normalized;
 }
+
 
 
 // -------------------------------
