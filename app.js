@@ -2,8 +2,8 @@
 // Batter Analyzer - app.js
 // Backend-only, no CSV preload
 // -----------------------------------------------------
+const API = "https://collect-backend-tg58.onrender.com";
 
-let currentUser = null;
 
 
 // -------------------------------
