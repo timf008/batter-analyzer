@@ -44,21 +44,10 @@ async function loadBatter(name, season) {
     }
 
     const data = await res.json();
-    const normalized = Array.isArray(data) ? data : [data];
 
-    // ⭐ Award tokens for loading a batter
-    await fetch(`${API}/awardTokens`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            userId: currentUser.id,
-            amount: 1   // or 2, or whatever you want
-        })
-    });
-
-    return normalized;
+    // ⭐ Normalize backend output: ALWAYS return an array
+    return Array.isArray(data) ? data : [data];
 }
-
 
 
 // -------------------------------
