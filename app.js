@@ -54,22 +54,25 @@ async function loadBatter(name, season) {
 
     // Only award tokens if a user is logged in
     if (currentUser && currentUser.userId) {
-    try {
-        const awardRes = await fetch(`${API}/awardTokens`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                userId: currentUser.userId,
-                amount: 1
-            })
-        });
+        try {
+            const awardRes = await fetch(`${API}/awardTokens`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    userId: currentUser.userId,
+                    amount: 1
+                })
+            });
 
-        if (!awardRes.ok) {
-            console.error("Token award failed:", await awardRes.text());
+            if (!awardRes.ok) {
+                console.error("Token award failed:", await awardRes.text());
+            }
+        } catch (err) {
+            console.error("Token award error:", err);
         }
-    } catch (err) {
-        console.error("Token award error:", err);
     }
+
+    return normalized;
 }
 
 
