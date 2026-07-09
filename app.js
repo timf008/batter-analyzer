@@ -2,8 +2,6 @@
 // Batter Analyzer - app.js
 // Backend-only, no CSV preload
 // -----------------------------------------------------
-const API = "https://collect-backend-tg58.onrender.com";
-
 
 
 // -------------------------------
@@ -47,32 +45,9 @@ async function loadBatter(name, season) {
     }
 
     const data = await res.json();
-    const normalized = Array.isArray(data) ? data : [data];
 
-    // ⭐ Debug: See what user is available when awarding tokens
-    console.log("Awarding tokens to:", currentUser);
-
-    // Only award tokens if a user is logged in
-    if (currentUser && currentUser.userId) {
-        try {
-            const awardRes = await fetch(`${API}/awardTokens`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    userId: currentUser.userId,
-                    amount: 1
-                })
-            });
-
-            if (!awardRes.ok) {
-                console.error("Token award failed:", await awardRes.text());
-            }
-        } catch (err) {
-            console.error("Token award error:", err);
-        }
-    }
-
-    return normalized;
+    // ⭐ Normalize backend output: ALWAYS return an array
+    return Array.isArray(data) ? data : [data];
 }
 
 
