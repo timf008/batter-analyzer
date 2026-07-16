@@ -52,7 +52,7 @@ async function loadBatter(name, season) {
     // ⭐ Update the tab with the loaded batter's name
     if (arr && arr.length > 0) {
         const playerName = arr[0].Name || clean;
-        document.getElementById("playerTab").textContent = `Player: ${playerName} (${season})`;
+        document.getElementById("playerTab").textContent = `${playerName} (${season})`;
     }
 
     return arr;
