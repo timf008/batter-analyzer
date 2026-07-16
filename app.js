@@ -47,8 +47,17 @@ async function loadBatter(name, season) {
     const data = await res.json();
 
     // ⭐ Normalize backend output: ALWAYS return an array
-    return Array.isArray(data) ? data : [data];
+    const arr = Array.isArray(data) ? data : [data];
+
+    // ⭐ Update the tab with the loaded batter's name
+    if (arr && arr.length > 0) {
+        const playerName = arr[0].Name || clean;
+        document.getElementById("playerTab").textContent = `Player: ${playerName} (${season})`;
+    }
+
+    return arr;
 }
+
 
 
 
@@ -740,6 +749,8 @@ function handleReset() {
     document.getElementById("overallTier").innerHTML = "--";
     document.getElementById("scoutingNote").innerHTML = "--";
     document.getElementById("xpScore").innerHTML = "--";
+    document.getElementById("playerTab").textContent = "Player:--";
+
 }
 
 // -------------------------------
