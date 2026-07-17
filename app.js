@@ -53,6 +53,12 @@ function getPlayerImageUrl(playerName) {
   return `https://img.mlbstatic.com/mlb-images/image/upload/w_600,q_100/v1/people/${id}/headshot/67/current`;
 }
 
+// =====================================================
+// Fallback If No Photo Available
+// =====================================================
+document.getElementById("playerPhoto").addEventListener("error", () => {
+    document.getElementById("playerPhoto").src = "images/silhouette.png";
+});
 
 
 // -------------------------------
@@ -79,23 +85,19 @@ async function loadBatter(name, season) {
         const playerName = arr[0].Name || clean;
         document.getElementById("playerTab").textContent = `${playerName} (${season})`;
 
-        // ⭐ NEW: Load MLB headshot
-        const imgUrl = getPlayerImageUrl(playerName);
+        // ⭐ NEW: Load MLB headshot with fallback
         const imgEl = document.getElementById("playerPhoto");
+        const imgUrl = getPlayerImageUrl(playerName);
 
         if (imgUrl) {
             imgEl.src = imgUrl;
         } else {
-            imgEl.src = ""; // fallback if no image found
+            imgEl.src = "images/silhouette.png";   // fallback if no ID found
         }
     }
 
     return arr;
 }
-
-
-
-
 
 
 // -------------------------------
