@@ -30,6 +30,31 @@ function normalizeNameFrontend(x) {
         .trim();                         // keep First Last order
 }
 
+// =====================================================
+// Player Photo ID Lookup
+// =====================================================
+const playerIdLookup = {
+  "Aaron Judge": 592450,
+  "Bryce Harper": 547180,
+  "Mike Trout": 545361,
+  "Shohei Ohtani": 660271,
+  "Mookie Betts": 605141,
+  "Juan Soto": 665742,
+  "Freddie Freeman": 518692
+};
+
+// =====================================================
+// Player Photo URL Helper
+// =====================================================
+function getPlayerImageUrl(playerName) {
+  const id = playerIdLookup[playerName];
+  if (!id) return null;
+
+  return `https://img.mlbstatic.com/mlb-images/image/upload/w_600,q_100/v1/people/${id}/headshot/67/current`;
+}
+
+
+
 // -------------------------------
 // Utility: Fetch batter data
 // -------------------------------
@@ -53,10 +78,21 @@ async function loadBatter(name, season) {
     if (arr && arr.length > 0) {
         const playerName = arr[0].Name || clean;
         document.getElementById("playerTab").textContent = `${playerName} (${season})`;
+
+        // ⭐ NEW: Load MLB headshot
+        const imgUrl = getPlayerImageUrl(playerName);
+        const imgEl = document.getElementById("playerPhoto");
+
+        if (imgUrl) {
+            imgEl.src = imgUrl;
+        } else {
+            imgEl.src = ""; // fallback if no image found
+        }
     }
 
     return arr;
 }
+
 
 
 
