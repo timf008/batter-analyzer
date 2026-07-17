@@ -40,7 +40,8 @@ const playerIdLookup = {
   "Shohei Ohtani": 660271,
   "Mookie Betts": 605141,
   "Juan Soto": 665742,
-  "Freddie Freeman": 518692
+  "Freddie Freeman": 518692,
+  "Pete Crow-Armstrong": 691718
 };
 
 // =====================================================
