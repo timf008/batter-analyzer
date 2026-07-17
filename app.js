@@ -786,6 +786,7 @@ function handleReset() {
     document.getElementById("scoutingNote").innerHTML = "--";
     document.getElementById("xpScore").innerHTML = "--";
     document.getElementById("playerTab").textContent = "Player:--";
+    document.getElementById("playerPhoto").src = "images/silhouette.png";
 
 }
 
