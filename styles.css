@@ -685,7 +685,6 @@ button.reset:hover {
 .overall .overall-battery {
     height: 26px !important;
     min-height: 26px !important;
-    min-width: 520px;
 }
 
 .player-photo {
