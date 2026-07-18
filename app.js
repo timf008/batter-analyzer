@@ -30,38 +30,6 @@ function normalizeNameFrontend(x) {
         .trim();                         // keep First Last order
 }
 
-// =====================================================
-// Player Photo ID Lookup
-// =====================================================
-const playerIdLookup = {
-  "Aaron Judge": 592450,
-  "Bryce Harper": 547180,
-  "Mike Trout": 545361,
-  "Shohei Ohtani": 660271,
-  "Mookie Betts": 605141,
-  "Juan Soto": 665742,
-  "Freddie Freeman": 518692,
-  "Pete Crow-Armstrong": 691718
-};
-
-// =====================================================
-// Player Photo URL Helper
-// =====================================================
-function getPlayerImageUrl(playerName) {
-  const id = playerIdLookup[playerName];
-  if (!id) return null;
-
-  return `https://img.mlbstatic.com/mlb-images/image/upload/w_600,q_100/v1/people/${id}/headshot/67/current`;
-}
-
-// =====================================================
-// Fallback If No Photo Available
-// =====================================================
-document.getElementById("playerPhoto").addEventListener("error", () => {
-    document.getElementById("playerPhoto").src = "images/silhouette.png";
-});
-
-
 // -------------------------------
 // Utility: Fetch batter data
 // -------------------------------
@@ -85,21 +53,10 @@ async function loadBatter(name, season) {
     if (arr && arr.length > 0) {
         const playerName = arr[0].Name || clean;
         document.getElementById("playerTab").textContent = `${playerName} (${season})`;
-
-        // ⭐ NEW: Load MLB headshot with fallback
-        const imgEl = document.getElementById("playerPhoto");
-        const imgUrl = getPlayerImageUrl(playerName);
-
-        if (imgUrl) {
-            imgEl.src = imgUrl;
-        } else {
-            imgEl.src = "images/silhouette.png";   // fallback if no ID found
-        }
     }
 
     return arr;
 }
-
 
 // -------------------------------
 // Battery fill updater
@@ -789,7 +746,7 @@ function handleReset() {
     document.getElementById("scoutingNote").innerHTML = "--";
     document.getElementById("xpScore").innerHTML = "--";
     document.getElementById("playerTab").textContent = "Player:--";
-    document.getElementById("playerPhoto").src = "images/silhouette.png";
+    document.getElementById("playerPhoto").src = "images/batter.png";
 
 }
 
