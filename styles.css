@@ -324,6 +324,7 @@ button.reset:hover {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    font-size: 16px;
 }
 
 .trend-table th,
@@ -393,6 +394,7 @@ button.reset:hover {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    font-size: 16px;
 }
 
 #compareTable th, #compareTable td {
