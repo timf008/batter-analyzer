@@ -608,7 +608,6 @@ async function showCompareModal() {
     }
 }
 
-
 // -------------------------------
 // Leaders Button
 // -------------------------------
@@ -619,11 +618,8 @@ async function loadLeaders() {
     try {
         const season = document.getElementById("seasonSelect").value;
 
-        // Test: normalize a dummy name
-        const clean = normalizeNameFrontend("Yandy Díaz");
-
         const data = await fetch(
-            `https://batter-analyzer-backend.onrender.com/api/leaders?season=${season}&name=${encodeURIComponent(clean)}`
+            `https://batter-analyzer-backend.onrender.com/api/leaders?season=${season}`
         ).then(r => r.json());
 
         if (!Array.isArray(data)) {
@@ -638,15 +634,6 @@ async function loadLeaders() {
         alert("Error loading leaderboard.");
     } finally {
         spin.classList.remove("spin");
-    }
-}
-
-
-function fixUtf8(str) {
-    try {
-        return decodeURIComponent(escape(str));
-    } catch {
-        return str;
     }
 }
 
