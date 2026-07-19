@@ -628,11 +628,14 @@ async function loadLeaders() {
             return;
         }
 
-        // ⭐ Patch: unify the Name field so UI never sees undefined
-        const fixed = data.map(row => ({
-            ...row,
-            Name: row.Name || row.name || row.player_name || "Unknown"
-        }));
+        // UTF‑8 fixer
+        const fixed = data.map(row => {
+            const rawName = row.Name || row.name || row.player_name || "Unknown";
+            return {
+                ...row,
+                Name: fixUtf8(rawName)
+            };
+        });
 
         buildLeadersTable(fixed);
 
@@ -643,6 +646,15 @@ async function loadLeaders() {
         spin.classList.remove("spin");
     }
 }
+
+function fixUtf8(str) {
+    try {
+        return decodeURIComponent(escape(str));
+    } catch {
+        return str;
+    }
+}
+
 
 
 // -------------------------------
