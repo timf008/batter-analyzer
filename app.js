@@ -712,8 +712,14 @@ function buildLeadersTable(arr) {
 
     // Build table
     top20.forEach(p => {
+    const originalPlayer = p.Player;
+    const originalName = p.Name;
+
     p.Player = fixName(p.Player);
-    p.Name = fixName(p.Name);
+    p.Name   = fixName(p.Name);
+
+    console.log("Player (orig):", originalPlayer, "→", p.Player,
+                "Name (orig):", originalName, "→", p.Name);
 
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -724,6 +730,7 @@ function buildLeadersTable(arr) {
     `;
     tbody.appendChild(row);
 });
+
 
 
 
