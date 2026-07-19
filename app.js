@@ -638,37 +638,8 @@ async function loadLeaders() {
 }
 
 // -------------------------------
-// Hispanic Name Mapping
+// Leaders Table Name Normalization
 // -------------------------------
-// Hispanic name normalization map
-const nameMap = {
-    "Daz": "Diaz",
-    "Snchez": "Sanchez",
-    "Alvarez": "Alvarez",
-    "Gonzlez": "Gonzalez",
-    "Hernndez": "Hernandez",
-    "Ramrez": "Ramirez",
-    "Rodrguez": "Rodriguez",
-    "Muoz": "Munoz",
-    "Pea": "Pena",
-    "Nuez": "Nunez",
-    "Vzquez": "Vazquez",
-    "Mndez": "Mendez",
-    "Crdenas": "Cardenas",
-    "Bentez": "Benitez",
-    "Ortiz": "Ortiz"
-};
-
-// Fix function
-function fixName(name) {
-    if (!name) return name;
-    let fixed = name;
-    for (const wrong in nameMap) {
-        fixed = fixed.replace(wrong, nameMap[wrong]);
-    }
-    return fixed;
-}
-
 function normalizeName(raw) {
     if (!raw) return raw;
 
