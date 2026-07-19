@@ -679,15 +679,18 @@ function buildLeadersTable(arr) {
 
     // Build table
     top20.forEach(p => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${p.Player}</td>
-            <td>${p.Team}</td>
-            <td>${Math.round(p.XP)}</td>
-            <td>${p.Badge || ""}</td>
-        `;
-        tbody.appendChild(row);
-    });
+    console.log("Player:", p.Player, "Name:", p.Name);
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${p.Player}</td>
+        <td>${p.Team}</td>
+        <td>${Math.round(p.XP)}</td>
+        <td>${p.Badge || ""}</td>
+    `;
+    tbody.appendChild(row);
+});
+
 
     document.getElementById("leadersModal").style.display = "flex";
 }
