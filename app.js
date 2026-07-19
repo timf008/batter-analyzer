@@ -24,13 +24,14 @@ function safeScore(value) {
 // =====================================================
 function normalizeNameFrontend(x) {
     return x
-        .normalize("NFKD")               // strip accents
-        .replace(/[\u0300-\u036f]/g, "") // remove diacritics only
+        .normalize("NFKD")               // decompose accents
+        .replace(/[\u0300-\u036f]/g, "") // remove accent marks ONLY
         .replace(/[,*#†+]/g, "")         // remove junk symbols
         .replace(/\./g, "")              // remove periods
         .replace(/\s+/g, " ")
         .trim();
 }
+
 
 
 // -------------------------------
