@@ -637,6 +637,38 @@ async function loadLeaders() {
     }
 }
 
+// -------------------------------
+// Hispanic Name Mapping
+// -------------------------------
+// Hispanic name normalization map
+const nameMap = {
+    "Daz": "Diaz",
+    "Snchez": "Sanchez",
+    "Alvarez": "Alvarez",
+    "Gonzlez": "Gonzalez",
+    "Hernndez": "Hernandez",
+    "Ramrez": "Ramirez",
+    "Rodrguez": "Rodriguez",
+    "Muoz": "Munoz",
+    "Pea": "Pena",
+    "Nuez": "Nunez",
+    "Vzquez": "Vazquez",
+    "Mndez": "Mendez",
+    "Crdenas": "Cardenas",
+    "Bentez": "Benitez",
+    "Ortiz": "Ortiz"
+};
+
+// Fix function
+function fixName(name) {
+    if (!name) return name;
+    let fixed = name;
+    for (const wrong in nameMap) {
+        fixed = fixed.replace(wrong, nameMap[wrong]);
+    }
+    return fixed;
+}
+
 
 
 // -------------------------------
@@ -680,7 +712,8 @@ function buildLeadersTable(arr) {
 
     // Build table
     top20.forEach(p => {
-    console.log("Player:", p.Player, "Name:", p.Name);
+    p.Player = fixName(p.Player);
+    p.Name = fixName(p.Name);
 
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -691,6 +724,7 @@ function buildLeadersTable(arr) {
     `;
     tbody.appendChild(row);
 });
+
 
 
     document.getElementById("leadersModal").style.display = "flex";
