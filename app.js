@@ -628,7 +628,13 @@ async function loadLeaders() {
             return;
         }
 
-        buildLeadersTable(data);
+        // ⭐ Patch: unify the Name field so UI never sees undefined
+        const fixed = data.map(row => ({
+            ...row,
+            Name: row.Name || row.name || row.player_name || "Unknown"
+        }));
+
+        buildLeadersTable(fixed);
 
     } catch (err) {
         console.error("Leaders error:", err);
@@ -637,6 +643,7 @@ async function loadLeaders() {
         spin.classList.remove("spin");
     }
 }
+
 
 // -------------------------------
 // Leaders Table (BATTERS, MATCHED TO PITCHERS)
