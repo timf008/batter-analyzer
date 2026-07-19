@@ -669,6 +669,22 @@ function fixName(name) {
     return fixed;
 }
 
+function normalizeName(raw) {
+    if (!raw) return raw;
+
+    // Convert raw UTF-8 byte sequences like <c3><ad> into real characters
+    let cleaned = raw.replace(/<c3><ad>/g, "í")
+                     .replace(/<c3><a1>/g, "á")
+                     .replace(/<c3><b1>/g, "ñ")
+                     .replace(/<c3><a9>/g, "é")
+                     .replace(/<c3><b3>/g, "ó")
+                     .replace(/<c3><ba>/g, "ú");
+
+    // Strip accents
+    cleaned = cleaned.normalize("NFD").replace(/\p{Diacritic}/gu, "");
+
+    return cleaned;
+}
 
 
 // -------------------------------
@@ -713,13 +729,11 @@ function buildLeadersTable(arr) {
     // Build table
     top20.forEach(p => {
     const originalPlayer = p.Player;
-    const originalName = p.Name;
 
-    p.Player = fixName(p.Player);
-    p.Name   = fixName(p.Name);
+    p.Player = normalizeName(p.Player);
+    p.Name   = normalizeName(p.Name);
 
-    console.log("Player (orig):", originalPlayer, "→", p.Player,
-                "Name (orig):", originalName, "→", p.Name);
+    console.log("Player (orig):", originalPlayer, "→", p.Player);
 
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -730,6 +744,7 @@ function buildLeadersTable(arr) {
     `;
     tbody.appendChild(row);
 });
+
 
 
 
