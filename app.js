@@ -298,8 +298,6 @@ async function handleLoadBatter() {
 }
 
 
-
-
 // -------------------------------
 // Main: Load player + update UI (backend-only)
 // -------------------------------
@@ -349,12 +347,19 @@ async function handleLoad() {
         updateTier(overall);
         updateScoutingNote(p);
 
+        // ⭐ ADD THIS — now p is defined
+        document.getElementById("overallPercentile").textContent =
+            p.Overall_pct !== undefined
+                ? Math.round(p.Overall_pct)
+                : "--";
+
     } catch (err) {
         console.error("Error loading player:", err);
     } finally {
         spin.classList.remove("spin");
     }
 }
+
 
 
 // -------------------------------
@@ -779,6 +784,7 @@ function handleReset() {
     document.getElementById("overallScore").textContent = "--";
     document.getElementById("overallTier").innerHTML = "--";
     document.getElementById("scoutingNote").innerHTML = "--";
+    document.getElementById("overallPercentile").textContent = "--";
     document.getElementById("xpScore").innerHTML = "--";
     document.getElementById("playerTab").textContent = "Player:--";
     document.getElementById("playerPhoto").src = "images/batter.png";
