@@ -53,11 +53,15 @@ async function loadBatter(name, season) {
     // ⭐ Normalize backend output: ALWAYS return an array
     const arr = Array.isArray(data) ? data : [data];
 
-    // ⭐ Update the tab with the loaded batter's name
-    if (arr && arr.length > 0) {
-        const playerName = arr[0].Name || clean;
-        document.getElementById("playerTab").textContent = `${playerName} (${season})`;
-    }
+    // ⭐ Update the tab with the loaded batter's name + team
+if (arr && arr.length > 0) {
+    const playerName = arr[0].Name || clean;
+    const team = arr[0].Team || "";   // ⭐ NEW
+
+    document.getElementById("playerTab").textContent =
+        `${playerName}${team ? " — " + team : ""} (${season})`;
+}
+
 
     return arr;
 }
