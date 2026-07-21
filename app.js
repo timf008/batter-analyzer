@@ -37,7 +37,7 @@ function normalizeNameFrontend(x) {
 // -------------------------------
 // Utility: Fetch batter data
 // -------------------------------
-async function loadBatter(name, season) {
+async function loadBatter(name, season, silent = false) {
     const clean = normalizeNameFrontend(name);
 
     const url = `https://batter-analyzer-backend.onrender.com/api/batters?name=${encodeURIComponent(clean)}&season=${season}`;
@@ -53,18 +53,18 @@ async function loadBatter(name, season) {
     // ⭐ Normalize backend output: ALWAYS return an array
     const arr = Array.isArray(data) ? data : [data];
 
-    // ⭐ Update the tab with the loaded batter's name + team
-if (arr && arr.length > 0) {
-    const playerName = arr[0].Name || clean;
-    const team = arr[0].Team || "";   // ⭐ NEW
+    // ⭐ Only update tab if NOT silent
+    if (!silent && arr && arr.length > 0) {
+        const playerName = arr[0].Name || clean;
+        const team = arr[0].Team || "";
 
-    document.getElementById("playerTab").textContent =
-        `${playerName}${team ? " — " + team : ""} (${season})`;
-}
-
+        document.getElementById("playerTab").textContent =
+            `${playerName}${team ? " — " + team : ""} (${season})`;
+    }
 
     return arr;
 }
+
 
 // -------------------------------
 // Battery fill updater
@@ -516,8 +516,9 @@ async function showCompareModal() {
             return;
         }
 
-        const data1Arr = await loadBatter(p1_raw, s1);
-        const data2Arr = await loadBatter(p2_raw, s2);
+        const data1Arr = await loadBatter(p1_raw, s1, true);
+        const data2Arr = await loadBatter(p2_raw, s2, true);
+
 
         const data1 = Array.isArray(data1Arr) ? data1Arr[0] : data1Arr;
         const data2 = Array.isArray(data2Arr) ? data2Arr[0] : data2Arr;
