@@ -19,6 +19,16 @@ function safeScore(value) {
         : 0;
 }
 
+// -------------------------------
+// Convert Numbers to Ordinal Strings
+// -------------------------------
+function toOrdinal(n) {
+    const s = ["th", "st", "nd", "rd"],
+          v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+
 // =====================================================
 // Utility: Normalize name to match R script (First Last)
 // =====================================================
@@ -302,6 +312,8 @@ async function handleLoadBatter() {
 }
 
 
+
+
 // -------------------------------
 // Main: Load player + update UI (backend-only)
 // -------------------------------
@@ -353,9 +365,10 @@ async function handleLoad() {
 
         // ⭐ ADD THIS — now p is defined
         document.getElementById("overallPercentile").textContent =
-            p.Overall_pct !== undefined
-                ? Math.round(p.Overall_pct)
-                : "--";
+    p.Overall_pct !== undefined
+        ? toOrdinal(Math.round(p.Overall_pct))
+        : "--";
+
 
     } catch (err) {
         console.error("Error loading player:", err);
