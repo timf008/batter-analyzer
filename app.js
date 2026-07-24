@@ -696,6 +696,7 @@ function normalizeName(raw) {
 // -------------------------------
 // Leaders Table (BATTERS, MATCHED TO PITCHERS)
 // -------------------------------
+
 function buildLeadersTable(arr) {
     const tbody = document.getElementById("leadersBody");
     tbody.innerHTML = "";
@@ -706,8 +707,8 @@ function buildLeadersTable(arr) {
     // Sort by OVERALL score (backend computed)
     const sorted = [...filtered].sort((a, b) => b.overall - a.overall);
 
-    // Top 20
-    const top20 = sorted.slice(0, 20);
+    // Top 50
+    const top50 = sorted.slice(0, 50);
 
     // Top 10 badges
     const top10 = sorted.slice(0, 10);
@@ -720,7 +721,7 @@ function buildLeadersTable(arr) {
     });
 
     // Build table
-    top20.forEach(p => {
+    top50.forEach(p => {
         const originalPlayer = p.Player;
 
         p.Player = normalizeName(p.Player);
@@ -732,8 +733,8 @@ function buildLeadersTable(arr) {
         row.innerHTML = `
             <td>${p.Player}</td>
             <td>${p.Team}</td>
-            <td>${Math.round(p.XP)}</td>      <!-- XP displayed -->
-            <td>${p.overall.toFixed(2)}</td>  <!-- Overall score displayed -->
+            <td>${Math.round(p.XP)}</td>
+            <td>${p.overall.toFixed(2)}</td>
             <td>${p.Badge || ""}</td>
         `;
         tbody.appendChild(row);
@@ -741,6 +742,7 @@ function buildLeadersTable(arr) {
 
     document.getElementById("leadersModal").style.display = "flex";
 }
+
 
 
 
