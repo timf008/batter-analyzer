@@ -771,7 +771,6 @@ async function buildHistoryTable(playerName) {
             <td>${season}</td>
             <td>${finalXP}</td>
             <td>${p.OverallScore.toFixed(1)}</td>
-            <td>${tier}</td>
         `;
         tbody.appendChild(row);
     }
