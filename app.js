@@ -721,24 +721,25 @@ function buildLeadersTable(arr) {
     });
 
     // Build table
-    top50.forEach(p => {
-        const originalPlayer = p.Player;
+top50.forEach((p, index) => {
+    const originalPlayer = p.Player;
 
-        p.Player = normalizeName(p.Player);
-        p.Name   = normalizeName(p.Name);
+    p.Player = normalizeName(p.Player);
+    p.Name   = normalizeName(p.Name);
 
-        console.log("Player (orig):", originalPlayer, "→", p.Player);
+    const rank = index + 1; // ⭐ 1–50
 
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${p.Player}</td>
-            <td>${p.Team}</td>
-            <td>${Math.round(p.XP)}</td>
-            <td>${p.overall.toFixed(2)}</td>
-            <td>${p.Badge || ""}</td>
-        `;
-        tbody.appendChild(row);
-    });
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${rank}</td>
+        <td>${p.Player}</td>
+        <td>${p.Team}</td>
+        <td>${Math.round(p.XP)}</td>
+        <td>${p.overall.toFixed(2)}</td>
+    `;
+    tbody.appendChild(row);
+});
+
 
     document.getElementById("leadersModal").style.display = "flex";
 }
