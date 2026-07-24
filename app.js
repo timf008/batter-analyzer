@@ -764,8 +764,6 @@ async function buildHistoryTable(playerName) {
 
         const finalXP = Math.round(xp);
 
-        const tier = computeTier(p.OverallScore); // your existing tier function
-
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${season}</td>
