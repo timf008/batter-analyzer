@@ -754,6 +754,9 @@ async function buildHistoryTable(playerName) {
 
         const p = data[0];
 
+        // Skip seasons with no computed OverallScore
+        if (p.OverallScore === undefined || p.OverallScore === null) continue;
+
         // Compute XP using your frontend formula
         const xp =
             (p.BA * 1000) +
@@ -773,6 +776,7 @@ async function buildHistoryTable(playerName) {
         tbody.appendChild(row);
     }
 }
+
 
 
 
