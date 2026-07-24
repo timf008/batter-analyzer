@@ -321,6 +321,10 @@ async function handleLoadBatter() {
 
     // Display rounded XP
     document.getElementById("xpScore").textContent = Math.round(finalXP);
+    
+buildHistoryTable(name);
+
+
 }
 
 
@@ -710,16 +714,6 @@ function buildLeadersTable(arr) {
     // Top 50
     const top50 = sorted.slice(0, 50);
 
-    // Top 10 badges
-    const top10 = sorted.slice(0, 10);
-    top10.forEach((p, i) => {
-        p.Badge =
-            i === 0 ? "🔥 #1" :
-            i === 1 ? "⭐ #2" :
-            i === 2 ? "⭐ #3" :
-            "🏅 Top 10";
-    });
-
     // Build table
 top50.forEach((p, index) => {
     const originalPlayer = p.Player;
@@ -745,6 +739,43 @@ top50.forEach((p, index) => {
 }
 
 
+// -------------------------------
+// History Table
+// -------------------------------
+async function buildHistoryTable(playerName) {
+    const seasons = ["2026", "2025", "2024", "2023", "2022", "2021", "2020"];
+    const tbody = document.getElementById("historyBody");
+    tbody.innerHTML = "";
+
+    for (const season of seasons) {
+        const data = await loadBatter(playerName, season);
+
+        if (!data || data.length === 0) continue;
+
+        const p = data[0];
+
+        // Compute XP using your frontend formula
+        const xp =
+            (p.BA * 1000) +
+            (p.OBP * 1000) +
+            (p.SLG * 1000) +
+            (p.BBpct * 2) -
+            (p.Kpct * 1.5);
+
+        const finalXP = Math.round(xp);
+
+        const tier = computeTier(p.OverallScore); // your existing tier function
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${season}</td>
+            <td>${finalXP}</td>
+            <td>${p.OverallScore.toFixed(1)}</td>
+            <td>${tier}</td>
+        `;
+        tbody.appendChild(row);
+    }
+}
 
 
 
