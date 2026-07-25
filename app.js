@@ -533,7 +533,6 @@ function buildSeasonComparison(curr, prev, season, lastSeason) {
     `;
 }
 
-
 // -------------------------------
 // Compare Button (Batting Version)
 // -------------------------------
