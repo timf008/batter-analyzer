@@ -399,7 +399,7 @@ async function handleLoad() {
         updateOverall(overall);
         updateTier(overall);
         updateScoutingNote(p);
-        updateXP(player.XP);
+        updateXP(p.XP);
 
 
         // ⭐ ADD THIS — now p is defined
