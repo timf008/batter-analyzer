@@ -213,7 +213,7 @@ button.reset:hover {
 
 
 .scouting-note label {
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 4px;
 }
 
@@ -602,6 +602,7 @@ button.reset:hover {
 ----------------------------------------- */
 #scoutingNote {
     white-space: pre-line;
+    font-style: italic;
 }
 
 
@@ -649,7 +650,7 @@ button.reset:hover {
     justify-content: space-between;
     margin-bottom: 15px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 
