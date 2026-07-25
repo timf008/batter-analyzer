@@ -563,6 +563,7 @@ async function showCompareModal() {
         const data1Arr = await loadBatter(p1_raw, s1, true);
         const data2Arr = await loadBatter(p2_raw, s2, true);
 
+
         const data1 = Array.isArray(data1Arr) ? data1Arr[0] : data1Arr;
         const data2 = Array.isArray(data2Arr) ? data2Arr[0] : data2Arr;
 
@@ -611,23 +612,24 @@ async function showCompareModal() {
             bbpctScore: s2_BBpct
         });
 
-        // ⭐ XP
-        const xp1 = computeBatterXP(data1);
-        const xp2 = computeBatterXP(data2);
+         const xp1 = computeBatterXP(data1);
+         const xp2 = computeBatterXP(data2);
+
 
         // ⭐ RAW + FORMATTED VALUES (Batting)
         const stats = [
-            ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
-            ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
-            ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
-            ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
-            ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
+    ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
+    ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
+    ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
+    ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
+    ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
 
-            // ⭐ NEW XP ROW
-            ["XP", xp1, xp2, Math.round(xp1), Math.round(xp2)],
+    // ⭐ NEW XP ROW
+    ["XP", xp1, xp2, Math.round(xp1), Math.round(xp2)],
 
-            ["Overall Score", overall1, overall2, overall1.toFixed(1), overall2.toFixed(1)]
-        ];
+    ["Overall Score", overall1, overall2, overall1.toFixed(1), overall2.toFixed(1)]
+];
+
 
         const tbody = document.getElementById("compareBody");
         tbody.innerHTML = "";
@@ -659,13 +661,6 @@ async function showCompareModal() {
 
             tbody.appendChild(row);
         });
-
-        // ⭐ PATCH: Update chart with XP included
-        const chartLabels = ["BA", "OBP", "SLG", "K%", "BB%", "XP"];
-        const chartData1 = [s1_BA, s1_OBP, s1_SLG, s1_Kpct, s1_BBpct, xp1];
-        const chartData2 = [s2_BA, s2_OBP, s2_SLG, s2_Kpct, s2_BBpct, xp2];
-
-        updateCompareChart(chartLabels, chartData1, chartData2);
 
         document.getElementById("compareModal").style.display = "flex";
 
