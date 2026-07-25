@@ -225,6 +225,22 @@ function updateScoutingNote(p) {
 }
 
 // -------------------------------
+// XP Score Function
+// -------------------------------
+function computeBatterXP(p) {
+    if (!p) return null;
+
+    return (
+        (p.BA * 1000) +
+        (p.OBP * 1000) +
+        (p.SLG * 1000) +
+        (p.BBpct * 2) -
+        (p.Kpct * 1.5)
+    );
+}
+
+
+// -------------------------------
 // Weighted Overall Score (Batting 5‑metric model)
 // -------------------------------
 function computeWeightedOverall({
@@ -246,6 +262,7 @@ function computeWeightedOverall({
 function clamp(x, min, max) {
     return Math.max(min, Math.min(max, x));
 }
+
 
 // ------------------------------
 // Scoring functions (Batting 5‑metric model)
@@ -321,8 +338,7 @@ async function handleLoadBatter() {
 
     // Display rounded XP
     document.getElementById("xpScore").textContent = Math.round(finalXP);
-    
-buildHistoryTable(name);
+   
 
 
 }
@@ -597,15 +613,24 @@ async function showCompareModal() {
             bbpctScore: s2_BBpct
         });
 
+         const xp1 = computeBatterXP(data1);
+         const xp2 = computeBatterXP(data2);
+
+
         // ⭐ RAW + FORMATTED VALUES (Batting)
         const stats = [
-            ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
-            ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
-            ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
-            ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
-            ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
-            ["Overall Score", overall1, overall2, overall1.toFixed(1),            overall2.toFixed(1)]
-        ];
+    ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
+    ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
+    ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
+    ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
+    ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
+
+    // ⭐ NEW XP ROW
+    ["XP", xp1, xp2, Math.round(xp1), Math.round(xp2)],
+
+    ["Overall Score", overall1, overall2, overall1.toFixed(1), overall2.toFixed(1)]
+];
+
 
         const tbody = document.getElementById("compareBody");
         tbody.innerHTML = "";
@@ -737,45 +762,6 @@ top50.forEach((p, index) => {
 
     document.getElementById("leadersModal").style.display = "flex";
 }
-
-
-// -------------------------------
-// History Table
-// -------------------------------
-async function buildHistoryTable(playerName) {
-    const seasons = ["2026", "2025", "2024", "2023", "2022", "2021", "2020"];
-    const tbody = document.getElementById("historyBody");
-    tbody.innerHTML = "";
-
-    for (const season of seasons) {
-        const data = await loadBatter(playerName, season);
-
-        if (!data || data.length === 0) continue;
-
-        const p = data[0];
-
-        const xp =
-            (p.BA * 1000) +
-            (p.OBP * 1000) +
-            (p.SLG * 1000) +
-            (p.BBpct * 2) -
-            (p.Kpct * 1.5);
-
-        const finalXP = Math.round(xp);
-
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${season}</td>
-            <td>${finalXP}</td>
-            <td>${p.OverallScore.toFixed(1)}</td>
-        `;
-        tbody.appendChild(row);
-    }
-}
-
-
-
-
 
 
 
