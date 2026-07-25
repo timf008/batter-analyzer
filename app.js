@@ -314,42 +314,6 @@ function stripZero(x) {
     return String(x).replace(/^0+/, "");
 }
 
-// -------------------------------
-// Calculate Batter XP
-// -------------------------------
-async function handleLoadBatter() {
-    const name = document.getElementById("playerName").value;
-    const season = document.getElementById("seasonSelect").value;
-
-    const batters = await loadBatter(name, season);
-
-    if (!batters || batters.length === 0) {
-        document.getElementById("xpScore").textContent = "--";
-        return;
-    }
-
-    const p = batters[0];
-
-    // XP formula (same structure as pitcher)
-    const xp =
-        (p.BA * 1000) +
-        (p.OBP * 1000) +
-        (p.SLG * 1000) +
-        (p.BBpct * 2) -
-        (p.Kpct * 1.5);
-
-    // No +1000 for batters
-    const finalXP = xp;
-
-    // Display rounded XP
-    document.getElementById("xpScore").textContent = Math.round(finalXP);
-   
-
-
-}
-
-
-
 
 // -------------------------------
 // Main: Load player + update UI (backend-only)
