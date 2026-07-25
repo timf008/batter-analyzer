@@ -399,6 +399,8 @@ async function handleLoad() {
         updateOverall(overall);
         updateTier(overall);
         updateScoutingNote(p);
+        updateXP(player.XP);
+
 
         // ⭐ ADD THIS — now p is defined
         document.getElementById("overallPercentile").textContent =
