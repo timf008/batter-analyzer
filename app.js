@@ -409,8 +409,6 @@ async function handleLoad() {
     }
 }
 
-
-
 // -------------------------------
 // Trend Handler (Season Comparison)
 // -------------------------------
@@ -451,6 +449,27 @@ async function handleTrend() {
             return;
         }
 
+        // ⭐ Compute XP for both seasons
+        curr.XP = computeBatterXP(curr);
+        prev.XP = computeBatterXP(prev);
+
+        // ⭐ Compute Overall Score for both seasons
+        curr.OverallScore = computeWeightedOverall({
+            baScore: scoreBA(curr.BA),
+            obpScore: scoreOBP(curr.OBP),
+            slgScore: scoreSLG(curr.SLG),
+            kpctScore: scoreKpct(curr.Kpct),
+            bbpctScore: scoreBBpct(curr.BBpct)
+        });
+
+        prev.OverallScore = computeWeightedOverall({
+            baScore: scoreBA(prev.BA),
+            obpScore: scoreOBP(prev.OBP),
+            slgScore: scoreSLG(prev.SLG),
+            kpctScore: scoreKpct(prev.Kpct),
+            bbpctScore: scoreBBpct(prev.BBpct)
+        });
+
         const html = buildSeasonComparison(curr, prev, season, lastSeason);
 
         document.getElementById("trendTitle").textContent =
@@ -466,7 +485,6 @@ async function handleTrend() {
     }
 }
 
-
 // -------------------------------
 // Trend Table (Season Comparison)
 // -------------------------------
@@ -477,7 +495,11 @@ function buildSeasonComparison(curr, prev, season, lastSeason) {
         { key: "OBP",   label: "OBP",   higherIsBetter: true  },
         { key: "SLG",   label: "SLG",   higherIsBetter: true  },
         { key: "Kpct",  label: "K%",    higherIsBetter: false },
-        { key: "BBpct", label: "BB%",   higherIsBetter: true  }
+        { key: "BBpct", label: "BB%",   higherIsBetter: true  },
+
+        // ⭐ NEW STATS
+        { key: "XP",            label: "XP",            higherIsBetter: true },
+        { key: "OverallScore",  label: "Overall Score", higherIsBetter: true }
     ];
 
     let rows = stats.map(s => {
@@ -501,7 +523,16 @@ function buildSeasonComparison(curr, prev, season, lastSeason) {
         if (s.key === "Kpct" || s.key === "BBpct") {
             dispA = isNaN(a) ? "--" : a.toFixed(1);
             dispB = isNaN(b) ? "--" : b.toFixed(1);
-        } else {
+        }
+        else if (s.key === "XP") {
+            dispA = isNaN(a) ? "--" : Math.round(a);
+            dispB = isNaN(b) ? "--" : Math.round(b);
+        }
+        else if (s.key === "OverallScore") {
+            dispA = isNaN(a) ? "--" : a.toFixed(1);
+            dispB = isNaN(b) ? "--" : b.toFixed(1);
+        }
+        else {
             dispA = isNaN(a) ? "--" : stripZero(a.toFixed(3));
             dispB = isNaN(b) ? "--" : stripZero(b.toFixed(3));
         }
@@ -532,6 +563,7 @@ function buildSeasonComparison(curr, prev, season, lastSeason) {
         </table>
     `;
 }
+
 
 // -------------------------------
 // Compare Button (Batting Version)
