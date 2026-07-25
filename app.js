@@ -612,24 +612,15 @@ async function showCompareModal() {
             bbpctScore: s2_BBpct
         });
 
-         const xp1 = computeBatterXP(data1);
-         const xp2 = computeBatterXP(data2);
-
-
         // ⭐ RAW + FORMATTED VALUES (Batting)
         const stats = [
-    ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
-    ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
-    ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
-    ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
-    ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
-
-    // ⭐ NEW XP ROW
-    ["XP", xp1, xp2, Math.round(xp1), Math.round(xp2)],
-
-    ["Overall Score", overall1, overall2, overall1.toFixed(1), overall2.toFixed(1)]
-];
-
+            ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
+            ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
+            ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
+            ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
+            ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
+            ["Overall Score", overall1, overall2, overall1.toFixed(1),            overall2.toFixed(1)]
+        ];
 
         const tbody = document.getElementById("compareBody");
         tbody.innerHTML = "";
@@ -670,6 +661,8 @@ async function showCompareModal() {
         spin.classList.remove("spin");
     }
 }
+
+
 
 
 // -------------------------------
