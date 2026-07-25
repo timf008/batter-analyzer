@@ -140,6 +140,11 @@ function updateOverall(score) {
     updateBattery("battery-overall", safeScore(score));
 }
 
+function updateXP(xp) {
+    document.getElementById("xpScore").textContent = safeFixed(xp, 0);
+}
+
+
 
 
 // -------------------------------
