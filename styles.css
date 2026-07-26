@@ -440,6 +440,8 @@ button.reset:hover {
     padding: 20px;
     border-radius: 10px;
     color: white;
+    overflow-y: auto;
+    max-height: 90vh;
 }
 
 /* Title */
