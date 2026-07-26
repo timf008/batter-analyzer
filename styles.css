@@ -252,6 +252,18 @@ button.reset:hover {
 /* -----------------------------------------
    Trend Modal
 ----------------------------------------- */
+.modal {
+  position: fixed;
+  inset: 0; /* replaces top:0; left:0; width:100%; height:100%; */
+  background: rgba(0,0,0,0.55);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
 .modal-container {
     position: fixed;
     z-index: 99999;
@@ -482,19 +494,8 @@ button.reset:hover {
 
 
 /* -----------------------------------------
-   Rank Modal
+   Modals
 ----------------------------------------- */
-
-.modal {
-  position: fixed;
-  inset: 0; /* replaces top:0; left:0; width:100%; height:100%; */
-  background: rgba(0,0,0,0.55);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
-}
 
 
 .modal.hidden {
@@ -656,5 +657,13 @@ button.reset:hover {
   height: 200px;
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    max-width: 95%;
+    padding: 16px;
+    border-radius: 10px;
+  }
 }
 
