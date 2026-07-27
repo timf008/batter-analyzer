@@ -53,7 +53,6 @@ function normalizeNameFrontend(x) {
 }
 
 
-
 // -------------------------------
 // Utility: Fetch batter data
 // -------------------------------
@@ -85,19 +84,24 @@ async function loadBatter(name, season, silent = false) {
 
     // ⭐ NEW: Update XP score + XP battery meter
     if (arr && arr.length > 0) {
-        const xp = arr[0].XP ?? "--";
+        const xp = Number(arr[0].XP);
 
         // Update XP text
-        document.getElementById("xpScore").textContent = xp;
+        document.getElementById("xpScore").textContent =
+            isNaN(xp) ? "--" : xp;
 
         // Update XP battery (only if numeric)
-        if (typeof xp === "number") {
+        if (!isNaN(xp)) {
             setXPBattery("battery-xp", xp);
+        } else {
+            // Reset battery if XP missing
+            setXPBattery("battery-xp", 800); // empty battery
         }
     }
 
     return arr;
 }
+
 
 
 
@@ -152,6 +156,7 @@ function setXPBattery(id, xpValue) {
     const XP_MAX = 1300;
 
     const battery = document.getElementById(id);
+    if (!battery) return;
 
     let fill = battery.querySelector(".battery-fill");
     if (!fill) {
@@ -160,7 +165,12 @@ function setXPBattery(id, xpValue) {
         battery.appendChild(fill);
     }
 
-    let pct = ((xpValue - XP_MIN) / (XP_MAX - XP_MIN)) * 100;
+    // Ensure numeric XP
+    const xp = Number(xpValue);
+    const safeXP = isNaN(xp) ? XP_MIN : xp;
+
+    // Normalize XP → 0–100%
+    let pct = ((safeXP - XP_MIN) / (XP_MAX - XP_MIN)) * 100;
     pct = Math.max(0, Math.min(100, pct));
 
     fill.style.width = pct + "%";
@@ -170,6 +180,7 @@ function setXPBattery(id, xpValue) {
     if (pct < 25) fill.classList.add("critical");
     else if (pct < 50) fill.classList.add("low");
 }
+
 
 
 // -------------------------------
