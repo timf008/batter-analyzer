@@ -740,7 +740,7 @@ function buildLeadersTable(arr) {
     tbody.innerHTML = "";
 
     // Only batters with >50 AB
-    const filtered = arr.filter(p => p.AB > 50);
+    const filtered = arr;
 
     // Sort by OVERALL score (backend computed)
     const sorted = [...filtered].sort((a, b) => b.overall - a.overall);
