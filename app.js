@@ -74,18 +74,31 @@ async function loadBatter(name, season, silent = false) {
     const arr = Array.isArray(data) ? data : [data];
 
     // ⭐ Only update tab if NOT silent
-if (!silent && arr && arr.length > 0) {
-    const rawName = arr[0].Name || clean;
-    const playerName = toTitleCase(rawName);
-    const team = arr[0].Team || "";
+    if (!silent && arr && arr.length > 0) {
+        const rawName = arr[0].Name || clean;
+        const playerName = toTitleCase(rawName);
+        const team = arr[0].Team || "";
 
-    document.getElementById("playerTab").textContent =
-        `${playerName}${team ? " — " + team : ""} (${season})`;
+        document.getElementById("playerTab").textContent =
+            `${playerName}${team ? " — " + team : ""} (${season})`;
+    }
+
+    // ⭐ NEW: Update XP score + XP battery meter
+    if (arr && arr.length > 0) {
+        const xp = arr[0].XP ?? "--";
+
+        // Update XP text
+        document.getElementById("xpScore").textContent = xp;
+
+        // Update XP battery (only if numeric)
+        if (typeof xp === "number") {
+            setXPBattery("battery-xp", xp);
+        }
+    }
+
+    return arr;
 }
 
-return arr;
-
-}
 
 
 // -------------------------------
@@ -130,6 +143,33 @@ function updateOBP(raw, score)     { updateMetric("raw-obp",   "battery-obp",   
 function updateSLG(raw, score)     { updateMetric("raw-slg",   "battery-slg",   "score-slg",   stripZero(raw), score); }
 function updateKpct(raw, score)    { updateMetric("raw-kpct",  "battery-kpct",  "score-kpct",  raw, score); }
 function updateBBpct(raw, score)   { updateMetric("raw-bbpct", "battery-bbpct", "score-bbpct", raw, score); }
+
+// -------------------------------
+// XP Battery Meter
+// -------------------------------
+function setXPBattery(id, xpValue) {
+    const XP_MIN = 800;
+    const XP_MAX = 1300;
+
+    const battery = document.getElementById(id);
+
+    let fill = battery.querySelector(".battery-fill");
+    if (!fill) {
+        fill = document.createElement("div");
+        fill.classList.add("battery-fill");
+        battery.appendChild(fill);
+    }
+
+    let pct = ((xpValue - XP_MIN) / (XP_MAX - XP_MIN)) * 100;
+    pct = Math.max(0, Math.min(100, pct));
+
+    fill.style.width = pct + "%";
+
+    fill.classList.remove("low", "critical");
+
+    if (pct < 25) fill.classList.add("critical");
+    else if (pct < 50) fill.classList.add("low");
+}
 
 
 // -------------------------------
