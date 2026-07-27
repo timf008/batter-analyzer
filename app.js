@@ -212,7 +212,10 @@ function updateScoutingNote(p) {
 
     let note = "";
 
-    if (strengths.length && !concerns.length) {
+    // NEW: dead‑zone fallback
+    if (!strengths.length && !concerns.length) {
+        note = "Neutral underlying profile with no standout strengths or red flags.";
+    } else if (strengths.length && !concerns.length) {
         note = "Profile built on " +
             strengths.join(", ").replace(/, ([^,]*)$/, " and $1") + ".";
     } else if (!strengths.length && concerns.length) {
@@ -228,6 +231,7 @@ function updateScoutingNote(p) {
 
     document.getElementById("scoutingNote").innerHTML = note;
 }
+
 
 // -------------------------------
 // XP Score Function
