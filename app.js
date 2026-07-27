@@ -152,7 +152,7 @@ function updateBBpct(raw, score)   { updateMetric("raw-bbpct", "battery-bbpct", 
 // XP Battery Meter
 // -------------------------------
 function setXPBattery(id, xpValue) {
-    const XP_MIN = 800;
+    const XP_MIN = 900;
     const XP_MAX = 1300;
 
     const battery = document.getElementById(id);
