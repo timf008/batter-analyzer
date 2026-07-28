@@ -53,6 +53,19 @@ function normalizeNameFrontend(x) {
 }
 
 // -------------------------------
+// League Averages
+// -------------------------------
+const leagueAvgOverall = data.LeagueAvgOverall;
+const leagueAvgXP = data.LeagueAvgXP;
+
+document.getElementById("league-overall").textContent =
+  leagueAvgOverall.toFixed(2);
+
+document.getElementById("league-xp").textContent =
+  leagueAvgXP.toFixed(0);
+
+
+// -------------------------------
 // Utility: Fetch batter data
 // -------------------------------
 async function loadBatter(name, season, silent = false) {
