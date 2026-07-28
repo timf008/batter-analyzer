@@ -53,19 +53,6 @@ function normalizeNameFrontend(x) {
 }
 
 // -------------------------------
-// League Averages
-// -------------------------------
-const leagueAvgOverall = data.LeagueAvgOverall;
-const leagueAvgXP = data.LeagueAvgXP;
-
-document.getElementById("league-overall").textContent =
-  leagueAvgOverall.toFixed(2);
-
-document.getElementById("league-xp").textContent =
-  leagueAvgXP.toFixed(0);
-
-
-// -------------------------------
 // Utility: Fetch batter data
 // -------------------------------
 async function loadBatter(name, season, silent = false) {
@@ -84,19 +71,33 @@ async function loadBatter(name, season, silent = false) {
     // ⭐ Normalize backend output: ALWAYS return an array
     const arr = Array.isArray(data) ? data : [data];
 
-    // ⭐ Only update tab if NOT silent
-if (!silent && arr && arr.length > 0) {
-    const rawName = arr[0].Name || clean;
-    const playerName = toTitleCase(rawName);
-    const team = arr[0].Team || "";
+    // -------------------------------
+    // ⭐ League Averages (NOW VALID)
+    // -------------------------------
+    const leagueAvgOverall = data.LeagueAvgOverall;
+    const leagueAvgXP = data.LeagueAvgXP;
 
-    document.getElementById("playerTab").textContent =
-        `${playerName}${team ? " — " + team : ""} (${season})`;
+    document.getElementById("league-overall").textContent =
+        leagueAvgOverall.toFixed(2);
+
+    document.getElementById("league-xp").textContent =
+        leagueAvgXP.toFixed(0);
+
+    // -------------------------------
+    // Player Tab Update
+    // -------------------------------
+    if (!silent && arr && arr.length > 0) {
+        const rawName = arr[0].Name || clean;
+        const playerName = toTitleCase(rawName);
+        const team = arr[0].Team || "";
+
+        document.getElementById("playerTab").textContent =
+            `${playerName}${team ? " — " + team : ""} (${season})`;
+    }
+
+    return arr;
 }
 
-return arr;
-
-}
 
 
 
