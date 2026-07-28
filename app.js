@@ -72,16 +72,18 @@ async function loadBatter(name, season, silent = false) {
     const arr = Array.isArray(data) ? data : [data];
 
     // -------------------------------
-    // ⭐ League Averages (NOW VALID)
+    // ⭐ League Averages (VALID NOW)
     // -------------------------------
-    const leagueAvgOverall = data.LeagueAvgOverall;
-    const leagueAvgXP = data.LeagueAvgXP;
+    if (data.LeagueAvgOverall !== undefined && data.LeagueAvgXP !== undefined) {
+        const leagueAvgOverall = data.LeagueAvgOverall;
+        const leagueAvgXP = data.LeagueAvgXP;
 
-    document.getElementById("league-overall").textContent =
-        leagueAvgOverall.toFixed(2);
+        document.getElementById("league-overall").textContent =
+            leagueAvgOverall.toFixed(2);
 
-    document.getElementById("league-xp").textContent =
-        leagueAvgXP.toFixed(0);
+        document.getElementById("league-xp").textContent =
+            leagueAvgXP.toFixed(0);
+    }
 
     // -------------------------------
     // Player Tab Update
@@ -97,6 +99,7 @@ async function loadBatter(name, season, silent = false) {
 
     return arr;
 }
+
 
 
 
