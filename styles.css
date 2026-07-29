@@ -587,18 +587,19 @@ button.reset:hover {
     to   { transform: rotate(360deg); }
 }
 
-
 /* -----------------------------------------
    League Averages
 ----------------------------------------- */
-.league-averages {
+#league-averages {
     font-size: 14px;
-    margin-top: 10px;
-    padding: 8px 12px;
     background: #f7f7f7;
+    padding: 10px 14px;
     border-radius: 6px;
     border: 1px solid #ddd;
+    margin-top: 15px;
+    max-width: 260px;
 }
+
 
 /* -----------------------------------------
    Footer
