@@ -3,6 +3,11 @@
 // Backend-only, no CSV preload
 // -----------------------------------------------------
 
+// -------------------------------
+// Display League Averages XP + Overall Score
+// -------------------------------
+
+const season = 2026;
 loadLeagueAverages(season);
 
 // -------------------------------
