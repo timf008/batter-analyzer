@@ -588,7 +588,17 @@ button.reset:hover {
 }
 
 
-
+/* -----------------------------------------
+   League Averages
+----------------------------------------- */
+.league-averages {
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #f7f7f7;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
 
 /* -----------------------------------------
    Footer
