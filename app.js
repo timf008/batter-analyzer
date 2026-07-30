@@ -9,6 +9,7 @@
 
 const season = 2026;
 loadLeagueAverages(season);
+loadBatterOfDay(season);
 
 // -------------------------------
 // Safe helpers
@@ -414,6 +415,38 @@ function loadLeagueAverages(season) {
             document.getElementById("league-avg-overall").textContent = "N/A";
         });
 }
+
+// -------------------------------
+// Load Batter of the Day
+// -------------------------------
+function loadBatterOfDay(season) {
+    fetch(`https://batter-analyzer-backend.onrender.com/api/batter-of-day?season=${season}`)
+        .then(res => res.json())
+        .then(player => {
+
+            console.log("Batter of the Day JSON:", player);
+
+            // Basic fields
+            document.getElementById("bod-name").textContent = player.Player;
+            document.getElementById("bod-team").textContent = player.Team;
+
+            document.getElementById("bod-overall").textContent =
+                Number(player.overall).toFixed(1);
+
+            document.getElementById("bod-xp").textContent =
+                Math.round(player.XP);
+
+            // Batter summary line (AVG, HR, RBI, Games)
+            const summaryText =
+                `${player.Player} is hitting ${player.BA} with ${player.HR} HR and ${player.RBI} RBI across ${player.G} games.`;
+
+            document.getElementById("bod-summary").textContent = summaryText;
+        })
+        .catch(err => {
+            console.error("Error loading Batter of the Day:", err);
+        });
+}
+
 
 
 // -------------------------------
