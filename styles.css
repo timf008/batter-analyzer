@@ -638,46 +638,59 @@ button.reset:hover {
 }
 
 /* -----------------------------------------
-   Today's Games Card (TimBaseball Theme)
+   Today's Games Card — Fenway Park Style
 ----------------------------------------- */
 #todays-games-card {
     width: 100%;
-    background: #ffffff;
-    border-top: 3px solid #000;
-    border-bottom: 3px solid #000;
-    padding: 15px 20px;
+    background: #0b3d2e; /* Fenway green */
+    border-top: 4px solid #e8d9b5; /* warm scoreboard cream */
+    border-bottom: 4px solid #e8d9b5;
+    padding: 18px 22px;
     margin: 25px 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    color: #e8d9b5; /* cream text */
+    letter-spacing: 0.4px;
 }
 
+/* Title */
 .tg-title {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 800;
     text-align: center;
-    margin-bottom: 12px;
-    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #f4e9c9; /* slightly brighter cream */
+    border-bottom: 2px solid #f4e9c9;
+    padding-bottom: 6px;
 }
 
+/* Game list */
 #tg-list {
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.6;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.7;
 }
 
+/* Each row */
 .tg-row {
-    padding: 6px 0;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer; /* prepares for tap-to-compare */
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: background 0.2s ease;
 }
 
+/* Last row */
 .tg-row:last-child {
     border-bottom: none;
 }
 
+/* Hover effect — subtle scoreboard glow */
 .tg-row:hover {
-    background: #f7f7f7;
+    background: rgba(255,255,255,0.08);
 }
+
 
 
 
