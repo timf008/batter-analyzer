@@ -637,58 +637,84 @@ button.reset:hover {
     }
 }
 
-/* -----------------------------------------
-   Today's Games Card — Fenway Park Style
------------------------------------------ */
+/* ----------------------------------------------------
+   TODAY'S GAMES — FULL FENWAY PARK SCOREBOARD STYLE
+   Inspired by the Green Monster manual scoreboard
+---------------------------------------------------- */
+
 #todays-games-card {
     width: 100%;
-    background: #0b3d2e; /* Fenway green */
-    border-top: 4px solid #e8d9b5; /* warm scoreboard cream */
-    border-bottom: 4px solid #e8d9b5;
-    padding: 18px 22px;
-    margin: 25px 0;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    background: #0a3b2a; /* Authentic Fenway Green */
+    border: 6px solid #d9c89a; /* Aged cream steel frame */
+    padding: 25px 28px;
+    margin: 35px 0;
+    box-shadow:
+        0 0 0 4px #0a3b2a inset, /* recessed scoreboard edge */
+        0 8px 18px rgba(0,0,0,0.45); /* heavy stadium lighting */
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    color: #e8d9b5; /* cream text */
-    letter-spacing: 0.4px;
-}
-
-/* Title */
-.tg-title {
-    font-size: 22px;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 14px;
-    letter-spacing: 1px;
+    color: #f2e7c4; /* warm scoreboard cream */
+    letter-spacing: 0.8px;
     text-transform: uppercase;
-    color: #f4e9c9; /* slightly brighter cream */
-    border-bottom: 2px solid #f4e9c9;
-    padding-bottom: 6px;
 }
 
-/* Game list */
+/* Title — looks like the top header panel */
+.tg-title {
+    font-size: 24px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #f2e7c4;
+    letter-spacing: 2px;
+}
+
+/* Game list area */
 #tg-list {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.7;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.9;
 }
 
-/* Each row */
+/* Each row — styled like scoreboard tiles */
 .tg-row {
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding: 10px 0;
+    border-bottom: 2px solid rgba(242,231,196,0.25);
     cursor: pointer;
-    transition: background 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Slight embossed effect */
+    text-shadow: 1px 1px 0 #0a3b2a;
+    transition: background 0.25s ease, transform 0.15s ease;
 }
 
-/* Last row */
 .tg-row:last-child {
     border-bottom: none;
 }
 
-/* Hover effect — subtle scoreboard glow */
+/* Hover — subtle glow like stadium lights hitting the board */
 .tg-row:hover {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.10);
+    transform: translateX(2px);
+}
+
+/* Team abbreviations — mimic scoreboard letter tiles */
+.tg-team {
+    background: #d9c89a; /* cream tile */
+    color: #0a3b2a;      /* Fenway green lettering */
+    padding: 4px 10px;
+    margin-right: 12px;
+    font-weight: 900;
+    border-radius: 3px;
+    box-shadow: 0 2px 0 #b8a87f;
+}
+
+/* Game time — styled like the inning numbers */
+.tg-time {
+    font-size: 17px;
+    font-weight: 700;
+    opacity: 0.9;
 }
 
 
