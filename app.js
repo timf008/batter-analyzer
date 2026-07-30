@@ -438,7 +438,8 @@ function loadBatterOfDay(season) {
 
             // Batter summary line (AVG, HR, RBI, Games)
             const summaryText =
-                `${player.Player} is hitting ${player.BA} with ${player.HR} HR and ${player.RBI} RBI across ${player.G} games.`;
+  `${player.Player} is hitting ${player.BA.toString().replace(/^0/, "")} with ${player.HR} HR and ${player.RBI} RBI across ${player.G} games.`;
+
 
             document.getElementById("bod-summary").textContent = summaryText;
         })
