@@ -627,6 +627,13 @@ button.reset:hover {
     animation: ticker-scroll 14s linear infinite;
 }
 
+/* NEW: Track wrapper prevents clipping on tablet */
+.ticker-track {
+    width: 200%;      /* gives the scroll room */
+    overflow: hidden; /* prevents clipping */
+}
+
+
 /* Reuse the same keyframes */
 @keyframes ticker-scroll {
     0% {
