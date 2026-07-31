@@ -448,41 +448,6 @@ function loadBatterOfDay(season) {
         });
 }
 
-// -------------------------------
-// Today's Games Render
-// -------------------------------
-function renderTodaysGames(games) {
-    const list = document.getElementById("tg-list");
-    list.innerHTML = "";
-
-    games.forEach(g => {
-        const row = document.createElement("div");
-        row.className = "tg-row";
-        row.textContent = `${g.away} @ ${g.home} — ${g.time}`;
-        list.appendChild(row);
-    });
-}
-
-// -------------------------------
-// Today's Games Fetch
-// -------------------------------
-const today = new Date().toISOString().split("T")[0];
-
-fetch(`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${today}`)
-  .then(res => res.json())
-  .then(data => {
-      const games = data.dates[0].games.map(g => ({
-          away: g.teams.away.team.name,
-          home: g.teams.home.team.name,
-          time: new Date(g.gameDate).toLocaleTimeString([], {
-              hour: 'numeric',
-              minute: '2-digit'
-          })
-      }));
-
-      renderTodaysGames(games);
-  });
-
 
 
 // -------------------------------
