@@ -642,6 +642,38 @@ button.reset:hover {
     }
 }
 
+/* -----------------------------------------
+   Idenity Badge
+----------------------------------------- */
+#player-identity-key {
+    font-size: 13px;
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: #fafafa;
+    border-radius: 6px;
+    border: 1px solid #e2e2e2;
+    max-width: 260px;
+}
+
+.identity-badge {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+    opacity: 0.35; /* default dim */
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.identity-badge.active {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+.identity-badge.sleeper { background: #4a90e2; }
+.identity-badge.overperformer { background: #f5a623; }
+.identity-badge.breakout { background: #7ed321; }
+
 
 /* -----------------------------------------
    Footer
