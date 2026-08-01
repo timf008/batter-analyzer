@@ -866,6 +866,13 @@ function updateIdentityBadge() {
     }
 }
 
+function clearIdentityBadges() {
+    document.querySelectorAll(".identity-badge").forEach(badge => {
+        badge.classList.remove("active");
+    });
+}
+
+
 
 // -------------------------------
 // Batter Tier Assignment
@@ -923,6 +930,7 @@ function handleReset() {
     document.getElementById("xpScore").innerHTML = "--";
     document.getElementById("playerTab").textContent = "Player:--";
     document.getElementById("playerPhoto").src = "images/batter.png";
+    clearIdentityBadges();
 
 }
 
