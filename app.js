@@ -854,12 +854,8 @@ function updateIdentityBadge() {
 
     const identity = classifyPlayer(xp, skill);
 
-    // Clear all active states
-    document.querySelectorAll(".identity-badge").forEach(badge => {
-        badge.classList.remove("active");
-    });
+    clearIdentityBadges(); // always clear first
 
-    // Light up the correct one
     if (identity !== "neutral") {
         const badge = document.querySelector(`.identity-badge.${identity}`);
         if (badge) badge.classList.add("active");
@@ -871,6 +867,7 @@ function clearIdentityBadges() {
         badge.classList.remove("active");
     });
 }
+
 
 
 
