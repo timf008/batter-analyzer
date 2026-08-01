@@ -375,6 +375,7 @@ async function handleLoad() {
         updateTier(overall);
         updateScoutingNote(p);
         updateXP(p.XP);
+        updateIdentityBadge(p.XP, overall);
 
 
         // ⭐ ADD THIS — now p is defined
@@ -835,6 +836,34 @@ top50.forEach((p, index) => {
 
 
     document.getElementById("leadersModal").style.display = "flex";
+}
+
+// -------------------------------
+// Light Up Fantasy Badge
+// -------------------------------
+function classifyPlayer(xp, skill) {
+    if (xp >= 1190 && skill >= 8.0) return "breakout";
+    if (xp <= 1100 && skill >= 7.5) return "sleeper";
+    if (xp >= 1190 && skill <= 7.0) return "overperformer";
+    return "neutral";
+}
+
+function updateIdentityBadge() {
+    const xp = parseFloat(document.getElementById("xpScore").textContent);
+    const skill = parseFloat(document.getElementById("overallScore").textContent);
+
+    const identity = classifyPlayer(xp, skill);
+
+    // Clear all active states
+    document.querySelectorAll(".identity-badge").forEach(badge => {
+        badge.classList.remove("active");
+    });
+
+    // Light up the correct one
+    if (identity !== "neutral") {
+        const badge = document.querySelector(`.identity-badge.${identity}`);
+        if (badge) badge.classList.add("active");
+    }
 }
 
 
