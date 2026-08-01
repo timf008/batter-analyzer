@@ -1023,6 +1023,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("compareBtn").addEventListener("click", showCompareModal);
     document.getElementById("leadersBtn").addEventListener("click", loadLeaders);
     document.getElementById("trendBtn").addEventListener("click", handleTrend);
+    document.getElementById("scheduleBtn").addEventListener("click",
+openGamesModal);
 
 
     // Timestamp
