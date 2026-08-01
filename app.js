@@ -449,6 +449,75 @@ function loadBatterOfDay(season) {
 }
 
 // -------------------------------
+// Today's Games
+// -------------------------------
+document.getElementById("scheduleBtn").addEventListener("click", async () => {
+    const today = new Date().toISOString().split("T")[0];
+    const url = `https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${today}`;
+
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        const games = data.dates[0]?.games || [];
+
+        const gamesBody = document.getElementById("gamesBody");
+        gamesBody.innerHTML = ""; // clear previous
+
+        if (games.length === 0) {
+            gamesBody.innerHTML = "<p>No MLB games scheduled today.</p>";
+        } else {
+            games.forEach(game => {
+                const away = game.teams.away.team.name;
+                const home = game.teams.home.team.name;
+                const time = game.gameDate;
+
+                const localTime = new Date(time).toLocaleTimeString([], {
+                    hour: "numeric",
+                    minute: "2-digit"
+                });
+
+                const div = document.createElement("div");
+                div.classList.add("game-item");
+                div.innerHTML = `
+                    <p><strong>${away}</strong> @ <strong>${home}</strong></p>
+                    <p>Start Time: ${localTime}</p>
+                    <hr>
+                `;
+                gamesBody.appendChild(div);
+            });
+        }
+
+        openGamesModal();
+
+    } catch (err) {
+        console.error(err);
+        document.getElementById("gamesBody").innerHTML =
+            "<p>Error loading MLB games.</p>";
+        openGamesModal();
+    }
+});
+
+// -------------------------------
+// Today's Games Modal
+// -------------------------------
+function openGamesModal() {
+    document.getElementById("gamesModal").classList.remove("hidden");
+}
+
+document.getElementById("gamesClose").addEventListener("click", () => {
+    document.getElementById("gamesModal").classList.add("hidden");
+});
+
+window.addEventListener("click", (e) => {
+    const modal = document.getElementById("gamesModal");
+    if (e.target === modal) {
+        modal.classList.add("hidden");
+    }
+});
+
+
+// -------------------------------
 // Trend Handler (Season Comparison)
 // -------------------------------
 async function handleTrend() {
