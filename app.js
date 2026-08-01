@@ -844,7 +844,7 @@ top50.forEach((p, index) => {
 function classifyPlayer(xp, skill) {
     if (xp >= 1190 && skill >= 8.0) return "breakout";
     if (xp <= 1100 && skill >= 7.5) return "sleeper";
-    if (xp >= 1190 && skill <= 7.0) return "overperformer";
+    if (xp > 1100 && skill < 7.0) return "overperformer";
     return "neutral";
 }
 
