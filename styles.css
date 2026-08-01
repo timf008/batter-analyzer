@@ -684,6 +684,13 @@ button.reset:hover {
     margin-top: 15px;
 }
 
+.info-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
 
 /* -----------------------------------------
    Footer
