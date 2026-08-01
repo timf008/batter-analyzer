@@ -645,6 +645,14 @@ button.reset:hover {
 /* -----------------------------------------
    Idenity Badge
 ----------------------------------------- */
+#bottom-info-row {
+    display: flex;
+    gap: 16px;          /* space between the boxes */
+    margin-top: 20px;
+    align-items: flex-start;
+}
+
+
 #player-identity-key {
     font-size: 13px;
     margin-top: 12px;
