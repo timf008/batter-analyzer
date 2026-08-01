@@ -588,19 +588,6 @@ button.reset:hover {
 }
 
 /* -----------------------------------------
-   League Averages
------------------------------------------ */
-#league-averages {
-    font-size: 14px;
-    background: #f7f7f7;
-    padding: 10px 14px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    margin-top: 15px;
-    max-width: 260px;
-}
-
-/* -----------------------------------------
    Batter of the Day Ticker (TimBaseball Theme)
 ----------------------------------------- */
 #batter-ticker {
@@ -647,12 +634,18 @@ button.reset:hover {
 ----------------------------------------- */
 #bottom-info-row {
     display: flex;
-    gap: 16px;          /* space between the boxes */
+    gap: 16px;
     margin-top: 20px;
     align-items: flex-start;
 }
 
+/* Make all children equal width */
+#bottom-info-row > div {
+    flex: 1;
+    max-width: 260px;
+}
 
+/* Identity Badge */
 #player-identity-key {
     font-size: 13px;
     margin-top: 12px;
@@ -660,7 +653,6 @@ button.reset:hover {
     background: #fafafa;
     border-radius: 6px;
     border: 1px solid #e2e2e2;
-    max-width: 260px;
 }
 
 .identity-badge {
@@ -669,7 +661,7 @@ button.reset:hover {
     height: 12px;
     border-radius: 50%;
     margin-right: 6px;
-    opacity: 0.35; /* default dim */
+    opacity: 0.35;
     transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
@@ -681,6 +673,16 @@ button.reset:hover {
 .identity-badge.sleeper { background: #4a90e2; }
 .identity-badge.overperformer { background: #f5a623; }
 .identity-badge.breakout { background: #7ed321; }
+
+/* League Averages */
+#league-averages {
+    font-size: 14px;
+    background: #f7f7f7;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-top: 15px;
+}
 
 
 /* -----------------------------------------
