@@ -842,9 +842,9 @@ top50.forEach((p, index) => {
 // Light Up Fantasy Badge
 // -------------------------------
 function classifyPlayer(xp, skill) {
-    if (xp >= 1190 && skill >= 8.0) return "breakout";
-    if (xp <= 1100 && skill >= 7.5) return "sleeper";
-    if (xp > 1100 && skill < 7.0) return "overperformer";
+    if (xp >= 1200 && skill >= 8.0) return "breakout";
+    if (xp <= 1100 && skill >= 7.0) return "sleeper";
+    if (xp >= 1100 && skill <= 7.0) return "overperformer";
     return "neutral";
 }
 
