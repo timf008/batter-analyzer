@@ -199,14 +199,6 @@ button.reset:hover {
     align-items: center;
 }
 
-/* ⭐ Overall battery — FIXED (now visible) */
-.overall-battery {
-    height: 26px;
-    width: 600px;
-    max-width: 600px;
-    margin: 0 auto !important;
-}
-
 .overall-battery::after {
     background: var(--color);
 }
