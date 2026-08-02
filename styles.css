@@ -662,7 +662,7 @@ button.reset:hover {
 
 .identity-badge.active {
     opacity: 1;
-    transform: scale(1.15);
+    transform: scale(1.4);
 }
 
 .identity-badge.sleeper { background: #4a90e2; }
