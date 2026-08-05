@@ -631,6 +631,7 @@ button.reset:hover {
     display: flex;
     gap: 16px;
     margin-top: 20px;
+    margin-bottom: 20px;
     align-items: stretch;
     justify-content: center;
 }
