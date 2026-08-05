@@ -841,16 +841,41 @@ top50.forEach((p, index) => {
 // -------------------------------
 // Light Up Fantasy Badge
 // -------------------------------
-function classifyPlayer(xp, skill) {
-    if (xp > 1100 && skill >= 8.0) return "breakout";
-    if (xp >= 1100 && skill <= 7.9) return "overperformer";
-    if (xp <= 1100 && skill >= 6.5) return "sleeper";
-    if (xp >= 1000 && skill >= 5.0) return "consistent";
+
+// XP-only backbone
+function xpTier(xp) {
+    if (xp >= 1200) return "breakout";
+    if (xp >= 1100) return "overperformer";
+    if (xp >= 1000) return "sleeper";
+    if (xp >= 900)  return "consistent";
     return "neutral";
+}
+
+// Skill modifier (bumps tier up/down)
+function applySkillModifier(tier, skill) {
+    const order = ["neutral", "consistent", "sleeper", "overperformer", "breakout"];
+    let index = order.indexOf(tier);
+
+    if (skill >= 8.0) index++;     // bump up
+    if (skill <= 5.0) index--;     // bump down
+
+    // clamp to valid range
+    index = Math.max(0, Math.min(order.length - 1, index));
+
+    return order[index];
+}
+
+// Final badge classifier
+function classifyPlayer(xp, skill) {
+    const base = xpTier(xp);
+    return applySkillModifier(base, skill);
 }
 
 
 
+// -------------------------------
+// DOM Badge Update
+// -------------------------------
 function updateIdentityBadge() {
     const xp = parseFloat(document.getElementById("xpScore").textContent);
     const skill = parseFloat(document.getElementById("overallScore").textContent);
@@ -870,6 +895,7 @@ function clearIdentityBadges() {
         badge.classList.remove("active");
     });
 }
+
 
 
 
