@@ -438,8 +438,9 @@ function loadBatterOfDay(season) {
                 Math.round(player.XP);
 
             // Batter summary line (AVG, HR, RBI, Games)
-            const summaryText =
-  `${player.Player} is hitting ${player.BA.toString().replace(/^0/, "")} with ${player.HR} HR and ${player.RBI} RBI across ${player.G} games.`;
+            const formattedBA = Number(player.BA).toFixed(3).replace(/^0/, "");
+const summaryText = `${player.Player} is hitting ${formattedBA} with ${player.HR} HR and ${player.RBI} RBI across ${player.G} games.`;
+
 
 
             document.getElementById("bod-summary").textContent = summaryText;
@@ -857,7 +858,7 @@ function applySkillModifier(tier, skill) {
     let index = order.indexOf(tier);
 
     if (skill >= 8.0) index++;     // bump up
-    if (skill <= 5.0) index--;     // bump down
+    if (skill <= 6.0) index--;     // bump down
 
     // clamp to valid range
     index = Math.max(0, Math.min(order.length - 1, index));
