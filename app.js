@@ -376,6 +376,9 @@ async function handleLoad() {
         updateScoutingNote(p);
         updateXP(p.XP);
         updateIdentityBadge(p.XP, overall);
+        const div = calculateDivergence(p.XP, overall);
+        const state = divergenceState(div.divergencePct);
+        updateStateBadge(state);
 
 
         // ⭐ ADD THIS — now p is defined
@@ -872,6 +875,50 @@ function classifyPlayer(xp, skill) {
     return applySkillModifier(base, skill);
 }
 
+// -------------------------------
+// Calculate Divergence (Fantasy State)
+// -------------------------------
+function calculateDivergence(xp, overall) {
+    const expectedXP = 813.86 + (47.78 * overall);
+    const divergence = (xp - expectedXP) / expectedXP;
+
+    return {
+        expectedXP,
+        divergence,
+        divergencePct: divergence * 100
+    };
+}
+
+// -------------------------------
+// Divergence → Fantasy State
+// -------------------------------
+function divergenceState(divergencePct) {
+    if (divergencePct > 5) return "strong";
+    if (divergencePct >= -2.5) return "stable";
+    if (divergencePct >= -5) return "vulnerable";
+    return "high-risk";
+}
+
+// -------------------------------
+// Update State Badge
+// -------------------------------
+function updateStateBadge(state) {
+    document.querySelectorAll(".state-badge").forEach(b => {
+        b.classList.remove("active");
+    });
+
+    const badge = document.querySelector(`.state-badge.${state}`);
+    if (badge) badge.classList.add("active");
+}
+
+// -------------------------------
+// Clear State Badges
+// -------------------------------
+function clearStateBadges() {
+    document.querySelectorAll(".state-badge").forEach(badge => {
+        badge.classList.remove("active");
+    });
+}
 
 
 // -------------------------------
@@ -958,7 +1005,7 @@ function handleReset() {
     document.getElementById("playerTab").textContent = "Player:--";
     document.getElementById("playerPhoto").src = "images/batter.png";
     clearIdentityBadges();
-
+    clearStateBadges();
 }
 
 // -------------------------------
