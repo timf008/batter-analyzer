@@ -215,7 +215,7 @@ button.reset:hover {
 /* Card container */
 .overall-card {
     background: #f8f9fc;
-    border: 1px solid #d4d9e2;
+    border: 3px solid #d4d9e2;
     border-radius: 10px;
     padding: 20px 24px;
     max-width: 650px;
