@@ -934,40 +934,4 @@ button.reset:hover {
   margin-top: 20px;
 }
 
-/* -----------------------------------------
-   10-Segment Battery
------------------------------------------ */
-/* 10-Segment Battery */
-.battery-10 {
-    display: flex;
-    gap: 3px;
-    flex: 1;
-    height: 14px;
-    align-items: center;
-}
-
-.battery-10 .segment {
-    flex: 1;
-    background: #d3d3d3;
-    border-radius: 3px;
-    transition: background-color 0.25s ease, transform 0.25s ease;
-}
-
-/* Active segment with gradient */
-.battery-10 .segment.active {
-    transform: scale(1.05);
-}
-
-/* Gradient colors by segment index */
-.battery-10 .segment:nth-child(1).active { background: #d50000; } /* deep red */
-.battery-10 .segment:nth-child(2).active { background: #e53935; }
-.battery-10 .segment:nth-child(3).active { background: #fb8c00; } /* orange */
-.battery-10 .segment:nth-child(4).active { background: #fdd835; } /* yellow */
-.battery-10 .segment:nth-child(5).active { background: #cddc39; }
-.battery-10 .segment:nth-child(6).active { background: #8bc34a; }
-.battery-10 .segment:nth-child(7).active { background: #4caf50; } /* green */
-.battery-10 .segment:nth-child(8).active { background: #43a047; }
-.battery-10 .segment:nth-child(9).active { background: #2e7d32; }
-.battery-10 .segment:nth-child(10).active { background: #1b5e20; } /* dark green */
-
 
