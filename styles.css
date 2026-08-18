@@ -661,7 +661,7 @@ button.reset:hover {
     padding: 10px 14px;
     background: #fafafa;
     border-radius: 6px;
-    border: 1px solid #e2e2e2;
+    border: 2px solid #006CD5;
 }
 
 .identity-badge {
@@ -702,7 +702,7 @@ button.reset:hover {
     padding: 10px 14px;
     background: #fafafa;
     border-radius: 6px;
-    border: 1px solid #e2e2e2;
+    border: 2px solid #26A460;
 }
 
 /* State Badge */
