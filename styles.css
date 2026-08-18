@@ -186,9 +186,6 @@ button.reset:hover {
    Overall Section
 ----------------------------------------- */
 
-#overallScore {
-    font-size: 46px;
-
 .overall {
     margin-top: 5px;
     display: flex;
