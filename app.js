@@ -114,10 +114,30 @@ function updateBattery(id, score) {
     el.style.setProperty("--color", color);
 }
 
+
+// -------------------------------
+// Overall score updater
+// -------------------------------
 function updateOverall(score) {
-    document.getElementById("overallScore").textContent = safeFixed(score, 1);
+    const fixed = safeFixed(score, 1);
+    const el = document.getElementById("overallScore");
+
+    // Show ONLY the score (no label)
+    el.textContent = fixed;
+
+    // Apply matching color
+    let color;
+    if (score < 3) color = "#d50000";
+    else if (score < 5.5) color = "#ff9800";
+    else if (score < 7.5) color = "#ffb400";
+    else color = "#00c853";
+
+    el.style.color = color;
+
+    // Update battery
     updateBattery("battery-overall", safeScore(score));
 }
+
 
 
 // -------------------------------
