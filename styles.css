@@ -31,6 +31,23 @@ body {
 }
 
 /* -----------------------------------------
+   Batter Analyzer Wordmark Image
+----------------------------------------- */
+.header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.header .batter-analyzer {
+    width: 550px;        /* your target size */
+    max-width: 100%;     /* prevents overflow on small screens */
+    height: auto;
+    display: block;
+    margin: 0 auto;      /* centers the image */
+}
+
+
+/* -----------------------------------------
    Header
 ----------------------------------------- */
 
