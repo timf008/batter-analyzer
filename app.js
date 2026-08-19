@@ -394,31 +394,6 @@ async function handleLoad() {
 }
 
 // -------------------------------
-// League Averages XP + Overall Score
-// -------------------------------
-function loadLeagueAverages(season) {
-    fetch(`https://batter-analyzer-backend.onrender.com/api/averages?season=${season}`)
-        .then(res => res.json())
-        .then(data => {
-            // Handle both formats:
-            // 1) { league_avg_XP: 921.6, league_avg_overall: 3.02 }
-            // 2) [ { league_avg_XP: 921.6, league_avg_overall: 3.02 } ]
-            const avg = Array.isArray(data) ? data[0] : data;
-
-            document.getElementById("league-avg-xp").textContent =
-                Math.round(avg.league_avg_XP);
-
-            document.getElementById("league-avg-overall").textContent =
-                avg.league_avg_overall.toFixed(1);
-        })
-        .catch(err => {
-            console.error("Error fetching league averages:", err);
-            document.getElementById("league-avg-xp").textContent = "N/A";
-            document.getElementById("league-avg-overall").textContent = "N/A";
-        });
-}
-
-// -------------------------------
 // Load Batter of the Day
 // -------------------------------
 function loadBatterOfDay(season) {
