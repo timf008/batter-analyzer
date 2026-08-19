@@ -322,13 +322,10 @@ function stripZero(x) {
     return String(x).replace(/^0+/, "");
 }
 
-
 // -------------------------------
 // Main: Load player + update UI (backend-only)
 // -------------------------------
 async function handleLoad() {
-    const spin = document.getElementById("spinner1");
-    spin.classList.add("spin");
 
     try {
         const name = document.getElementById("playerName").value.trim();
@@ -373,24 +370,21 @@ async function handleLoad() {
         updateScoutingNote(p);
         updateXP(p.XP);
         updateIdentityBadge(p.XP, overall);
+
         const div = calculateDivergence(p.XP, overall);
         const state = divergenceState(div.divergencePct);
         updateStateBadge(state);
 
-
-        // ⭐ ADD THIS — now p is defined
         document.getElementById("overallPercentile").textContent =
-    p.Overall_pct !== undefined
-        ? toOrdinal(Math.round(p.Overall_pct))
-        : "--";
-
+            p.Overall_pct !== undefined
+                ? toOrdinal(Math.round(p.Overall_pct))
+                : "--";
 
     } catch (err) {
         console.error("Error loading player:", err);
-    } finally {
-        spin.classList.remove("spin");
     }
 }
+
 
 // -------------------------------
 // Load Batter of the Day
@@ -425,13 +419,10 @@ const summaryText = `${player.Player} is hitting ${formattedBA} with ${player.HR
         });
 }
 
-
 // -------------------------------
 // Trend Handler (Season Comparison)
 // -------------------------------
 async function handleTrend() {
-    const spin = document.getElementById("spinner1");
-    spin.classList.add("spin");
 
     try {
         const rawName = document.getElementById("playerName").value.trim();
@@ -497,10 +488,9 @@ async function handleTrend() {
 
     } catch (err) {
         console.error("Trend error:", err);
-    } finally {
-        spin.classList.remove("spin");
     }
 }
+
 
 // -------------------------------
 // Trend Table (Season Comparison)
@@ -581,13 +571,10 @@ function buildSeasonComparison(curr, prev, season, lastSeason) {
     `;
 }
 
-
 // -------------------------------
 // Compare Button (Batting Version)
 // -------------------------------
 async function showCompareModal() {
-    const spin = document.getElementById("spinner1");
-    spin.classList.add("spin");
     console.log("COMPARE BUTTON CLICKED");
 
     function formatName(name) {
@@ -611,7 +598,6 @@ async function showCompareModal() {
 
         const data1Arr = await loadBatter(p1_raw, s1, true);
         const data2Arr = await loadBatter(p2_raw, s2, true);
-
 
         const data1 = Array.isArray(data1Arr) ? data1Arr[0] : data1Arr;
         const data2 = Array.isArray(data2Arr) ? data2Arr[0] : data2Arr;
@@ -661,24 +647,22 @@ async function showCompareModal() {
             bbpctScore: s2_BBpct
         });
 
-
         // Compute XP
-const xp1 = computeBatterXP(data1);
-const xp2 = computeBatterXP(data2);
+        const xp1 = computeBatterXP(data1);
+        const xp2 = computeBatterXP(data2);
 
-const stats = [
-    ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
-    ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
-    ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
-    ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
-    ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
+        const stats = [
+            ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
+            ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
+            ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
+            ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
+            ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
 
-    // ⭐ XP added here
-    ["XP", xp1, xp2, Math.round(xp1), Math.round(xp2)],
+            // ⭐ XP added here
+            ["XP", xp1, xp2, Math.round(xp1), Math.round(xp2)],
 
-    ["Overall Score", overall1, overall2, overall1.toFixed(1),            overall2.toFixed(1)]
-];
-
+            ["Overall Score", overall1, overall2, overall1.toFixed(1), overall2.toFixed(1)]
+        ];
 
         const tbody = document.getElementById("compareBody");
         tbody.innerHTML = "";
@@ -715,10 +699,9 @@ const stats = [
 
     } catch (err) {
         console.error("Compare error:", err);
-    } finally {
-        spin.classList.remove("spin");
     }
 }
+
 
 
 
@@ -727,8 +710,6 @@ const stats = [
 // Leaders Button
 // -------------------------------
 async function loadLeaders() {
-    const spin = document.getElementById("spinner1");
-    spin.classList.add("spin");
 
     try {
         const season = document.getElementById("seasonSelect").value;
@@ -747,10 +728,9 @@ async function loadLeaders() {
     } catch (err) {
         console.error("Leaders error:", err);
         alert("Error loading leaderboard.");
-    } finally {
-        spin.classList.remove("spin");
     }
 }
+
 
 // -------------------------------
 // Leaders Table Name Normalization
