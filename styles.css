@@ -317,10 +317,10 @@ button.reset:hover {
 #trendModal .modal-content {
     width: 600px;
     max-width: 90%;
-    background: #1e1e1e !important;
+    background: #FFFFFF !important;
     padding: 20px;
     border-radius: 10px;
-    color: white;
+    color: black;
 }
 
 /* Title */
@@ -395,10 +395,10 @@ button.reset:hover {
 .compare-box {
     width: 600px;
     max-width: 90%;
-    background: #1e1e1e !important;
+    background: #FFFFFF !important;
     padding: 20px;
     border-radius: 10px;
-    color: White;
+    color: black;
 }
 
 #compareTable {
@@ -448,10 +448,10 @@ button.reset:hover {
 #leadersModal .modal-content {
     width: 600px;
     max-width: 90%;
-    background: #1e1e1e !important;
+    background: #FFFFFF !important;
     padding: 20px;
     border-radius: 10px;
-    color: white;
+    color: black;
     overflow-y: auto;
     max-height: 90vh;
 }
