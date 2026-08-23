@@ -79,7 +79,7 @@ async function loadBatter(name, season, silent = false) {
 
     // ⭐ Only update tab if NOT silent
 if (!silent && arr && arr.length > 0) {
-    const playerName = arr[0].Name || clean;
+    const playerName = arr[0].Name || "";
     const team = arr[0].Team || "";
 
     document.getElementById("playerTab").textContent =
