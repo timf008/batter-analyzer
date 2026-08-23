@@ -77,16 +77,19 @@ async function loadBatter(name, season, silent = false) {
     // ⭐ Normalize backend output: ALWAYS return an array
     const arr = Array.isArray(data) ? data : [data];
 
+console.log("SEARCH INPUT:", name);
+console.log("NORMALIZED:", clean);
+console.log("BACKEND NAME:", arr[0]?.Name);
+
     // ⭐ Only update tab if NOT silent
 if (!silent && arr && arr.length > 0) {
-    const playerName = arr[0].Name || "";
+    const rawName = arr[0].Name || clean;
+    const playerName = toTitleCase(rawName);
     const team = arr[0].Team || "";
 
     document.getElementById("playerTab").textContent =
         `${playerName}${team ? " — " + team : ""} (${season})`;
 }
-
-return arr;
 
 return arr;
 
