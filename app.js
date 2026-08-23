@@ -43,8 +43,10 @@ function toTitleCase(str) {
         .map(word =>
             word.split("-")
                 .map(part => {
-                    // Preserve all-caps initials (CJ, JT, JR)
-                    if (/^[A-Z]{2,}$/.test(part)) return part;
+                    // Detect initials even if input is "cj", "Cj", or "cJ"
+                    if (/^[A-Za-z]{2}$/.test(part)) {
+                        return part.toUpperCase(); // Force CJ, JT, JR, etc.
+                    }
 
                     return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
                 })
@@ -52,6 +54,7 @@ function toTitleCase(str) {
         )
         .join(" ");
 }
+
 
 
 
