@@ -77,10 +77,6 @@ async function loadBatter(name, season, silent = false) {
     // ⭐ Normalize backend output: ALWAYS return an array
     const arr = Array.isArray(data) ? data : [data];
 
-console.log("SEARCH INPUT:", name);
-console.log("NORMALIZED:", clean);
-console.log("BACKEND NAME:", arr[0]?.Name);
-
     // ⭐ Only update tab if NOT silent
 if (!silent && arr && arr.length > 0) {
     const rawName = arr[0].Name || clean;
@@ -92,6 +88,7 @@ if (!silent && arr && arr.length > 0) {
 }
 
 return arr;
+
 
 }
 
