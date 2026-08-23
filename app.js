@@ -39,11 +39,22 @@ function toOrdinal(n) {
 // -------------------------------
 function toTitleCase(str) {
     return str
-        .toLowerCase()
         .split(" ")
-        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .map(word =>
+            // Handle hyphenated names (Kuroda-Grauer)
+            word.split("-")
+                .map(part => {
+                    // Preserve all‑caps initials (CJ, JT, JR)
+                    if (/^[A-Z]{2,}$/.test(part)) return part;
+
+                    // Normal word: capitalize first letter only
+                    return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+                })
+                .join("-")
+        )
         .join(" ");
 }
+
 
 // =====================================================
 // Utility: Normalize name to match R script (First Last)
