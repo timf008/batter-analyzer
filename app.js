@@ -890,12 +890,12 @@ function getFantasyValue(overallDivergence, divergenceSD) {
 
     const z = overallDivergence / divergenceSD;
 
-    if (z >= 1.0) return "strong";          // Extreme
-    if (z >= 0.5) return "stable";          // Elevated
-    if (z <= -1.0) return "high-risk";      // Suppressed
-    if (z <= -0.5) return "vulnerable";     // Below Expected
+    if (z >= 1.0) return "extreme";
+    if (z >= 0.5) return "elevated";
+    if (z <= -1.0) return "suppressed";
+    if (z <= -0.5) return "below";
 
-    return "expected";                       // Expected
+    return "expected";
 }
 
 
