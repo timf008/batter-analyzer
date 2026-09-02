@@ -820,6 +820,10 @@ button.reset:hover {
     background: #16a085; /* teal */
 }
 
+.value-badge.expected {
+    background: #ffffff; /* white */
+}
+
 .value-badge.below {
     background: #d35400; /* orange */
 }
