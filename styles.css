@@ -821,7 +821,7 @@ button.reset:hover {
 }
 
 .value-badge.expected {
-    background: #ffffff; /* white */
+    background: #0578c5; /* blue */
 }
 
 .value-badge.below {
