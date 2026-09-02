@@ -924,22 +924,15 @@ function updateStateBadge(state) {
 // -------------------------------
 function updateValueBadge(overallDivergence, divergenceSD) {
     const container = document.getElementById("player-value-key");
-
     if (!container) return;
 
-    // Clear only Fantasy Value badges
-    container.querySelectorAll(".state-badge").forEach(badge => {
+    container.querySelectorAll(".value-badge").forEach(badge => {
         badge.classList.remove("active");
     });
 
-    const valueClass = getFantasyValue(
-        overallDivergence,
-        divergenceSD
-    );
+    const valueClass = getFantasyValue(overallDivergence, divergenceSD);
 
-    const badge = container.querySelector(
-        `.state-badge.${valueClass}`
-    );
+    const badge = container.querySelector(`.value-badge.${valueClass}`);
 
     if (badge) {
         badge.classList.add("active");
