@@ -825,11 +825,11 @@ button.reset:hover {
 }
 
 .value-badge.below {
-    background: #d35400; /* orange */
+    background: #f5a606; /* orange */
 }
 
 .value-badge.suppressed {
-    background: #7f8c8d; /* muted gray */
+    background: #d35400; /* red */
 }
 
 
