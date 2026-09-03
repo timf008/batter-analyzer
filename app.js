@@ -962,7 +962,7 @@ function clearValueBadges() {
 
     if (!container) return;
 
-    container.querySelectorAll(".state-badge").forEach(badge => {
+    container.querySelectorAll(".value-badge").forEach(badge => {
         badge.classList.remove("active");
     });
 }
