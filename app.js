@@ -1053,6 +1053,7 @@ function handleReset() {
     document.getElementById("playerPhoto").src = "images/batter.png";
     clearIdentityBadges();
     clearStateBadges();
+    clearValueBadges();
 }
 
 // -------------------------------
