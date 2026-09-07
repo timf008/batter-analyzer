@@ -1134,7 +1134,7 @@ function updateFantasySummary(identity, state, value) {
     // Update DOM
     // -------------------------------
     identityTitle.textContent =
-        identityLabels[identity] || "Fantasy Identity: --";
+        `Fantasy Identity: ${identityLabels[identity] || "--"}`;
 
     identityText.textContent =
         identityDescriptions[identity] || "";
