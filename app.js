@@ -777,7 +777,6 @@ function normalizeName(raw) {
     return cleaned;
 }
 
-
 // -------------------------------
 // Leaders Table (BATTERS, MATCHED TO PITCHERS)
 // -------------------------------
@@ -786,7 +785,6 @@ function buildLeadersTable(arr) {
     const tbody = document.getElementById("leadersBody");
     tbody.innerHTML = "";
 
-    // Only batters with >50 AB
     const filtered = arr;
 
     // Sort by OVERALL score (backend computed)
@@ -796,25 +794,34 @@ function buildLeadersTable(arr) {
     const top50 = sorted.slice(0, 50);
 
     // Build table
-top50.forEach((p, index) => {
-    const originalPlayer = p.Player;
+    top50.forEach((p, index) => {
+        const originalPlayer = p.Player;
 
-    p.Player = normalizeName(p.Player);
-    p.Name   = normalizeName(p.Name);
+        p.Player = normalizeName(p.Player);
+        p.Name   = normalizeName(p.Name);
 
-    const rank = index + 1; // ⭐ 1–50
+        const rank = index + 1;
 
-    const row = document.createElement("tr");
-    row.innerHTML = `
-        <td>${rank}</td>
-        <td>${p.Player}</td>
-        <td>${p.Team}</td>
-        <td>${Math.round(p.XP)}</td>
-        <td>${p.overall.toFixed(2)}</td>
-    `;
-    tbody.appendChild(row);
-});
+        const identity = p.identity || "Neutral";
+        const identityClass = identity.toLowerCase();
 
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${rank}</td>
+            <td>${p.Player}</td>
+            <td>${p.Team}</td>
+            <td>${Math.round(p.XP)}</td>
+            <td>${p.overall.toFixed(2)}</td>
+            <td>
+                <span class="leader-identity ${identityClass}">
+                    ${identity}
+                </span>
+            </td>
+        `;
+
+        tbody.appendChild(row);
+    });
 
     document.getElementById("leadersModal").style.display = "flex";
 }
