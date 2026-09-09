@@ -1022,12 +1022,10 @@ function updateIdentityBadge() {
 
     const identity = classifyPlayer(xp, skill);
 
-    clearIdentityBadges(); // always clear first
+    clearIdentityBadges();
 
-    if (identity !== "neutral") {
-        const badge = document.querySelector(`.identity-badge.${identity}`);
-        if (badge) badge.classList.add("active");
-    }
+    const badge = document.querySelector(`.identity-badge.${identity}`);
+    if (badge) badge.classList.add("active");
 }
 
 function clearIdentityBadges() {
