@@ -547,15 +547,15 @@ function updateWhatToWatch(metrics) {
         let rawDisplay;
 
         if (
-            item.key === "BA" ||
-            item.key === "OBP" ||
-            item.key === "SLG"
-        ) {
-            rawDisplay = Number(item.raw).toFixed(3);
-        }
-        else {
-            rawDisplay = Number(item.raw).toFixed(1) + "%";
-        }
+    item.key === "BA" ||
+    item.key === "OBP" ||
+    item.key === "SLG"
+) {
+    rawDisplay = Number(item.raw).toFixed(3).replace(/^0/, "");
+}
+else {
+    rawDisplay = Number(item.raw).toFixed(1) + "%";
+}
 
         const statLabel = {
             BA: "BA",
