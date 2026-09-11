@@ -1422,6 +1422,7 @@ document.getElementById("swapBtn").onclick = function () {
 // -------------------------------
 function handleReset() {
     console.log("RESET FIRED");
+    clearWhatToWatch();
     document.querySelectorAll(".metric-raw").forEach(el => el.textContent = "--");
     document.querySelectorAll(".metric-score").forEach(el => el.textContent = "--");
 
@@ -1441,7 +1442,6 @@ function handleReset() {
     clearIdentityBadges();
     clearStateBadges();
     clearValueBadges();
-    clearWhatToWatch();
     // Clear Fantasy Summary
 document.getElementById("summaryIdentity").textContent = "Fantasy Identity: --";
 document.getElementById("summaryIdentityText").textContent =
