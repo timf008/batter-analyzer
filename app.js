@@ -385,6 +385,217 @@ updateScoutingNote(p);
 updateXP(p.XP);
 updateIdentityBadge();
 
+updateWhatToWatch({
+
+    BA: { raw: p.BA, score: baScore },
+    OBP: { raw: p.OBP, score: obpScore },
+    SLG: { raw: p.SLG, score: slgScore },
+    Kpct: { raw: p.Kpct, score: kpctScore },
+    BBpct: { raw: p.BBpct, score: bbpctScore }
+
+});
+
+// -------------------------------
+// What to Watch
+// -------------------------------
+function updateWhatToWatch(metrics) {
+
+    const watchGrid = document.getElementById("watchGrid");
+
+    if (!watchGrid) return;
+
+    // --------------------------------
+    // Metric definitions
+    // --------------------------------
+    const items = [
+
+        {
+            key: "BA",
+            title: "Hit Tool",
+            raw: metrics.BA.raw,
+            score: metrics.BA.score,
+
+            goodText:
+                "Strong batting average reflects a reliable hit tool.",
+
+            neutralText:
+                "Batting average production is solid but not a defining strength.",
+
+            badText:
+                "Limited batting average production may reduce offensive consistency."
+        },
+
+        {
+            key: "OBP",
+            title: "On-Base Ability",
+            raw: metrics.OBP.raw,
+            score: metrics.OBP.score,
+
+            goodText:
+                "Strong on-base production creates consistent offensive opportunities.",
+
+            neutralText:
+                "On-base production is solid but not a defining strength.",
+
+            badText:
+                "Limited on-base production may reduce scoring opportunities."
+        },
+
+        {
+            key: "SLG",
+            title: "Power",
+            raw: metrics.SLG.raw,
+            score: metrics.SLG.score,
+
+            goodText:
+                "Impact power is a major offensive strength.",
+
+            neutralText:
+                "Power production is solid but not a defining strength.",
+
+            badText:
+                "Limited power may cap extra-base and home run production."
+        },
+
+        {
+            key: "Kpct",
+            title: "Contact Skills",
+            raw: metrics.Kpct.raw,
+            score: metrics.Kpct.score,
+
+            goodText:
+                "Low strikeout rate supports consistent contact and batting average.",
+
+            neutralText:
+                "Strikeout rate is manageable but remains worth monitoring.",
+
+            badText:
+                "Elevated strikeout rate creates volatility in the offensive profile."
+        },
+
+        {
+            key: "BBpct",
+            title: "Plate Discipline",
+            raw: metrics.BBpct.raw,
+            score: metrics.BBpct.score,
+
+            goodText:
+                "Strong walk rate supports OBP and plate control.",
+
+            neutralText:
+                "Walk rate is adequate but not a major source of offensive value.",
+
+            badText:
+                "Low walk rate may limit on-base production and plate control."
+        }
+
+    ];
+
+
+    // --------------------------------
+    // Classify each metric
+    // --------------------------------
+    items.forEach(item => {
+
+        if (item.score >= 8) {
+
+            item.type = "good";
+            item.icon = "↑";
+            item.text = item.goodText;
+
+            // 0 → 1 strength scale
+            item.importance = (item.score - 8) / 2;
+
+        }
+        else if (item.score >= 5) {
+
+            item.type = "neutral";
+            item.icon = "−";
+            item.text = item.neutralText;
+
+            // Neutral metrics are less important
+            item.importance = 0;
+
+        }
+        else {
+
+            item.type = "bad";
+            item.icon = "↓";
+            item.text = item.badText;
+
+            // 0 → 1 weakness scale
+            item.importance = (5 - item.score) / 5;
+
+        }
+
+    });
+
+
+    // --------------------------------
+    // Find the three most meaningful
+    // --------------------------------
+    items.sort((a, b) => b.importance - a.importance);
+
+    const selected = items.slice(0, 3);
+
+
+    // --------------------------------
+    // Build cards
+    // --------------------------------
+    watchGrid.innerHTML = selected.map(item => {
+
+        let rawDisplay;
+
+        if (
+            item.key === "BA" ||
+            item.key === "OBP" ||
+            item.key === "SLG"
+        ) {
+            rawDisplay = Number(item.raw).toFixed(3);
+        }
+        else {
+            rawDisplay = Number(item.raw).toFixed(1) + "%";
+        }
+
+        const statLabel = {
+            BA: "BA",
+            OBP: "OBP",
+            SLG: "SLG",
+            Kpct: "K%",
+            BBpct: "BB%"
+        }[item.key];
+
+
+        return `
+            <div class="watch-card watch-${item.type}">
+
+                <div class="watch-icon">
+                    ${item.icon}
+                </div>
+
+                <div class="watch-content">
+
+                    <div class="watch-title">
+                        ${item.title}
+                    </div>
+
+                    <div class="watch-text">
+                        ${item.text}
+                    </div>
+
+                    <div class="watch-stat">
+                        ${statLabel}: ${rawDisplay}
+                        (${item.score.toFixed(1)}/10)
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+
+    }).join("");
+}
+
 // -------------------------------
 // Fantasy Identity
 // -------------------------------
