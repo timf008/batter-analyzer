@@ -585,7 +585,7 @@ else {
 
                     <div class="watch-stat">
                         ${statLabel}: ${rawDisplay}
-                        (${item.score.toFixed(1)}/10)
+                        Rating: (${item.score.toFixed(1)}/10)
                     </div>
 
                 </div>
