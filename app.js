@@ -600,10 +600,15 @@ else {
 // Clear What to Watch
 // -------------------------------
 function clearWhatToWatch() {
+    console.log("clearWhatToWatch fired");
+
     const watchGrid = document.getElementById("watchGrid");
+
+    console.log("watchGrid =", watchGrid);
 
     if (watchGrid) {
         watchGrid.innerHTML = "";
+        console.log("watchGrid cleared");
     }
 }
 
