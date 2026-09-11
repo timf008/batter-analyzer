@@ -597,22 +597,6 @@ else {
 }
 
 // -------------------------------
-// Clear What to Watch
-// -------------------------------
-function clearWhatToWatch() {
-    console.log("clearWhatToWatch fired");
-
-    const watchGrid = document.getElementById("watchGrid");
-
-    console.log("watchGrid =", watchGrid);
-
-    if (watchGrid) {
-        watchGrid.innerHTML = "";
-        console.log("watchGrid cleared");
-    }
-}
-
-// -------------------------------
 // Fantasy Identity
 // -------------------------------
 const identity = classifyPlayer(p.XP, overall);
@@ -1422,7 +1406,11 @@ document.getElementById("swapBtn").onclick = function () {
 // -------------------------------
 function handleReset() {
     console.log("RESET FIRED");
-    clearWhatToWatch();
+
+    const watchGrid = document.getElementById("watchGrid");
+    if (watchGrid) {
+        watchGrid.innerHTML = "";
+    }
     document.querySelectorAll(".metric-raw").forEach(el => el.textContent = "--");
     document.querySelectorAll(".metric-score").forEach(el => el.textContent = "--");
 
