@@ -1421,6 +1421,7 @@ document.getElementById("swapBtn").onclick = function () {
 // Reset UI
 // -------------------------------
 function handleReset() {
+    console.log("RESET FIRED");
     document.querySelectorAll(".metric-raw").forEach(el => el.textContent = "--");
     document.querySelectorAll(".metric-score").forEach(el => el.textContent = "--");
 
