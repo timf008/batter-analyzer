@@ -375,24 +375,50 @@
 </div>
 
 
-    <!-- Compare Modal -->
-    <div id="compareModal" class="modal">
-        <div class="modal-content compare-box">
+<!-- Compare Modal -->
+<div id="compareModal" class="modal">
+
+    <div class="modal-content compare-box">
+
+        <div class="compare-header">
+
+            <div>
+                <h2 id="compareTitle">Batter Comparison</h2>
+                <div class="compare-subtitle">
+                    Side-by-side comparison of key batting metrics
+                </div>
+            </div>
+
             <span id="compareClose" class="close">&times;</span>
-            <h2 id="compareTitle">Batter Comparison</h2>
+
+        </div>
+
+        <div class="compare-content">
 
             <table id="compareTable">
+
                 <thead>
                     <tr>
                         <th>Stat</th>
                         <th id="compareName1">Player 1</th>
                         <th id="compareName2">Player 2</th>
+                        <th>Difference</th>
                     </tr>
                 </thead>
+
                 <tbody id="compareBody"></tbody>
+
             </table>
+
+            <div class="compare-footer">
+                Green indicates the stronger value for the metric.
+            </div>
+
         </div>
+
     </div>
+
+</div>
 
 
 <div id="leadersModal" class="modal">
