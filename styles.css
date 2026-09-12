@@ -962,70 +962,72 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Batter of the Day
+   Batter of the Day - Compact
 ----------------------------------------- */
 
 #batter-ticker {
     display: flex;
-    align-items: stretch;
+    align-items: center;
 
     width: 100%;
-    margin: 12px 0;
+    height: 34px;
+    margin: 8px 0 12px;
 
     background: #ffffff;
 
     border: 1px solid #cbd6e2;
-    border-radius: 8px;
+    border-radius: 6px;
 
     overflow: hidden;
 
-    box-shadow: 0 3px 10px rgba(15, 36, 62, 0.08);
+    box-shadow: 0 2px 5px rgba(15, 36, 62, 0.06);
 
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 
-/* -----------------------------------------
-   Navy Label
------------------------------------------ */
+/* Navy label */
 
 .ticker-label {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
+
+    height: 100%;
+    box-sizing: border-box;
+
+    padding: 0 10px;
 
     flex-shrink: 0;
-
-    padding: 12px 16px;
 
     background: #0f243e;
     color: #ffffff;
 
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 800;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
 }
 
 .ticker-star {
-    font-size: 16px;
+    font-size: 12px;
 }
 
 
-/* -----------------------------------------
-   Player Information
------------------------------------------ */
+/* Player information */
 
 .ticker-player {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 
     min-width: 0;
-    padding: 10px 16px;
+    padding: 0 10px;
+
+    white-space: nowrap;
 
     color: #0f243e;
 
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
 }
 
@@ -1034,15 +1036,12 @@ select:focus {
 
 .ticker-divider {
     width: 1px;
-    height: 18px;
+    height: 13px;
 
     flex-shrink: 0;
 
     background: #cbd6e2;
 }
-
-
-/* Dynamic numbers */
 
 #bod-overall,
 #bod-xp {
@@ -1052,27 +1051,29 @@ select:focus {
 @media (max-width: 700px) {
 
     #batter-ticker {
-        flex-direction: column;
+        height: 32px;
     }
 
     .ticker-label {
-        justify-content: center;
-        padding: 9px 12px;
+        padding: 0 7px;
+        font-size: 9px;
+    }
+
+    .ticker-star {
+        font-size: 10px;
     }
 
     .ticker-player {
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 6px;
+        padding: 0 7px;
+        font-size: 10px;
 
-        gap: 7px 10px;
-        padding: 10px 12px;
-
-        text-align: center;
-        font-size: 12px;
+        overflow: hidden;
     }
 
-    .ticker-divider {
-        height: 14px;
+    #bod-summary {
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
