@@ -924,32 +924,122 @@ async function showCompareModal() {
         tbody.innerHTML = "";
 
         stats.forEach(([label, raw1, raw2, disp1, disp2]) => {
-            const row = document.createElement("tr");
 
-            let class1 = "tie";
-            let class2 = "tie";
+    const row = document.createElement("tr");
 
-            if (raw1 != null && raw2 != null) {
-                // Lower is better for K%
-                if (label === "K%") {
-                    if (raw1 < raw2) { class1 = "win"; class2 = "lose"; }
-                    else if (raw2 < raw1) { class1 = "lose"; class2 = "win"; }
-                }
-                // Higher is better for everything else
-                else {
-                    if (raw1 > raw2) { class1 = "win"; class2 = "lose"; }
-                    else if (raw2 > raw1) { class1 = "lose"; class2 = "win"; }
-                }
+    let class1 = "tie";
+    let class2 = "tie";
+
+    let player1Wins = false;
+    let player2Wins = false;
+
+    if (raw1 != null && raw2 != null) {
+
+        // Lower is better for K%
+        if (label === "K%") {
+
+            if (raw1 < raw2) {
+                class1 = "win";
+                class2 = "lose";
+                player1Wins = true;
+            }
+            else if (raw2 < raw1) {
+                class1 = "lose";
+                class2 = "win";
+                player2Wins = true;
             }
 
-            row.innerHTML = `
-                <td>${label}</td>
-                <td class="${class1}">${disp1}</td>
-                <td class="${class2}">${disp2}</td>
-            `;
+        }
 
-            tbody.appendChild(row);
-        });
+        // Higher is better for everything else
+        else {
+
+            if (raw1 > raw2) {
+                class1 = "win";
+                class2 = "lose";
+                player1Wins = true;
+            }
+            else if (raw2 > raw1) {
+                class1 = "lose";
+                class2 = "win";
+                player2Wins = true;
+            }
+
+        }
+    }
+
+
+    // ----------------------------------
+    // Difference
+    // Player 1 minus Player 2
+    // ----------------------------------
+
+    const difference = raw1 - raw2;
+
+    let differenceDisplay = "--";
+
+    if (label === "BA" || label === "OBP" || label === "SLG") {
+
+        differenceDisplay =
+            `${difference >= 0 ? "+" : ""}${difference.toFixed(3)}`;
+
+    }
+
+    else if (label === "K%" || label === "BB%") {
+
+        differenceDisplay =
+            `${difference >= 0 ? "+" : ""}${difference.toFixed(1)}`;
+
+    }
+
+    else if (label === "XP") {
+
+        differenceDisplay =
+            `${difference >= 0 ? "+" : ""}${Math.round(difference)}`;
+
+    }
+
+    else if (label === "Overall Score") {
+
+        differenceDisplay =
+            `${difference >= 0 ? "+" : ""}${difference.toFixed(1)}`;
+
+    }
+
+
+    // Difference color represents whether Player 1's
+    // difference is favorable — NOT merely positive.
+
+    let differenceClass = "tie";
+
+    if (player1Wins) {
+        differenceClass = "positive";
+    }
+    else if (player2Wins) {
+        differenceClass = "negative";
+    }
+
+
+    row.innerHTML = `
+        <td>${label}</td>
+
+        <td class="${class1}">
+            ${disp1}
+        </td>
+
+        <td class="${class2}">
+            ${disp2}
+        </td>
+
+        <td>
+            <span class="compare-difference ${differenceClass}">
+                ${differenceDisplay}
+            </span>
+        </td>
+    `;
+
+    tbody.appendChild(row);
+});
 
         document.getElementById("compareModal").style.display = "flex";
 
