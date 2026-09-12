@@ -90,42 +90,83 @@
 
     <!-- Metric Grid -->
 <section class="metrics">
-    <h2>📊Batter Profile</h2>
+
+    <div class="metrics-header">
+        <h2>📊 Batter Profile</h2>
+    </div>
+
+    <div class="metrics-columns">
+        <span>STAT</span>
+        <span>VALUE</span>
+        <span>PROFILE</span>
+        <span>SCORE</span>
+    </div>
 
     <div class="metric-row">
-        <span class="metric-label">BA</span>
+        <div class="metric-name">
+            <span class="metric-label">BA</span>
+            <span class="metric-direction">HIGHER IS BETTER</span>
+        </div>
+
         <span class="metric-raw" id="raw-ba">--</span>
+
         <div class="battery" id="battery-ba"></div>
+
         <span class="metric-score" id="score-ba">--</span>
     </div>
 
     <div class="metric-row">
-        <span class="metric-label">OBP</span>
+        <div class="metric-name">
+            <span class="metric-label">OBP</span>
+            <span class="metric-direction">HIGHER IS BETTER</span>
+        </div>
+
         <span class="metric-raw" id="raw-obp">--</span>
+
         <div class="battery" id="battery-obp"></div>
+
         <span class="metric-score" id="score-obp">--</span>
     </div>
 
     <div class="metric-row">
-        <span class="metric-label">SLG</span>
+        <div class="metric-name">
+            <span class="metric-label">SLG</span>
+            <span class="metric-direction">HIGHER IS BETTER</span>
+        </div>
+
         <span class="metric-raw" id="raw-slg">--</span>
+
         <div class="battery" id="battery-slg"></div>
+
         <span class="metric-score" id="score-slg">--</span>
     </div>
 
     <div class="metric-row">
-        <span class="metric-label">K%</span>
+        <div class="metric-name">
+            <span class="metric-label">K%</span>
+            <span class="metric-direction">LOWER IS BETTER</span>
+        </div>
+
         <span class="metric-raw" id="raw-kpct">--</span>
+
         <div class="battery" id="battery-kpct"></div>
+
         <span class="metric-score" id="score-kpct">--</span>
     </div>
 
     <div class="metric-row">
-        <span class="metric-label">BB%</span>
+        <div class="metric-name">
+            <span class="metric-label">BB%</span>
+            <span class="metric-direction">HIGHER IS BETTER</span>
+        </div>
+
         <span class="metric-raw" id="raw-bbpct">--</span>
+
         <div class="battery" id="battery-bbpct"></div>
+
         <span class="metric-score" id="score-bbpct">--</span>
     </div>
+
 </section>
 
 <hr>
