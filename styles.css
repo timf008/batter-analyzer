@@ -962,44 +962,117 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Batter of the Day Ticker (TimBaseball Theme)
+   Batter of the Day
 ----------------------------------------- */
+
 #batter-ticker {
+    display: flex;
+    align-items: stretch;
+
     width: 100%;
+    margin: 12px 0;
+
     background: #ffffff;
-    color: #222;
-    padding: 10px 0;
+
+    border: 1px solid #cbd6e2;
+    border-radius: 8px;
+
     overflow: hidden;
-    white-space: nowrap;
 
-    border-top: 2px solid #000000;
-    border-bottom: 2px solid #000000;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 3px 10px rgba(15, 36, 62, 0.08);
 
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    margin-top: 12px;
-    margin-bottom: 12px;
 }
 
-#batter-ticker-text {
-    display: inline-block;
-    padding-left: 100%;
-    animation: ticker-scroll 22s linear infinite;
+
+/* -----------------------------------------
+   Navy Label
+----------------------------------------- */
+
+.ticker-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    flex-shrink: 0;
+
+    padding: 12px 16px;
+
+    background: #0f243e;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
 }
 
-/* Your existing keyframes remain unchanged */
+.ticker-star {
+    font-size: 16px;
+}
 
 
-/* Reuse the same keyframes */
-@keyframes ticker-scroll {
-    0% {
-        transform: translateX(0);
+/* -----------------------------------------
+   Player Information
+----------------------------------------- */
+
+.ticker-player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-width: 0;
+    padding: 10px 16px;
+
+    color: #0f243e;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* Dividers */
+
+.ticker-divider {
+    width: 1px;
+    height: 18px;
+
+    flex-shrink: 0;
+
+    background: #cbd6e2;
+}
+
+
+/* Dynamic numbers */
+
+#bod-overall,
+#bod-xp {
+    font-weight: 800;
+}
+
+@media (max-width: 700px) {
+
+    #batter-ticker {
+        flex-direction: column;
     }
-    100% {
-        transform: translateX(-100%);
+
+    .ticker-label {
+        justify-content: center;
+        padding: 9px 12px;
+    }
+
+    .ticker-player {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        gap: 7px 10px;
+        padding: 10px 12px;
+
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .ticker-divider {
+        height: 14px;
     }
 }
 
