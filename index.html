@@ -18,15 +18,35 @@
 </header>
 
 <div id="batter-ticker">
-  <div class="ticker-track">
-    <span id="batter-ticker-text">
-      Batter of the Day — <span id="bod-name">...</span> (<span id="bod-team">...</span>)
-      • Overall: <span id="bod-overall">...</span>
-      • XP: <span id="bod-xp">...</span>
-      • <span id="bod-summary">...</span>
-      • <span class="ticker-status">Notice: Constantly Updating UI, Scoring Engine, Data, and Ongoing Improvements</span>
-    </span>
-  </div>
+
+    <div class="ticker-label">
+        <span class="ticker-star">★</span>
+        <span>BATTER OF THE DAY</span>
+    </div>
+
+    <div class="ticker-player">
+        <strong>
+            <span id="bod-name">...</span>
+            (<span id="bod-team">...</span>)
+        </strong>
+
+        <span class="ticker-divider"></span>
+
+        <span>
+            Overall: <strong id="bod-overall">...</strong>
+        </span>
+
+        <span class="ticker-divider"></span>
+
+        <span>
+            XP: <strong id="bod-xp">...</strong>
+        </span>
+
+        <span class="ticker-divider"></span>
+
+        <span id="bod-summary">...</span>
+    </div>
+
 </div>
 
 <section class="search-panel">
