@@ -287,9 +287,8 @@ button.reset:hover {
 
 /* Tier badge */
 
-.overall-top #overallTier {
+.overall-top #overallTier .tier-badge {
     color: #ffffff !important;
-
     font-size: 20px;
     font-weight: 800;
 }
