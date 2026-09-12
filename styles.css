@@ -258,14 +258,14 @@ button.reset:hover {
 }
 
 
-/* Dividers */
+/* Vertical dividers */
 
 .overall-top p + p {
     border-left: 1px solid #d7e0e8;
 }
 
 
-/* Values */
+/* Overall Score + XP values */
 
 .overall-top span {
     display: block;
@@ -285,11 +285,13 @@ button.reset:hover {
 }
 
 
-/* Tier value */
+/* Tier badge */
 
 .overall-top #overallTier {
-    color: #16a05d;
+    color: #ffffff !important;
+
     font-size: 20px;
+    font-weight: 800;
 }
 
 .overall-battery::after {
