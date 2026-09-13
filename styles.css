@@ -1857,219 +1857,265 @@ select:focus {
     }
 }
 
-/* -----------------------------------------
-   Fantasy Edge Image
------------------------------------------ */
-
-.fantasy-edge {
-  width: 450px;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto; /* optional: centers the image */
-}
-
-/* ------------------------------
-   Fantasy Edge Panel
------------------------------- */
+/* ==========================================
+   FANTASY EDGE
+========================================== */
 
 .fantasy-edge-panel {
     margin-top: 24px;
-    padding: 22px 24px 26px;
 
-    background: #f8fbff;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f7fbff 100%
+        );
 
-    border: 1px solid #cbd6e2;
-    border-radius: 14px;
+    border: 1px solid #cfdbe8;
+    border-radius: 18px;
+
+    overflow: hidden;
 
     box-shadow:
-        0 4px 12px rgba(15, 36, 62, 0.07);
+        0 4px 14px rgba(15, 36, 62, 0.06);
 }
 
 
-/* ------------------------------
-   Bottom Info Row
------------------------------- */
+/* Header / Logo */
 
-#bottom-info-row {
+.fantasy-edge-header {
+    padding: 30px 24px 24px;
+
+    text-align: center;
+}
+
+.fantasy-edge {
+    display: block;
+
+    width: min(650px, 80%);
+    height: auto;
+
+    margin: 0 auto;
+}
+
+.fantasy-edge-subtitle {
     display: flex;
-
+    justify-content: center;
     gap: 14px;
 
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 15px;
 
-    align-items: stretch;
-    justify-content: center;
+    color: #536b89;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.fantasy-edge-subtitle span {
+    color: #0077ff;
 }
 
 
-/* Equal-width cards */
+/* ==========================================
+   IDENTITY / STATE / VALUE
+========================================== */
 
-#bottom-info-row > div {
-    flex: 1;
+#bottom-info-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 
-    max-width: 260px;
+    gap: 18px;
+
+    padding: 0 26px 28px;
 }
 
 
-/* ------------------------------
-   Shared Card Styling
------------------------------- */
-
-#player-identity-key,
-#player-state-key,
-#player-value-key {
-    font-size: 13px;
-
-    padding: 14px 16px;
+.edge-key-card {
+    padding: 20px;
 
     background: #ffffff;
 
-    border-radius: 10px;
+    border: 1px solid #dbe4ee;
+    border-radius: 14px;
 
     box-shadow:
-        0 2px 6px rgba(15, 36, 62, 0.05);
+        0 5px 15px rgba(15, 36, 62, 0.07),
+        0 1px 3px rgba(15, 36, 62, 0.04);
+}
+
+
+.identity-key-card {
+    border-top: 4px solid #0878e8;
+}
+
+.state-key-card {
+    border-top: 4px solid #27a861;
+}
+
+.value-key-card {
+    border-top: 4px solid #ff7a00;
+}
+
+
+/* Headers */
+
+.edge-key-header {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 18px;
+}
+
+.edge-key-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.identity-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #168cff,
+            #0065c9
+        );
+}
+
+.state-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #37c978,
+            #188d4a
+        );
+}
+
+.value-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #ff9c28,
+            #ff6900
+        );
+}
+
+
+.info-title {
+    margin: 0;
+
+    color: #0f243e;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.info-subtitle {
+    margin-top: 4px;
+
+    color: #687d96;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+/* Rows */
+
+.edge-key-row {
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 7px;
+
+    padding: 9px 11px;
+
+    background: #f7f9fc;
+
+    border-radius: 8px;
+}
+
+.edge-key-row:last-child {
+    margin-bottom: 0;
+}
+
+.edge-key-left {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    min-width: 0;
+}
+
+.edge-key-left strong {
+    color: #0f243e;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.edge-description {
+    color: #647a94;
+
+    font-size: 11px;
+
+    text-align: right;
+}
+
+
+/* ==========================================
+   EXISTING BADGE DOTS
+========================================== */
+
+.identity-badge,
+.state-badge,
+.value-badge {
+    width: 17px;
+    height: 17px;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
 }
 
 
 /* Identity */
 
-#player-identity-key {
-    border: 2px solid #006CD5;
-}
-
-
-/* State */
-
-#player-state-key {
-    border: 2px solid #26A460;
-}
-
-
-/* Value */
-
-#player-value-key {
-    border: 2px solid #FD8E02;
-}
-
-
-/* ------------------------------
-   Titles
------------------------------- */
-
-.info-title {
-    margin: 0 0 12px;
-
-    padding-bottom: 8px;
-
-    font-size: 15px;
-    font-weight: 800;
-
-    color: #0f243e;
-
-    text-align: center;
-
-    letter-spacing: 0.3px;
-
-    border-bottom: 1px solid #e1e7ee;
-}
-
-
-/* ------------------------------
-   List Rows
------------------------------- */
-
-#player-identity-key p,
-#player-state-key p,
-#player-value-key p {
-    margin: 8px 0;
-
-    display: flex;
-
-    align-items: center;
-
-    line-height: 1.25;
-
-    color: #38495a;
-}
-
-
-/* ------------------------------
-   Shared Badge Structure
------------------------------- */
-
-.identity-badge,
-.state-badge,
-.value-badge {
-    display: inline-block;
-
-    flex: 0 0 auto;
-
-    width: 12px;
-    height: 12px;
-
-    margin-right: 8px;
-
-    border-radius: 50%;
-
-    opacity: 0.30;
-
-    transition:
-        opacity 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-
-/* Active Badge */
-
-.identity-badge.active,
-.state-badge.active,
-.value-badge.active {
-    opacity: 1;
-
-    transform: scale(1.2);
-
-    animation: pulse 1.4s ease-in-out infinite;
-
-    box-shadow:
-        0 0 0 3px rgba(15, 36, 62, 0.08);
-}
-
-
-/* One pulse animation for all three */
-
-@keyframes pulse {
-
-    0% {
-        transform: scale(1.2);
-    }
-
-    50% {
-        transform: scale(1.4);
-    }
-
-    100% {
-        transform: scale(1.2);
-    }
-}
-
-
-/* ------------------------------
-   Identity Colors
------------------------------- */
-
-.identity-badge.sleeper {
-    background: #4a90e2;
+.identity-badge.breakout {
+    background: #7ed321;
 }
 
 .identity-badge.overperformer {
     background: #f5a623;
 }
 
-.identity-badge.breakout {
-    background: #7ed321;
+.identity-badge.sleeper {
+    background: #4a90e2;
 }
 
 .identity-badge.consistent {
@@ -2077,129 +2123,314 @@ select:focus {
 }
 
 .identity-badge.neutral {
-    background: #5b5b5b;
+    background: #c7c7c7;
 }
 
 
-/* ------------------------------
-   State Colors
------------------------------- */
+/* State */
 
 .state-badge.strong {
-    background: #2ecc71;
+    background: #25b76b;
 }
 
 .state-badge.stable {
-    background: #3498db;
+    background: #72bcec;
 }
 
 .state-badge.vulnerable {
-    background: #f1c40f;
+    background: #ffc541;
 }
 
 .state-badge.high-risk {
-    background: #e74c3c;
+    background: #f05c57;
 }
 
 
-/* ------------------------------
-   Value Colors
------------------------------- */
+/* Value */
 
 .value-badge.extreme {
-    background: #8e44ad;
+    background: #a36fd1;
 }
 
 .value-badge.elevated {
-    background: #16a085;
+    background: #73c8c2;
 }
 
 .value-badge.expected {
-    background: #0578c5;
+    background: #7fbee7;
 }
 
 .value-badge.below {
-    background: #f5a606;
+    background: #ffc767;
 }
 
 .value-badge.suppressed {
-    background: #d35400;
+    background: #f6a66d;
 }
 
 
-/* ------------------------------
-   League Averages
------------------------------- */
+/* ==========================================
+   FANTASY SUMMARY
+========================================== */
 
-#league-averages {
+.fantasy-summary {
+    margin-top: 20px;
+
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #cfdbe8;
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 14px rgba(15, 36, 62, 0.05);
+}
+
+
+.fantasy-summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+
+.fantasy-summary-title {
+    color: #0f243e;
+
+    font-size: 24px;
+    font-weight: 800;
+}
+
+
+.fantasy-summary-subtitle {
+    margin-top: 5px;
+
+    color: #667d98;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.8px;
+}
+
+
+.fantasy-summary-tagline {
+    padding: 9px 14px;
+
+    background: #edf5fc;
+
+    border-radius: 999px;
+
+    color: #3575b4;
+
+    font-size: 12px;
+    font-style: italic;
+}
+
+
+/* Summary Grid */
+
+.fantasy-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 16px;
+}
+
+
+.fantasy-summary-item {
+    min-height: 150px;
+
+    padding: 18px;
+
+    border-radius: 12px;
+}
+
+
+.identity-summary-card {
+    background:
+        linear-gradient(
+            135deg,
+            #edf6ff,
+            #fafcff
+        );
+}
+
+.state-summary-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ecfaf3,
+            #fbfefc
+        );
+}
+
+.value-summary-card {
+    background:
+        linear-gradient(
+            135deg,
+            #fff3e9,
+            #fffaf6
+        );
+}
+
+
+.summary-card-heading {
+    color: #0f243e;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+
+.summary-accent {
+    width: 100%;
+    height: 2px;
+
+    margin: 12px 0 16px;
+
+    background: #dce5ee;
+
+    position: relative;
+}
+
+
+.summary-accent::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 62px;
+    height: 2px;
+}
+
+
+.identity-summary-card .summary-accent::before {
+    background: #0878e8;
+}
+
+.state-summary-card .summary-accent::before {
+    background: #27a861;
+}
+
+.value-summary-card .summary-accent::before {
+    background: #ff7a00;
+}
+
+
+.fantasy-summary-item p {
+    margin: 0;
+
+    color: #4e6682;
+
     font-size: 14px;
+    line-height: 1.55;
+}
 
-    background: #f7f7f7;
+
+/* Info strip */
+
+.fantasy-summary-info {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 18px;
 
     padding: 10px 14px;
 
-    border-radius: 6px;
+    background: #eef6ff;
 
-    border: 1px solid #ddd;
+    border: 1px solid #d6e6f7;
+    border-radius: 8px;
+
+    color: #42698e;
+
+    font-size: 12px;
 }
 
 
-/* ------------------------------
-   Mobile
------------------------------- */
+.summary-info-icon {
+    width: 20px;
+    height: 20px;
 
-@media (max-width: 750px) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #1684df;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+
+    #bottom-info-row,
+    .fantasy-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fantasy-summary-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .fantasy-edge-header {
+        padding: 22px 14px 18px;
+    }
+
+    .fantasy-edge {
+        width: 90%;
+    }
+
+    .fantasy-edge-subtitle {
+        gap: 8px;
+
+        font-size: 9px;
+        letter-spacing: 1px;
+
+        flex-wrap: wrap;
+    }
 
     #bottom-info-row {
-        flex-direction: column;
+        padding: 0 14px 16px;
     }
 
-    #bottom-info-row > div {
-        max-width: none;
-        width: 100%;
+    .edge-key-row {
+        align-items: flex-start;
     }
 
-}
+    .edge-description {
+        font-size: 10px;
+    }
 
-
-
-/* -----------------------------------------
-   Fantasy Summary
------------------------------------------ */
-.fantasy-summary {
-    margin-top: 12px;
-    padding: 14px 16px;
-    border: 1px solid #cfd6df;
-    border-radius: 6px;
-    background: #f8fafc;
-    text-align: left;
-}
-
-.fantasy-summary-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #0f243e;
-}
-
-.fantasy-summary-item {
-    margin-bottom: 12px;
-}
-
-.fantasy-summary-item:last-child {
-    margin-bottom: 0;
-}
-
-.fantasy-summary-item strong {
-    font-size: 14px;
-    color: #222;
-}
-
-.fantasy-summary-item p {
-    margin: 3px 0 0;
-    font-size: 14px;
-    line-height: 1.4;
-    color: #555;
+    .fantasy-summary {
+        padding: 16px;
+    }
 }
 
 
