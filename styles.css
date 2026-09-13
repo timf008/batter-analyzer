@@ -1882,11 +1882,12 @@ select:focus {
 
 
 /* ==========================================
-   HEADER / LOGO
+   FANTASY EDGE HEADER
 ========================================== */
 
 .fantasy-edge-header {
     padding: 30px 24px 24px;
+
     text-align: center;
 }
 
@@ -1924,314 +1925,17 @@ select:focus {
 
 
 /* ==========================================
-   FANTASY EDGE LEGEND - COMPACT VERSION
-========================================== */
-
-#bottom-info-row {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    width: 100%;
-    box-sizing: border-box;
-
-    padding: 0 22px 24px;
-}
-
-
-.legend-group {
-    display: grid;
-
-    grid-template-columns: 220px 1fr;
-
-    align-items: center;
-
-    gap: 18px;
-
-    width: 100%;
-    box-sizing: border-box;
-
-    padding: 12px 16px;
-
-    background: #ffffff;
-
-    border: 1px solid #dbe4ee;
-    border-radius: 10px;
-
-    box-shadow:
-        0 2px 7px rgba(15, 36, 62, 0.04);
-}
-
-
-.identity-legend {
-    border-left: 4px solid #0878e8;
-}
-
-.state-legend {
-    border-left: 4px solid #27a861;
-}
-
-.value-legend {
-    border-left: 4px solid #ff7a00;
-}
-
-
-/* ==========================================
-   LEGEND TITLE AREA
-========================================== */
-
-.legend-title {
-    display: flex;
-    align-items: center;
-
-    gap: 10px;
-
-    margin: 0;
-}
-
-
-.legend-icon {
-    width: 34px;
-    height: 34px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    border-radius: 50%;
-
-    color: #ffffff;
-
-    font-size: 15px;
-    font-weight: 800;
-}
-
-
-.identity-icon {
-    background: linear-gradient(135deg, #168cff, #0065c9);
-}
-
-.state-icon {
-    background: linear-gradient(135deg, #37c978, #188d4a);
-}
-
-.value-icon {
-    background: linear-gradient(135deg, #ff9c28, #ff6900);
-}
-
-
-.info-title {
-    margin: 0;
-
-    color: #0f243e;
-
-    font-size: 16px;
-    font-weight: 800;
-
-    line-height: 1.15;
-}
-
-
-.info-subtitle {
-    margin-top: 2px;
-
-    color: #7a8da5;
-
-    font-size: 8px;
-    font-weight: 800;
-
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-}
-
-
-/* ==========================================
-   LEGEND PILLS
-========================================== */
-
-.legend-items {
-    display: flex;
-    align-items: center;
-
-    flex-wrap: wrap;
-
-    gap: 7px;
-}
-
-
-.legend-item {
-    display: inline-flex;
-    align-items: center;
-
-    gap: 6px;
-
-    padding: 6px 9px;
-
-    background: #f7f9fc;
-
-    border: 1px solid #e7edf4;
-    border-radius: 7px;
-
-    color: #0f243e;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    white-space: nowrap;
-}
-
-
-/* ==========================================
-   BADGE DOTS
-========================================== */
-
-.identity-badge,
-.state-badge,
-.value-badge {
-    width: 12px;
-    height: 12px;
-
-    display: inline-block;
-    flex-shrink: 0;
-
-    border-radius: 50%;
-}
-
-
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media (max-width: 800px) {
-
-    .legend-group {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .legend-items {
-        padding-left: 44px;
-    }
-}
-
-
-@media (max-width: 600px) {
-
-    #bottom-info-row {
-        padding: 0 14px 18px;
-    }
-
-    .legend-group {
-        padding: 11px 12px;
-    }
-
-    .legend-items {
-        padding-left: 0;
-    }
-
-    .legend-item {
-        font-size: 11px;
-        padding: 5px 8px;
-    }
-}
-
-
-/* ==========================================
-   FANTASY IDENTITY COLORS
-========================================== */
-
-.identity-badge.breakout {
-    background: #7ed321;
-}
-
-
-.identity-badge.overperformer {
-    background: #f5a623;
-}
-
-
-.identity-badge.sleeper {
-    background: #4a90e2;
-}
-
-
-.identity-badge.consistent {
-    background: #9b9b9b;
-}
-
-
-.identity-badge.neutral {
-    background: #c7c7c7;
-}
-
-
-/* ==========================================
-   FANTASY STATE COLORS
-========================================== */
-
-.state-badge.strong {
-    background: #25b76b;
-}
-
-
-.state-badge.stable {
-    background: #72bcec;
-}
-
-
-.state-badge.vulnerable {
-    background: #ffc541;
-}
-
-
-.state-badge.high-risk {
-    background: #f05c57;
-}
-
-
-/* ==========================================
-   FANTASY VALUE COLORS
-========================================== */
-
-.value-badge.extreme {
-    background: #a36fd1;
-}
-
-
-.value-badge.elevated {
-    background: #73c8c2;
-}
-
-
-.value-badge.expected {
-    background: #7fbee7;
-}
-
-
-.value-badge.below {
-    background: #ffc767;
-}
-
-
-.value-badge.suppressed {
-    background: #f6a66d;
-}
-
-
-/* ==========================================
    FANTASY SUMMARY
 ========================================== */
 
 .fantasy-summary {
-    margin-top: 20px;
+    margin: 0 24px 24px;
 
     padding: 22px;
 
     background: #ffffff;
 
-    border: 1px solid #cfdbe8;
+    border: 1px solid #dbe4ee;
     border-radius: 16px;
 
     box-shadow:
@@ -2285,6 +1989,8 @@ select:focus {
 
     font-size: 12px;
     font-style: italic;
+
+    white-space: nowrap;
 }
 
 
@@ -2304,15 +2010,17 @@ select:focus {
 
 .fantasy-summary-item {
     min-width: 0;
-    min-height: 150px;
+    min-height: 180px;
 
-    padding: 18px;
+    padding: 20px;
 
-    border-radius: 12px;
+    border-radius: 14px;
+
+    border: 1px solid transparent;
 }
 
 
-/* Identity Summary */
+/* Identity */
 
 .identity-summary-card {
     background:
@@ -2321,10 +2029,12 @@ select:focus {
             #edf6ff,
             #fafcff
         );
+
+    border-color: #d8eaff;
 }
 
 
-/* State Summary */
+/* State */
 
 .state-summary-card {
     background:
@@ -2333,10 +2043,12 @@ select:focus {
             #ecfaf3,
             #fbfefc
         );
+
+    border-color: #d5f0e1;
 }
 
 
-/* Value Summary */
+/* Value */
 
 .value-summary-card {
     background:
@@ -2345,17 +2057,47 @@ select:focus {
             #fff3e9,
             #fffaf6
         );
+
+    border-color: #ffe0c5;
 }
 
 
 /* ==========================================
-   SUMMARY CARD HEADING
+   CARD LABEL
 ========================================== */
 
-.summary-card-heading {
+.summary-card-label {
+    margin-bottom: 8px;
+
+    color: #667d98;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* ==========================================
+   CARD RESULT
+========================================== */
+
+.summary-card-result {
+    min-height: 34px;
+
+    display: flex;
+    align-items: center;
+
     color: #0f243e;
 
-    font-size: 17px;
+    font-size: 22px;
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+
+.summary-card-result strong {
     font-weight: 800;
 }
 
@@ -2368,7 +2110,7 @@ select:focus {
     width: 100%;
     height: 2px;
 
-    margin: 12px 0 16px;
+    margin: 13px 0 16px;
 
     background: #dce5ee;
 
@@ -2384,7 +2126,7 @@ select:focus {
     left: 0;
     top: 0;
 
-    width: 62px;
+    width: 64px;
     height: 2px;
 }
 
@@ -2419,7 +2161,7 @@ select:focus {
 
 
 /* ==========================================
-   SUMMARY INFO STRIP
+   INFO STRIP
 ========================================== */
 
 .fantasy-summary-info {
@@ -2508,48 +2250,9 @@ select:focus {
     }
 
 
-    #bottom-info-row {
-        padding: 0 14px 18px;
-    }
-
-
-    .legend-group {
-        padding: 14px;
-    }
-
-
-    .legend-title {
-        gap: 10px;
-        margin-bottom: 12px;
-    }
-
-
-    .legend-icon {
-        width: 36px;
-        height: 36px;
-
-        font-size: 16px;
-    }
-
-
-    .info-title {
-        font-size: 17px;
-    }
-
-
-    .legend-items {
-        gap: 7px;
-    }
-
-
-    .legend-item {
-        padding: 6px 9px;
-
-        font-size: 12px;
-    }
-
-
     .fantasy-summary {
+        margin: 0 14px 16px;
+
         padding: 16px;
     }
 
@@ -2561,6 +2264,18 @@ select:focus {
 
     .fantasy-summary-tagline {
         font-size: 11px;
+    }
+
+
+    .fantasy-summary-item {
+        min-height: 0;
+
+        padding: 17px;
+    }
+
+
+    .summary-card-result {
+        font-size: 20px;
     }
 }
 
