@@ -1881,13 +1881,15 @@ select:focus {
 }
 
 
-/* Header / Logo */
+/* ==========================================
+   HEADER / LOGO
+========================================== */
 
 .fantasy-edge-header {
     padding: 30px 24px 24px;
-
     text-align: center;
 }
+
 
 .fantasy-edge {
     display: block;
@@ -1898,9 +1900,12 @@ select:focus {
     margin: 0 auto;
 }
 
+
 .fantasy-edge-subtitle {
     display: flex;
+    align-items: center;
     justify-content: center;
+
     gap: 14px;
 
     margin-top: 15px;
@@ -1912,67 +1917,83 @@ select:focus {
     letter-spacing: 2px;
 }
 
+
 .fantasy-edge-subtitle span {
     color: #0077ff;
 }
 
 
 /* ==========================================
-   IDENTITY / STATE / VALUE
+   FANTASY EDGE LEGEND
 ========================================== */
 
 #bottom-info-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column;
 
-    gap: 18px;
+    gap: 14px;
 
-    padding: 0 26px 28px;
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 0 24px 26px;
 }
 
-.edge-key-card {
-    min-width: 0;
 
-    padding: 16px;
+/* ==========================================
+   LEGEND GROUPS
+========================================== */
+
+.legend-group {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 16px 18px;
 
     background: #ffffff;
 
     border: 1px solid #dbe4ee;
-    border-radius: 14px;
+    border-radius: 12px;
 
     box-shadow:
-        0 5px 15px rgba(15, 36, 62, 0.07),
-        0 1px 3px rgba(15, 36, 62, 0.04);
+        0 3px 10px rgba(15, 36, 62, 0.05);
 }
 
 
-.identity-key-card {
-    border-top: 4px solid #0878e8;
-}
-
-.state-key-card {
-    border-top: 4px solid #27a861;
-}
-
-.value-key-card {
-    border-top: 4px solid #ff7a00;
+.identity-legend {
+    border-left: 4px solid #0878e8;
 }
 
 
-/* Headers */
+.state-legend {
+    border-left: 4px solid #27a861;
+}
 
-.edge-key-header {
+
+.value-legend {
+    border-left: 4px solid #ff7a00;
+}
+
+
+/* ==========================================
+   LEGEND TITLES
+========================================== */
+
+.legend-title {
     display: flex;
     align-items: center;
 
-    gap: 13px;
+    gap: 12px;
 
-    margin-bottom: 18px;
+    margin-bottom: 14px;
 }
 
-.edge-key-icon {
-    width: 50px;
-    height: 50px;
+
+.legend-icon {
+    width: 40px;
+    height: 40px;
 
     display: flex;
     align-items: center;
@@ -1984,9 +2005,12 @@ select:focus {
 
     color: #ffffff;
 
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 800;
 }
+
+
+/* Identity Icon */
 
 .identity-icon {
     background:
@@ -1997,6 +2021,9 @@ select:focus {
         );
 }
 
+
+/* State Icon */
+
 .state-icon {
     background:
         linear-gradient(
@@ -2005,6 +2032,9 @@ select:focus {
             #188d4a
         );
 }
+
+
+/* Value Icon */
 
 .value-icon {
     background:
@@ -2021,12 +2051,13 @@ select:focus {
 
     color: #0f243e;
 
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 800;
 }
 
+
 .info-subtitle {
-    margin-top: 4px;
+    margin-top: 3px;
 
     color: #687d96;
 
@@ -2038,64 +2069,51 @@ select:focus {
 }
 
 
-/* Rows */
+/* ==========================================
+   HORIZONTAL LEGEND ITEMS
+========================================== */
 
-.edge-key-row {
-    min-height: 44px;
-
+.legend-items {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
-    gap: 10px;
+    flex-wrap: wrap;
 
-    margin-bottom: 7px;
+    gap: 9px;
+}
 
-    padding: 9px 11px;
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 11px;
 
     background: #f7f9fc;
 
-    border-radius: 8px;
-}
+    border: 1px solid #edf1f5;
+    border-radius: 999px;
 
-.edge-key-row:last-child {
-    margin-bottom: 0;
-}
-
-.edge-key-left {
-    display: flex;
-    align-items: center;
-
-    gap: 9px;
-
-    min-width: 0;
-}
-
-.edge-key-left strong {
     color: #0f243e;
 
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
-}
 
-.edge-description {
-    color: #647a94;
-
-    font-size: 11px;
-
-    text-align: right;
+    white-space: nowrap;
 }
 
 
 /* ==========================================
-   EXISTING BADGE DOTS
+   BADGE DOTS
 ========================================== */
 
 .identity-badge,
 .state-badge,
 .value-badge {
-    width: 17px;
-    height: 17px;
+    width: 16px;
+    height: 16px;
 
     display: inline-block;
 
@@ -2105,65 +2123,82 @@ select:focus {
 }
 
 
-/* Identity */
+/* ==========================================
+   FANTASY IDENTITY COLORS
+========================================== */
 
 .identity-badge.breakout {
     background: #7ed321;
 }
 
+
 .identity-badge.overperformer {
     background: #f5a623;
 }
+
 
 .identity-badge.sleeper {
     background: #4a90e2;
 }
 
+
 .identity-badge.consistent {
     background: #9b9b9b;
 }
+
 
 .identity-badge.neutral {
     background: #c7c7c7;
 }
 
 
-/* State */
+/* ==========================================
+   FANTASY STATE COLORS
+========================================== */
 
 .state-badge.strong {
     background: #25b76b;
 }
 
+
 .state-badge.stable {
     background: #72bcec;
 }
 
+
 .state-badge.vulnerable {
     background: #ffc541;
 }
+
 
 .state-badge.high-risk {
     background: #f05c57;
 }
 
 
-/* Value */
+/* ==========================================
+   FANTASY VALUE COLORS
+========================================== */
 
 .value-badge.extreme {
     background: #a36fd1;
 }
 
+
 .value-badge.elevated {
     background: #73c8c2;
 }
+
 
 .value-badge.expected {
     background: #7fbee7;
 }
 
+
 .value-badge.below {
     background: #ffc767;
 }
+
 
 .value-badge.suppressed {
     background: #f6a66d;
@@ -2188,6 +2223,10 @@ select:focus {
         0 4px 14px rgba(15, 36, 62, 0.05);
 }
 
+
+/* ==========================================
+   SUMMARY HEADER
+========================================== */
 
 .fantasy-summary-header {
     display: flex;
@@ -2234,17 +2273,22 @@ select:focus {
 }
 
 
-/* Summary Grid */
+/* ==========================================
+   SUMMARY GRID
+========================================== */
 
 .fantasy-summary-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
     gap: 16px;
 }
 
 
 .fantasy-summary-item {
+    min-width: 0;
     min-height: 150px;
 
     padding: 18px;
@@ -2252,6 +2296,8 @@ select:focus {
     border-radius: 12px;
 }
 
+
+/* Identity Summary */
 
 .identity-summary-card {
     background:
@@ -2262,6 +2308,9 @@ select:focus {
         );
 }
 
+
+/* State Summary */
+
 .state-summary-card {
     background:
         linear-gradient(
@@ -2270,6 +2319,9 @@ select:focus {
             #fbfefc
         );
 }
+
+
+/* Value Summary */
 
 .value-summary-card {
     background:
@@ -2281,6 +2333,10 @@ select:focus {
 }
 
 
+/* ==========================================
+   SUMMARY CARD HEADING
+========================================== */
+
 .summary-card-heading {
     color: #0f243e;
 
@@ -2288,6 +2344,10 @@ select:focus {
     font-weight: 800;
 }
 
+
+/* ==========================================
+   SUMMARY ACCENTS
+========================================== */
 
 .summary-accent {
     width: 100%;
@@ -2305,6 +2365,7 @@ select:focus {
     content: "";
 
     position: absolute;
+
     left: 0;
     top: 0;
 
@@ -2317,14 +2378,20 @@ select:focus {
     background: #0878e8;
 }
 
+
 .state-summary-card .summary-accent::before {
     background: #27a861;
 }
+
 
 .value-summary-card .summary-accent::before {
     background: #ff7a00;
 }
 
+
+/* ==========================================
+   SUMMARY TEXT
+========================================== */
 
 .fantasy-summary-item p {
     margin: 0;
@@ -2336,7 +2403,9 @@ select:focus {
 }
 
 
-/* Info strip */
+/* ==========================================
+   SUMMARY INFO STRIP
+========================================== */
 
 .fantasy-summary-info {
     display: flex;
@@ -2386,10 +2455,10 @@ select:focus {
 
 @media (max-width: 900px) {
 
-    #bottom-info-row,
     .fantasy-summary-grid {
         grid-template-columns: 1fr;
     }
+
 
     .fantasy-summary-header {
         flex-direction: column;
@@ -2398,51 +2467,87 @@ select:focus {
 }
 
 
+/* ==========================================
+   MOBILE
+========================================== */
+
 @media (max-width: 600px) {
 
     .fantasy-edge-header {
         padding: 22px 14px 18px;
     }
 
+
     .fantasy-edge {
         width: 90%;
     }
 
+
     .fantasy-edge-subtitle {
+        flex-wrap: wrap;
+
         gap: 8px;
 
         font-size: 9px;
         letter-spacing: 1px;
-
-        flex-wrap: wrap;
     }
+
 
     #bottom-info-row {
-    display: grid;
-
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-
-    gap: 14px;
-
-    width: 100%;
-    box-sizing: border-box;
-
-    padding: 0 18px 22px;
-}
-
-    .edge-key-row {
-        align-items: flex-start;
+        padding: 0 14px 18px;
     }
 
-    .edge-description {
-        font-size: 10px;
+
+    .legend-group {
+        padding: 14px;
     }
+
+
+    .legend-title {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+
+    .legend-icon {
+        width: 36px;
+        height: 36px;
+
+        font-size: 16px;
+    }
+
+
+    .info-title {
+        font-size: 17px;
+    }
+
+
+    .legend-items {
+        gap: 7px;
+    }
+
+
+    .legend-item {
+        padding: 6px 9px;
+
+        font-size: 12px;
+    }
+
 
     .fantasy-summary {
         padding: 16px;
     }
-}
 
+
+    .fantasy-summary-title {
+        font-size: 21px;
+    }
+
+
+    .fantasy-summary-tagline {
+        font-size: 11px;
+    }
+}
 
 /* -----------------------------------------
    Footer
