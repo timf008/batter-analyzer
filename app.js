@@ -664,7 +664,7 @@ function loadBatterOfDay(season) {
 
             // Batter summary line (AVG, HR, RBI, Games)
             const formattedBA = Number(player.BA).toFixed(3).replace(/^0/, "");
-const summaryText = `is hitting ${formattedBA} with ${player.HR} HR and ${player.RBI} RBI across ${player.G} games.`;
+const summaryText = `batting ${formattedBA} with ${player.HR} HR and ${player.RBI} RBI across ${player.G} games.`;
 
 
 
