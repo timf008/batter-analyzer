@@ -1516,7 +1516,6 @@ function handleReset() {
     document.getElementById("overallPercentile").textContent = "--";
     document.getElementById("xpScore").innerHTML = "--";
     document.getElementById("playerTab").textContent = "Player:--";
-    document.getElementById("playerPhoto").src = "images/batter.png";
     clearIdentityBadges();
     clearStateBadges();
     clearValueBadges();
