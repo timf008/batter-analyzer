@@ -1930,9 +1930,10 @@ select:focus {
     padding: 0 26px 28px;
 }
 
-
 .edge-key-card {
-    padding: 20px;
+    min-width: 0;
+
+    padding: 16px;
 
     background: #ffffff;
 
@@ -2417,8 +2418,17 @@ select:focus {
     }
 
     #bottom-info-row {
-        padding: 0 14px 16px;
-    }
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 0 18px 22px;
+}
 
     .edge-key-row {
         align-items: flex-start;
