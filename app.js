@@ -1429,28 +1429,33 @@ function updateFantasySummary(identity, state, value) {
         suppressed: "Suppressed"
     };
 
-    // -------------------------------
-    // Update DOM
-    // -------------------------------
-    identityTitle.textContent =
-        `Fantasy Identity: ${identityLabels[identity] || "--"}`;
+// -------------------------------
+// Update DOM
+// -------------------------------
 
-    identityText.textContent =
-        identityDescriptions[identity] || "";
+// Identity
+identityTitle.textContent =
+    identityLabels[identity] || "--";
 
-    stateTitle.textContent =
-        `Fantasy State: ${stateLabels[state] || "--"}`;
+identityText.textContent =
+    identityDescriptions[identity] || "";
 
-    stateText.textContent =
-        stateDescriptions[state] || "";
 
-    valueTitle.textContent =
-        `Fantasy Value: ${valueLabels[value] || "--"}`;
+// State
+stateTitle.textContent =
+    stateLabels[state] || "--";
 
-    valueText.textContent =
-        valueDescriptions[value] || "";
+stateText.textContent =
+    stateDescriptions[state] || "";
+
+
+// Value
+valueTitle.textContent =
+    valueLabels[value] || "--";
+
+valueText.textContent =
+    valueDescriptions[value] || "";
 }
-
 
 
 
