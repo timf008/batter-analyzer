@@ -497,14 +497,14 @@ function updateWhatToWatch(metrics) {
     // --------------------------------
     items.forEach(item => {
 
-        if (item.score >= 8) {
+        if (item.score >= 7) {
 
             item.type = "good";
             item.icon = "↑";
             item.text = item.goodText;
 
             // 0 → 1 strength scale
-            item.importance = (item.score - 8) / 2;
+            item.importance = (item.score - 7) / 3;
 
         }
         else if (item.score >= 5) {
