@@ -492,43 +492,43 @@ function updateWhatToWatch(metrics) {
     ];
 
 
-    // --------------------------------
-    // Classify each metric
-    // --------------------------------
-    items.forEach(item => {
+// --------------------------------
+// Classify each metric
+// --------------------------------
+items.forEach(item => {
 
-        if (item.score >= 7) {
+    if (item.score >= 7) {
 
-            item.type = "good";
-            item.icon = "↑";
-            item.text = item.goodText;
+        item.type = "good";
+        item.icon = "↑";
+        item.text = item.goodText;
 
-            // 0 → 1 strength scale
-            item.importance = (item.score - 7) / 3;
+        // 0 → 1 strength scale
+        item.importance = (item.score - 7) / 3;
 
-        }
-        else if (item.score >= 5) {
+    }
+    else if (item.score >= 4) {
 
-            item.type = "neutral";
-            item.icon = "−";
-            item.text = item.neutralText;
+        item.type = "neutral";
+        item.icon = "−";
+        item.text = item.neutralText;
 
-            // Neutral metrics are less important
-            item.importance = 0;
+        // Neutral metrics are less important
+        item.importance = 0;
 
-        }
-        else {
+    }
+    else {
 
-            item.type = "bad";
-            item.icon = "↓";
-            item.text = item.badText;
+        item.type = "bad";
+        item.icon = "↓";
+        item.text = item.badText;
 
-            // 0 → 1 weakness scale
-            item.importance = (5 - item.score) / 5;
+        // 0 → 1 weakness scale
+        item.importance = (4 - item.score) / 4;
 
-        }
+    }
 
-    });
+});
 
 
     // --------------------------------
