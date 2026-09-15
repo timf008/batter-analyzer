@@ -366,11 +366,10 @@ async function handleLoad() {
         const bbpctScore = scoreBBpct(p.BBpct);
 
         updateBA(safeFixed(p.BA, 3), baScore);
-        updateOBP(safeFixed(p.OBP, 3), obpScore);
-        updateSLG(safeFixed(p.SLG, 3), slgScore);
-        updateKpct(safeFixed(p.Kpct, 1), kpctScore);
-        updateBBpct(safeFixed(p.BBpct, 1), bbpctScore);
-
+updateOBP(safeFixed(p.OBP, 3), obpScore);
+updateSLG(safeFixed(p.SLG, 3), slgScore);
+updateKpct(safeFixed(p.Kpct, 1), kpctScore);
+updateBBpct(safeFixed(p.BBpct, 1), bbpctScore);
 
 // -------------------------------
 // Season Production
@@ -384,18 +383,18 @@ document.getElementById("productionBB").textContent = p.BB ?? "--";
 document.getElementById("productionK").textContent = p.SO ?? "--";
 
 document.getElementById("productionSeason").textContent =
-    `${season} TOTALS`;
+    season + " TOTALS";
 
-
+// -------------------------------
+// Calculate Overall
+// -------------------------------
 const overall = computeWeightedOverall({
-
-        const overall = computeWeightedOverall({
-            baScore,
-            obpScore,
-            slgScore,
-            kpctScore,
-            bbpctScore
-        });
+    baScore,
+    obpScore,
+    slgScore,
+    kpctScore,
+    bbpctScore
+});
 
         updateOverall(overall);
 updateTier(overall);
