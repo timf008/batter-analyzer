@@ -1531,9 +1531,6 @@ function handleReset() {
         document.getElementById(id).textContent = "--";
     });
 
-    document.getElementById("productionSeason").textContent =
-        "SEASON TOTALS";
-
 
     console.log("RESET FIRED");
 
