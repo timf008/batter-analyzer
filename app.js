@@ -396,6 +396,34 @@ updateWhatToWatch({
 });
 
 // -------------------------------
+// Season Production
+// -------------------------------
+
+document.getElementById("productionSeason").textContent =
+    `${season} TOTALS`;
+
+document.getElementById("productionAB").textContent =
+    player.AB ?? "--";
+
+document.getElementById("productionH").textContent =
+    player.H ?? "--";
+
+document.getElementById("productionR").textContent =
+    player.R ?? "--";
+
+document.getElementById("productionRBI").textContent =
+    player.RBI ?? "--";
+
+document.getElementById("productionHR").textContent =
+    player.HR ?? "--";
+
+document.getElementById("productionBB").textContent =
+    player.BB ?? "--";
+
+document.getElementById("productionK").textContent =
+    player.SO ?? "--";
+
+// -------------------------------
 // What to Watch
 // -------------------------------
 function updateWhatToWatch(metrics) {
@@ -1500,42 +1528,79 @@ document.getElementById("swapBtn").onclick = function () {
 // Reset UI
 // -------------------------------
 function handleReset() {
+
+    // Clear Season Production
+    [
+        "productionAB",
+        "productionH",
+        "productionR",
+        "productionRBI",
+        "productionHR",
+        "productionBB",
+        "productionK"
+    ].forEach(id => {
+        document.getElementById(id).textContent = "--";
+    });
+
+    document.getElementById("productionSeason").textContent =
+        "SEASON TOTALS";
+
+
     console.log("RESET FIRED");
 
+
+    // Clear What to Watch
     const watchGrid = document.getElementById("watchGrid");
+
     if (watchGrid) {
         watchGrid.innerHTML = "";
     }
-    document.querySelectorAll(".metric-raw").forEach(el => el.textContent = "--");
-    document.querySelectorAll(".metric-score").forEach(el => el.textContent = "--");
 
+
+    // Clear raw metric values
+    document.querySelectorAll(".metric-raw")
+        .forEach(el => el.textContent = "--");
+
+
+    // Clear metric scores
+    document.querySelectorAll(".metric-score")
+        .forEach(el => el.textContent = "--");
+
+
+    // Clear batteries
     document.querySelectorAll(".battery").forEach(el => {
-    el.style.setProperty("--fill", "0%");
-    el.style.setProperty("--color", "#d50000");
-});
+        el.style.setProperty("--fill", "0%");
+        el.style.setProperty("--color", "#d50000");
+    });
 
 
+    // Clear Player Analytics
     document.getElementById("overallScore").textContent = "--";
     document.getElementById("overallTier").innerHTML = "--";
     document.getElementById("scoutingNote").innerHTML = "--";
     document.getElementById("overallPercentile").textContent = "--";
     document.getElementById("xpScore").innerHTML = "--";
     document.getElementById("playerTab").textContent = "Player:--";
+
+
+    // Clear Fantasy Edge badges
     clearIdentityBadges();
     clearStateBadges();
     clearValueBadges();
+
+
     // Clear Fantasy Summary
-document.getElementById("summaryIdentity").textContent = "Fantasy Identity: --";
-document.getElementById("summaryIdentityText").textContent =
-    "Load a player to view their Fantasy Identity analysis.";
+    document.getElementById("summaryIdentity").textContent = "--";
+    document.getElementById("summaryIdentityText").textContent =
+        "Load a player to view their Fantasy Identity analysis.";
 
-document.getElementById("summaryState").textContent = "Fantasy State: --";
-document.getElementById("summaryStateText").textContent =
-    "Load a player to view their Fantasy State analysis.";
+    document.getElementById("summaryState").textContent = "--";
+    document.getElementById("summaryStateText").textContent =
+        "Load a player to view their Fantasy State analysis.";
 
-document.getElementById("summaryValue").textContent = "Fantasy Value: --";
-document.getElementById("summaryValueText").textContent =
-    "Load a player to view their Fantasy Value analysis.";
+    document.getElementById("summaryValue").textContent = "--";
+    document.getElementById("summaryValueText").textContent =
+        "Load a player to view their Fantasy Value analysis.";
 }
 
 // -------------------------------
