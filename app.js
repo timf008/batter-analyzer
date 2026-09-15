@@ -382,9 +382,6 @@ document.getElementById("productionHR").textContent = p.HR ?? "--";
 document.getElementById("productionBB").textContent = p.BB ?? "--";
 document.getElementById("productionK").textContent = p.SO ?? "--";
 
-document.getElementById("productionSeason").textContent =
-    season + " TOTALS";
-
 // -------------------------------
 // Calculate Overall
 // -------------------------------
