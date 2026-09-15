@@ -359,20 +359,12 @@ async function handleLoad() {
 
         const p = Array.isArray(data) ? data[0] : data;
 
-
-        // -------------------------------
-        // Calculate metric scores
-        // -------------------------------
         const baScore    = scoreBA(p.BA);
         const obpScore   = scoreOBP(p.OBP);
         const slgScore   = scoreSLG(p.SLG);
         const kpctScore  = scoreKpct(p.Kpct);
         const bbpctScore = scoreBBpct(p.BBpct);
 
-
-        // -------------------------------
-        // Update Batter Profile
-        // -------------------------------
         updateBA(safeFixed(p.BA, 3), baScore);
         updateOBP(safeFixed(p.OBP, 3), obpScore);
         updateSLG(safeFixed(p.SLG, 3), slgScore);
@@ -380,37 +372,23 @@ async function handleLoad() {
         updateBBpct(safeFixed(p.BBpct, 1), bbpctScore);
 
 
-        // -------------------------------
-        // Season Production
-        // -------------------------------
-        document.getElementById("productionAB").textContent =
-            p.AB ?? "--";
+// -------------------------------
+// Season Production
+// -------------------------------
+document.getElementById("productionAB").textContent = p.AB ?? "--";
+document.getElementById("productionH").textContent = p.H ?? "--";
+document.getElementById("productionR").textContent = p.R ?? "--";
+document.getElementById("productionRBI").textContent = p.RBI ?? "--";
+document.getElementById("productionHR").textContent = p.HR ?? "--";
+document.getElementById("productionBB").textContent = p.BB ?? "--";
+document.getElementById("productionK").textContent = p.SO ?? "--";
 
-        document.getElementById("productionH").textContent =
-            p.H ?? "--";
-
-        document.getElementById("productionR").textContent =
-            p.R ?? "--";
-
-        document.getElementById("productionRBI").textContent =
-            p.RBI ?? "--";
-
-        document.getElementById("productionHR").textContent =
-            p.HR ?? "--";
-
-        document.getElementById("productionBB").textContent =
-            p.BB ?? "--";
-
-        document.getElementById("productionK").textContent =
-            p.SO ?? "--";
-
-        document.getElementById("productionSeason").textContent =
-            `${season} TOTALS`;
+document.getElementById("productionSeason").textContent =
+    `${season} TOTALS`;
 
 
-        // -------------------------------
-        // Calculate Overall
-        // -------------------------------
+const overall = computeWeightedOverall({
+
         const overall = computeWeightedOverall({
             baScore,
             obpScore,
@@ -419,57 +397,21 @@ async function handleLoad() {
             bbpctScore
         });
 
-
-        // -------------------------------
-        // Update Player Analytics
-        // -------------------------------
         updateOverall(overall);
-        updateTier(overall);
-        updateScoutingNote(p);
-        updateXP(p.XP);
-        updateIdentityBadge();
+updateTier(overall);
+updateScoutingNote(p);
+updateXP(p.XP);
+updateIdentityBadge();
 
+updateWhatToWatch({
 
-        // -------------------------------
-        // Update What to Watch
-        // -------------------------------
-        updateWhatToWatch({
+    BA: { raw: p.BA, score: baScore },
+    OBP: { raw: p.OBP, score: obpScore },
+    SLG: { raw: p.SLG, score: slgScore },
+    Kpct: { raw: p.Kpct, score: kpctScore },
+    BBpct: { raw: p.BBpct, score: bbpctScore }
 
-            BA: {
-                raw: p.BA,
-                score: baScore
-            },
-
-            OBP: {
-                raw: p.OBP,
-                score: obpScore
-            },
-
-            SLG: {
-                raw: p.SLG,
-                score: slgScore
-            },
-
-            Kpct: {
-                raw: p.Kpct,
-                score: kpctScore
-            },
-
-            BBpct: {
-                raw: p.BBpct,
-                score: bbpctScore
-            }
-
-        });
-
-    }
-    catch (err) {
-
-        console.error("Error loading batter:", err);
-        alert("Error loading batter.");
-
-    }
-}
+});
 
 // -------------------------------
 // What to Watch
