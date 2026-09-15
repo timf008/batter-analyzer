@@ -359,6 +359,9 @@ async function handleLoad() {
 
         const p = Array.isArray(data) ? data[0] : data;
 
+        console.log("Loaded batter data:", p);
+        console.log("HR value:", p.HR);
+
         const baScore    = scoreBA(p.BA);
         const obpScore   = scoreOBP(p.OBP);
         const slgScore   = scoreSLG(p.SLG);
