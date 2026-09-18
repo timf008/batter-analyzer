@@ -162,7 +162,67 @@ function updateXP(xp) {
     document.getElementById("xpScore").textContent = safeFixed(xp, 0);
 }
 
+// -------------------------------
+// Park Adjusted Overall
+// -------------------------------
+function updateParkAdjusted(p) {
 
+    const adjustedEl = document.getElementById("parkAdjustedOverall");
+    const adjustmentEl = document.getElementById("parkAdjustment");
+    const venueEl = document.getElementById("parkVenue");
+    const factorEl = document.getElementById("parkFactor");
+
+    // Missing / unmatched park data
+    if (
+        p.ParkAdjustedOverall == null ||
+        isNaN(Number(p.ParkAdjustedOverall))
+    ) {
+        adjustedEl.textContent = "--";
+        adjustmentEl.textContent = "";
+        adjustmentEl.classList.remove("positive", "negative", "neutral");
+
+        venueEl.textContent = "--";
+        factorEl.textContent = "--";
+
+        return;
+    }
+
+    const adjusted = Number(p.ParkAdjustedOverall);
+    const change = Number(p.ParkAdjustment);
+
+    // Adjusted Overall
+    adjustedEl.textContent = adjusted.toFixed(1);
+
+    // Adjustment badge
+    adjustmentEl.classList.remove("positive", "negative", "neutral");
+
+    if (!isNaN(change)) {
+
+        adjustmentEl.textContent =
+            `${change > 0 ? "+" : ""}${change.toFixed(1)}`;
+
+        if (change > 0.05) {
+            adjustmentEl.classList.add("positive");
+        }
+        else if (change < -0.05) {
+            adjustmentEl.classList.add("negative");
+        }
+        else {
+            adjustmentEl.classList.add("neutral");
+        }
+
+    } else {
+        adjustmentEl.textContent = "";
+    }
+
+    // Park context
+    venueEl.textContent = p.ParkVenue || "--";
+
+    factorEl.textContent =
+        p.ParkFactor != null && !isNaN(Number(p.ParkFactor))
+            ? `Park Factor: ${Number(p.ParkFactor).toFixed(0)}`
+            : "--";
+}
 
 
 // -------------------------------
@@ -396,7 +456,8 @@ const overall = computeWeightedOverall({
     bbpctScore
 });
 
-        updateOverall(overall);
+updateOverall(overall);
+updateParkAdjusted(p);
 updateTier(overall);
 updateScoutingNote(p);
 updateXP(p.XP);
@@ -1561,12 +1622,22 @@ function handleReset() {
 
 
     // Clear Player Analytics
-    document.getElementById("overallScore").textContent = "--";
-    document.getElementById("overallTier").innerHTML = "--";
-    document.getElementById("scoutingNote").innerHTML = "--";
-    document.getElementById("overallPercentile").textContent = "--";
-    document.getElementById("xpScore").innerHTML = "--";
-    document.getElementById("playerTab").textContent = "Player:--";
+document.getElementById("overallScore").textContent = "--";
+
+document.getElementById("parkAdjustedOverall").textContent = "--";
+
+const parkAdjustment = document.getElementById("parkAdjustment");
+parkAdjustment.textContent = "";
+parkAdjustment.classList.remove("positive", "negative", "neutral");
+
+document.getElementById("parkVenue").textContent = "--";
+document.getElementById("parkFactor").textContent = "--";
+
+document.getElementById("overallTier").innerHTML = "--";
+document.getElementById("scoutingNote").innerHTML = "--";
+document.getElementById("overallPercentile").textContent = "--";
+document.getElementById("xpScore").innerHTML = "--";
+document.getElementById("playerTab").textContent = "Player:--";
 
 
     // Clear Fantasy Edge badges
