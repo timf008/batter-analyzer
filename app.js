@@ -1904,8 +1904,3 @@ updateAccessUI();
             modal.style.display = "none";
         }
     });
-});
-
-
-
-
