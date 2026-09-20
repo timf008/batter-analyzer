@@ -52,6 +52,13 @@ function requireAllAccess(featureName) {
 
 function updateAccessUI() {
 
+    const allAccess = hasAllAccess();
+
+
+    // ------------------------------
+    // Premium Buttons
+    // ------------------------------
+
     const premiumButtons = [
         document.getElementById("trendBtn"),
         document.getElementById("compareBtn"),
@@ -62,9 +69,8 @@ function updateAccessUI() {
 
         if (!button) return;
 
-        if (hasAllAccess()) {
+        if (allAccess) {
 
-            // Restore original button label
             button.textContent =
                 button.dataset.originalText ||
                 button.textContent.replace(" 🔒", "");
@@ -73,7 +79,6 @@ function updateAccessUI() {
 
         } else {
 
-            // Save original label once
             if (!button.dataset.originalText) {
                 button.dataset.originalText =
                     button.textContent.trim();
@@ -85,6 +90,148 @@ function updateAccessUI() {
             button.classList.add("premium-locked");
         }
     });
+
+
+    // ------------------------------
+    // All Access
+    // ------------------------------
+
+    if (allAccess) {
+        return;
+    }
+
+
+    // ------------------------------
+    // Park Adjusted
+    // ------------------------------
+
+    const adjustedEl =
+        document.getElementById("parkAdjustedOverall");
+
+    const adjustmentEl =
+        document.getElementById("parkAdjustment");
+
+    const venueEl =
+        document.getElementById("parkVenue");
+
+    const factorEl =
+        document.getElementById("parkFactor");
+
+    if (adjustedEl) {
+        adjustedEl.innerHTML = `
+            <span class="premium-value-lock">
+                🔒
+            </span>
+        `;
+    }
+
+    if (adjustmentEl) {
+
+        adjustmentEl.textContent = "ALL ACCESS";
+
+        adjustmentEl.classList.remove(
+            "positive",
+            "negative",
+            "neutral"
+        );
+
+        adjustmentEl.classList.add("premium-label");
+    }
+
+    if (venueEl) {
+        venueEl.textContent = "Unlock Park Analysis";
+    }
+
+    if (factorEl) {
+        factorEl.textContent = "";
+    }
+
+
+    // ------------------------------
+    // Percentile
+    // ------------------------------
+
+    const percentileEl =
+        document.getElementById("overallPercentile");
+
+    if (percentileEl) {
+
+        percentileEl.innerHTML = `
+            <div class="percentile-premium-wrap">
+
+                <span class="percentile-premium-lock">
+                    🔒
+                </span>
+
+                <span class="percentile-premium-label">
+                    ALL ACCESS
+                </span>
+
+            </div>
+        `;
+    }
+
+
+    // ------------------------------
+    // What to Watch
+    // ------------------------------
+
+    const watchGrid =
+        document.getElementById("watchGrid");
+
+    if (watchGrid) {
+
+        watchGrid.innerHTML = `
+            <div class="watch-premium-lock">
+
+                <div class="watch-premium-icon">
+                    🔒
+                </div>
+
+                <div class="watch-premium-badge">
+                    ALL ACCESS
+                </div>
+
+                <div class="watch-premium-text">
+                    Unlock What to Watch Analysis
+                </div>
+
+            </div>
+        `;
+    }
+
+
+    // ------------------------------
+    // Fantasy Edge
+    // ------------------------------
+
+    const fantasySummary =
+        document.getElementById("fantasySummary");
+
+    if (fantasySummary) {
+
+        fantasySummary.innerHTML = `
+            <div class="fantasy-premium-lock">
+
+                <div class="fantasy-premium-icon">
+                    🔒
+                </div>
+
+                <div class="fantasy-premium-badge">
+                    ALL ACCESS
+                </div>
+
+                <div class="fantasy-premium-title">
+                    Unlock Fantasy Edge
+                </div>
+
+                <div class="fantasy-premium-text">
+                    Fantasy Identity • Fantasy State • Fantasy Value
+                </div>
+
+            </div>
+        `;
+    }
 }
 
 // -------------------------------
@@ -2061,4 +2208,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-});  // ← closes DOMContentLoaded
+});
