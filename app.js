@@ -2049,7 +2049,12 @@ document.getElementById("parkAdjustedOverall").textContent = "--";
 
 const parkAdjustment = document.getElementById("parkAdjustment");
 parkAdjustment.textContent = "";
-parkAdjustment.classList.remove("positive", "negative", "neutral");
+parkAdjustment.classList.remove(
+    "positive",
+    "negative",
+    "neutral",
+    "premium-label"
+);
 
 document.getElementById("parkVenue").textContent = "--";
 document.getElementById("parkFactor").textContent = "--";
@@ -2079,8 +2084,9 @@ document.getElementById("playerTab").textContent = "Player:--";
     document.getElementById("summaryValue").textContent = "--";
     document.getElementById("summaryValueText").textContent =
         "Load a player to view their Fantasy Value analysis.";
-}
 
+    updateAccessUI();
+}
 // -------------------------------
 // Latest Update Timestamp Defined
 // -------------------------------
