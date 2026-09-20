@@ -645,19 +645,20 @@ select:focus {
 
 /* Park adjustment delta */
 #parkAdjustment {
-    display: inline-block;
+    padding: 3px 7px;
 
-    margin-top: 5px;
+    background: #eef3f8;
 
-    font-size: 12px;
+    border: 1px solid #cbd6e2;
+    border-radius: 999px;
+
+    color: #536a82;
+
+    font-size: 10px;
     font-weight: 700;
-    line-height: 1;
+    letter-spacing: 0.5px;
 
-    padding: 4px 7px;
-    border-radius: 6px;
-
-    letter-spacing: 0;
-    text-transform: none;
+    white-space: nowrap;
 }
 
 /* Positive park adjustment */
