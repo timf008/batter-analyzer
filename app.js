@@ -205,37 +205,27 @@ function updateAccessUI() {
         `;
     }
 
+// ------------------------------
+// Fantasy Edge
+// ------------------------------
 
-    // ------------------------------
-    // Fantasy Edge
-    // ------------------------------
+const fantasyPremiumLock =
+    document.getElementById("fantasyPremiumLock");
 
-    const fantasySummary =
-        document.getElementById("fantasySummary");
+const fantasyPremiumContent =
+    document.getElementById("fantasyPremiumContent");
 
-    if (fantasySummary) {
+if (fantasyPremiumLock && fantasyPremiumContent) {
 
-        fantasySummary.innerHTML = `
-            <div class="fantasy-premium-lock">
+    if (allAccess) {
 
-                <div class="fantasy-premium-icon">
-                    🔒
-                </div>
+        fantasyPremiumLock.hidden = true;
+        fantasyPremiumContent.hidden = false;
 
-                <div class="fantasy-premium-badge">
-                    ALL ACCESS
-                </div>
+    } else {
 
-                <div class="fantasy-premium-title">
-                    Unlock Fantasy Edge
-                </div>
-
-                <div class="fantasy-premium-text">
-                    Fantasy Identity • Fantasy State • Fantasy Value
-                </div>
-
-            </div>
-        `;
+        fantasyPremiumLock.hidden = false;
+        fantasyPremiumContent.hidden = true;
     }
 }
 
@@ -1008,69 +998,7 @@ else {
     }).join("");
 }
 
-// -------------------------------
-// Fantasy Edge - Premium Lock
-// -------------------------------
 
-function lockFantasyEdge() {
-
-    const fantasyEdge =
-        document.getElementById("fantasyEdge");
-
-    if (!fantasyEdge) return;
-
-    fantasyEdge.classList.add(
-        "fantasy-edge-locked"
-    );
-}
-
-// -------------------------------
-// Fantasy Edge - Access UI
-// -------------------------------
-
-function updateFantasyEdgeAccess() {
-
-    const fantasySummary =
-        document.getElementById("fantasySummary");
-
-    if (!fantasySummary) return;
-
-
-    // -------------------------------
-    // All Access
-    // -------------------------------
-
-    if (hasAllAccess()) {
-        return;
-    }
-
-
-    // -------------------------------
-    // Free Trial Lock
-    // -------------------------------
-
-    fantasySummary.innerHTML = `
-        <div class="fantasy-premium-lock">
-
-            <div class="fantasy-premium-icon">
-                🔒
-            </div>
-
-            <div class="fantasy-premium-badge">
-                ALL ACCESS
-            </div>
-
-            <div class="fantasy-premium-title">
-                Unlock Fantasy Edge
-            </div>
-
-            <div class="fantasy-premium-text">
-                Fantasy Identity • Fantasy State • Fantasy Value
-            </div>
-
-        </div>
-    `;
-}
 
 // -------------------------------
 // Fantasy Identity
@@ -1106,8 +1034,6 @@ updateFantasySummary(
     state,
     fantasyValue
 );
-
-updateFantasyEdgeAccess();
 
 // -------------------------------
 // Percentile - Free Trial Lock
