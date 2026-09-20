@@ -53,6 +53,11 @@ function requireAllAccess(featureName) {
 function updateAccessUI() {
 
     const allAccess = hasAllAccess();
+    console.log(
+    "ACCESS UI FIRED",
+    "hasAllAccess:",
+    hasAllAccess()
+);
 
 
     // ------------------------------
@@ -2085,7 +2090,8 @@ document.getElementById("playerTab").textContent = "Player:--";
     document.getElementById("summaryValueText").textContent =
         "Load a player to view their Fantasy Value analysis.";
 
-    updateAccessUI();
+    console.log("RESET: about to restore access UI");
+updateAccessUI();
 }
 // -------------------------------
 // Latest Update Timestamp Defined
