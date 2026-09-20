@@ -3144,14 +3144,24 @@ select:focus {
    Percentile - Premium Lock
 ------------------------------ */
 
+.percentile-premium-wrap {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+}
+
 .percentile-premium-lock {
     display: inline-flex;
 
     align-items: center;
     justify-content: center;
 
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 
     background: #eef3f8;
 
@@ -3161,4 +3171,21 @@ select:focus {
     line-height: 1;
 
     opacity: 0.85;
+}
+
+.percentile-premium-label {
+    padding: 3px 7px;
+
+    background: #eef3f8;
+
+    border: 1px solid #cbd6e2;
+    border-radius: 999px;
+
+    color: #536a82;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
 }
