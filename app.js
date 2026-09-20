@@ -269,7 +269,8 @@ function updateParkAdjusted(p) {
             </span>
         `;
 
-        adjustmentEl.textContent = "ALL ACCESS";
+        adjustmentEl.textContent =
+            "ALL ACCESS";
 
         adjustmentEl.classList.remove(
             "positive",
@@ -290,20 +291,24 @@ function updateParkAdjusted(p) {
     }
 
 
+    // -------------------------------
     // Missing / unmatched park data
+    // -------------------------------
+
     if (
         p.ParkAdjustedOverall == null ||
         isNaN(Number(p.ParkAdjustedOverall))
     ) {
 
-    // Missing / unmatched park data
-    if (
-        p.ParkAdjustedOverall == null ||
-        isNaN(Number(p.ParkAdjustedOverall))
-    ) {
         adjustedEl.textContent = "--";
         adjustmentEl.textContent = "";
-        adjustmentEl.classList.remove("positive", "negative", "neutral");
+
+        adjustmentEl.classList.remove(
+            "positive",
+            "negative",
+            "neutral",
+            "premium-label"
+        );
 
         venueEl.textContent = "--";
         factorEl.textContent = "--";
@@ -311,14 +316,27 @@ function updateParkAdjusted(p) {
         return;
     }
 
-    const adjusted = Number(p.ParkAdjustedOverall);
-    const change = Number(p.ParkAdjustment);
+
+    const adjusted =
+        Number(p.ParkAdjustedOverall);
+
+    const change =
+        Number(p.ParkAdjustment);
+
 
     // Adjusted Overall
-    adjustedEl.textContent = adjusted.toFixed(1);
+    adjustedEl.textContent =
+        adjusted.toFixed(1);
+
 
     // Adjustment badge
-    adjustmentEl.classList.remove("positive", "negative", "neutral");
+    adjustmentEl.classList.remove(
+        "positive",
+        "negative",
+        "neutral",
+        "premium-label"
+    );
+
 
     if (!isNaN(change)) {
 
@@ -326,24 +344,37 @@ function updateParkAdjusted(p) {
             `${change > 0 ? "+" : ""}${change.toFixed(1)}`;
 
         if (change > 0.05) {
-            adjustmentEl.classList.add("positive");
-        }
-        else if (change < -0.05) {
-            adjustmentEl.classList.add("negative");
-        }
-        else {
-            adjustmentEl.classList.add("neutral");
+
+            adjustmentEl.classList.add(
+                "positive"
+            );
+
+        } else if (change < -0.05) {
+
+            adjustmentEl.classList.add(
+                "negative"
+            );
+
+        } else {
+
+            adjustmentEl.classList.add(
+                "neutral"
+            );
         }
 
     } else {
+
         adjustmentEl.textContent = "";
     }
 
+
     // Park context
-    venueEl.textContent = p.ParkVenue || "--";
+    venueEl.textContent =
+        p.ParkVenue || "--";
 
     factorEl.textContent =
-        p.ParkFactor != null && !isNaN(Number(p.ParkFactor))
+        p.ParkFactor != null &&
+        !isNaN(Number(p.ParkFactor))
             ? `Park Factor: ${Number(p.ParkFactor).toFixed(0)}`
             : "--";
 }
