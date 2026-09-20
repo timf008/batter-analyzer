@@ -229,6 +229,8 @@ if (fantasyPremiumLock && fantasyPremiumContent) {
     }
 }
 
+}
+
 // -------------------------------
 // Safe helpers
 // -------------------------------
