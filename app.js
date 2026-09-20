@@ -957,14 +957,27 @@ updateFantasySummary(
 
 updateFantasyEdgeAccess();
 
-        document.getElementById("overallPercentile").textContent =
-            p.Overall_pct !== undefined
-                ? toOrdinal(Math.round(p.Overall_pct))
-                : "--";
+// -------------------------------
+// Percentile - Free Trial Lock
+// -------------------------------
 
-    } catch (err) {
-        console.error("Error loading player:", err);
-    }
+const percentileEl =
+    document.getElementById("overallPercentile");
+
+if (!hasAllAccess()) {
+
+    percentileEl.innerHTML = `
+        <span class="percentile-premium-lock">
+            🔒
+        </span>
+    `;
+
+} else {
+
+    percentileEl.textContent =
+        p.Overall_pct !== undefined
+            ? toOrdinal(Math.round(p.Overall_pct))
+            : "--";
 }
 
 
