@@ -1830,62 +1830,63 @@ async function loadLastUpdated(season) {
     }
 }
 
-
 // -------------------------------
 // Wire up UI buttons
 // -------------------------------
 document.addEventListener("DOMContentLoaded", () => {
 
-// Main buttons
-document.getElementById("loadBtn")
-    .addEventListener("click", handleLoad);
+    // Main buttons
+    document.getElementById("loadBtn")
+        .addEventListener("click", handleLoad);
 
-document.getElementById("resetBtn")
-    .addEventListener("click", handleReset);
-
-
-// ------------------------------
-// All Access Buttons
-// ------------------------------
-
-document.getElementById("compareBtn")
-    .addEventListener("click", () => {
-
-        if (!requireAllAccess("Player Comparison")) {
-            return;
-        }
-
-        showCompareModal();
-    });
+    document.getElementById("resetBtn")
+        .addEventListener("click", handleReset);
 
 
-document.getElementById("leadersBtn")
-    .addEventListener("click", () => {
+    // ------------------------------
+    // All Access Buttons
+    // ------------------------------
 
-        if (!requireAllAccess("Leaders")) {
-            return;
-        }
+    document.getElementById("compareBtn")
+        .addEventListener("click", () => {
 
-        loadLeaders();
-    });
+            if (!requireAllAccess("Player Comparison")) {
+                return;
+            }
+
+            showCompareModal();
+        });
 
 
-document.getElementById("trendBtn")
-    .addEventListener("click", () => {
+    document.getElementById("leadersBtn")
+        .addEventListener("click", () => {
 
-        if (!requireAllAccess("Trend Analysis")) {
-            return;
-        }
+            if (!requireAllAccess("Leaders")) {
+                return;
+            }
 
-        handleTrend();
-    });
+            loadLeaders();
+        });
 
-// Apply Free Trial / All Access appearance
-updateAccessUI();
+
+    document.getElementById("trendBtn")
+        .addEventListener("click", () => {
+
+            if (!requireAllAccess("Trend Analysis")) {
+                return;
+            }
+
+            handleTrend();
+        });
+
+
+    // Apply Free Trial / All Access appearance
+    updateAccessUI();
 
 
     // Timestamp
     loadLastUpdated(currentSeason);
+
 
     // Close modals
     document.getElementById("trendClose").onclick = () =>
@@ -1897,10 +1898,17 @@ updateAccessUI();
     document.getElementById("compareClose").onclick = () =>
         document.getElementById("compareModal").style.display = "none";
 
+
     // Click outside to close Leaders
     window.addEventListener("click", (e) => {
-        const modal = document.getElementById("leadersModal");
+
+        const modal =
+            document.getElementById("leadersModal");
+
         if (e.target === modal) {
             modal.style.display = "none";
         }
+
     });
+
+});  // ← closes DOMContentLoaded
