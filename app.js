@@ -967,9 +967,17 @@ const percentileEl =
 if (!hasAllAccess()) {
 
     percentileEl.innerHTML = `
-        <span class="percentile-premium-lock">
-            🔒
-        </span>
+        <div class="percentile-premium-wrap">
+
+            <span class="percentile-premium-lock">
+                🔒
+            </span>
+
+            <span class="percentile-premium-label">
+                ALL ACCESS
+            </span>
+
+        </div>
     `;
 
 } else {
