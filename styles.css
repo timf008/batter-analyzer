@@ -3009,17 +3009,17 @@ select:focus {
 /* All Access Pill */
 
 .watch-premium-badge {
-    padding: 4px 9px;
+    padding: 3px 7px;
 
     background: #eef3f8;
 
     border: 1px solid #cbd6e2;
     border-radius: 999px;
 
-    color: #0f243e;
+    color: #536a82;
 
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 10px;
+    font-weight: 700;
     letter-spacing: 0.5px;
 
     white-space: nowrap;
