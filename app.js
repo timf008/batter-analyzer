@@ -980,6 +980,11 @@ if (!hasAllAccess()) {
             : "--";
 }
 
+} catch (err) {
+    console.error("Error loading player:", err);
+}
+}
+
 
 // -------------------------------
 // Load Batter of the Day
