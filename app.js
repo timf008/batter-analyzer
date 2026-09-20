@@ -637,6 +637,33 @@ function updateWhatToWatch(metrics) {
 
     if (!watchGrid) return;
 
+    // -------------------------------
+    // Free Trial Lock
+    // -------------------------------
+
+    if (!hasAllAccess()) {
+
+        watchGrid.innerHTML = `
+            <div class="watch-premium-lock">
+
+                <div class="watch-premium-icon">
+                    🔒
+                </div>
+
+                <div class="watch-premium-badge">
+                    ALL ACCESS
+                </div>
+
+                <div class="watch-premium-text">
+                    Unlock What to Watch Analysis
+                </div>
+
+            </div>
+        `;
+
+        return;
+    }
+
     // --------------------------------
     // Metric definitions
     // --------------------------------
