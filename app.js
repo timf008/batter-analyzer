@@ -215,11 +215,12 @@ const fantasyPremiumLock =
 const fantasyPremiumContent =
     document.getElementById("fantasyPremiumContent");
 
-console.log("FANTASY ACCESS:", {
-    allAccess,
-    lockFound: !!fantasyPremiumLock,
-    contentFound: !!fantasyPremiumContent
-});
+console.log(
+    "FANTASY ACCESS:",
+    "allAccess =", allAccess,
+    "lockFound =", !!fantasyPremiumLock,
+    "contentFound =", !!fantasyPremiumContent
+);
 
 if (fantasyPremiumLock && fantasyPremiumContent) {
 
