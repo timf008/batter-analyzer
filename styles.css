@@ -3140,6 +3140,11 @@ select:focus {
     letter-spacing: 0.2px;
 }
 
+#fantasyPremiumLock[hidden],
+#fantasyPremiumContent[hidden] {
+    display: none !important;
+}
+
 /* ------------------------------
    Percentile - Premium Lock
 ------------------------------ */
