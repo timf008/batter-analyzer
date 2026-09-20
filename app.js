@@ -10,6 +10,83 @@
 const season = 2026;
 loadBatterOfDay(season);
 
+// =====================================================
+// ALL ACCESS - TEST MODE
+// =====================================================
+
+// true  = simulate Free Trial
+// false = simulate All Access
+
+const TEST_FREE_MODE = false;
+
+
+// ------------------------------
+// Access Helper
+// ------------------------------
+
+function hasAllAccess() {
+    return !TEST_FREE_MODE;
+}
+
+
+// ------------------------------
+// Premium Feature Gate
+// ------------------------------
+
+function requireAllAccess(featureName) {
+
+    if (hasAllAccess()) {
+        return true;
+    }
+
+    alert(
+        `${featureName} is available with TimBaseball All Access.`
+    );
+
+    return false;
+}
+
+// ------------------------------
+// Update Access UI
+// ------------------------------
+
+function updateAccessUI() {
+
+    const premiumButtons = [
+        document.getElementById("trendBtn"),
+        document.getElementById("compareBtn"),
+        document.getElementById("leadersBtn")
+    ];
+
+    premiumButtons.forEach(button => {
+
+        if (!button) return;
+
+        if (hasAllAccess()) {
+
+            // Restore original button label
+            button.textContent =
+                button.dataset.originalText ||
+                button.textContent.replace(" 🔒", "");
+
+            button.classList.remove("premium-locked");
+
+        } else {
+
+            // Save original label once
+            if (!button.dataset.originalText) {
+                button.dataset.originalText =
+                    button.textContent.trim();
+            }
+
+            button.textContent =
+                `${button.dataset.originalText} 🔒`;
+
+            button.classList.add("premium-locked");
+        }
+    });
+}
+
 // -------------------------------
 // Safe helpers
 // -------------------------------
@@ -1712,12 +1789,52 @@ async function loadLastUpdated(season) {
 // -------------------------------
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Main buttons
-    document.getElementById("loadBtn").addEventListener("click", handleLoad);
-    document.getElementById("resetBtn").addEventListener("click", handleReset);
-    document.getElementById("compareBtn").addEventListener("click", showCompareModal);
-    document.getElementById("leadersBtn").addEventListener("click", loadLeaders);
-    document.getElementById("trendBtn").addEventListener("click", handleTrend);
+// Main buttons
+document.getElementById("loadBtn")
+    .addEventListener("click", handleLoad);
+
+document.getElementById("resetBtn")
+    .addEventListener("click", handleReset);
+
+
+// ------------------------------
+// All Access Buttons
+// ------------------------------
+
+document.getElementById("compareBtn")
+    .addEventListener("click", () => {
+
+        if (!requireAllAccess("Player Comparison")) {
+            return;
+        }
+
+        showCompareModal();
+    });
+
+
+document.getElementById("leadersBtn")
+    .addEventListener("click", () => {
+
+        if (!requireAllAccess("Leaders")) {
+            return;
+        }
+
+        loadLeaders();
+    });
+
+
+document.getElementById("trendBtn")
+    .addEventListener("click", () => {
+
+        if (!requireAllAccess("Trend Analysis")) {
+            return;
+        }
+
+        handleTrend();
+    });
+
+// Apply Free Trial / All Access appearance
+updateAccessUI();
 
 
     // Timestamp
