@@ -244,10 +244,57 @@ function updateXP(xp) {
 // -------------------------------
 function updateParkAdjusted(p) {
 
-    const adjustedEl = document.getElementById("parkAdjustedOverall");
-    const adjustmentEl = document.getElementById("parkAdjustment");
-    const venueEl = document.getElementById("parkVenue");
-    const factorEl = document.getElementById("parkFactor");
+    const adjustedEl =
+        document.getElementById("parkAdjustedOverall");
+
+    const adjustmentEl =
+        document.getElementById("parkAdjustment");
+
+    const venueEl =
+        document.getElementById("parkVenue");
+
+    const factorEl =
+        document.getElementById("parkFactor");
+
+
+    // -------------------------------
+    // Free Trial Lock
+    // -------------------------------
+
+    if (!hasAllAccess()) {
+
+        adjustedEl.innerHTML = `
+            <span class="premium-value-lock">
+                🔒
+            </span>
+        `;
+
+        adjustmentEl.textContent = "ALL ACCESS";
+
+        adjustmentEl.classList.remove(
+            "positive",
+            "negative",
+            "neutral"
+        );
+
+        adjustmentEl.classList.add(
+            "premium-label"
+        );
+
+        venueEl.textContent =
+            "Unlock Park Analysis";
+
+        factorEl.textContent = "";
+
+        return;
+    }
+
+
+    // Missing / unmatched park data
+    if (
+        p.ParkAdjustedOverall == null ||
+        isNaN(Number(p.ParkAdjustedOverall))
+    ) {
 
     // Missing / unmatched park data
     if (
