@@ -2925,3 +2925,16 @@ select:focus {
     }
 
 }
+
+/* ------------------------------
+   All Access - Locked Buttons
+------------------------------ */
+
+.premium-locked {
+    opacity: 0.72;
+    cursor: pointer;
+}
+
+.premium-locked:hover {
+    opacity: 0.9;
+}
