@@ -91,6 +91,7 @@ function updateAccessUI() {
 
             button.textContent = button.dataset.originalText;
             button.classList.add("premium-locked");
+        }
     });
 
 
