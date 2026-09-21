@@ -17,7 +17,7 @@ loadBatterOfDay(season);
 // true  = simulate Free Trial
 // false = simulate All Access
 
-const TEST_FREE_MODE = false;
+const TEST_FREE_MODE = true;
 
 
 // ------------------------------
@@ -89,11 +89,8 @@ function updateAccessUI() {
                     button.textContent.trim();
             }
 
-            button.textContent =
-                `${button.dataset.originalText} 🔒`;
-
+            button.textContent = button.dataset.originalText;
             button.classList.add("premium-locked");
-        }
     });
 
 
