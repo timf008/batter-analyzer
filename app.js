@@ -700,44 +700,6 @@ function stripZero(x) {
     return String(x).replace(/^0+/, "");
 }
 
-// -------------------------------
-// Main: Load player + update UI (backend-only)
-// -------------------------------
-async function handleLoad() {
-
-    try {
-        const name = document.getElementById("playerName").value.trim();
-        const season = parseInt(document.getElementById("seasonSelect").value);
-
-        if (!name) {
-            alert("Enter a player name.");
-            return;
-        }
-
-        const data = await loadBatter(name, season);
-
-        if (!data || data.error || (Array.isArray(data) && data.length === 0)) {
-            alert("Batter not found.");
-            return;
-        }
-
-        const p = Array.isArray(data) ? data[0] : data;
-
-        console.log("Loaded batter data:", p);
-        console.log("HR value:", p.HR);
-
-        const baScore    = scoreBA(p.BA);
-        const obpScore   = scoreOBP(p.OBP);
-        const slgScore   = scoreSLG(p.SLG);
-        const kpctScore  = scoreKpct(p.Kpct);
-        const bbpctScore = scoreBBpct(p.BBpct);
-
-        updateBA(safeFixed(p.BA, 3), baScore);
-updateOBP(safeFixed(p.OBP, 3), obpScore);
-updateSLG(safeFixed(p.SLG, 3), slgScore);
-updateKpct(safeFixed(p.Kpct, 1), kpctScore);
-updateBBpct(safeFixed(p.BBpct, 1), bbpctScore);
-
 // ============================================================
 // Player Browser
 // ============================================================
@@ -940,6 +902,46 @@ playersModeBtn.addEventListener("click", () => {
     console.log("PLAYERS BUTTON CLICKED");
     showPlayersMode();
 });
+
+
+// -------------------------------
+// Main: Load player + update UI (backend-only)
+// -------------------------------
+async function handleLoad() {
+
+    try {
+        const name = document.getElementById("playerName").value.trim();
+        const season = parseInt(document.getElementById("seasonSelect").value);
+
+        if (!name) {
+            alert("Enter a player name.");
+            return;
+        }
+
+        const data = await loadBatter(name, season);
+
+        if (!data || data.error || (Array.isArray(data) && data.length === 0)) {
+            alert("Batter not found.");
+            return;
+        }
+
+        const p = Array.isArray(data) ? data[0] : data;
+
+        console.log("Loaded batter data:", p);
+        console.log("HR value:", p.HR);
+
+        const baScore    = scoreBA(p.BA);
+        const obpScore   = scoreOBP(p.OBP);
+        const slgScore   = scoreSLG(p.SLG);
+        const kpctScore  = scoreKpct(p.Kpct);
+        const bbpctScore = scoreBBpct(p.BBpct);
+
+        updateBA(safeFixed(p.BA, 3), baScore);
+updateOBP(safeFixed(p.OBP, 3), obpScore);
+updateSLG(safeFixed(p.SLG, 3), slgScore);
+updateKpct(safeFixed(p.Kpct, 1), kpctScore);
+updateBBpct(safeFixed(p.BBpct, 1), bbpctScore);
+
 
 // -------------------------------
 // Season Production
