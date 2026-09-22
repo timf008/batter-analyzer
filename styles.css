@@ -411,62 +411,118 @@ select:focus {
 
 
 /* -----------------------------------------
-   Buttons
+   Action Buttons
 ----------------------------------------- */
+
 .controls.row button {
-    height: 38px;
+    height: 42px;
     padding: 0 16px;
 
-    border: none;
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 
-    background: linear-gradient(135deg, #0b131d, #005fcc);
+    border: none;
+    border-radius: 9px;
+
     color: #ffffff;
 
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 800;
 
     cursor: pointer;
 
     box-shadow:
-        0 4px 8px rgba(15, 36, 62, 0.22),
-        0 1px 2px rgba(0, 0, 0, 0.12);
+        0 5px 10px rgba(15, 36, 62, 0.18),
+        0 1px 2px rgba(0, 0, 0, 0.10);
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease;
 }
+
+
+/* Icon */
+
+.controls.row button .btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 25px;
+    padding-right: 9px;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.30);
+
+    font-size: 19px;
+    line-height: 1;
+}
+
+
+/* Load */
+
+#loadBtn {
+    background: linear-gradient(135deg, #0b365f, #0767b2);
+}
+
+
+/* Trend */
+
+#trendBtn {
+    background: linear-gradient(135deg, #172b40, #304d68);
+}
+
+
+/* Compare */
+
+#compareBtn {
+    background: linear-gradient(135deg, #493576, #7053aa);
+}
+
+
+/* Leaders */
+
+#leadersBtn {
+    background: linear-gradient(135deg, #9a6a08, #d3a127);
+}
+
+
+/* Swap */
+
+#swapBtn {
+    background: linear-gradient(135deg, #176477, #2b91a1);
+}
+
+
+/* Reset */
+
+#resetBtn {
+    background: linear-gradient(135deg, #c63737, #e04b47);
+}
+
+
+/* Hover */
 
 .controls.row button:hover {
     transform: translateY(-2px);
 
+    filter: brightness(1.06);
+
     box-shadow:
-        0 7px 14px rgba(15, 36, 62, 0.26),
-        0 2px 4px rgba(0, 0, 0, 0.12);
+        0 8px 16px rgba(15, 36, 62, 0.23),
+        0 2px 4px rgba(0, 0, 0, 0.10);
 }
+
+
+/* Press */
 
 .controls.row button:active {
-    transform: translateY(-1px);
+    transform: translateY(0);
 
     box-shadow:
-        0 4px 8px rgba(15, 36, 62, 0.22),
-        0 1px 2px rgba(0, 0, 0, 0.10);
-}
-
-/* Reset */
-
-.controls.row button.reset {
-    background: linear-gradient(135deg, #d9534f, #b52b27);
-
-    box-shadow:
-        0 4px 8px rgba(181, 43, 39, 0.22),
-        0 1px 2px rgba(0, 0, 0, 0.10);
-}
-
-.controls.row button.reset:hover {
-    box-shadow:
-        0 7px 14px rgba(181, 43, 39, 0.26),
-        0 2px 4px rgba(0, 0, 0, 0.10);
+        0 3px 6px rgba(15, 36, 62, 0.18);
 }
 
 /* -----------------------------------------
