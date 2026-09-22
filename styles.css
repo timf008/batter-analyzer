@@ -353,16 +353,14 @@ body {
 
 .action-row {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
 
-    gap: 10px;
-
-    margin: 0 0 14px;
-    padding: 0;
-
-    background: transparent;
-    box-shadow: none;
+.action-row button {
+    flex: 1;
+    min-width: 0;
+    padding: 0 10px;
 }
 
 
@@ -451,12 +449,12 @@ select:focus {
     align-items: center;
     justify-content: center;
 
-    min-width: 25px;
-    padding-right: 9px;
+    min-width: 20px;
+    padding-right: 7px;
 
     border-right: 1px solid rgba(255, 255, 255, 0.30);
 
-    font-size: 19px;
+    font-size: 17px;
     line-height: 1;
 }
 
