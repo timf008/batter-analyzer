@@ -936,7 +936,10 @@ browserSeason.addEventListener("change", async () => {
 // Mode Buttons
 // ------------------------------------------------------------
 searchModeBtn.addEventListener("click", showSearchMode);
-playersModeBtn.addEventListener("click", showPlayersMode);
+playersModeBtn.addEventListener("click", () => {
+    console.log("PLAYERS BUTTON CLICKED");
+    showPlayersMode();
+});
 
 // -------------------------------
 // Season Production
