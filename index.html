@@ -54,59 +54,46 @@
 
 <section class="search-panel">
 
+    <!-- Player Search Header -->
     <div class="search-header">
-
-        <h2 id="searchPanelTitle">👤 Player Search</h2>
-
-        <!-- Search / Player Browser Toggle -->
-        <div class="search-mode-toggle">
-            <button id="searchModeBtn" class="mode-btn active">
-                Search
-            </button>
-
-            <button id="playersModeBtn" class="mode-btn">
-                Players
-            </button>
-        </div>
-
+        <h2>👤 Player Search</h2>
     </div>
 
 
     <div class="search-body">
 
-
-        <!-- ==========================================
-             SEARCH MODE
-        =========================================== -->
         <div id="playerSearchView">
 
             <!-- Player Inputs -->
             <section class="controls search-input-row">
 
+
                 <!-- Player 1 -->
                 <div class="player-search-group">
 
                     <div class="input-group player-input">
-    <label for="playerName">Player Name</label>
+                        <label for="playerName">Player Name</label>
 
-    <div class="autocomplete-wrap">
-        <input
-            type="text"
-            id="playerName"
-            placeholder="Kyle Schwarber"
-            autocomplete="off"
-        >
+                        <div class="autocomplete-wrap">
+                            <input
+                                type="text"
+                                id="playerName"
+                                placeholder="Kyle Schwarber"
+                                autocomplete="off"
+                            >
 
-        <div
-            id="playerAutocomplete"
-            class="player-autocomplete"
-            hidden>
-        </div>
-    </div>
-</div>
+                            <div
+                                id="playerAutocomplete"
+                                class="player-autocomplete"
+                                hidden>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="input-group season-input">
                         <label for="seasonSelect">Season</label>
+
                         <select id="seasonSelect">
                             <option value="2026">2026</option>
                             <option value="2025">2025</option>
@@ -125,26 +112,28 @@
                 <div class="player-search-group">
 
                     <div class="input-group player-input">
-    <label for="playerName2">Compare Player</label>
+                        <label for="playerName2">Compare Player</label>
 
-    <div class="autocomplete-wrap">
-        <input
-            type="text"
-            id="playerName2"
-            placeholder="Aaron Judge"
-            autocomplete="off"
-        >
+                        <div class="autocomplete-wrap">
+                            <input
+                                type="text"
+                                id="playerName2"
+                                placeholder="Aaron Judge"
+                                autocomplete="off"
+                            >
 
-        <div
-            id="playerAutocomplete2"
-            class="player-autocomplete"
-            hidden>
-        </div>
-    </div>
-</div>
+                            <div
+                                id="playerAutocomplete2"
+                                class="player-autocomplete"
+                                hidden>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="input-group season-input">
                         <label for="seasonSelect2">Season</label>
+
                         <select id="seasonSelect2">
                             <option value="2026">2026</option>
                             <option value="2025">2025</option>
@@ -165,89 +154,36 @@
             <section class="controls row action-row">
 
                 <button id="loadBtn">
-    <span class="btn-icon">⌕</span>
-    <span>Load</span>
-</button>
+                    <span class="btn-icon">⌕</span>
+                    <span>Load</span>
+                </button>
 
-<button id="trendBtn">
-    <span class="btn-icon">▥</span>
-    <span>Trend</span>
-</button>
+                <button id="trendBtn">
+                    <span class="btn-icon">▥</span>
+                    <span>Trend</span>
+                </button>
 
-<button id="compareBtn">
-    <span class="btn-icon">♟</span>
-    <span>Compare</span>
-</button>
+                <button id="compareBtn">
+                    <span class="btn-icon">♟</span>
+                    <span>Compare</span>
+                </button>
 
-<button id="leadersBtn">
-    <span class="btn-icon">♛</span>
-    <span>Leaders</span>
-</button>
+                <button id="leadersBtn">
+                    <span class="btn-icon">♛</span>
+                    <span>Leaders</span>
+                </button>
 
-<button id="swapBtn">
-    <span class="btn-icon">⇄</span>
-    <span>Swap</span>
-</button>
+                <button id="swapBtn">
+                    <span class="btn-icon">⇄</span>
+                    <span>Swap</span>
+                </button>
 
-<button id="resetBtn" class="reset">
-    <span class="btn-icon">↻</span>
-    <span>Reset</span>
-</button>
+                <button id="resetBtn" class="reset">
+                    <span class="btn-icon">↻</span>
+                    <span>Reset</span>
+                </button>
 
             </section>
-
-        </div>
-
-
-        <!-- ==========================================
-             PLAYER BROWSER MODE
-        =========================================== -->
-        <div id="playerBrowserView" hidden>
-
-            <div class="browser-controls">
-
-                <div class="input-group browser-season">
-                    <label for="browserSeason">Season</label>
-
-                    <select id="browserSeason">
-                        <option value="2026">2026</option>
-                        <option value="2025">2025</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        <option value="2020">2020</option>
-                    </select>
-                </div>
-
-
-                <div class="input-group browser-filter">
-                    <label for="playerBrowserFilter">Find Player</label>
-
-                    <input
-                        type="text"
-                        id="playerBrowserFilter"
-                        placeholder="Search players..."
-                    >
-                </div>
-
-            </div>
-
-
-            <!-- Browser Column Headers -->
-            <div class="player-browser-header">
-                <span>Player</span>
-                <span>Team</span>
-            </div>
-
-
-            <!-- Scrollable Player List -->
-            <div
-                id="playerBrowserList"
-                class="player-browser-list"
-            >
-                <!-- JavaScript inserts players here -->
-            </div>
 
         </div>
 
