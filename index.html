@@ -125,13 +125,23 @@
                 <div class="player-search-group">
 
                     <div class="input-group player-input">
-                        <label for="playerName2">Player Name (Compare)</label>
-                        <input
-                            type="text"
-                            id="playerName2"
-                            placeholder="Juan Soto"
-                        >
-                    </div>
+    <label for="playerName2">Compare Player</label>
+
+    <div class="autocomplete-wrap">
+        <input
+            type="text"
+            id="playerName2"
+            placeholder="Aaron Judge"
+            autocomplete="off"
+        >
+
+        <div
+            id="playerAutocomplete2"
+            class="player-autocomplete"
+            hidden>
+        </div>
+    </div>
+</div>
 
                     <div class="input-group season-input">
                         <label for="seasonSelect2">Season</label>
