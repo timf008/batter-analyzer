@@ -687,137 +687,177 @@ function stripZero(x) {
 }
 
 // ------------------------------
-// Player 1 Autocomplete
+// Player Autocomplete
 // ------------------------------
 
-const playerInput = document.getElementById("playerName");
-const playerAutocomplete = document.getElementById("playerAutocomplete");
-const playerSeason = document.getElementById("seasonSelect");
+const autocompleteCache = {};
 
-let autocompletePlayers = [];
-let autocompleteSeason = null;
+function setupPlayerAutocomplete({
+    inputId,
+    dropdownId,
+    seasonId
+}) {
+
+    const input = document.getElementById(inputId);
+    const dropdown = document.getElementById(dropdownId);
+    const seasonSelect = document.getElementById(seasonId);
+
+    if (!input || !dropdown || !seasonSelect) return;
 
 
-// Load player list for selected season
-async function loadAutocompletePlayers() {
+    // ------------------------------
+    // Load Player List
+    // ------------------------------
+    async function getPlayers() {
 
-    const season = playerSeason.value;
+        const season = seasonSelect.value;
 
-    // Already loaded this season
-    if (
-        autocompletePlayers.length > 0 &&
-        autocompleteSeason === season
-    ) {
-        return;
-    }
-
-    try {
-
-        const response = await fetch(
-            `https://batter-analyzer-backend.onrender.com/api/players?season=${season}`
-        );
-
-        if (!response.ok) {
-            throw new Error("Unable to load player list.");
+        // Use cached season list
+        if (autocompleteCache[season]) {
+            return autocompleteCache[season];
         }
 
-        autocompletePlayers = await response.json();
-        autocompleteSeason = season;
+        try {
 
-    } catch (error) {
+            const response = await fetch(
+                `https://batter-analyzer-backend.onrender.com/api/players?season=${season}`
+            );
 
-        console.error("Autocomplete player load failed:", error);
+            if (!response.ok) {
+                throw new Error("Unable to load player list.");
+            }
 
-        autocompletePlayers = [];
-        autocompleteSeason = null;
+            const players = await response.json();
+
+            autocompleteCache[season] = players;
+
+            return players;
+
+        } catch (error) {
+
+            console.error("Autocomplete player load failed:", error);
+
+            return [];
+        }
     }
-}
 
 
-// Render autocomplete dropdown
-function renderPlayerAutocomplete() {
+    // ------------------------------
+    // Render Dropdown
+    // ------------------------------
+    async function renderAutocomplete() {
 
-    const search = playerInput.value
-        .trim()
-        .toLowerCase();
+        const players = await getPlayers();
 
-    const matches = autocompletePlayers.filter(player => {
+        const search = input.value
+            .trim()
+            .toLowerCase();
 
-        const name = (player.Player || "").toLowerCase();
-        const team = (player.Team || "").toLowerCase();
+        const matches = players.filter(player => {
 
-        return (
-            !search ||
-            name.includes(search) ||
-            team.includes(search)
-        );
-    });
+            const name = (player.Player || "").toLowerCase();
+            const team = (player.Team || "").toLowerCase();
 
-    playerAutocomplete.innerHTML = "";
-
-    matches.forEach(player => {
-
-        const row = document.createElement("div");
-
-        row.className = "player-autocomplete-row";
-
-        row.innerHTML = `
-            <span class="autocomplete-player-name">
-                ${player.Player}
-            </span>
-
-            <span class="autocomplete-player-team">
-                ${player.Team || ""}
-            </span>
-        `;
-
-        row.addEventListener("click", () => {
-
-            playerInput.value = player.Player;
-
-            playerAutocomplete.hidden = true;
+            return (
+                !search ||
+                name.includes(search) ||
+                team.includes(search)
+            );
         });
 
-        playerAutocomplete.appendChild(row);
+        dropdown.innerHTML = "";
+
+        matches.forEach(player => {
+
+            const row = document.createElement("div");
+
+            row.className = "player-autocomplete-row";
+
+            row.innerHTML = `
+                <span class="autocomplete-player-name">
+                    ${player.Player}
+                </span>
+
+                <span class="autocomplete-player-team">
+                    ${player.Team || ""}
+                </span>
+            `;
+
+            row.addEventListener("click", () => {
+
+                input.value = player.Player;
+
+                dropdown.hidden = true;
+            });
+
+            dropdown.appendChild(row);
+        });
+
+        dropdown.hidden = matches.length === 0;
+    }
+
+
+    // ------------------------------
+    // Open on Focus
+    // ------------------------------
+    input.addEventListener("focus", () => {
+
+        renderAutocomplete();
     });
 
-    playerAutocomplete.hidden = matches.length === 0;
+
+    // ------------------------------
+    // Filter While Typing
+    // ------------------------------
+    input.addEventListener("input", () => {
+
+        renderAutocomplete();
+    });
+
+
+    // ------------------------------
+    // Season Changed
+    // ------------------------------
+    seasonSelect.addEventListener("change", () => {
+
+        dropdown.hidden = true;
+
+        // No need to destroy cache.
+        // New season automatically uses its own list.
+    });
+
+
+    // ------------------------------
+    // Close When Clicking Elsewhere
+    // ------------------------------
+    document.addEventListener("click", event => {
+
+        if (!event.target.closest(".autocomplete-wrap")) {
+            dropdown.hidden = true;
+        }
+    });
 }
 
 
-// Open dropdown when Player Name is clicked/focused
-playerInput.addEventListener("focus", async () => {
-
-    await loadAutocompletePlayers();
-
-    renderPlayerAutocomplete();
+// ------------------------------
+// Player 1
+// ------------------------------
+setupPlayerAutocomplete({
+    inputId: "playerName",
+    dropdownId: "playerAutocomplete",
+    seasonId: "seasonSelect"
 });
 
 
-// Filter list while typing
-playerInput.addEventListener("input", () => {
-
-    renderPlayerAutocomplete();
+// ------------------------------
+// Player 2
+// ------------------------------
+setupPlayerAutocomplete({
+    inputId: "playerName2",
+    dropdownId: "playerAutocomplete2",
+    seasonId: "seasonSelect2"
 });
 
-
-// Clear cached list when season changes
-playerSeason.addEventListener("change", () => {
-
-    autocompletePlayers = [];
-    autocompleteSeason = null;
-
-    playerAutocomplete.hidden = true;
-});
-
-
-// Close dropdown when clicking somewhere else
-document.addEventListener("click", event => {
-
-    if (!event.target.closest(".autocomplete-wrap")) {
-        playerAutocomplete.hidden = true;
-    }
-});
 
 // ============================================================
 // Player Browser
