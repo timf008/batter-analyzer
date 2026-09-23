@@ -87,13 +87,23 @@
                 <div class="player-search-group">
 
                     <div class="input-group player-input">
-                        <label for="playerName">Player Name</label>
-                        <input
-                            type="text"
-                            id="playerName"
-                            placeholder="Kyle Schwarber"
-                        >
-                    </div>
+    <label for="playerName">Player Name</label>
+
+    <div class="autocomplete-wrap">
+        <input
+            type="text"
+            id="playerName"
+            placeholder="Kyle Schwarber"
+            autocomplete="off"
+        >
+
+        <div
+            id="playerAutocomplete"
+            class="player-autocomplete"
+            hidden>
+        </div>
+    </div>
+</div>
 
                     <div class="input-group season-input">
                         <label for="seasonSelect">Season</label>
