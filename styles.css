@@ -101,7 +101,7 @@ body {
     background: #ffffff;
     border: 1px solid #dbe4ee;
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 4px 14px rgba(15, 36, 62, 0.06);
 }
 
