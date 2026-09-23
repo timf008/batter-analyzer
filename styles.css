@@ -233,6 +233,14 @@ body {
    Player Autocomplete
 ------------------------------ */
 
+/* Allow autocomplete to escape the search card */
+#playerSearchView,
+.search-input-row,
+.player-search-group,
+.player-input {
+    overflow: visible !important;
+}
+
 .autocomplete-wrap {
     position: relative;
     width: 100%;
