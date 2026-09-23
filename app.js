@@ -1633,12 +1633,20 @@ function generateBatterComparisonSummary(
 async function showCompareModal() {
     console.log("COMPARE BUTTON CLICKED");
 
-    function formatName(name) {
-        return name
-            .split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-            .join(' ');
-    }
+function formatName(name) {
+    return name
+        .split(' ')
+        .map(word =>
+            word
+                .split('-')
+                .map(part =>
+                    part.charAt(0).toUpperCase() +
+                    part.slice(1).toLowerCase()
+                )
+                .join('-')
+        )
+        .join(' ');
+}
 
     try {
         const p1_raw = document.getElementById("playerName").value.trim();
