@@ -1248,6 +1248,13 @@ function loadBatterOfDay(season) {
         .then(player => {
 
             console.log("Batter of the Day JSON:", player);
+            console.log({
+    name: document.getElementById("bod-name"),
+    team: document.getElementById("bod-team"),
+    overall: document.getElementById("bod-overall"),
+    xp: document.getElementById("bod-xp"),
+    summary: document.getElementById("bod-summary")
+});
 
             // Basic fields
             document.getElementById("bod-name").textContent = player.Player;
@@ -1863,9 +1870,6 @@ document.getElementById("compareModal").style.display = "flex";
         console.error("Compare error:", err);
     }
 }
-
-
-
 
 
 // -------------------------------
