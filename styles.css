@@ -229,6 +229,101 @@ body {
     color: #0f243e;
 }
 
+/* ------------------------------
+   Player Autocomplete
+------------------------------ */
+
+.autocomplete-wrap {
+    position: relative;
+    width: 100%;
+}
+
+
+/* Dropdown */
+.player-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    max-height: 140px;
+    overflow-y: auto;
+
+    background: #ffffff;
+    border: 1px solid #dbe4ee;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+
+    box-shadow: 0 6px 14px rgba(15, 36, 62, 0.14);
+
+    z-index: 1000;
+}
+
+
+/* Individual Player */
+.player-autocomplete-row {
+    display: grid;
+    grid-template-columns: 1fr 48px;
+    align-items: center;
+
+    min-height: 34px;
+    padding: 0 10px;
+
+    border-bottom: 1px solid #edf1f5;
+
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.player-autocomplete-row:last-child {
+    border-bottom: none;
+}
+
+.player-autocomplete-row:hover {
+    background: #f5f8fc;
+}
+
+
+/* Player Name */
+.autocomplete-player-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f243e;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* Team */
+.autocomplete-player-team {
+    font-size: 10px;
+    font-weight: 700;
+    color: #718096;
+
+    text-align: right;
+}
+
+
+/* Scrollbar */
+.player-autocomplete::-webkit-scrollbar {
+    width: 7px;
+}
+
+.player-autocomplete::-webkit-scrollbar-track {
+    background: #f4f7fa;
+}
+
+.player-autocomplete::-webkit-scrollbar-thumb {
+    background: #b8c5d1;
+    border-radius: 10px;
+}
+
+.player-autocomplete::-webkit-scrollbar-thumb:hover {
+    background: #8fa1b2;
+}
+
 
 /* -----------------------------------------
    Player Browser
