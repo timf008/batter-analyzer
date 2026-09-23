@@ -355,6 +355,7 @@ body {
     display: flex;
     gap: 8px;
     width: 100%;
+    margin-bottom: 6px;
 }
 
 .action-row button {
@@ -426,8 +427,8 @@ select:focus {
 
     color: #ffffff;
 
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 12.5px;
+    font-weight: 700;
 
     cursor: pointer;
 
