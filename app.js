@@ -1438,44 +1438,24 @@ function buildSeasonComparison(curr, prev, season, lastSeason) {
 }
 
 // -------------------------------
-// Trend Analysis
+// Batter Trend Analysis
+// Direction + Magnitude
 // -------------------------------
 function generateBatterTrendAnalysis(curr, prev) {
 
+    // ---------------------------------
+    // 1. Direction / Breadth
+    // ---------------------------------
     const trends = [
-        {
-            key: "BA",
-            higherIsBetter: true
-        },
-        {
-            key: "OBP",
-            higherIsBetter: true
-        },
-        {
-            key: "SLG",
-            higherIsBetter: true
-        },
-        {
-            key: "Kpct",
-            higherIsBetter: false
-        },
-        {
-            key: "BBpct",
-            higherIsBetter: true
-        },
-        {
-            key: "XP",
-            higherIsBetter: true
-        },
-        {
-            key: "OverallScore",
-            higherIsBetter: true
-        }
+        { key: "BA",           higherIsBetter: true  },
+        { key: "OBP",          higherIsBetter: true  },
+        { key: "SLG",          higherIsBetter: true  },
+        { key: "Kpct",         higherIsBetter: false },
+        { key: "BBpct",        higherIsBetter: true  },
+        { key: "XP",           higherIsBetter: true  },
+        { key: "OverallScore", higherIsBetter: true  }
     ];
 
-    // ---------------------------------
-    // Count improved / declined / flat
-    // ---------------------------------
     let improved = 0;
     let declined = 0;
     let flat = 0;
@@ -1501,143 +1481,390 @@ function generateBatterTrendAnalysis(curr, prev) {
         }
     });
 
-    const trendScore = improved - declined;
 
     // ---------------------------------
-    // Overall trend classification
+    // 2. Metric-score movement
+    // All five metrics use existing
+    // Batter 0–10 scoring functions
+    // ---------------------------------
+    const scoreChanges = {
+
+        BA:
+            scoreBA(curr.BA) -
+            scoreBA(prev.BA),
+
+        OBP:
+            scoreOBP(curr.OBP) -
+            scoreOBP(prev.OBP),
+
+        SLG:
+            scoreSLG(curr.SLG) -
+            scoreSLG(prev.SLG),
+
+        Kpct:
+            scoreKpct(curr.Kpct) -
+            scoreKpct(prev.Kpct),
+
+        BBpct:
+            scoreBBpct(curr.BBpct) -
+            scoreBBpct(prev.BBpct)
+    };
+
+
+    // ---------------------------------
+    // 3. Overall magnitude
+    // Mean absolute movement across
+    // five normalized metric scores
+    // ---------------------------------
+    const magnitude =
+        Object.values(scoreChanges)
+            .reduce((sum, value) => sum + Math.abs(value), 0) / 5;
+
+
+    // ---------------------------------
+    // 4. Overall direction
+    // Overall Score determines net
+    // direction of the batting profile
+    // ---------------------------------
+    const overallDiff =
+        Number(curr.OverallScore) -
+        Number(prev.OverallScore);
+
+    let direction;
+
+    if (overallDiff > 0.05) {
+        direction = "improvement";
+    }
+    else if (overallDiff < -0.05) {
+        direction = "decline";
+    }
+    else {
+        direction = "stable";
+    }
+
+
+    // ---------------------------------
+    // 5. Magnitude helper
+    // Initial calibration thresholds
+    // ---------------------------------
+    function movementLevel(change) {
+
+        const amount = Math.abs(change);
+
+        if (amount < 0.75) {
+            return "limited";
+        }
+        else if (amount < 1.50) {
+            return "moderate";
+        }
+        else {
+            return "significant";
+        }
+    }
+
+    const magnitudeLabel =
+        movementLevel(magnitude);
+
+
+    // ---------------------------------
+    // 6. Breadth
+    // ---------------------------------
+    let breadthLabel;
+
+    if (improved >= 6 || declined >= 6) {
+        breadthLabel = "broad";
+    }
+    else if (improved >= 4 || declined >= 4) {
+        breadthLabel = "general";
+    }
+    else {
+        breadthLabel = "mixed";
+    }
+
+
+    // ---------------------------------
+    // 7. Headline
     // ---------------------------------
     let classification;
 
-    if (trendScore >= 5) {
-        classification = "Strong year-over-year improvement.";
+    if (direction === "stable") {
+
+        classification =
+            "Year-over-year performance was relatively stable.";
     }
-    else if (trendScore >= 2) {
-        classification = "Year-over-year improvement.";
+
+    else if (direction === "improvement") {
+
+        if (magnitudeLabel === "significant") {
+            classification =
+                `${capitalize(breadthLabel)} and significant year-over-year improvement.`;
+        }
+        else if (magnitudeLabel === "moderate") {
+            classification =
+                `${capitalize(breadthLabel)} but moderate year-over-year improvement.`;
+        }
+        else {
+            classification =
+                `${capitalize(breadthLabel)} but limited year-over-year improvement.`;
+        }
     }
-    else if (trendScore >= -1) {
-        classification = "Mixed year-over-year performance.";
-    }
-    else if (trendScore >= -4) {
-        classification = "Year-over-year decline.";
-    }
+
     else {
-        classification = "Strong year-over-year decline.";
+
+        if (magnitudeLabel === "significant") {
+            classification =
+                `${capitalize(breadthLabel)} and significant year-over-year decline.`;
+        }
+        else if (magnitudeLabel === "moderate") {
+            classification =
+                `${capitalize(breadthLabel)} but moderate year-over-year decline.`;
+        }
+        else {
+            classification =
+                `${capitalize(breadthLabel)} but limited year-over-year decline.`;
+        }
     }
 
     const sentences = [classification];
 
+
     // ---------------------------------
+    // 8. Hitting + On-Base Profile
     // BA + OBP
     // ---------------------------------
-    const baImproved = Number(curr.BA) > Number(prev.BA);
-    const obpImproved = Number(curr.OBP) > Number(prev.OBP);
+    const baChange = scoreChanges.BA;
+    const obpChange = scoreChanges.OBP;
 
-    const baDeclined = Number(curr.BA) < Number(prev.BA);
-    const obpDeclined = Number(curr.OBP) < Number(prev.OBP);
+    const baImproved = baChange > 0;
+    const obpImproved = obpChange > 0;
+
+    const baDeclined = baChange < 0;
+    const obpDeclined = obpChange < 0;
+
+    const hittingMagnitude =
+        (Math.abs(baChange) + Math.abs(obpChange)) / 2;
+
+    const hittingLevel =
+        movementLevel(hittingMagnitude);
+
 
     if (baImproved && obpImproved) {
-        sentences.push(
-            "The hitting and on-base profile improved, with gains in both BA and OBP."
-        );
+
+        if (hittingLevel === "significant") {
+            sentences.push(
+                "The hitting and on-base profile improved substantially, with major gains in BA and OBP."
+            );
+        }
+        else if (hittingLevel === "moderate") {
+            sentences.push(
+                "The hitting and on-base profile improved moderately, with gains in BA and OBP."
+            );
+        }
+        else {
+            sentences.push(
+                "The hitting and on-base profile improved slightly, with modest gains in BA and OBP."
+            );
+        }
     }
+
     else if (baDeclined && obpDeclined) {
-        sentences.push(
-            "The hitting and on-base profile declined, with decreases in both BA and OBP."
-        );
+
+        if (hittingLevel === "significant") {
+            sentences.push(
+                "The hitting and on-base profile declined substantially, with major deterioration in BA and OBP."
+            );
+        }
+        else if (hittingLevel === "moderate") {
+            sentences.push(
+                "The hitting and on-base profile declined moderately, with decreases in BA and OBP."
+            );
+        }
+        else {
+            sentences.push(
+                "The hitting and on-base profile declined slightly, with modest decreases in BA and OBP."
+            );
+        }
     }
+
     else if (baImproved && obpDeclined) {
+
         sentences.push(
-            "The hitting profile was mixed, with BA improving while OBP declined."
+            "The hitting and on-base profile was mixed, with BA improving while OBP declined."
         );
     }
+
     else if (baDeclined && obpImproved) {
+
         sentences.push(
-            "The hitting profile was mixed, with OBP improving while BA declined."
+            "The hitting and on-base profile was mixed, with OBP improving while BA declined."
         );
     }
 
-    // ---------------------------------
-    // Power
-    // ---------------------------------
-    if (Number(curr.SLG) > Number(prev.SLG)) {
-        sentences.push(
-            "Power production improved, reflected by the higher SLG."
-        );
-    }
-    else if (Number(curr.SLG) < Number(prev.SLG)) {
-        sentences.push(
-            "Power production declined, reflected by the lower SLG."
-        );
-    }
 
     // ---------------------------------
-    // Plate discipline
-    // Lower K% = better
-    // Higher BB% = better
+    // 9. Power
+    // SLG
     // ---------------------------------
-    const kImproved = Number(curr.Kpct) < Number(prev.Kpct);
-    const bbImproved = Number(curr.BBpct) > Number(prev.BBpct);
+    const slgChange = scoreChanges.SLG;
+    const powerLevel =
+        movementLevel(slgChange);
 
-    const kDeclined = Number(curr.Kpct) > Number(prev.Kpct);
-    const bbDeclined = Number(curr.BBpct) < Number(prev.BBpct);
+    if (slgChange > 0) {
+
+        if (powerLevel === "significant") {
+            sentences.push(
+                "Power production improved substantially."
+            );
+        }
+        else if (powerLevel === "moderate") {
+            sentences.push(
+                "Power production improved moderately."
+            );
+        }
+        else {
+            sentences.push(
+                "Power production improved slightly."
+            );
+        }
+    }
+
+    else if (slgChange < 0) {
+
+        if (powerLevel === "significant") {
+            sentences.push(
+                "Power production declined substantially."
+            );
+        }
+        else if (powerLevel === "moderate") {
+            sentences.push(
+                "Power production declined moderately."
+            );
+        }
+        else {
+            sentences.push(
+                "Power production declined slightly."
+            );
+        }
+    }
+
+
+    // ---------------------------------
+    // 10. Plate Discipline
+    // K% + BB%
+    // ---------------------------------
+    const kChange = scoreChanges.Kpct;
+    const bbChange = scoreChanges.BBpct;
+
+    const kImproved = kChange > 0;
+    const bbImproved = bbChange > 0;
+
+    const kDeclined = kChange < 0;
+    const bbDeclined = bbChange < 0;
+
+    const disciplineMagnitude =
+        (Math.abs(kChange) + Math.abs(bbChange)) / 2;
+
+    const disciplineLevel =
+        movementLevel(disciplineMagnitude);
+
 
     if (kImproved && bbImproved) {
-        sentences.push(
-            "Plate discipline improved, with a lower K% and higher BB%."
-        );
+
+        if (disciplineLevel === "significant") {
+            sentences.push(
+                "Plate discipline improved substantially, with major gains in strikeout and walk performance."
+            );
+        }
+        else if (disciplineLevel === "moderate") {
+            sentences.push(
+                "Plate discipline improved moderately, with a lower K% and higher BB%."
+            );
+        }
+        else {
+            sentences.push(
+                "Plate discipline improved slightly, with modest gains in K% and BB%."
+            );
+        }
     }
+
     else if (kDeclined && bbDeclined) {
-        sentences.push(
-            "Plate discipline declined, with a higher K% and lower BB%."
-        );
+
+        if (disciplineLevel === "significant") {
+            sentences.push(
+                "Plate discipline declined substantially, with meaningful deterioration in both strikeout and walk performance."
+            );
+        }
+        else if (disciplineLevel === "moderate") {
+            sentences.push(
+                "Plate discipline declined moderately, with a higher K% and lower BB%."
+            );
+        }
+        else {
+            sentences.push(
+                "Plate discipline declined slightly, with modest deterioration in K% and BB%."
+            );
+        }
     }
+
     else if (kDeclined && bbImproved) {
+
         sentences.push(
             "Plate discipline was mixed, with stronger walk production offset by a higher strikeout rate."
         );
     }
+
     else if (kImproved && bbDeclined) {
+
         sentences.push(
             "Plate discipline was mixed, with fewer strikeouts but a lower walk rate."
         );
     }
 
+
     // ---------------------------------
-    // XP + Overall
+    // 11. XP + Overall
     // ---------------------------------
-    const xpDiff = Math.round(curr.XP) - Math.round(prev.XP);
+    const xpDiff =
+        Math.round(curr.XP) -
+        Math.round(prev.XP);
 
-    const overallDiff =
-        Number(curr.OverallScore) - Number(prev.OverallScore);
+    if (xpDiff > 0 && overallDiff > 0) {
 
-    const xpImproved = xpDiff > 0;
-    const overallImproved = overallDiff > 0;
-
-    const xpDeclined = xpDiff < 0;
-    const overallDeclined = overallDiff < 0;
-
-    if (xpImproved && overallImproved) {
         sentences.push(
             `XP increased by ${Math.abs(xpDiff)}, while Overall Score improved by ${Math.abs(overallDiff).toFixed(1)} points.`
         );
     }
-    else if (xpDeclined && overallDeclined) {
+
+    else if (xpDiff < 0 && overallDiff < 0) {
+
         sentences.push(
             `XP declined by ${Math.abs(xpDiff)}, while Overall Score decreased by ${Math.abs(overallDiff).toFixed(1)} points.`
         );
     }
-    else if (xpImproved && overallDeclined) {
+
+    else if (xpDiff > 0 && overallDiff < 0) {
+
         sentences.push(
             `XP increased by ${Math.abs(xpDiff)}, while Overall Score declined by ${Math.abs(overallDiff).toFixed(1)} points.`
         );
     }
-    else if (xpDeclined && overallImproved) {
+
+    else if (xpDiff < 0 && overallDiff > 0) {
+
         sentences.push(
             `XP declined by ${Math.abs(xpDiff)}, while Overall Score improved by ${Math.abs(overallDiff).toFixed(1)} points.`
         );
     }
 
     return sentences.join(" ");
+}
+
+
+// -------------------------------
+// Capitalize helper
+// -------------------------------
+function capitalize(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 // -------------------------------
