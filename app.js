@@ -1567,14 +1567,44 @@ function generateBatterTrendAnalysis(curr, prev) {
 
 
     // ---------------------------------
-    // 6. Breadth
+    // 6. Skill Direction / Breadth
+    // Uses the five underlying batting
+    // metrics only — not XP or Overall
+    // ---------------------------------
+    const skillChanges = [
+        scoreChanges.BA,
+        scoreChanges.OBP,
+        scoreChanges.SLG,
+        scoreChanges.Kpct,
+        scoreChanges.BBpct
+    ];
+
+    const skillImproved =
+        skillChanges.filter(value => value > 0).length;
+
+    const skillDeclined =
+        skillChanges.filter(value => value < 0).length;
+
+    const skillFlat =
+        skillChanges.filter(value => value === 0).length;
+
+
+    // A genuinely mixed skill profile:
+    // at least two metrics moved each way
+    const mixedProfile =
+        skillImproved >= 2 &&
+        skillDeclined >= 2;
+
+
+    // ---------------------------------
+    // 7. Breadth
     // ---------------------------------
     let breadthLabel;
 
-    if (improved >= 6 || declined >= 6) {
+    if (skillImproved >= 4 || skillDeclined >= 4) {
         breadthLabel = "broad";
     }
-    else if (improved >= 4 || declined >= 4) {
+    else if (skillImproved >= 3 || skillDeclined >= 3) {
         breadthLabel = "general";
     }
     else {
@@ -1583,16 +1613,56 @@ function generateBatterTrendAnalysis(curr, prev) {
 
 
     // ---------------------------------
-    // 7. Headline
+    // 8. Headline
+    //
+    // Important distinction:
+    //
+    // magnitude = how much movement occurred
+    // direction = where Overall finished
+    // mixedProfile = whether underlying
+    // skills moved meaningfully both ways
     // ---------------------------------
     let classification;
 
-    if (direction === "stable") {
 
-        classification =
-            "Year-over-year performance was relatively stable.";
+    // Mixed underlying skill profile gets
+    // priority over tiny net Overall movement.
+    if (mixedProfile) {
+
+        if (magnitudeLabel === "significant") {
+            classification =
+                "Mixed year-over-year performance with significant underlying movement.";
+        }
+        else if (magnitudeLabel === "moderate") {
+            classification =
+                "Mixed year-over-year performance with moderate underlying movement.";
+        }
+        else {
+            classification =
+                "Mixed year-over-year performance with limited overall movement.";
+        }
     }
 
+
+    // Relatively stable net profile
+    else if (direction === "stable") {
+
+        if (magnitudeLabel === "significant") {
+            classification =
+                "Year-over-year performance was relatively stable despite significant underlying movement.";
+        }
+        else if (magnitudeLabel === "moderate") {
+            classification =
+                "Year-over-year performance was relatively stable with moderate underlying movement.";
+        }
+        else {
+            classification =
+                "Year-over-year performance was relatively stable.";
+        }
+    }
+
+
+    // Improvement
     else if (direction === "improvement") {
 
         if (magnitudeLabel === "significant") {
@@ -1609,6 +1679,8 @@ function generateBatterTrendAnalysis(curr, prev) {
         }
     }
 
+
+    // Decline
     else {
 
         if (magnitudeLabel === "significant") {
@@ -1625,11 +1697,12 @@ function generateBatterTrendAnalysis(curr, prev) {
         }
     }
 
+
     const sentences = [classification];
 
 
     // ---------------------------------
-    // 8. Hitting + On-Base Profile
+    // 9. Hitting + On-Base Profile
     // BA + OBP
     // ---------------------------------
     const baChange = scoreChanges.BA;
@@ -1702,7 +1775,7 @@ function generateBatterTrendAnalysis(curr, prev) {
 
 
     // ---------------------------------
-    // 9. Power
+    // 10. Power
     // SLG
     // ---------------------------------
     const slgChange = scoreChanges.SLG;
@@ -1749,7 +1822,7 @@ function generateBatterTrendAnalysis(curr, prev) {
 
 
     // ---------------------------------
-    // 10. Plate Discipline
+    // 11. Plate Discipline
     // K% + BB%
     // ---------------------------------
     const kChange = scoreChanges.Kpct;
@@ -1822,7 +1895,7 @@ function generateBatterTrendAnalysis(curr, prev) {
 
 
     // ---------------------------------
-    // 11. XP + Overall
+    // 12. XP + Overall
     // ---------------------------------
     const xpDiff =
         Math.round(curr.XP) -
