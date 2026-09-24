@@ -1439,53 +1439,48 @@ function buildSeasonComparison(curr, prev, season, lastSeason) {
 
 // -------------------------------
 // Batter Trend Analysis
-// Direction + Magnitude
+// Raw Direction + Normalized Magnitude
 // -------------------------------
 function generateBatterTrendAnalysis(curr, prev) {
 
     // ---------------------------------
-    // 1. Direction / Breadth
+    // 1. Raw metric direction
+    //
+    // IMPORTANT:
+    // Raw stats determine whether a
+    // skill actually improved/declined.
     // ---------------------------------
-    const trends = [
-        { key: "BA",           higherIsBetter: true  },
-        { key: "OBP",          higherIsBetter: true  },
-        { key: "SLG",          higherIsBetter: true  },
-        { key: "Kpct",         higherIsBetter: false },
-        { key: "BBpct",        higherIsBetter: true  },
-        { key: "XP",           higherIsBetter: true  },
-        { key: "OverallScore", higherIsBetter: true  }
-    ];
+    const rawDirections = {
 
-    let improved = 0;
-    let declined = 0;
-    let flat = 0;
+        BA:
+            Number(curr.BA) > Number(prev.BA) ? 1 :
+            Number(curr.BA) < Number(prev.BA) ? -1 : 0,
 
-    trends.forEach(stat => {
+        OBP:
+            Number(curr.OBP) > Number(prev.OBP) ? 1 :
+            Number(curr.OBP) < Number(prev.OBP) ? -1 : 0,
 
-        const currValue = Number(curr[stat.key]);
-        const prevValue = Number(prev[stat.key]);
+        SLG:
+            Number(curr.SLG) > Number(prev.SLG) ? 1 :
+            Number(curr.SLG) < Number(prev.SLG) ? -1 : 0,
 
-        if (currValue === prevValue) {
-            flat++;
-            return;
-        }
+        // Lower K% is better
+        Kpct:
+            Number(curr.Kpct) < Number(prev.Kpct) ? 1 :
+            Number(curr.Kpct) > Number(prev.Kpct) ? -1 : 0,
 
-        const isImprovement = stat.higherIsBetter
-            ? currValue > prevValue
-            : currValue < prevValue;
-
-        if (isImprovement) {
-            improved++;
-        } else {
-            declined++;
-        }
-    });
+        // Higher BB% is better
+        BBpct:
+            Number(curr.BBpct) > Number(prev.BBpct) ? 1 :
+            Number(curr.BBpct) < Number(prev.BBpct) ? -1 : 0
+    };
 
 
     // ---------------------------------
-    // 2. Metric-score movement
-    // All five metrics use existing
-    // Batter 0–10 scoring functions
+    // 2. Normalized metric-score movement
+    //
+    // Score changes determine magnitude,
+    // NOT direction.
     // ---------------------------------
     const scoreChanges = {
 
@@ -1513,18 +1508,21 @@ function generateBatterTrendAnalysis(curr, prev) {
 
     // ---------------------------------
     // 3. Overall magnitude
+    //
     // Mean absolute movement across
-    // five normalized metric scores
+    // five normalized metric scores.
     // ---------------------------------
     const magnitude =
         Object.values(scoreChanges)
-            .reduce((sum, value) => sum + Math.abs(value), 0) / 5;
+            .reduce(
+                (sum, value) =>
+                    sum + Math.abs(value),
+                0
+            ) / 5;
 
 
     // ---------------------------------
-    // 4. Overall direction
-    // Overall Score determines net
-    // direction of the batting profile
+    // 4. Net Overall direction
     // ---------------------------------
     const overallDiff =
         Number(curr.OverallScore) -
@@ -1545,11 +1543,13 @@ function generateBatterTrendAnalysis(curr, prev) {
 
     // ---------------------------------
     // 5. Magnitude helper
+    //
     // Initial calibration thresholds
     // ---------------------------------
     function movementLevel(change) {
 
-        const amount = Math.abs(change);
+        const amount =
+            Math.abs(change);
 
         if (amount < 0.75) {
             return "limited";
@@ -1562,35 +1562,39 @@ function generateBatterTrendAnalysis(curr, prev) {
         }
     }
 
+
     const magnitudeLabel =
         movementLevel(magnitude);
 
 
     // ---------------------------------
     // 6. Skill Direction / Breadth
-    // Uses the five underlying batting
-    // metrics only — not XP or Overall
+    //
+    // Uses RAW metric direction.
+    // This prevents score clamps from
+    // hiding real statistical movement.
     // ---------------------------------
-    const skillChanges = [
-        scoreChanges.BA,
-        scoreChanges.OBP,
-        scoreChanges.SLG,
-        scoreChanges.Kpct,
-        scoreChanges.BBpct
-    ];
+    const skillDirections =
+        Object.values(rawDirections);
 
     const skillImproved =
-        skillChanges.filter(value => value > 0).length;
+        skillDirections
+            .filter(value => value > 0)
+            .length;
 
     const skillDeclined =
-        skillChanges.filter(value => value < 0).length;
+        skillDirections
+            .filter(value => value < 0)
+            .length;
 
     const skillFlat =
-        skillChanges.filter(value => value === 0).length;
+        skillDirections
+            .filter(value => value === 0)
+            .length;
 
 
-    // A genuinely mixed skill profile:
-    // at least two metrics moved each way
+    // At least two underlying skills
+    // moved in each direction.
     const mixedProfile =
         skillImproved >= 2 &&
         skillDeclined >= 2;
@@ -1601,10 +1605,16 @@ function generateBatterTrendAnalysis(curr, prev) {
     // ---------------------------------
     let breadthLabel;
 
-    if (skillImproved >= 4 || skillDeclined >= 4) {
+    if (
+        skillImproved >= 4 ||
+        skillDeclined >= 4
+    ) {
         breadthLabel = "broad";
     }
-    else if (skillImproved >= 3 || skillDeclined >= 3) {
+    else if (
+        skillImproved >= 3 ||
+        skillDeclined >= 3
+    ) {
         breadthLabel = "general";
     }
     else {
@@ -1615,18 +1625,15 @@ function generateBatterTrendAnalysis(curr, prev) {
     // ---------------------------------
     // 8. Headline
     //
-    // Important distinction:
-    //
-    // magnitude = how much movement occurred
-    // direction = where Overall finished
-    // mixedProfile = whether underlying
-    // skills moved meaningfully both ways
+    // Breadth = raw metric direction
+    // Magnitude = normalized movement
+    // Net result = Overall Score
     // ---------------------------------
     let classification;
 
 
-    // Mixed underlying skill profile gets
-    // priority over tiny net Overall movement.
+    // Mixed underlying skill profile
+    // takes priority.
     if (mixedProfile) {
 
         if (magnitudeLabel === "significant") {
@@ -1644,7 +1651,7 @@ function generateBatterTrendAnalysis(curr, prev) {
     }
 
 
-    // Relatively stable net profile
+    // Stable net profile
     else if (direction === "stable") {
 
         if (magnitudeLabel === "significant") {
@@ -1698,30 +1705,37 @@ function generateBatterTrendAnalysis(curr, prev) {
     }
 
 
-    const sentences = [classification];
+    const sentences =
+        [classification];
 
 
     // ---------------------------------
     // 9. Hitting + On-Base Profile
     // BA + OBP
+    //
+    // Raw direction
+    // Normalized magnitude
     // ---------------------------------
-    const baChange = scoreChanges.BA;
-    const obpChange = scoreChanges.OBP;
+    const baDirection =
+        rawDirections.BA;
 
-    const baImproved = baChange > 0;
-    const obpImproved = obpChange > 0;
-
-    const baDeclined = baChange < 0;
-    const obpDeclined = obpChange < 0;
+    const obpDirection =
+        rawDirections.OBP;
 
     const hittingMagnitude =
-        (Math.abs(baChange) + Math.abs(obpChange)) / 2;
+        (
+            Math.abs(scoreChanges.BA) +
+            Math.abs(scoreChanges.OBP)
+        ) / 2;
 
     const hittingLevel =
         movementLevel(hittingMagnitude);
 
 
-    if (baImproved && obpImproved) {
+    if (
+        baDirection > 0 &&
+        obpDirection > 0
+    ) {
 
         if (hittingLevel === "significant") {
             sentences.push(
@@ -1740,7 +1754,10 @@ function generateBatterTrendAnalysis(curr, prev) {
         }
     }
 
-    else if (baDeclined && obpDeclined) {
+    else if (
+        baDirection < 0 &&
+        obpDirection < 0
+    ) {
 
         if (hittingLevel === "significant") {
             sentences.push(
@@ -1759,17 +1776,49 @@ function generateBatterTrendAnalysis(curr, prev) {
         }
     }
 
-    else if (baImproved && obpDeclined) {
+    else if (
+        baDirection > 0 &&
+        obpDirection < 0
+    ) {
 
         sentences.push(
             "The hitting and on-base profile was mixed, with BA improving while OBP declined."
         );
     }
 
-    else if (baDeclined && obpImproved) {
+    else if (
+        baDirection < 0 &&
+        obpDirection > 0
+    ) {
 
         sentences.push(
             "The hitting and on-base profile was mixed, with OBP improving while BA declined."
+        );
+    }
+
+    // One raw metric moved while the
+    // other remained unchanged.
+    else if (baDirection > 0) {
+        sentences.push(
+            "The hitting and on-base profile improved, driven by a higher BA while OBP remained stable."
+        );
+    }
+
+    else if (baDirection < 0) {
+        sentences.push(
+            "The hitting and on-base profile declined, driven by a lower BA while OBP remained stable."
+        );
+    }
+
+    else if (obpDirection > 0) {
+        sentences.push(
+            "The hitting and on-base profile improved, driven by a higher OBP while BA remained stable."
+        );
+    }
+
+    else if (obpDirection < 0) {
+        sentences.push(
+            "The hitting and on-base profile declined, driven by a lower OBP while BA remained stable."
         );
     }
 
@@ -1777,12 +1826,20 @@ function generateBatterTrendAnalysis(curr, prev) {
     // ---------------------------------
     // 10. Power
     // SLG
+    //
+    // Raw direction
+    // Normalized magnitude
     // ---------------------------------
-    const slgChange = scoreChanges.SLG;
-    const powerLevel =
-        movementLevel(slgChange);
+    const slgDirection =
+        rawDirections.SLG;
 
-    if (slgChange > 0) {
+    const powerLevel =
+        movementLevel(
+            scoreChanges.SLG
+        );
+
+
+    if (slgDirection > 0) {
 
         if (powerLevel === "significant") {
             sentences.push(
@@ -1801,7 +1858,7 @@ function generateBatterTrendAnalysis(curr, prev) {
         }
     }
 
-    else if (slgChange < 0) {
+    else if (slgDirection < 0) {
 
         if (powerLevel === "significant") {
             sentences.push(
@@ -1824,24 +1881,36 @@ function generateBatterTrendAnalysis(curr, prev) {
     // ---------------------------------
     // 11. Plate Discipline
     // K% + BB%
+    //
+    // Raw direction determines what
+    // happened.
+    //
+    // Normalized score movement
+    // determines how large it was.
     // ---------------------------------
-    const kChange = scoreChanges.Kpct;
-    const bbChange = scoreChanges.BBpct;
+    const kDirection =
+        rawDirections.Kpct;
 
-    const kImproved = kChange > 0;
-    const bbImproved = bbChange > 0;
-
-    const kDeclined = kChange < 0;
-    const bbDeclined = bbChange < 0;
+    const bbDirection =
+        rawDirections.BBpct;
 
     const disciplineMagnitude =
-        (Math.abs(kChange) + Math.abs(bbChange)) / 2;
+        (
+            Math.abs(scoreChanges.Kpct) +
+            Math.abs(scoreChanges.BBpct)
+        ) / 2;
 
     const disciplineLevel =
-        movementLevel(disciplineMagnitude);
+        movementLevel(
+            disciplineMagnitude
+        );
 
 
-    if (kImproved && bbImproved) {
+    // Both improved
+    if (
+        kDirection > 0 &&
+        bbDirection > 0
+    ) {
 
         if (disciplineLevel === "significant") {
             sentences.push(
@@ -1860,7 +1929,12 @@ function generateBatterTrendAnalysis(curr, prev) {
         }
     }
 
-    else if (kDeclined && bbDeclined) {
+
+    // Both declined
+    else if (
+        kDirection < 0 &&
+        bbDirection < 0
+    ) {
 
         if (disciplineLevel === "significant") {
             sentences.push(
@@ -1874,22 +1948,76 @@ function generateBatterTrendAnalysis(curr, prev) {
         }
         else {
             sentences.push(
-                "Plate discipline declined slightly, with modest deterioration in K% and BB%."
+                "Plate discipline declined slightly, with a higher K% and lower BB%."
             );
         }
     }
 
-    else if (kDeclined && bbImproved) {
+
+    // K% declined, BB% improved
+    else if (
+        kDirection < 0 &&
+        bbDirection > 0
+    ) {
 
         sentences.push(
             "Plate discipline was mixed, with stronger walk production offset by a higher strikeout rate."
         );
     }
 
-    else if (kImproved && bbDeclined) {
+
+    // K% improved, BB% declined
+    else if (
+        kDirection > 0 &&
+        bbDirection < 0
+    ) {
 
         sentences.push(
             "Plate discipline was mixed, with fewer strikeouts but a lower walk rate."
+        );
+    }
+
+
+    // K% changed, BB% raw value flat
+    else if (
+        kDirection > 0 &&
+        bbDirection === 0
+    ) {
+
+        sentences.push(
+            "Plate discipline improved, driven by a lower K% while BB% remained stable."
+        );
+    }
+
+    else if (
+        kDirection < 0 &&
+        bbDirection === 0
+    ) {
+
+        sentences.push(
+            "Plate discipline declined, driven by a higher K% while BB% remained stable."
+        );
+    }
+
+
+    // BB% changed, K% raw value flat
+    else if (
+        bbDirection > 0 &&
+        kDirection === 0
+    ) {
+
+        sentences.push(
+            "Plate discipline improved, driven by a higher BB% while K% remained stable."
+        );
+    }
+
+    else if (
+        bbDirection < 0 &&
+        kDirection === 0
+    ) {
+
+        sentences.push(
+            "Plate discipline declined, driven by a lower BB% while K% remained stable."
         );
     }
 
@@ -1901,33 +2029,87 @@ function generateBatterTrendAnalysis(curr, prev) {
         Math.round(curr.XP) -
         Math.round(prev.XP);
 
-    if (xpDiff > 0 && overallDiff > 0) {
+
+    if (
+        xpDiff > 0 &&
+        overallDiff > 0
+    ) {
 
         sentences.push(
             `XP increased by ${Math.abs(xpDiff)}, while Overall Score improved by ${Math.abs(overallDiff).toFixed(1)} points.`
         );
     }
 
-    else if (xpDiff < 0 && overallDiff < 0) {
+    else if (
+        xpDiff < 0 &&
+        overallDiff < 0
+    ) {
 
         sentences.push(
             `XP declined by ${Math.abs(xpDiff)}, while Overall Score decreased by ${Math.abs(overallDiff).toFixed(1)} points.`
         );
     }
 
-    else if (xpDiff > 0 && overallDiff < 0) {
+    else if (
+        xpDiff > 0 &&
+        overallDiff < 0
+    ) {
 
         sentences.push(
             `XP increased by ${Math.abs(xpDiff)}, while Overall Score declined by ${Math.abs(overallDiff).toFixed(1)} points.`
         );
     }
 
-    else if (xpDiff < 0 && overallDiff > 0) {
+    else if (
+        xpDiff < 0 &&
+        overallDiff > 0
+    ) {
 
         sentences.push(
             `XP declined by ${Math.abs(xpDiff)}, while Overall Score improved by ${Math.abs(overallDiff).toFixed(1)} points.`
         );
     }
+
+    else if (
+        xpDiff === 0 &&
+        overallDiff > 0
+    ) {
+
+        sentences.push(
+            `XP remained unchanged, while Overall Score improved by ${Math.abs(overallDiff).toFixed(1)} points.`
+        );
+    }
+
+    else if (
+        xpDiff === 0 &&
+        overallDiff < 0
+    ) {
+
+        sentences.push(
+            `XP remained unchanged, while Overall Score declined by ${Math.abs(overallDiff).toFixed(1)} points.`
+        );
+    }
+
+    else if (
+        xpDiff > 0 &&
+        Math.abs(overallDiff) <= 0.05
+    ) {
+
+        sentences.push(
+            `XP increased by ${Math.abs(xpDiff)}, while Overall Score remained essentially unchanged.`
+        );
+    }
+
+    else if (
+        xpDiff < 0 &&
+        Math.abs(overallDiff) <= 0.05
+    ) {
+
+        sentences.push(
+            `XP declined by ${Math.abs(xpDiff)}, while Overall Score remained essentially unchanged.`
+        );
+    }
+
 
     return sentences.join(" ");
 }
