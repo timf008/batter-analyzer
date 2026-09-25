@@ -250,17 +250,35 @@ function toOrdinal(n) {
 // Convert Name to Title Case (Player Tab)
 // -------------------------------
 function toTitleCase(str) {
+
+    const initials = new Set([
+        "AJ",
+        "BJ",
+        "CJ",
+        "DJ",
+        "JJ",
+        "JT",
+        "TJ",
+        "JR"
+    ]);
+
     return str
         .split(" ")
         .map(word =>
             word.split("-")
                 .map(part => {
-                    // Detect initials even if input is "cj", "Cj", or "cJ"
-                    if (/^[A-Za-z]{2}$/.test(part)) {
-                        return part.toUpperCase(); // Force CJ, JT, JR, etc.
+
+                    const upper = part.toUpperCase();
+
+                    // Only uppercase known initials
+                    if (initials.has(upper)) {
+                        return upper;
                     }
 
-                    return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+                    return (
+                        part.charAt(0).toUpperCase() +
+                        part.slice(1).toLowerCase()
+                    );
                 })
                 .join("-")
         )
