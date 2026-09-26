@@ -812,6 +812,7 @@ select:focus {
 .scouting-content {
     flex: 1;
     padding: 20px 24px;
+    background: white;
 }
 
 /* SCOUTING NOTE heading */
@@ -863,6 +864,7 @@ select:focus {
     padding: 20px 24px;
 
     border-left: 1px solid #d8e0ea;
+    background: white;
 }
 
 .percentile-label {
