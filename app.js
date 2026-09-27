@@ -1250,7 +1250,7 @@ else {
 // -------------------------------
 function renderWatchPlaceholders() {
 
-    const container = document.getElementById("watchCards");
+    const container = document.getElementById("watchGrid");
 
     if (!container) return;
 
@@ -1282,10 +1282,6 @@ function renderWatchPlaceholders() {
         placeholderCard +
         placeholderCard;
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    renderWatchPlaceholders();
-});
 
 // -------------------------------
 // Fantasy Identity
