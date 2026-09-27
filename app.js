@@ -1245,7 +1245,47 @@ else {
     }).join("");
 }
 
+// -------------------------------
+// What to Watch - Placeholder State
+// -------------------------------
+function renderWatchPlaceholders() {
 
+    const container = document.getElementById("watchCards");
+
+    if (!container) return;
+
+    const placeholderCard = `
+        <div class="watch-card watch-placeholder">
+
+            <div class="watch-card-header">
+
+                <div class="watch-placeholder-icon"></div>
+
+                <div style="flex: 1;">
+                    <span class="watch-placeholder-line title"></span>
+                    <span class="watch-placeholder-line short"></span>
+                </div>
+
+            </div>
+
+            <div class="watch-placeholder-body">
+                <span class="watch-placeholder-line long"></span>
+                <span class="watch-placeholder-line long"></span>
+                <span class="watch-placeholder-line medium"></span>
+            </div>
+
+        </div>
+    `;
+
+    container.innerHTML =
+        placeholderCard +
+        placeholderCard +
+        placeholderCard;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderWatchPlaceholders();
+});
 
 // -------------------------------
 // Fantasy Identity
@@ -3181,10 +3221,11 @@ document.getElementById("xpScore").innerHTML = "--";
 document.getElementById("playerTab").textContent = "Player:--";
 
 
-    // Clear Fantasy Edge badges
+    // Clear Fantasy Edge badges/What to Watch
     clearIdentityBadges();
     clearStateBadges();
     clearValueBadges();
+    renderWatchPlaceholders();
 
 
     // Clear Fantasy Summary
