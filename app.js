@@ -3130,12 +3130,6 @@ function renderWatchPlaceholders() {
         placeholderCard;
 }
 
-
-// -------------------------------
-// Reset UI
-// -------------------------------
-function handleReset() {
-
 // -------------------------------
 // Reset UI
 // -------------------------------
