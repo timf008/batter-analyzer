@@ -3290,6 +3290,8 @@ async function loadLastUpdated(season) {
 // -------------------------------
 document.addEventListener("DOMContentLoaded", () => {
 
+    renderWatchPlaceholders();
+
     // Main buttons
     document.getElementById("loadBtn")
         .addEventListener("click", handleLoad);
