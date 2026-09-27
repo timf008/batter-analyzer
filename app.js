@@ -1246,44 +1246,6 @@ else {
 }
 
 // -------------------------------
-// What to Watch - Placeholder State
-// -------------------------------
-function renderWatchPlaceholders() {
-
-    const container = document.getElementById("watchGrid");
-
-    if (!container) return;
-
-    const placeholderCard = `
-        <div class="watch-card watch-placeholder">
-
-            <div class="watch-card-header">
-
-                <div class="watch-placeholder-icon"></div>
-
-                <div style="flex: 1;">
-                    <span class="watch-placeholder-line title"></span>
-                    <span class="watch-placeholder-line short"></span>
-                </div>
-
-            </div>
-
-            <div class="watch-placeholder-body">
-                <span class="watch-placeholder-line long"></span>
-                <span class="watch-placeholder-line long"></span>
-                <span class="watch-placeholder-line medium"></span>
-            </div>
-
-        </div>
-    `;
-
-    container.innerHTML =
-        placeholderCard +
-        placeholderCard +
-        placeholderCard;
-}
-
-// -------------------------------
 // Fantasy Identity
 // -------------------------------
 const identity = classifyPlayer(p.XP, overall);
@@ -3130,6 +3092,49 @@ document.getElementById("swapBtn").onclick = function () {
     document.getElementById("loadBtn").click();
 };
 
+// -------------------------------
+// What to Watch - Placeholder State
+// -------------------------------
+function renderWatchPlaceholders() {
+
+    const container = document.getElementById("watchGrid");
+
+    if (!container) return;
+
+    const placeholderCard = `
+        <div class="watch-card watch-placeholder">
+
+            <div class="watch-card-header">
+
+                <div class="watch-placeholder-icon"></div>
+
+                <div style="flex: 1;">
+                    <span class="watch-placeholder-line title"></span>
+                    <span class="watch-placeholder-line short"></span>
+                </div>
+
+            </div>
+
+            <div class="watch-placeholder-body">
+                <span class="watch-placeholder-line long"></span>
+                <span class="watch-placeholder-line long"></span>
+                <span class="watch-placeholder-line medium"></span>
+            </div>
+
+        </div>
+    `;
+
+    container.innerHTML =
+        placeholderCard +
+        placeholderCard +
+        placeholderCard;
+}
+
+
+// -------------------------------
+// Reset UI
+// -------------------------------
+function handleReset() {
 
 // -------------------------------
 // Reset UI
