@@ -1354,7 +1354,7 @@ const summaryText = `is batting ${formattedBA} with ${player.HR} HR and ${player
         })
         .catch(err => {
             console.error("Error loading Batter of the Day:", err);
-        }
+        });
 }
 
 // -------------------------------
