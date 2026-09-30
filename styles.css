@@ -3645,3 +3645,76 @@ select:focus {
 
     white-space: nowrap;
 }
+
+.value-context {
+    margin: 14px 0 16px;
+}
+
+.value-scale {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e1e6ec;
+}
+
+.value-band {
+    height: 25px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: #536b89;
+}
+
+.value-band small {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+/* Very subtle category shading */
+.value-band.extreme {
+    background: #fde4e1;
+}
+
+.value-band.elevated {
+    background: #fff0df;
+}
+
+.value-band.expected {
+    background: #f4f6f8;
+}
+
+.value-band.below {
+    background: #e9f1fb;
+}
+
+.value-band.suppressed {
+    background: #dce8f8;
+}
+
+
+/* Player position */
+.value-marker {
+    position: absolute;
+
+    right: 18px;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+    background: #ff7a00;
+
+    border: 2px solid white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+
+    transform: translateY(-50%);
+
+    opacity: 0;
+    transition: top 0.4s ease;
+}
