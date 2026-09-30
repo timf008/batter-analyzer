@@ -3105,7 +3105,6 @@ valueTitle.textContent =
 
 valueText.textContent =
     valueDescriptions[value] || "";
-}
 
 updateFantasyValueMarker(valueZ);
 
