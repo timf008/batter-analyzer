@@ -564,26 +564,56 @@
             </div>
 
 
-            <!-- State -->
-            <div class="fantasy-summary-item state-summary-card">
+<!-- State -->
+<div class="fantasy-summary-item state-summary-card">
 
-                <div class="summary-card-label">
-                    FANTASY STATE
-                </div>
+    <div class="summary-card-label">
+        FANTASY STATE
+    </div>
 
-                <div class="summary-card-result">
-                    <strong id="summaryState">
-                        --
-                    </strong>
-                </div>
+    <div class="summary-card-result">
+        <strong id="summaryState">
+            --
+        </strong>
+    </div>
 
-                <div class="summary-accent"></div>
+    <div class="summary-accent"></div>
 
-                <p id="summaryStateText">
-                    Load a player to view their Fantasy State analysis.
-                </p>
+    <!-- Fantasy State Context -->
+    <div class="state-context" id="stateContext">
 
+        <div class="state-scale">
+
+            <div class="state-band strong">
+                <span>STRONG</span>
+                <small>+5.0%</small>
             </div>
+
+            <div class="state-band stable">
+                <span>STABLE</span>
+                <small>-2.5%</small>
+            </div>
+
+            <div class="state-band vulnerable">
+                <span>VULNERABLE</span>
+                <small>-5.0%</small>
+            </div>
+
+            <div class="state-band high-risk">
+                <span>HIGH RISK</span>
+            </div>
+
+            <div class="state-marker" id="stateMarker"></div>
+
+        </div>
+
+    </div>
+
+    <p id="summaryStateText">
+        Load a player to view their Fantasy State analysis.
+    </p>
+
+</div>
 
 
 <!-- Value -->
