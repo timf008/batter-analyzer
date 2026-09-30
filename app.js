@@ -1266,6 +1266,11 @@ const fantasyValue = getFantasyValue(
     p.OverallDivergenceSD
 );
 
+const fantasyValueZ =
+    p.OverallDivergenceSD && p.OverallDivergenceSD !== 0
+        ? p.OverallDivergence / p.OverallDivergenceSD
+        : 0;
+
 updateValueBadge(
     p.OverallDivergence,
     p.OverallDivergenceSD
@@ -1277,8 +1282,34 @@ updateValueBadge(
 updateFantasySummary(
     identity,
     state,
-    fantasyValue
+    fantasyValue,
+    fantasyValueZ
 );
+
+function updateFantasyValueMarker(z) {
+
+    const marker = document.getElementById("valueMarker");
+    if (!marker) return;
+
+    const maxZ = 1.5;
+    const minZ = -1.5;
+
+    const numericZ = Number(z);
+
+    if (!Number.isFinite(numericZ)) {
+        marker.style.opacity = "0";
+        return;
+    }
+
+    const clampedZ =
+        Math.max(minZ, Math.min(maxZ, numericZ));
+
+    const position =
+        ((maxZ - clampedZ) / (maxZ - minZ)) * 100;
+
+    marker.style.top = `${position}%`;
+    marker.style.opacity = "1";
+}
 
 // -------------------------------
 // Percentile - Free Trial Lock
@@ -2822,14 +2853,17 @@ function divergenceState(divergencePct) {
 // -------------------------------
 // Divergence → Fantasy Value
 // -------------------------------
-function getFantasyValue(overallDivergence, divergenceSD) {
+function getFantasyValueZ(overallDivergence, divergenceSD) {
     if (
         overallDivergence == null ||
         divergenceSD == null ||
         divergenceSD === 0
     ) {
-        return "expected";
+        return 0;
     }
+
+    return overallDivergence / divergenceSD;
+}
 
     const z = overallDivergence / divergenceSD;
 
@@ -2839,6 +2873,28 @@ function getFantasyValue(overallDivergence, divergenceSD) {
     if (z <= -0.5) return "below";
 
     return "expected";
+}
+
+function updateFantasyValueMarker(z) {
+
+    const marker = document.getElementById("valueMarker");
+    if (!marker) return;
+
+    // Visual scale: +1.5σ to -1.5σ
+    const maxZ = 1.5;
+    const minZ = -1.5;
+
+    // Clamp extreme values to visual range
+    const clampedZ = Math.max(minZ, Math.min(maxZ, z));
+
+    // +1.5 = top (0%)
+    //  0.0 = middle (50%)
+    // -1.5 = bottom (100%)
+    const position =
+        ((maxZ - clampedZ) / (maxZ - minZ)) * 100;
+
+    marker.style.top = `${position}%`;
+    marker.style.opacity = "1";
 }
 
 
@@ -2935,7 +2991,7 @@ function clearIdentityBadges() {
 // -------------------------------
 // Fantasy Summary
 // -------------------------------
-function updateFantasySummary(identity, state, value) {
+function updateFantasySummary(identity, state, value, valueZ) {
 
     const identityTitle = document.getElementById("summaryIdentity");
     const identityText  = document.getElementById("summaryIdentityText");
@@ -3053,6 +3109,8 @@ valueTitle.textContent =
 valueText.textContent =
     valueDescriptions[value] || "";
 }
+
+updateFantasyValueMarker(valueZ);
 
 
 
