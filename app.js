@@ -1258,6 +1258,8 @@ const state = divergenceState(div.divergencePct);
 
 updateStateBadge(state);
 
+updateFantasyStateMarker(div.divergencePct);
+
 // -------------------------------
 // Fantasy Value
 // -------------------------------
@@ -2848,6 +2850,37 @@ function divergenceState(divergencePct) {
     if (divergencePct >= -2.5) return "stable";
     if (divergencePct >= -5) return "vulnerable";
     return "high-risk";
+}
+
+function updateFantasyStateMarker(divergencePct) {
+
+    const marker = document.getElementById("stateMarker");
+    if (!marker) return;
+
+    const numericDiv = Number(divergencePct);
+
+    if (!Number.isFinite(numericDiv)) {
+        marker.style.opacity = "0";
+        return;
+    }
+
+    // Visual display range only.
+    // Does NOT change Fantasy State classification.
+    const maxDiv = 10;
+    const minDiv = -10;
+
+    const clampedDiv =
+        Math.max(minDiv, Math.min(maxDiv, numericDiv));
+
+    // +10% = top
+    //   0% = middle
+    // -10% = bottom
+    const position =
+        ((maxDiv - clampedDiv) /
+        (maxDiv - minDiv)) * 100;
+
+    marker.style.top = `${position}%`;
+    marker.style.opacity = "1";
 }
 
 // -------------------------------
