@@ -3109,7 +3109,7 @@ valueText.textContent =
 
 updateFantasyValueMarker(valueZ);
 
-
+}
 
 
 // -------------------------------
