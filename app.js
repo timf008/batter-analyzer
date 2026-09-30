@@ -2853,17 +2853,14 @@ function divergenceState(divergencePct) {
 // -------------------------------
 // Divergence → Fantasy Value
 // -------------------------------
-function getFantasyValueZ(overallDivergence, divergenceSD) {
+function getFantasyValue(overallDivergence, divergenceSD) {
     if (
         overallDivergence == null ||
         divergenceSD == null ||
         divergenceSD === 0
     ) {
-        return 0;
+        return "expected";
     }
-
-    return overallDivergence / divergenceSD;
-}
 
     const z = overallDivergence / divergenceSD;
 
