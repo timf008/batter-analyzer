@@ -1268,15 +1268,12 @@ const fantasyValue = getFantasyValue(
     p.OverallDivergenceSD
 );
 
-const fantasyValueZ =
-    p.OverallDivergenceSD && p.OverallDivergenceSD !== 0
-        ? p.OverallDivergence / p.OverallDivergenceSD
-        : 0;
-
 updateValueBadge(
     p.OverallDivergence,
     p.OverallDivergenceSD
 );
+
+updateFantasyValueMarker(fantasyValue);
 
 // -------------------------------
 // Fantasy Summary
@@ -1284,7 +1281,7 @@ updateValueBadge(
 updateFantasySummary(
     identity,
     state,
-    value
+    fantasyValue
 );
 
 // -------------------------------
