@@ -1284,8 +1284,7 @@ updateValueBadge(
 updateFantasySummary(
     identity,
     state,
-    fantasyValue,
-    fantasyValueZ
+    value
 );
 
 function updateFantasyValueMarker(value) {
