@@ -3666,7 +3666,7 @@ select:focus {
 }
 
 /* -------------------------------
-   Legend Bands
+   Value Legend Bands
 -------------------------------- */
 
 .value-bands {
@@ -3715,7 +3715,7 @@ select:focus {
 }
 
 /* -------------------------------
-   Position Rail
+   Value Position Rail
 -------------------------------- */
 
 .value-rail {
@@ -3739,7 +3739,7 @@ select:focus {
 }
 
 /* -------------------------------
-   Player Position Marker
+   Value Player Position Marker
 -------------------------------- */
 
 .value-marker {
@@ -3835,4 +3835,53 @@ select:focus {
     border: 2px solid white;
     box-shadow: 0 1px 4px rgba(0,0,0,0.25);
     transform: translate(-50%, -50%);
+}
+
+/* ------------------------------
+   Fantasy Identity Visual Legend
+------------------------------ */
+
+.identity-context {
+    margin: 14px 0 16px;
+}
+
+.identity-scale {
+    border: 1px solid #e1e6ec;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.identity-band {
+    height: 25px;
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: #536b89;
+}
+
+/* Identity colors */
+
+.identity-band.breakout {
+    background: #e7f4dc;
+}
+
+.identity-band.overperformer {
+    background: #fff0df;
+}
+
+.identity-band.sleeper {
+    background: #e5effb;
+}
+
+.identity-band.consistent {
+    background: #eeeeee;
+}
+
+.identity-band.neutral {
+    background: #f6f7f8;
 }
