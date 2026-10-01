@@ -3105,8 +3105,6 @@ valueTitle.textContent =
 valueText.textContent =
     valueDescriptions[value] || "";
 
-updateFantasyValueMarker(fantasyValue);
-
 }
 
 
