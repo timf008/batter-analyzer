@@ -1258,7 +1258,7 @@ const state = divergenceState(div.divergencePct);
 
 updateStateBadge(state);
 
-updateFantasyStateMarker(div.divergencePct);
+updateFantasyStateMarker(state);
 
 // -------------------------------
 // Fantasy Value
@@ -1288,26 +1288,26 @@ updateFantasySummary(
     fantasyValueZ
 );
 
-function updateFantasyValueMarker(z) {
+function updateFantasyValueMarker(value) {
 
     const marker = document.getElementById("valueMarker");
     if (!marker) return;
 
-    const maxZ = 1.5;
-    const minZ = -1.5;
+    const positions = {
+        "extreme": 10,
+        "elevated": 30,
+        "expected": 50,
+        "below": 70,
+        "suppressed": 90
+    };
 
-    const numericZ = Number(z);
+    const position = positions[value];
 
-    if (!Number.isFinite(numericZ)) {
-        marker.style.opacity = "0";
+    if (position == null) {
+        marker.style.top = "50%";
+        marker.style.opacity = "1";
         return;
     }
-
-    const clampedZ =
-        Math.max(minZ, Math.min(maxZ, numericZ));
-
-    const position =
-        ((maxZ - clampedZ) / (maxZ - minZ)) * 100;
 
     marker.style.top = `${position}%`;
     marker.style.opacity = "1";
@@ -2852,32 +2852,25 @@ function divergenceState(divergencePct) {
     return "high-risk";
 }
 
-function updateFantasyStateMarker(divergencePct) {
+function updateFantasyStateMarker(state) {
 
     const marker = document.getElementById("stateMarker");
     if (!marker) return;
 
-    const numericDiv = Number(divergencePct);
+    const positions = {
+        "strong": 12.5,
+        "stable": 37.5,
+        "vulnerable": 62.5,
+        "high-risk": 87.5
+    };
 
-    if (!Number.isFinite(numericDiv)) {
-        marker.style.opacity = "0";
+    const position = positions[state];
+
+    if (position == null) {
+        marker.style.top = "37.5%";
+        marker.style.opacity = "1";
         return;
     }
-
-    // Visual display range only.
-    // Does NOT change Fantasy State classification.
-    const maxDiv = 10;
-    const minDiv = -10;
-
-    const clampedDiv =
-        Math.max(minDiv, Math.min(maxDiv, numericDiv));
-
-    // +10% = top
-    //   0% = middle
-    // -10% = bottom
-    const position =
-        ((maxDiv - clampedDiv) /
-        (maxDiv - minDiv)) * 100;
 
     marker.style.top = `${position}%`;
     marker.style.opacity = "1";
@@ -2903,28 +2896,6 @@ function getFantasyValue(overallDivergence, divergenceSD) {
     if (z <= -0.5) return "below";
 
     return "expected";
-}
-
-function updateFantasyValueMarker(z) {
-
-    const marker = document.getElementById("valueMarker");
-    if (!marker) return;
-
-    // Visual scale: +1.5σ to -1.5σ
-    const maxZ = 1.5;
-    const minZ = -1.5;
-
-    // Clamp extreme values to visual range
-    const clampedZ = Math.max(minZ, Math.min(maxZ, z));
-
-    // +1.5 = top (0%)
-    //  0.0 = middle (50%)
-    // -1.5 = bottom (100%)
-    const position =
-        ((maxZ - clampedZ) / (maxZ - minZ)) * 100;
-
-    marker.style.top = `${position}%`;
-    marker.style.opacity = "1";
 }
 
 
@@ -3021,7 +2992,7 @@ function clearIdentityBadges() {
 // -------------------------------
 // Fantasy Summary
 // -------------------------------
-function updateFantasySummary(identity, state, value, valueZ) {
+function updateFantasySummary(identity, state, value) {
 
     const identityTitle = document.getElementById("summaryIdentity");
     const identityText  = document.getElementById("summaryIdentityText");
@@ -3139,7 +3110,7 @@ valueTitle.textContent =
 valueText.textContent =
     valueDescriptions[value] || "";
 
-updateFantasyValueMarker(valueZ);
+updateFantasyValueMarker(fantasyValue);
 
 }
 
@@ -3221,6 +3192,14 @@ function renderWatchPlaceholders() {
 // Reset UI
 // -------------------------------
 function handleReset() {
+
+        // Reset State Marker
+const stateMarker = document.getElementById("stateMarker");
+
+if (stateMarker) {
+    stateMarker.style.top = "37.5%";
+    stateMarker.style.opacity = "1";
+}
 
         // Reset Value Marker
 const valueMarker = document.getElementById("valueMarker");
