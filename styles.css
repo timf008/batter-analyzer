@@ -3654,9 +3654,10 @@ select:focus {
 }
 
 .value-scale {
-    position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 42px;
 
+    position: relative;
     border: 1px solid #e1e6ec;
     border-radius: 8px;
     overflow: hidden;
@@ -3669,7 +3670,7 @@ select:focus {
 -------------------------------- */
 
 .value-bands {
-    flex: 1;
+    min-width: 0;
 }
 
 .value-band {
@@ -3690,6 +3691,7 @@ select:focus {
     font-size: 8px;
     font-weight: 600;
     letter-spacing: 0;
+    white-space: nowrap;
 }
 
 .value-band.extreme {
@@ -3718,11 +3720,8 @@ select:focus {
 
 .value-rail {
     position: relative;
-
-    width: 40px;
-    flex-shrink: 0;
-
-    background: #f8fafc;
+    width: 42px;
+    height: 100%;
 }
 
 .value-rail::before {
