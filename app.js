@@ -1287,31 +1287,6 @@ updateFantasySummary(
     value
 );
 
-function updateFantasyValueMarker(value) {
-
-    const marker = document.getElementById("valueMarker");
-    if (!marker) return;
-
-    const positions = {
-        "extreme": 10,
-        "elevated": 30,
-        "expected": 50,
-        "below": 70,
-        "suppressed": 90
-    };
-
-    const position = positions[value];
-
-    if (position == null) {
-        marker.style.top = "50%";
-        marker.style.opacity = "1";
-        return;
-    }
-
-    marker.style.top = `${position}%`;
-    marker.style.opacity = "1";
-}
-
 // -------------------------------
 // Percentile - Free Trial Lock
 // -------------------------------
@@ -2897,6 +2872,30 @@ function getFantasyValue(overallDivergence, divergenceSD) {
     return "expected";
 }
 
+function updateFantasyValueMarker(value) {
+
+    const marker = document.getElementById("valueMarker");
+    if (!marker) return;
+
+    const positions = {
+        "extreme": 10,
+        "elevated": 30,
+        "expected": 50,
+        "below": 70,
+        "suppressed": 90
+    };
+
+    const position = positions[value];
+
+    if (position == null) {
+        marker.style.top = "50%";
+        marker.style.opacity = "1";
+        return;
+    }
+
+    marker.style.top = `${position}%`;
+    marker.style.opacity = "1";
+}
 
 // -------------------------------
 // Update Fantasy State Badge
