@@ -421,6 +421,7 @@ async function loadBatter(name, season, silent = false) {
     }
 
     const data = await res.json();
+    console.log("FULL BATTER RESPONSE:", data);
     console.log("Similar Profiles:", data.SimilarProfiles);
 
     // ⭐ Normalize backend output: ALWAYS return an array
