@@ -3449,11 +3449,6 @@ select:focus {
     margin-bottom: 16px;
 }
 
-.similar-profiles-icon {
-    color: #2f80ed;
-    font-size: 11px;
-}
-
 .similar-profiles-title {
     font-size: 18px;
     font-weight: 800;
@@ -3527,7 +3522,7 @@ select:focus {
 }
 
 .similar-profile-name {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
     color: #0f243e;
 }
@@ -3535,7 +3530,7 @@ select:focus {
 .similar-profile-team {
     margin-top: 2px;
 
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     color: #718096;
 }
@@ -3550,7 +3545,7 @@ select:focus {
 }
 
 .similar-profile-stat {
-    font-size: 9px;
+    font-size: 12px;
     font-weight: 500;
     color: #718096;
 }
