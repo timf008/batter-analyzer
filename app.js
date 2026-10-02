@@ -407,6 +407,95 @@ function resetTeamColorPanel() {
 }
 
 // -------------------------------
+// Similar Profiles
+// -------------------------------
+function updateSimilarProfiles(profiles) {
+
+    const container =
+        document.getElementById("similarProfiles");
+
+    if (!container) return;
+
+    if (!Array.isArray(profiles) || profiles.length === 0) {
+        resetSimilarProfiles();
+        return;
+    }
+
+    const topThree = profiles.slice(0, 3);
+
+    container.innerHTML = topThree.map(profile => {
+
+        const team =
+            String(profile.Team || "")
+                .trim()
+                .toUpperCase();
+
+        const colors =
+            teamColors[team] || ["#d9dee5", "#eef1f4"];
+
+        const overall =
+            Number(profile.Overall);
+
+        const xp =
+            Number(profile.XP);
+
+        return `
+            <div class="similar-profile-card">
+
+                <div class="similar-profile-name-row">
+
+                    <span class="similar-profile-colors">
+                        <span style="background:${colors[0]}"></span>
+                        <span style="background:${colors[1]}"></span>
+                    </span>
+
+                    <div>
+                        <div class="similar-profile-name">
+                            ${profile.Player}
+                        </div>
+
+                        <div class="similar-profile-team">
+                            ${team}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="similar-profile-stats">
+
+                    <div class="similar-profile-stat">
+                        OVERALL
+                        <strong>${overall.toFixed(1)}</strong>
+                    </div>
+
+                    <div class="similar-profile-stat">
+                        XP
+                        <strong>${Math.round(xp)}</strong>
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+
+    }).join("");
+}
+
+function resetSimilarProfiles() {
+
+    const container =
+        document.getElementById("similarProfiles");
+
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="similar-profile-card placeholder"></div>
+        <div class="similar-profile-card placeholder"></div>
+        <div class="similar-profile-card placeholder"></div>
+    `;
+}
+
+// -------------------------------
 // Utility: Fetch batter data
 // -------------------------------
 async function loadBatter(name, season, silent = false) {
@@ -1128,95 +1217,6 @@ updateWhatToWatch({
     BBpct: { raw: p.BBpct, score: bbpctScore }
 
 });
-
-// -------------------------------
-// Similar Profiles
-// -------------------------------
-function updateSimilarProfiles(profiles) {
-
-    const container =
-        document.getElementById("similarProfiles");
-
-    if (!container) return;
-
-    if (!Array.isArray(profiles) || profiles.length === 0) {
-        resetSimilarProfiles();
-        return;
-    }
-
-    const topThree = profiles.slice(0, 3);
-
-    container.innerHTML = topThree.map(profile => {
-
-        const team =
-            String(profile.Team || "")
-                .trim()
-                .toUpperCase();
-
-        const colors =
-            teamColors[team] || ["#d9dee5", "#eef1f4"];
-
-        const overall =
-            Number(profile.Overall);
-
-        const xp =
-            Number(profile.XP);
-
-        return `
-            <div class="similar-profile-card">
-
-                <div class="similar-profile-name-row">
-
-                    <span class="similar-profile-colors">
-                        <span style="background:${colors[0]}"></span>
-                        <span style="background:${colors[1]}"></span>
-                    </span>
-
-                    <div>
-                        <div class="similar-profile-name">
-                            ${profile.Player}
-                        </div>
-
-                        <div class="similar-profile-team">
-                            ${team}
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="similar-profile-stats">
-
-                    <div class="similar-profile-stat">
-                        OVERALL
-                        <strong>${overall.toFixed(1)}</strong>
-                    </div>
-
-                    <div class="similar-profile-stat">
-                        XP
-                        <strong>${Math.round(xp)}</strong>
-                    </div>
-
-                </div>
-
-            </div>
-        `;
-
-    }).join("");
-}
-
-function resetSimilarProfiles() {
-
-    const container =
-        document.getElementById("similarProfiles");
-
-    if (!container) return;
-
-    container.innerHTML = `
-        <div class="similar-profile-card placeholder"></div>
-        <div class="similar-profile-card placeholder"></div>
-        <div class="similar-profile-card placeholder"></div>
-    `;
-}
 
 // -------------------------------
 // What to Watch
