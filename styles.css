@@ -3833,12 +3833,23 @@ select:focus {
 }
 
 .state-rail {
+    position: relative;
+    width: 42px;
+    height: 100%;
+}
+
+.state-rail::before {
+    content: "";
+
     position: absolute;
     top: 10px;
     bottom: 10px;
-    right: 14px;
+    left: 50%;
+
     width: 2px;
     background: #cbd5df;
+
+    transform: translateX(-50%);
 }
 
 .state-marker {
