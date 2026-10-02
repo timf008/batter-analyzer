@@ -320,7 +320,7 @@ const teamColors = {
 
     DET: ["#0C2340", "#FFFFFF"],
     HOU: ["#002D62", "#EB6E1F"],
-    KC:  ["#004687", "#BD9B60"],
+    KCR:  ["#004687", "#BD9B60"],
     LAA: ["#BA0021", "#003263"],
     LAD: ["#FFFFFF", "#005A9C"],
 
@@ -332,8 +332,8 @@ const teamColors = {
 
     PHI: ["#E81828", "#002D72"],
     PIT: ["#000000", "#FDB827"],
-    SD:  ["#4A2C1B", "#FFC425"],
-    SF:  ["#FD5A1E", "#000000"],
+    SDP:  ["#4A2C1B", "#FFC425"],
+    SFG:  ["#FD5A1E", "#000000"],
     SEA: ["#0C2C56", "#005C5C"],
 
     STL: ["#FFFFFF", "#C41E3A"],
