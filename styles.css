@@ -3455,7 +3455,7 @@ select:focus {
 }
 
 .similar-profiles-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 800;
     letter-spacing: 1.5px;
     color: #0f243e;
@@ -3465,7 +3465,7 @@ select:focus {
 .similar-profiles-subtitle {
     margin-left: 8px;
 
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.8px;
 
@@ -3527,7 +3527,7 @@ select:focus {
 }
 
 .similar-profile-name {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #0f243e;
 }
@@ -3535,7 +3535,7 @@ select:focus {
 .similar-profile-team {
     margin-top: 2px;
 
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 600;
     color: #718096;
 }
