@@ -340,7 +340,7 @@ const teamColors = {
     TBR:  ["#092C5C", "#8FBCE6"],
     TEX: ["#003278", "#C0111F"],
     TOR: ["#134A8E", "#6BAED6"],
-    WSH: ["#AB0003", "#14225A"]
+    WSN: ["#AB0003", "#14225A"]
 };
 
 
