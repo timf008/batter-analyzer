@@ -337,7 +337,7 @@ const teamColors = {
     SEA: ["#0C2C56", "#005C5C"],
 
     STL: ["#FFFFFF", "#C41E3A"],
-    TB:  ["#092C5C", "#8FBCE6"],
+    TBR:  ["#092C5C", "#8FBCE6"],
     TEX: ["#003278", "#C0111F"],
     TOR: ["#134A8E", "#6BAED6"],
     WSH: ["#AB0003", "#14225A"]
