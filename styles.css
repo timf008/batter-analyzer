@@ -3386,19 +3386,19 @@ select:focus {
     flex-direction: column;
 
     min-width: 0;
-    min-height: 270px;
+    min-height: 205px;
 
-    padding: 17px;
+    padding: 14px;
 
     background: #ffffff;
 
     border: 1px solid #d7e1eb;
-    border-radius: 12px;
+    border-radius: 10px;
 
     overflow: hidden;
 
     box-shadow:
-        0 3px 9px rgba(15, 36, 62, 0.05);
+        0 2px 6px rgba(15, 36, 62, 0.04);
 }
 
 
@@ -3418,6 +3418,22 @@ select:focus {
 
 
 /* ==========================================
+   CARD GRID
+========================================== */
+
+.watch-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 10px;
+
+    padding: 16px 14px;
+}
+
+
+/* ==========================================
    CARD TOP
 ========================================== */
 
@@ -3425,10 +3441,10 @@ select:focus {
     display: flex;
     align-items: center;
 
-    gap: 8px;
+    gap: 7px;
 
-    margin-top: 3px;
-    margin-bottom: 16px;
+    margin-top: 2px;
+    margin-bottom: 12px;
 }
 
 
@@ -3441,17 +3457,19 @@ select:focus {
     align-items: center;
     justify-content: center;
 
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
 
-    flex: 0 0 34px;
+    flex: 0 0 30px;
 
     border-radius: 50%;
 
     color: #ffffff;
 
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
+
+    line-height: 1;
 }
 
 
@@ -3460,15 +3478,17 @@ select:focus {
 ========================================== */
 
 .watch-status {
-    padding: 5px 8px;
+    padding: 4px 7px;
 
     border: 1px solid;
     border-radius: 999px;
 
-    font-size: 8px;
+    font-size: 7px;
     font-weight: 800;
 
-    letter-spacing: 0.8px;
+    letter-spacing: 0.7px;
+
+    white-space: nowrap;
 }
 
 
@@ -3484,11 +3504,11 @@ select:focus {
 
 
 .watch-title {
-    margin-bottom: 9px;
+    margin-bottom: 7px;
 
     color: #0f243e;
 
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 800;
 
     line-height: 1.15;
@@ -3500,9 +3520,9 @@ select:focus {
 .watch-text {
     color: #33485f;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 
@@ -3518,16 +3538,16 @@ select:focus {
 
     align-items: center;
 
-    gap: 8px;
+    gap: 6px;
 
-    margin-top: 18px;
+    margin-top: 13px;
 
-    padding: 11px 8px;
+    padding: 8px 6px;
 
     background: #f4f8fc;
 
     border-top: 1px solid #dce6ef;
-    border-radius: 8px;
+    border-radius: 7px;
 }
 
 
@@ -3543,14 +3563,14 @@ select:focus {
 .watch-stat-label {
     display: block;
 
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 
     color: #74869a;
 
-    font-size: 8px;
+    font-size: 7px;
     font-weight: 800;
 
-    letter-spacing: 0.8px;
+    letter-spacing: 0.7px;
 }
 
 
@@ -3559,14 +3579,14 @@ select:focus {
 
     color: #0f243e;
 
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 800;
 }
 
 
 .watch-divider {
     width: 1px;
-    height: 36px;
+    height: 30px;
 
     background: #d4dfea;
 }
@@ -3575,17 +3595,17 @@ select:focus {
 .watch-score {
     display: inline-block;
 
-    padding: 4px 7px;
+    padding: 3px 6px;
 
-    border-radius: 7px;
+    border-radius: 6px;
 
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 800;
 }
 
 
 .watch-score small {
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 700;
 }
 
@@ -3684,7 +3704,7 @@ select:focus {
    MOBILE
 ========================================== */
 
-@media (max-width: 850px) {
+@media (max-width: 600px) {
 
     .watch-header {
         flex-wrap: wrap;
@@ -3708,6 +3728,8 @@ select:focus {
 
     .watch-grid {
         grid-template-columns: 1fr;
+
+        padding: 14px;
     }
 
 
