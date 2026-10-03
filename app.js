@@ -467,64 +467,49 @@ function updateSimilarProfiles(profiles) {
         return;
     }
 
-    const topThree = profiles.slice(0, 3);
+const topThree = profiles.slice(0, 3);
 
-    container.innerHTML = topThree.map(profile => {
+container.innerHTML = topThree.map(profile => {
 
-        const team =
-            String(profile.Team || "")
-                .trim()
-                .toUpperCase();
+    const rawTeam = String(profile.Team || "").trim().toUpperCase();
 
-        const colors =
-            teamColors[team] || ["#d9dee5", "#eef1f4"];
+    const displayTeam = formatTeamDisplay(rawTeam);
+    const colorTeam = getTeamColorCode(rawTeam);
 
-        const overall =
-            Number(profile.Overall);
+    const colors =
+        teamColors[colorTeam] || ["#d9dee5", "#eef1f4"];
 
-        const xp =
-            Number(profile.XP);
+    const overall = Number(profile.Overall);
+    const xp = Number(profile.XP);
 
-        return `
-            <div class="similar-profile-card">
+    return `
+        <div class="similar-profile-card">
+            <div class="similar-profile-name-row">
+                <span class="similar-profile-colors">
+                    <span style="background:${colors[0]}"></span>
+                    <span style="background:${colors[1]}"></span>
+                </span>
 
-                <div class="similar-profile-name-row">
-
-                    <span class="similar-profile-colors">
-                        <span style="background:${colors[0]}"></span>
-                        <span style="background:${colors[1]}"></span>
-                    </span>
-
-                    <div>
-                        <div class="similar-profile-name">
-                            ${profile.Player}
-                        </div>
-
-                        <div class="similar-profile-team">
-                            ${displayTeam}
-                        </div>
-                    </div>
-
+                <div>
+                    <div class="similar-profile-name">${profile.Player}</div>
+                    <div class="similar-profile-team">${displayTeam}</div>
                 </div>
-
-                <div class="similar-profile-stats">
-
-                    <div class="similar-profile-stat">
-                        OVERALL
-                        <strong>${overall.toFixed(1)}</strong>
-                    </div>
-
-                    <div class="similar-profile-stat">
-                        XP
-                        <strong>${Math.round(xp)}</strong>
-                    </div>
-
-                </div>
-
             </div>
-        `;
 
-    }).join("");
+            <div class="similar-profile-stats">
+                <div class="similar-profile-stat">
+                    OVERALL
+                    <strong>${overall.toFixed(1)}</strong>
+                </div>
+
+                <div class="similar-profile-stat">
+                    XP
+                    <strong>${Math.round(xp)}</strong>
+                </div>
+            </div>
+        </div>
+    `;
+}).join("");
 }
 
 function resetSimilarProfiles() {
