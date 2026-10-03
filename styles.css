@@ -3199,7 +3199,7 @@ select:focus {
 
 .season-production {
     margin-top: 20px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 
     background: #ffffff;
 
@@ -3220,10 +3220,15 @@ select:focus {
 .season-production-header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    padding: 10px 20px;
+    gap: 20px;
+
+    padding: 16px 20px;
 
     background: #0f243e;
+
+    color: #ffffff;
 }
 
 
@@ -3232,24 +3237,26 @@ select:focus {
 
     color: #ffffff;
 
-    font-size: 1.2rem;
-    font-weight: 800;
-
-    letter-spacing: 0.4px;
+    font-size: 17px;
+    font-weight: 700;
 }
 
+
+/* Existing subtitle / eyebrow */
 
 .season-production-header span {
     display: block;
 
-    margin-top: 3px;
+    margin-top: 2px;
 
-    color: #aebed0;
+    color: #86a7c8;
 
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 800;
 
-    letter-spacing: 1.6px;
+    letter-spacing: 1.4px;
+
+    text-transform: uppercase;
 }
 
 
@@ -3263,9 +3270,17 @@ select:focus {
     grid-template-columns:
         repeat(7, minmax(0, 1fr));
 
-    background: #ffffff;
+    gap: 8px;
+
+    padding: 20px 14px;
+
+    background: #f7faff;
 }
 
+
+/* ==========================================
+   STAT CARD
+========================================== */
 
 .production-stat {
     position: relative;
@@ -3276,17 +3291,27 @@ select:focus {
     justify-content: center;
 
     min-width: 0;
+    min-height: 78px;
 
-    padding: 17px 8px 19px;
+    padding: 13px 6px 12px;
 
     text-align: center;
 
-    border-right: 1px solid #e3e9f0;
+    background: #ffffff;
+
+    border: 1px solid #d7e0e9;
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 6px rgba(15, 36, 62, 0.04);
 }
 
 
+/* Remove old divider behavior */
+
 .production-stat:last-child {
-    border-right: none;
+    border-right:
+        1px solid #d7e0e9;
 }
 
 
@@ -3295,14 +3320,16 @@ select:focus {
 ========================================== */
 
 .production-label {
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 
-    color: #667d98;
+    color: #6f8193;
 
-    font-size: 10px;
+    font-size: 8px;
     font-weight: 800;
 
-    letter-spacing: 1.3px;
+    letter-spacing: 0.9px;
+
+    text-transform: uppercase;
 }
 
 
@@ -3313,7 +3340,7 @@ select:focus {
 .production-stat strong {
     color: #0f243e;
 
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 800;
 
     line-height: 1;
@@ -3321,58 +3348,56 @@ select:focus {
 
 
 /* ==========================================
-   TABLET
+   RESPONSIVE
 ========================================== */
 
-@media (max-width: 900px) {
-
-    .season-production-grid {
-        grid-template-columns:
-            repeat(7, minmax(0, 1fr));
-    }
-
-    .production-stat {
-        padding: 14px 4px 16px;
-    }
-
-    .production-stat strong {
-        font-size: 20px;
-    }
-
-    .production-label {
-        font-size: 9px;
-    }
-}
-
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     .season-production-grid {
         grid-template-columns:
             repeat(4, minmax(0, 1fr));
     }
 
+
     .production-stat {
-        padding: 14px 6px;
+        min-height: 74px;
 
-        border-bottom: 1px solid #e3e9f0;
+        padding: 12px 6px;
     }
 
-    .production-stat:nth-child(4) {
-        border-right: none;
-    }
-
-    .production-stat:nth-child(n+5) {
-        border-bottom: none;
-    }
 
     .production-stat strong {
         font-size: 20px;
     }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .season-production-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+
+    .season-production-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .production-stat:last-child {
+        grid-column: 1 / -1;
+
+        width: calc(50% - 4px);
+
+        justify-self: center;
+    }
+
 }
 
 /* ==========================================
