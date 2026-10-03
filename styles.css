@@ -3376,6 +3376,41 @@ select:focus {
 }
 
 /* ==========================================
+   WATCH BODY / INNER CARD
+========================================== */
+
+.watch-body {
+    margin: 16px 14px;
+
+    padding: 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #d7e1eb;
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 6px rgba(15, 36, 62, 0.04);
+}
+
+
+/* ==========================================
+   CARD GRID
+========================================== */
+
+.watch-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 10px;
+
+    padding: 0;
+}
+
+
+/* ==========================================
    WATCH CARD
 ========================================== */
 
@@ -3386,19 +3421,18 @@ select:focus {
     flex-direction: column;
 
     min-width: 0;
-    min-height: 205px;
+    min-height: 195px;
 
-    padding: 14px;
+    padding: 13px;
 
     background: #ffffff;
 
-    border: 1px solid #d7e1eb;
-    border-radius: 10px;
+    border: 1px solid #dce4ec;
+    border-radius: 9px;
 
     overflow: hidden;
 
-    box-shadow:
-        0 2px 6px rgba(15, 36, 62, 0.04);
+    box-shadow: none;
 }
 
 
@@ -3418,22 +3452,6 @@ select:focus {
 
 
 /* ==========================================
-   CARD GRID
-========================================== */
-
-.watch-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 10px;
-
-    padding: 16px 14px;
-}
-
-
-/* ==========================================
    CARD TOP
 ========================================== */
 
@@ -3444,12 +3462,12 @@ select:focus {
     gap: 7px;
 
     margin-top: 2px;
-    margin-bottom: 12px;
+    margin-bottom: 11px;
 }
 
 
 /* ==========================================
-   ICON
+   CARD ICON
 ========================================== */
 
 .watch-icon {
@@ -3457,16 +3475,16 @@ select:focus {
     align-items: center;
     justify-content: center;
 
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
 
-    flex: 0 0 30px;
+    flex: 0 0 28px;
 
     border-radius: 50%;
 
     color: #ffffff;
 
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
 
     line-height: 1;
@@ -3540,7 +3558,7 @@ select:focus {
 
     gap: 6px;
 
-    margin-top: 13px;
+    margin-top: 12px;
 
     padding: 8px 6px;
 
@@ -3726,10 +3744,17 @@ select:focus {
     }
 
 
+    .watch-body {
+        margin: 14px;
+
+        padding: 10px;
+    }
+
+
     .watch-grid {
         grid-template-columns: 1fr;
 
-        padding: 14px;
+        padding: 0;
     }
 
 
