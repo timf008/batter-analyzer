@@ -407,6 +407,52 @@ function resetTeamColorPanel() {
 }
 
 // -------------------------------
+// Team Display Helpers
+// -------------------------------
+function formatTeamDisplay(team) {
+    const code = String(team || "").trim().toUpperCase();
+
+    // Standard single-team code
+    if (teamColors[code]) {
+        return code;
+    }
+
+    // Multi-team Stathead code
+    const teams = Object.keys(teamColors);
+    const matches = [];
+
+    let remaining = code;
+
+    while (remaining.length > 0) {
+        const match = teams.find(team =>
+            remaining.startsWith(team)
+        );
+
+        if (!match) {
+            return code;
+        }
+
+        matches.push(match);
+        remaining = remaining.slice(match.length);
+    }
+
+    return matches.join("/");
+}
+
+function getTeamColorCode(team) {
+    const display = formatTeamDisplay(team);
+
+    if (!display.includes("/")) {
+        return display;
+    }
+
+    const teams = display.split("/");
+
+    // Last team = most recent/current team
+    return teams[teams.length - 1];
+}
+
+// -------------------------------
 // Similar Profiles
 // -------------------------------
 function updateSimilarProfiles(profiles) {
@@ -455,7 +501,7 @@ function updateSimilarProfiles(profiles) {
                         </div>
 
                         <div class="similar-profile-team">
-                            ${team}
+                            ${displayTeam}
                         </div>
                     </div>
 
@@ -524,11 +570,13 @@ if (!silent && arr && arr.length > 0) {
     const rawName = arr[0].Name || clean;
     const playerName = toTitleCase(rawName);
     const team = arr[0].Team || "";
+const displayTeam = formatTeamDisplay(team);
+const colorTeam = getTeamColorCode(team);
 
     document.getElementById("playerTab").textContent =
-        `${playerName}${team ? " | " + team : ""} (${season})`;
+        `${playerName}${displayTeam ? " | " + displayTeam : ""} (${season})`;
 
-    updateTeamColorPanel(team);
+    updateTeamColorPanel(colorTeam);
 }
 
 return arr;
