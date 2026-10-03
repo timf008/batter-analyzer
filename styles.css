@@ -3376,21 +3376,69 @@ select:focus {
 }
 
 /* ==========================================
-   WATCH BODY / INNER CARD
+   WHAT TO WATCH PARENT PANEL
 ========================================== */
 
-.watch-body {
-    margin: 16px 14px;
+.watch-section {
+    margin-top: 24px;
 
-    padding: 12px;
+    padding: 28px 32px 32px;
 
-    background: #ffffff;
+    background: #f8fbff;
 
-    border: 1px solid #d7e1eb;
-    border-radius: 12px;
+    border: 1px solid #cbd6e2;
+    border-radius: 16px;
 
-    box-shadow:
-        0 2px 6px rgba(15, 36, 62, 0.04);
+    box-shadow: none;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.watch-header {
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+
+    margin-bottom: 26px;
+}
+
+
+.watch-header h3 {
+    margin: 0;
+
+    color: #0f243e;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+}
+
+
+.watch-subtitle {
+    color: #748399;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+
+.watch-header-line {
+    flex: 1;
+
+    height: 1px;
+
+    background: #cbd6e2;
 }
 
 
@@ -3404,7 +3452,7 @@ select:focus {
     grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-    gap: 10px;
+    gap: 14px;
 
     padding: 0;
 }
@@ -3724,11 +3772,17 @@ select:focus {
 
 @media (max-width: 600px) {
 
+    .watch-section {
+        padding: 20px 16px;
+    }
+
+
     .watch-header {
         flex-wrap: wrap;
 
-        padding-top: 12px;
-        padding-bottom: 12px;
+        gap: 6px;
+
+        margin-bottom: 18px;
     }
 
 
@@ -3744,17 +3798,10 @@ select:focus {
     }
 
 
-    .watch-body {
-        margin: 14px;
-
-        padding: 10px;
-    }
-
-
     .watch-grid {
         grid-template-columns: 1fr;
 
-        padding: 0;
+        gap: 10px;
     }
 
 
