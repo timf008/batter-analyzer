@@ -3401,6 +3401,133 @@ select:focus {
 }
 
 /* ==========================================
+   CORE METRICS PARENT
+========================================== */
+
+.core-metrics-section {
+    margin-top: 18px;
+    margin-bottom: 20px;
+
+    padding: 18px 22px 22px;
+
+    background: #f7faff;
+
+    border: 1px solid #c9d8e8;
+    border-radius: 12px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   CORE METRICS HEADER
+========================================== */
+
+.core-metrics-header {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 16px;
+}
+
+
+.core-metrics-title {
+    color: #0f243e;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    white-space: nowrap;
+}
+
+
+.core-metrics-subtitle {
+    margin-left: 8px;
+
+    color: #718096;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    white-space: nowrap;
+}
+
+
+.core-metrics-header-line {
+    height: 1px;
+
+    margin-left: 6px;
+
+    background: #c9d4df;
+
+    flex: 1;
+}
+
+
+/* ==========================================
+   EXISTING COMPONENTS INSIDE PARENT
+========================================== */
+
+/* Statistical Profile keeps all of its
+   existing styling — only spacing changes */
+
+.core-metrics-section .metrics {
+    margin-top: 0;
+    margin-bottom: 14px;
+}
+
+
+/* Season Production keeps all of its
+   existing styling — only spacing changes */
+
+.core-metrics-section .season-production {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .core-metrics-section {
+        padding: 16px;
+    }
+
+
+    .core-metrics-header {
+        flex-wrap: wrap;
+
+        gap: 6px;
+
+        margin-bottom: 14px;
+    }
+
+
+    .core-metrics-subtitle {
+        width: 100%;
+
+        margin-left: 0;
+
+        white-space: normal;
+    }
+
+
+    .core-metrics-header-line {
+        display: none;
+    }
+
+}
+
+/* ==========================================
    WHAT TO WATCH PARENT PANEL
 ========================================== */
 
