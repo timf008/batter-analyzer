@@ -1604,6 +1604,8 @@ watchGrid.innerHTML = selected.map(item => {
 
 }).join("");
 
+}
+
 // -------------------------------
 // Fantasy Identity
 // -------------------------------
