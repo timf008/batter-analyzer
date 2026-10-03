@@ -282,82 +282,251 @@
 </section>
 
     <!-- Metric Grid -->
+<!-- ==========================================
+     CORE METRIC PROFILE
+========================================== -->
+
 <section class="metrics">
 
-    <div class="metrics-columns">
-        <span>STAT</span>
-        <span>VALUE</span>
-        <span>PROFILE</span>
-        <span>SCORE</span>
-    </div>
+    <div class="metrics-header">
 
-    <div class="metric-row">
-        <div class="metric-name">
-            <span class="metric-label">BA</span>
-            <span class="metric-direction">HIGHER IS BETTER</span>
+        <div>
+            <span class="metrics-eyebrow">CORE METRICS</span>
+            <h2>Statistical Profile</h2>
         </div>
 
-        <span class="metric-raw" id="raw-ba">--</span>
+        <span class="metrics-scale">
+            NORMALIZED 0–10
+        </span>
 
-        <div class="battery" id="battery-ba"></div>
-
-        <span class="metric-score" id="score-ba">--</span>
     </div>
 
-    <div class="metric-row">
-        <div class="metric-name">
-            <span class="metric-label">OBP</span>
-            <span class="metric-direction">HIGHER IS BETTER</span>
+
+    <div class="gauge-grid">
+
+
+        <!-- BA -->
+        <div class="gauge-card">
+
+            <div class="gauge-heading">
+                <span class="metric-label">BA</span>
+                <span class="metric-direction">HIGHER IS BETTER</span>
+            </div>
+
+            <div class="metric-gauge" id="gauge-ba">
+
+                <div class="gauge-center">
+
+                    <strong
+                        class="metric-raw"
+                        id="raw-ba">
+                        --
+                    </strong>
+
+                    <span>VALUE</span>
+
+                </div>
+
+            </div>
+
+            <div class="gauge-score">
+
+                <strong
+                    class="metric-score"
+                    id="score-ba">
+                    --
+                </strong>
+
+                <span>/ 10</span>
+
+            </div>
+
+            <div class="score-caption">
+                PROFILE SCORE
+            </div>
+
         </div>
 
-        <span class="metric-raw" id="raw-obp">--</span>
 
-        <div class="battery" id="battery-obp"></div>
+        <!-- OBP -->
+        <div class="gauge-card">
 
-        <span class="metric-score" id="score-obp">--</span>
+            <div class="gauge-heading">
+                <span class="metric-label">OBP</span>
+                <span class="metric-direction">HIGHER IS BETTER</span>
+            </div>
+
+            <div class="metric-gauge" id="gauge-obp">
+
+                <div class="gauge-center">
+
+                    <strong
+                        class="metric-raw"
+                        id="raw-obp">
+                        --
+                    </strong>
+
+                    <span>VALUE</span>
+
+                </div>
+
+            </div>
+
+            <div class="gauge-score">
+
+                <strong
+                    class="metric-score"
+                    id="score-obp">
+                    --
+                </strong>
+
+                <span>/ 10</span>
+
+            </div>
+
+            <div class="score-caption">
+                PROFILE SCORE
+            </div>
+
+        </div>
+
+
+        <!-- SLG -->
+        <div class="gauge-card">
+
+            <div class="gauge-heading">
+                <span class="metric-label">SLG</span>
+                <span class="metric-direction">HIGHER IS BETTER</span>
+            </div>
+
+            <div class="metric-gauge" id="gauge-slg">
+
+                <div class="gauge-center">
+
+                    <strong
+                        class="metric-raw"
+                        id="raw-slg">
+                        --
+                    </strong>
+
+                    <span>VALUE</span>
+
+                </div>
+
+            </div>
+
+            <div class="gauge-score">
+
+                <strong
+                    class="metric-score"
+                    id="score-slg">
+                    --
+                </strong>
+
+                <span>/ 10</span>
+
+            </div>
+
+            <div class="score-caption">
+                PROFILE SCORE
+            </div>
+
+        </div>
+
+
+        <!-- K% -->
+        <div class="gauge-card">
+
+            <div class="gauge-heading">
+                <span class="metric-label">K%</span>
+                <span class="metric-direction">LOWER IS BETTER</span>
+            </div>
+
+            <div class="metric-gauge" id="gauge-kpct">
+
+                <div class="gauge-center">
+
+                    <strong
+                        class="metric-raw"
+                        id="raw-kpct">
+                        --
+                    </strong>
+
+                    <span>VALUE</span>
+
+                </div>
+
+            </div>
+
+            <div class="gauge-score">
+
+                <strong
+                    class="metric-score"
+                    id="score-kpct">
+                        --
+                </strong>
+
+                <span>/ 10</span>
+
+            </div>
+
+            <div class="score-caption">
+                PROFILE SCORE
+            </div>
+
+        </div>
+
+
+        <!-- BB% -->
+        <div class="gauge-card">
+
+            <div class="gauge-heading">
+                <span class="metric-label">BB%</span>
+                <span class="metric-direction">HIGHER IS BETTER</span>
+            </div>
+
+            <div class="metric-gauge" id="gauge-bbpct">
+
+                <div class="gauge-center">
+
+                    <strong
+                        class="metric-raw"
+                        id="raw-bbpct">
+                        --
+                    </strong>
+
+                    <span>VALUE</span>
+
+                </div>
+
+            </div>
+
+            <div class="gauge-score">
+
+                <strong
+                    class="metric-score"
+                    id="score-bbpct">
+                    --
+                </strong>
+
+                <span>/ 10</span>
+
+            </div>
+
+            <div class="score-caption">
+                PROFILE SCORE
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="metric-row">
-        <div class="metric-name">
-            <span class="metric-label">SLG</span>
-            <span class="metric-direction">HIGHER IS BETTER</span>
-        </div>
 
-        <span class="metric-raw" id="raw-slg">--</span>
-
-        <div class="battery" id="battery-slg"></div>
-
-        <span class="metric-score" id="score-slg">--</span>
-    </div>
-
-    <div class="metric-row">
-        <div class="metric-name">
-            <span class="metric-label">K%</span>
-            <span class="metric-direction">LOWER IS BETTER</span>
-        </div>
-
-        <span class="metric-raw" id="raw-kpct">--</span>
-
-        <div class="battery" id="battery-kpct"></div>
-
-        <span class="metric-score" id="score-kpct">--</span>
-    </div>
-
-    <div class="metric-row">
-        <div class="metric-name">
-            <span class="metric-label">BB%</span>
-            <span class="metric-direction">HIGHER IS BETTER</span>
-        </div>
-
-        <span class="metric-raw" id="raw-bbpct">--</span>
-
-        <div class="battery" id="battery-bbpct"></div>
-
-        <span class="metric-score" id="score-bbpct">--</span>
+    <div class="metrics-footer">
+        Five core metrics · One statistical profile
     </div>
 
 </section>
-
 <hr>
 
 <section class="analytics-panel">
