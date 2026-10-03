@@ -3382,7 +3382,7 @@ select:focus {
 .watch-section {
     margin-top: 24px;
 
-    padding: 28px 32px 32px;
+    padding: 18px 22px 22px;
 
     background: #f8fbff;
 
@@ -3415,7 +3415,7 @@ select:focus {
     font-size: 18px;
     font-weight: 800;
 
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
 
     white-space: nowrap;
 }
