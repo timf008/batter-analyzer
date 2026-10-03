@@ -1497,62 +1497,112 @@ items.forEach(item => {
     const selected = items.slice(0, 3);
 
 
-    // --------------------------------
-    // Build cards
-    // --------------------------------
-    watchGrid.innerHTML = selected.map(item => {
+// --------------------------------
+// Build cards
+// --------------------------------
+watchGrid.innerHTML = selected.map(item => {
 
-        let rawDisplay;
+    let rawDisplay;
 
-        if (
-    item.key === "BA" ||
-    item.key === "OBP" ||
-    item.key === "SLG"
-) {
-    rawDisplay = Number(item.raw).toFixed(3).replace(/^0/, "");
-}
-else {
-    rawDisplay = Number(item.raw).toFixed(1) + "%";
-}
-
-        const statLabel = {
-            BA: "BA",
-            OBP: "OBP",
-            SLG: "SLG",
-            Kpct: "K%",
-            BBpct: "BB%"
-        }[item.key];
+    if (
+        item.key === "BA" ||
+        item.key === "OBP" ||
+        item.key === "SLG"
+    ) {
+        rawDisplay = Number(item.raw)
+            .toFixed(3)
+            .replace(/^0/, "");
+    }
+    else {
+        rawDisplay =
+            Number(item.raw).toFixed(1) + "%";
+    }
 
 
-        return `
-            <div class="watch-card watch-${item.type}">
+    const statLabel = {
+        BA: "BA",
+        OBP: "OBP",
+        SLG: "SLG",
+        Kpct: "K%",
+        BBpct: "BB%"
+    }[item.key];
+
+
+    // Translate existing classification
+    // into user-facing card language
+    const statusLabel = {
+        good: "STRENGTH",
+        neutral: "MONITOR",
+        bad: "CONCERN"
+    }[item.type] || "MONITOR";
+
+
+    return `
+        <div class="watch-card watch-${item.type}">
+
+            <div class="watch-card-top">
 
                 <div class="watch-icon">
                     ${item.icon}
                 </div>
 
-                <div class="watch-content">
+                <div class="watch-status">
+                    ${statusLabel}
+                </div>
 
-                    <div class="watch-title">
-                        ${item.title}
-                    </div>
+            </div>
 
-                    <div class="watch-text">
-                        ${item.text}
-                    </div>
 
-                    <div class="watch-stat">
-                        ${statLabel}: ${rawDisplay}
-                        (${item.score.toFixed(1)}/10)
-                    </div>
+            <div class="watch-content">
+
+                <div class="watch-title">
+                    ${item.title}
+                </div>
+
+                <div class="watch-text">
+                    ${item.text}
+                </div>
+
+            </div>
+
+
+            <div class="watch-evidence">
+
+                <div class="watch-stat">
+
+                    <span class="watch-stat-label">
+                        ${statLabel}
+                    </span>
+
+                    <strong class="watch-stat-value">
+                        ${rawDisplay}
+                    </strong>
+
+                </div>
+
+
+                <div class="watch-divider"></div>
+
+
+                <div class="watch-stat">
+
+                    <span class="watch-stat-label">
+                        SCORE
+                    </span>
+
+                    <strong class="watch-score">
+                        ${item.score.toFixed(1)}
+                        <small>/ 10</small>
+                    </strong>
 
                 </div>
 
             </div>
-        `;
 
-    }).join("");
-}
+        </div>
+    `;
+
+}).join("");
 
 // -------------------------------
 // Fantasy Identity
