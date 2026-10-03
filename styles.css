@@ -485,134 +485,387 @@ select:focus {
     display: block;
 }
 
-/* -----------------------------------------
-   Pitching Metrics Panel
------------------------------------------ */
+/* ==========================================
+   CORE METRIC PROFILE
+========================================== */
 
 .metrics {
     margin-top: 20px;
     margin-bottom: 20px;
+
     background: #ffffff;
+
     border: 1px solid #dbe4ee;
     border-radius: 16px;
+
     overflow: hidden;
-    box-shadow: 0 4px 14px rgba(15, 36, 62, 0.06);
+
+    box-shadow:
+        0 4px 14px rgba(15, 36, 62, 0.06);
 }
 
-/* -----------------------------------------
-   Column Labels
------------------------------------------ */
 
-.metrics-columns {
-    display: grid;
-    grid-template-columns: 155px 110px 1fr 70px;
+/* ==========================================
+   HEADER
+========================================== */
+
+.metrics-header {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    padding: 10px 18px;
+    gap: 20px;
 
-    background: #f4f7fb;
-    border-bottom: 1px solid #dbe4ee;
+    padding: 16px 20px;
 
-    font-size: 12px;
+    background: #0f243e;
+
+    color: #ffffff;
+}
+
+
+.metrics-eyebrow {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #86a7c8;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+
+.metrics-header h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 17px;
     font-weight: 700;
-    letter-spacing: 1.2px;
-    color: #5d7189;
-}
-
-.metrics-columns span:nth-child(2),
-.metrics-columns span:nth-child(4) {
-    text-align: center;
 }
 
 
-/* -----------------------------------------
-   Metric Rows
------------------------------------------ */
+.metrics-scale {
+    padding: 6px 9px;
 
-.metric-row {
+    border:
+        1px solid rgba(255,255,255,0.18);
+
+    border-radius: 999px;
+
+    color: #a9bfd5;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================
+   GAUGE GRID
+========================================== */
+
+.gauge-grid {
     display: grid;
-    grid-template-columns: 150px 90px 1fr 70px;
-    align-items: center;
 
-    gap: 14px;
-    padding: 14px 18px;
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 8px;
+
+    padding: 20px 14px;
+
+    background: #f7faff;
+}
+
+
+/* ==========================================
+   GAUGE CARD
+========================================== */
+
+.gauge-card {
+    min-width: 0;
+
+    padding: 13px 8px 12px;
+
+    text-align: center;
 
     background: #ffffff;
-    border-bottom: 1px solid #edf1f5;
-}
 
-.metric-row:last-child {
-    border-bottom: none;
-}
+    border: 1px solid #d7e0e9;
+    border-radius: 10px;
 
-.metric-row:hover {
-    background: #f9fbfe;
+    box-shadow:
+        0 2px 6px rgba(15, 36, 62, 0.04);
 }
 
 
-/* -----------------------------------------
-   Metric Name
------------------------------------------ */
+/* ==========================================
+   METRIC HEADING
+========================================== */
 
-.metric-name {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+.gauge-heading {
+    min-height: 40px;
 }
+
 
 .metric-label {
-    font-size: 18px;
-    font-weight: 800;
+    display: block;
+
     color: #0f243e;
+
+    font-size: 15px;
+    font-weight: 800;
 }
+
 
 .metric-direction {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #7a8da5;
+    display: block;
+
+    margin-top: 4px;
+
+    color: #6f8193;
+
+    font-size: 6px;
+    font-weight: 800;
+
+    letter-spacing: 0.6px;
 }
 
 
-/* -----------------------------------------
-   Raw Value
------------------------------------------ */
+/* ==========================================
+   SEMICIRCLE GAUGE
+========================================== */
 
-.metric-raw {
-    font-size: 18px;
-    font-weight: 700;
-    color: #0f243e;
+.metric-gauge {
+    --gauge-angle: 0deg;
+
+    position: relative;
+
+    width: 104px;
+    height: 57px;
+
+    margin: 7px auto 3px;
+
+    overflow: hidden;
+}
+
+
+.metric-gauge::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 104px;
+    height: 104px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            from 270deg,
+            #2f80ed 0deg,
+            #2f80ed var(--gauge-angle),
+            #dfe7ef var(--gauge-angle),
+            #dfe7ef 180deg,
+            transparent 180deg,
+            transparent 360deg
+        );
+
+    transition:
+        --gauge-angle 0.45s ease;
+}
+
+
+.metric-gauge::after {
+    content: "";
+
+    position: absolute;
+
+    left: 11px;
+    top: 11px;
+
+    width: 82px;
+    height: 82px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+}
+
+
+/* ==========================================
+   RAW VALUE INSIDE GAUGE
+========================================== */
+
+.gauge-center {
+    position: absolute;
+
+    z-index: 3;
+
+    left: 50%;
+    bottom: 0;
+
+    transform: translateX(-50%);
+
+    width: 82px;
+
     text-align: center;
 }
 
 
-/* -----------------------------------------
-   Battery
------------------------------------------ */
+.metric-raw {
+    display: block;
 
-.metric-row .battery {
-    width: 100%;
-}
-
-
-/* -----------------------------------------
-   Score
------------------------------------------ */
-
-.metric-score {
-    justify-self: center;
-
-    min-width: 52px;
-
-    padding: 8px 10px;
-
-    background: #f1f5f9;
-    border-radius: 8px;
+    color: #0f243e;
 
     font-size: 18px;
     font-weight: 800;
-    color: #0f243e;
+
+    line-height: 1;
+}
+
+
+.gauge-center > span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #8494a5;
+
+    font-size: 6px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================
+   PROFILE SCORE
+========================================== */
+
+.gauge-score {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+
+    gap: 2px;
+
+    margin-top: 9px;
+}
+
+
+.metric-score {
+    padding: 0;
+
+    background: transparent;
+    border-radius: 0;
+
+    color: #2f80ed;
+
+    font-size: 16px;
+    font-weight: 800;
+
     text-align: center;
+}
+
+
+.gauge-score > span {
+    color: #8493a2;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+.score-caption {
+    margin-top: 3px;
+
+    color: #9aa7b4;
+
+    font-size: 6px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.metrics-footer {
+    padding: 10px 20px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border-top: 1px solid #e0e7ee;
+
+    color: #8090a0;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .gauge-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .gauge-card:last-child {
+        grid-column: 1 / -1;
+
+        width: calc(50% - 4px);
+
+        justify-self: center;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .metrics-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+
+    .gauge-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .gauge-card:last-child {
+        grid-column: auto;
+
+        width: 100%;
+    }
+
 }
 
 /* --------------------------------------
