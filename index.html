@@ -54,6 +54,11 @@
 
 <section class="search-panel">
 
+    <!-- Player Search Header -->
+    <div class="search-header">
+        <h2>👤 Player Search</h2>
+    </div>
+
 
     <div class="search-body">
 
@@ -223,7 +228,143 @@
 
 </section>
 
+<!-- ==========================================
+     SEASON PRODUCTION
+========================================== -->
+
+<section class="season-production">
+
+    <div class="season-production-header">
+        <div>
+            <h2>⚾ Season Production</h2>
+        </div>
+    </div>
+
+    <div class="season-production-grid">
+
+        <div class="production-stat">
+            <span class="production-label">AB</span>
+            <strong id="productionAB">--</strong>
+        </div>
+
+        <div class="production-stat">
+            <span class="production-label">H</span>
+            <strong id="productionH">--</strong>
+        </div>
+
+        <div class="production-stat">
+            <span class="production-label">R</span>
+            <strong id="productionR">--</strong>
+        </div>
+
+        <div class="production-stat">
+            <span class="production-label">RBI</span>
+            <strong id="productionRBI">--</strong>
+        </div>
+
+        <div class="production-stat">
+            <span class="production-label">HR</span>
+            <strong id="productionHR">--</strong>
+        </div>
+
+        <div class="production-stat">
+            <span class="production-label">BB</span>
+            <strong id="productionBB">--</strong>
+        </div>
+
+        <div class="production-stat">
+            <span class="production-label">K</span>
+            <strong id="productionK">--</strong>
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- Metric Grid -->
+<section class="metrics">
+
+    <div class="metrics-columns">
+        <span>STAT</span>
+        <span>VALUE</span>
+        <span>PROFILE</span>
+        <span>SCORE</span>
+    </div>
+
+    <div class="metric-row">
+        <div class="metric-name">
+            <span class="metric-label">BA</span>
+            <span class="metric-direction">HIGHER IS BETTER</span>
+        </div>
+
+        <span class="metric-raw" id="raw-ba">--</span>
+
+        <div class="battery" id="battery-ba"></div>
+
+        <span class="metric-score" id="score-ba">--</span>
+    </div>
+
+    <div class="metric-row">
+        <div class="metric-name">
+            <span class="metric-label">OBP</span>
+            <span class="metric-direction">HIGHER IS BETTER</span>
+        </div>
+
+        <span class="metric-raw" id="raw-obp">--</span>
+
+        <div class="battery" id="battery-obp"></div>
+
+        <span class="metric-score" id="score-obp">--</span>
+    </div>
+
+    <div class="metric-row">
+        <div class="metric-name">
+            <span class="metric-label">SLG</span>
+            <span class="metric-direction">HIGHER IS BETTER</span>
+        </div>
+
+        <span class="metric-raw" id="raw-slg">--</span>
+
+        <div class="battery" id="battery-slg"></div>
+
+        <span class="metric-score" id="score-slg">--</span>
+    </div>
+
+    <div class="metric-row">
+        <div class="metric-name">
+            <span class="metric-label">K%</span>
+            <span class="metric-direction">LOWER IS BETTER</span>
+        </div>
+
+        <span class="metric-raw" id="raw-kpct">--</span>
+
+        <div class="battery" id="battery-kpct"></div>
+
+        <span class="metric-score" id="score-kpct">--</span>
+    </div>
+
+    <div class="metric-row">
+        <div class="metric-name">
+            <span class="metric-label">BB%</span>
+            <span class="metric-direction">HIGHER IS BETTER</span>
+        </div>
+
+        <span class="metric-raw" id="raw-bbpct">--</span>
+
+        <div class="battery" id="battery-bbpct"></div>
+
+        <span class="metric-score" id="score-bbpct">--</span>
+    </div>
+
+</section>
+
+<hr>
+
 <section class="analytics-panel">
+
+    <div class="analytics-header">
+        <h2>📈 Player Analytics</h2>
+    </div>
 
     <div class="overall-card">
 
@@ -329,317 +470,13 @@
 
 </section>
 
-<!-- ==========================================
-     CORE METRICS PARENT
-========================================== -->
-
-<section class="core-metrics-section">
-
-    <div class="core-metrics-header">
-
-        <div class="core-metrics-title">
-            CORE METRICS
-        </div>
-
-        <div class="core-metrics-subtitle">
-            FIVE METRICS · ONE STATISTICAL PROFILE
-        </div>
-
-        <div class="core-metrics-header-line"></div>
-
-    </div>
-
-
-    <!-- ==========================================
-         STATISTICAL PROFILE
-    =========================================== -->
-
-    <section class="metrics">
-
-        <div class="gauge-grid">
-
-
-            <!-- BA -->
-            <div class="gauge-card">
-
-                <div class="gauge-heading">
-                    <span class="metric-label">BA</span>
-                    <span class="metric-direction">HIGHER IS BETTER</span>
-                </div>
-
-                <div class="metric-gauge" id="gauge-ba">
-
-                    <div class="gauge-center">
-
-                        <strong
-                            class="metric-raw"
-                            id="raw-ba">
-                            --
-                        </strong>
-
-                        <span>VALUE</span>
-
-                    </div>
-
-                </div>
-
-                <div class="gauge-score">
-
-                    <strong
-                        class="metric-score"
-                        id="score-ba">
-                        --
-                    </strong>
-
-                    <span>/ 10</span>
-
-                </div>
-
-                <div class="score-caption">
-                    PROFILE SCORE
-                </div>
-
-            </div>
-
-
-            <!-- OBP -->
-            <div class="gauge-card">
-
-                <div class="gauge-heading">
-                    <span class="metric-label">OBP</span>
-                    <span class="metric-direction">HIGHER IS BETTER</span>
-                </div>
-
-                <div class="metric-gauge" id="gauge-obp">
-
-                    <div class="gauge-center">
-
-                        <strong
-                            class="metric-raw"
-                            id="raw-obp">
-                            --
-                        </strong>
-
-                        <span>VALUE</span>
-
-                    </div>
-
-                </div>
-
-                <div class="gauge-score">
-
-                    <strong
-                        class="metric-score"
-                        id="score-obp">
-                        --
-                    </strong>
-
-                    <span>/ 10</span>
-
-                </div>
-
-                <div class="score-caption">
-                    PROFILE SCORE
-                </div>
-
-            </div>
-
-
-            <!-- SLG -->
-            <div class="gauge-card">
-
-                <div class="gauge-heading">
-                    <span class="metric-label">SLG</span>
-                    <span class="metric-direction">HIGHER IS BETTER</span>
-                </div>
-
-                <div class="metric-gauge" id="gauge-slg">
-
-                    <div class="gauge-center">
-
-                        <strong
-                            class="metric-raw"
-                            id="raw-slg">
-                            --
-                        </strong>
-
-                        <span>VALUE</span>
-
-                    </div>
-
-                </div>
-
-                <div class="gauge-score">
-
-                    <strong
-                        class="metric-score"
-                        id="score-slg">
-                        --
-                    </strong>
-
-                    <span>/ 10</span>
-
-                </div>
-
-                <div class="score-caption">
-                    PROFILE SCORE
-                </div>
-
-            </div>
-
-
-            <!-- K% -->
-            <div class="gauge-card">
-
-                <div class="gauge-heading">
-                    <span class="metric-label">K%</span>
-                    <span class="metric-direction">LOWER IS BETTER</span>
-                </div>
-
-                <div class="metric-gauge" id="gauge-kpct">
-
-                    <div class="gauge-center">
-
-                        <strong
-                            class="metric-raw"
-                            id="raw-kpct">
-                            --
-                        </strong>
-
-                        <span>VALUE</span>
-
-                    </div>
-
-                </div>
-
-                <div class="gauge-score">
-
-                    <strong
-                        class="metric-score"
-                        id="score-kpct">
-                        --
-                    </strong>
-
-                    <span>/ 10</span>
-
-                </div>
-
-                <div class="score-caption">
-                    PROFILE SCORE
-                </div>
-
-            </div>
-
-
-            <!-- BB% -->
-            <div class="gauge-card">
-
-                <div class="gauge-heading">
-                    <span class="metric-label">BB%</span>
-                    <span class="metric-direction">HIGHER IS BETTER</span>
-                </div>
-
-                <div class="metric-gauge" id="gauge-bbpct">
-
-                    <div class="gauge-center">
-
-                        <strong
-                            class="metric-raw"
-                            id="raw-bbpct">
-                            --
-                        </strong>
-
-                        <span>VALUE</span>
-
-                    </div>
-
-                </div>
-
-                <div class="gauge-score">
-
-                    <strong
-                        class="metric-score"
-                        id="score-bbpct">
-                        --
-                    </strong>
-
-                    <span>/ 10</span>
-
-                </div>
-
-                <div class="score-caption">
-                    PROFILE SCORE
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==========================================
-         SEASON PRODUCTION
-    =========================================== -->
-
-    <section class="season-production">
-
-        <div class="season-production-grid">
-
-            <div class="production-stat">
-                <span class="production-label">AB</span>
-                <strong id="productionAB">--</strong>
-            </div>
-
-            <div class="production-stat">
-                <span class="production-label">H</span>
-                <strong id="productionH">--</strong>
-            </div>
-
-            <div class="production-stat">
-                <span class="production-label">R</span>
-                <strong id="productionR">--</strong>
-            </div>
-
-            <div class="production-stat">
-                <span class="production-label">RBI</span>
-                <strong id="productionRBI">--</strong>
-            </div>
-
-            <div class="production-stat">
-                <span class="production-label">HR</span>
-                <strong id="productionHR">--</strong>
-            </div>
-
-            <div class="production-stat">
-                <span class="production-label">BB</span>
-                <strong id="productionBB">--</strong>
-            </div>
-
-            <div class="production-stat">
-                <span class="production-label">K</span>
-                <strong id="productionK">--</strong>
-            </div>
-
-        </div>
-
-    </section>
-
-</section>
 
 <!-- What to Watch -->
 <div class="watch-section">
 
     <div class="watch-header">
-
         <h3>WHAT TO WATCH</h3>
-
-        <span class="watch-subtitle">
-            KEY STRENGTHS AND AREAS TO MONITOR
-        </span>
-
-        <span class="watch-header-line"></span>
-
+        <span>Key strengths and areas to monitor</span>
     </div>
 
     <div class="watch-grid" id="watchGrid">
@@ -1113,5 +950,3 @@
 
 </body>
 </html>
-
-
