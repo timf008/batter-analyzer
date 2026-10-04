@@ -485,387 +485,134 @@ select:focus {
     display: block;
 }
 
-/* ==========================================
-   CORE METRIC PROFILE
-========================================== */
+/* -----------------------------------------
+   Pitching Metrics Panel
+----------------------------------------- */
 
 .metrics {
     margin-top: 20px;
     margin-bottom: 20px;
-
     background: #ffffff;
-
     border: 1px solid #dbe4ee;
     border-radius: 16px;
-
     overflow: hidden;
-
-    box-shadow:
-        0 4px 14px rgba(15, 36, 62, 0.06);
+    box-shadow: 0 4px 14px rgba(15, 36, 62, 0.06);
 }
 
+/* -----------------------------------------
+   Column Labels
+----------------------------------------- */
 
-/* ==========================================
-   HEADER
-========================================== */
-
-.metrics-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 20px;
-
-    padding: 16px 20px;
-
-    background: #0f243e;
-
-    color: #ffffff;
-}
-
-
-.metrics-eyebrow {
-    display: block;
-
-    margin-bottom: 2px;
-
-    color: #86a7c8;
-
-    font-size: 8px;
-    font-weight: 800;
-
-    letter-spacing: 1.4px;
-}
-
-
-.metrics-header h2 {
-    margin: 0;
-
-    color: #ffffff;
-
-    font-size: 17px;
-    font-weight: 700;
-}
-
-
-.metrics-scale {
-    padding: 6px 9px;
-
-    border:
-        1px solid rgba(255,255,255,0.18);
-
-    border-radius: 999px;
-
-    color: #a9bfd5;
-
-    font-size: 8px;
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-
-/* ==========================================
-   GAUGE GRID
-========================================== */
-
-.gauge-grid {
+.metrics-columns {
     display: grid;
+    grid-template-columns: 155px 110px 1fr 70px;
+    align-items: center;
 
-    grid-template-columns:
-        repeat(5, 1fr);
+    padding: 10px 18px;
 
-    gap: 8px;
+    background: #f4f7fb;
+    border-bottom: 1px solid #dbe4ee;
 
-    padding: 20px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #5d7189;
+}
 
-    background: #f7faff;
+.metrics-columns span:nth-child(2),
+.metrics-columns span:nth-child(4) {
+    text-align: center;
 }
 
 
-/* ==========================================
-   GAUGE CARD
-========================================== */
+/* -----------------------------------------
+   Metric Rows
+----------------------------------------- */
 
-.gauge-card {
-    min-width: 0;
+.metric-row {
+    display: grid;
+    grid-template-columns: 150px 90px 1fr 70px;
+    align-items: center;
 
-    padding: 13px 8px 12px;
-
-    text-align: center;
+    gap: 14px;
+    padding: 14px 18px;
 
     background: #ffffff;
+    border-bottom: 1px solid #edf1f5;
+}
 
-    border: 1px solid #d7e0e9;
-    border-radius: 10px;
+.metric-row:last-child {
+    border-bottom: none;
+}
 
-    box-shadow:
-        0 2px 6px rgba(15, 36, 62, 0.04);
+.metric-row:hover {
+    background: #f9fbfe;
 }
 
 
-/* ==========================================
-   METRIC HEADING
-========================================== */
+/* -----------------------------------------
+   Metric Name
+----------------------------------------- */
 
-.gauge-heading {
-    min-height: 40px;
+.metric-name {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
-
 
 .metric-label {
-    display: block;
-
-    color: #0f243e;
-
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 800;
+    color: #0f243e;
 }
-
 
 .metric-direction {
-    display: block;
-
-    margin-top: 4px;
-
-    color: #6f8193;
-
-    font-size: 6px;
-    font-weight: 800;
-
-    letter-spacing: 0.6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #7a8da5;
 }
 
 
-/* ==========================================
-   SEMICIRCLE GAUGE
-========================================== */
+/* -----------------------------------------
+   Raw Value
+----------------------------------------- */
 
-.metric-gauge {
-    --gauge-angle: 0deg;
-
-    position: relative;
-
-    width: 104px;
-    height: 57px;
-
-    margin: 7px auto 3px;
-
-    overflow: hidden;
-}
-
-
-.metric-gauge::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 104px;
-    height: 104px;
-
-    border-radius: 50%;
-
-    background:
-        conic-gradient(
-            from 270deg,
-            #2f80ed 0deg,
-            #2f80ed var(--gauge-angle),
-            #dfe7ef var(--gauge-angle),
-            #dfe7ef 180deg,
-            transparent 180deg,
-            transparent 360deg
-        );
-
-    transition:
-        --gauge-angle 0.45s ease;
-}
-
-
-.metric-gauge::after {
-    content: "";
-
-    position: absolute;
-
-    left: 11px;
-    top: 11px;
-
-    width: 82px;
-    height: 82px;
-
-    border-radius: 50%;
-
-    background: #ffffff;
-}
-
-
-/* ==========================================
-   RAW VALUE INSIDE GAUGE
-========================================== */
-
-.gauge-center {
-    position: absolute;
-
-    z-index: 3;
-
-    left: 50%;
-    bottom: 0;
-
-    transform: translateX(-50%);
-
-    width: 82px;
-
+.metric-raw {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f243e;
     text-align: center;
 }
 
 
-.metric-raw {
-    display: block;
+/* -----------------------------------------
+   Battery
+----------------------------------------- */
 
-    color: #0f243e;
+.metric-row .battery {
+    width: 100%;
+}
+
+
+/* -----------------------------------------
+   Score
+----------------------------------------- */
+
+.metric-score {
+    justify-self: center;
+
+    min-width: 52px;
+
+    padding: 8px 10px;
+
+    background: #f1f5f9;
+    border-radius: 8px;
 
     font-size: 18px;
     font-weight: 800;
-
-    line-height: 1;
-}
-
-
-.gauge-center > span {
-    display: block;
-
-    margin-top: 3px;
-
-    color: #8494a5;
-
-    font-size: 6px;
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-
-/* ==========================================
-   PROFILE SCORE
-========================================== */
-
-.gauge-score {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-
-    gap: 2px;
-
-    margin-top: 9px;
-}
-
-
-.metric-score {
-    padding: 0;
-
-    background: transparent;
-    border-radius: 0;
-
-    color: #2f80ed;
-
-    font-size: 16px;
-    font-weight: 800;
-
+    color: #0f243e;
     text-align: center;
-}
-
-
-.gauge-score > span {
-    color: #8493a2;
-
-    font-size: 9px;
-    font-weight: 600;
-}
-
-
-.score-caption {
-    margin-top: 3px;
-
-    color: #9aa7b4;
-
-    font-size: 6px;
-    font-weight: 800;
-
-    letter-spacing: 0.8px;
-}
-
-
-/* ==========================================
-   FOOTER
-========================================== */
-
-.metrics-footer {
-    padding: 10px 20px;
-
-    text-align: center;
-
-    background: #ffffff;
-
-    border-top: 1px solid #e0e7ee;
-
-    color: #8090a0;
-
-    font-size: 8px;
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
-    text-transform: uppercase;
-}
-
-
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media (max-width: 700px) {
-
-    .gauge-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-
-    .gauge-card:last-child {
-        grid-column: 1 / -1;
-
-        width: calc(50% - 4px);
-
-        justify-self: center;
-    }
-
-}
-
-
-@media (max-width: 430px) {
-
-    .metrics-header {
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 8px;
-    }
-
-
-    .gauge-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    .gauge-card:last-child {
-        grid-column: auto;
-
-        width: 100%;
-    }
-
 }
 
 /* --------------------------------------
@@ -3199,7 +2946,7 @@ select:focus {
 
 .season-production {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 
     background: #ffffff;
 
@@ -3220,15 +2967,10 @@ select:focus {
 .season-production-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
-    gap: 20px;
-
-    padding: 16px 20px;
+    padding: 10px 20px;
 
     background: #0f243e;
-
-    color: #ffffff;
 }
 
 
@@ -3237,26 +2979,24 @@ select:focus {
 
     color: #ffffff;
 
-    font-size: 17px;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
 }
 
-
-/* Existing subtitle / eyebrow */
 
 .season-production-header span {
     display: block;
 
-    margin-top: 2px;
+    margin-top: 3px;
 
-    color: #86a7c8;
+    color: #aebed0;
 
-    font-size: 8px;
+    font-size: 9px;
     font-weight: 800;
 
-    letter-spacing: 1.4px;
-
-    text-transform: uppercase;
+    letter-spacing: 1.6px;
 }
 
 
@@ -3270,17 +3010,9 @@ select:focus {
     grid-template-columns:
         repeat(7, minmax(0, 1fr));
 
-    gap: 8px;
-
-    padding: 20px 14px;
-
-    background: #f7faff;
+    background: #ffffff;
 }
 
-
-/* ==========================================
-   STAT CARD
-========================================== */
 
 .production-stat {
     position: relative;
@@ -3291,27 +3023,17 @@ select:focus {
     justify-content: center;
 
     min-width: 0;
-    min-height: 78px;
 
-    padding: 13px 6px 12px;
+    padding: 17px 8px 19px;
 
     text-align: center;
 
-    background: #ffffff;
-
-    border: 1px solid #d7e0e9;
-    border-radius: 10px;
-
-    box-shadow:
-        0 2px 6px rgba(15, 36, 62, 0.04);
+    border-right: 1px solid #e3e9f0;
 }
 
 
-/* Remove old divider behavior */
-
 .production-stat:last-child {
-    border-right:
-        1px solid #d7e0e9;
+    border-right: none;
 }
 
 
@@ -3320,16 +3042,14 @@ select:focus {
 ========================================== */
 
 .production-label {
-    margin-bottom: 7px;
+    margin-bottom: 6px;
 
-    color: #6f8193;
+    color: #667d98;
 
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 800;
 
-    letter-spacing: 0.9px;
-
-    text-transform: uppercase;
+    letter-spacing: 1.3px;
 }
 
 
@@ -3340,7 +3060,7 @@ select:focus {
 .production-stat strong {
     color: #0f243e;
 
-    font-size: 21px;
+    font-size: 24px;
     font-weight: 800;
 
     line-height: 1;
@@ -3348,147 +3068,27 @@ select:focus {
 
 
 /* ==========================================
-   RESPONSIVE
+   TABLET
 ========================================== */
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
 
     .season-production-grid {
         grid-template-columns:
-            repeat(4, minmax(0, 1fr));
+            repeat(7, minmax(0, 1fr));
     }
-
 
     .production-stat {
-        min-height: 74px;
-
-        padding: 12px 6px;
+        padding: 14px 4px 16px;
     }
-
 
     .production-stat strong {
         font-size: 20px;
     }
 
-}
-
-
-@media (max-width: 430px) {
-
-    .season-production-header {
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 8px;
+    .production-label {
+        font-size: 9px;
     }
-
-
-    .season-production-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-
-    .production-stat:last-child {
-        grid-column: 1 / -1;
-
-        width: calc(50% - 4px);
-
-        justify-self: center;
-    }
-
-}
-
-/* ==========================================
-   CORE METRICS PARENT
-========================================== */
-
-.core-metrics-section {
-    margin-top: 18px;
-    margin-bottom: 20px;
-
-    padding: 18px 22px 22px;
-
-    background: #f7faff;
-
-    border: 1px solid #c9d8e8;
-    border-radius: 12px;
-
-    box-sizing: border-box;
-}
-
-
-/* ==========================================
-   CORE METRICS HEADER
-========================================== */
-
-.core-metrics-header {
-    display: flex;
-    align-items: center;
-
-    gap: 10px;
-
-    margin-bottom: 16px;
-}
-
-
-.core-metrics-title {
-    color: #0f243e;
-
-    font-size: 18px;
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
-    white-space: nowrap;
-}
-
-
-.core-metrics-subtitle {
-    margin-left: 8px;
-
-    color: #718096;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    letter-spacing: 0.8px;
-
-    white-space: nowrap;
-}
-
-
-.core-metrics-header-line {
-    height: 1px;
-
-    margin-left: 6px;
-
-    background: #c9d4df;
-
-    flex: 1;
-}
-
-
-/* ==========================================
-   EXISTING COMPONENTS INSIDE PARENT
-========================================== */
-
-/* Statistical Profile keeps all of its
-   existing styling — only spacing changes */
-
-.core-metrics-section .metrics {
-    margin-top: 0;
-    margin-bottom: 14px;
-}
-
-
-/* Season Production keeps all of its
-   existing styling — only spacing changes */
-
-.core-metrics-section .season-production {
-    margin-top: 0;
-    margin-bottom: 0;
 }
 
 
@@ -3498,94 +3098,73 @@ select:focus {
 
 @media (max-width: 600px) {
 
-    .core-metrics-section {
-        padding: 16px;
+    .season-production-grid {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
     }
 
+    .production-stat {
+        padding: 14px 6px;
 
-    .core-metrics-header {
-        flex-wrap: wrap;
-
-        gap: 6px;
-
-        margin-bottom: 14px;
+        border-bottom: 1px solid #e3e9f0;
     }
 
-
-    .core-metrics-subtitle {
-        width: 100%;
-
-        margin-left: 0;
-
-        white-space: normal;
+    .production-stat:nth-child(4) {
+        border-right: none;
     }
 
-
-    .core-metrics-header-line {
-        display: none;
+    .production-stat:nth-child(n+5) {
+        border-bottom: none;
     }
 
+    .production-stat strong {
+        font-size: 20px;
+    }
 }
 
-/* ==========================================
-   WHAT TO WATCH PARENT PANEL
-========================================== */
+/* ------------------------------
+   What to Watch
+------------------------------ */
 
 .watch-section {
     margin-top: 24px;
-
-    padding: 18px 22px 22px;
+    padding: 18px 20px 20px;
 
     background: #f8fbff;
-
     border: 1px solid #cbd6e2;
-    border-radius: 16px;
+    border-radius: 12px;
 
-    box-shadow: none;
+    box-shadow: 0 2px 8px rgba(15, 36, 62, 0.06);
 }
 
 
-/* ==========================================
-   HEADER
-========================================== */
+/* ------------------------------
+   Header
+------------------------------ */
 
 .watch-header {
     display: flex;
     align-items: center;
+    gap: 14px;
 
-    gap: 28px;
-
-    margin-bottom: 26px;
+    margin-bottom: 16px;
 }
-
 
 .watch-header h3 {
     margin: 0;
 
-    color: #0f243e;
-
     font-size: 18px;
     font-weight: 800;
+    letter-spacing: 2px;
 
-    letter-spacing: 1.5px;
-
-    white-space: nowrap;
-}
-
-
-.watch-subtitle {
-    color: #748399;
-
-    font-size: 11px;
-    font-weight: 700;
-
-    letter-spacing: 1px;
+    color: #0f243e;
 
     white-space: nowrap;
 }
 
+.watch-header::after {
+    content: "";
 
-.watch-header-line {
     flex: 1;
 
     height: 1px;
@@ -3593,126 +3172,81 @@ select:focus {
     background: #cbd6e2;
 }
 
-
-/* ==========================================
-   CARD GRID
-========================================== */
-
-.watch-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 14px;
-
-    padding: 0;
-}
-
-
-/* ==========================================
-   WATCH CARD
-========================================== */
-
-.watch-card {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-
-    min-width: 0;
-    min-height: 195px;
-
-    padding: 13px;
-
-    background: #ffffff;
-
-    border: 1px solid #dce4ec;
-    border-radius: 9px;
-
-    overflow: hidden;
-
-    box-shadow: none;
-}
-
-
-/* Colored top rail */
-
-.watch-card::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 4px;
-}
-
-
-/* ==========================================
-   CARD TOP
-========================================== */
-
-.watch-card-top {
-    display: flex;
-    align-items: center;
-
-    gap: 7px;
-
-    margin-top: 2px;
-    margin-bottom: 11px;
-}
-
-
-/* ==========================================
-   CARD ICON
-========================================== */
-
-.watch-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 28px;
-    height: 28px;
-
-    flex: 0 0 28px;
-
-    border-radius: 50%;
-
-    color: #ffffff;
-
-    font-size: 17px;
+.watch-header span {
+    font-size: 12px;
     font-weight: 700;
+    letter-spacing: 1px;
 
-    line-height: 1;
-}
+    text-transform: uppercase;
 
-
-/* ==========================================
-   STATUS BADGE
-========================================== */
-
-.watch-status {
-    padding: 4px 7px;
-
-    border: 1px solid;
-    border-radius: 999px;
-
-    font-size: 7px;
-    font-weight: 800;
-
-    letter-spacing: 0.7px;
+    color: #6f7b89;
 
     white-space: nowrap;
 }
 
 
-/* ==========================================
-   CONTENT
-========================================== */
+/* ------------------------------
+   Card Grid
+------------------------------ */
+
+.watch-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 14px;
+}
+
+
+/* ------------------------------
+   Individual Card
+------------------------------ */
+
+.watch-card {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 14px;
+
+    min-height: 120px;
+
+    padding: 16px;
+
+    background: white;
+
+    border: 1px solid #d6dee7;
+    border-radius: 10px;
+
+    box-sizing: border-box;
+}
+
+
+/* ------------------------------
+   Icon
+------------------------------ */
+
+.watch-icon {
+    flex: 0 0 38px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 22px;
+    font-weight: 900;
+
+    color: white;
+}
+
+
+/* ------------------------------
+   Card Text Area
+------------------------------ */
 
 .watch-content {
     flex: 1;
@@ -3720,242 +3254,123 @@ select:focus {
     min-width: 0;
 }
 
-
 .watch-title {
-    margin-bottom: 7px;
+    margin-bottom: 6px;
 
-    color: #0f243e;
-
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 800;
-
-    line-height: 1.15;
 
     text-transform: uppercase;
 }
 
-
 .watch-text {
-    color: #33485f;
-
-    font-size: 11px;
+    font-size: 14px;
 
     line-height: 1.4;
+
+    color: #28323d;
 }
-
-
-/* ==========================================
-   EVIDENCE STRIP
-========================================== */
-
-.watch-evidence {
-    display: grid;
-
-    grid-template-columns:
-        1fr 1px 1fr;
-
-    align-items: center;
-
-    gap: 6px;
-
-    margin-top: 12px;
-
-    padding: 8px 6px;
-
-    background: #f4f8fc;
-
-    border-top: 1px solid #dce6ef;
-    border-radius: 7px;
-}
-
 
 .watch-stat {
-    min-width: 0;
-
-    margin: 0;
-
-    text-align: center;
-}
-
-
-.watch-stat-label {
-    display: block;
-
-    margin-bottom: 3px;
-
-    color: #74869a;
-
-    font-size: 7px;
-    font-weight: 800;
-
-    letter-spacing: 0.7px;
-}
-
-
-.watch-stat-value {
-    display: block;
-
-    color: #0f243e;
-
-    font-size: 15px;
-    font-weight: 800;
-}
-
-
-.watch-divider {
-    width: 1px;
-    height: 30px;
-
-    background: #d4dfea;
-}
-
-
-.watch-score {
-    display: inline-block;
-
-    padding: 3px 6px;
-
-    border-radius: 6px;
+    margin-top: 10px;
 
     font-size: 13px;
-    font-weight: 800;
-}
-
-
-.watch-score small {
-    font-size: 8px;
     font-weight: 700;
+
+    color: #77818d;
 }
 
 
-/* ==========================================
-   STRENGTH / GOOD
-========================================== */
+/* ------------------------------
+   GOOD / STRENGTH
+------------------------------ */
 
-.watch-good::before {
-    background: #18b66a;
+.watch-good {
+    background: #f1fbf5;
+
+    border-color: #b9dfc6;
 }
-
 
 .watch-good .watch-icon {
-    background: #12a960;
+    background: #16a05d;
+}
+
+.watch-good .watch-title {
+    color: #13894f;
 }
 
 
-.watch-good .watch-status {
-    background: #e9f8f0;
+/* ------------------------------
+   NEUTRAL / MONITOR
+------------------------------ */
 
-    border-color: #c3ead5;
+.watch-neutral {
+    background: #fff9ef;
 
-    color: #07904e;
+    border-color: #f0cf94;
 }
-
-
-.watch-good .watch-score {
-    background: #e7f8ef;
-
-    color: #0a9d55;
-}
-
-
-/* ==========================================
-   MONITOR / NEUTRAL
-========================================== */
-
-.watch-neutral::before {
-    background: #f5a623;
-}
-
 
 .watch-neutral .watch-icon {
     background: #f5a623;
 }
 
-
-.watch-neutral .watch-status {
-    background: #fff6e7;
-
-    border-color: #f2d6a6;
-
-    color: #cf7d00;
+.watch-neutral .watch-title {
+    color: #e47e00;
 }
 
 
-.watch-neutral .watch-score {
-    background: #fff5e5;
+/* ------------------------------
+   BAD / CONCERN
+------------------------------ */
 
-    color: #d47d00;
+.watch-bad {
+    background: #fff4f4;
+
+    border-color: #e7b5b5;
 }
-
-
-/* ==========================================
-   CONCERN / BAD
-========================================== */
-
-.watch-bad::before {
-    background: #df554d;
-}
-
 
 .watch-bad .watch-icon {
-    background: #d94d46;
+    background: #d50000;
+}
+
+.watch-bad .watch-title {
+    color: #c30000;
 }
 
 
-.watch-bad .watch-status {
-    background: #fff0ef;
+/* ------------------------------
+   Mobile
+------------------------------ */
 
-    border-color: #f2cfcc;
-
-    color: #c9433c;
-}
-
-
-.watch-bad .watch-score {
-    background: #fff0ef;
-
-    color: #c9433c;
-}
-
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 600px) {
+@media (max-width: 850px) {
 
     .watch-section {
-        padding: 20px 16px;
+        padding: 16px;
     }
 
+    .watch-grid {
+        grid-template-columns: 1fr;
+    }
 
     .watch-header {
         flex-wrap: wrap;
 
         gap: 6px;
-
-        margin-bottom: 18px;
     }
 
-
-    .watch-header-line {
+    .watch-header::after {
         display: none;
     }
 
-
-    .watch-subtitle {
+    .watch-header span {
         width: 100%;
 
         white-space: normal;
     }
 
-
-    .watch-grid {
-        grid-template-columns: 1fr;
-
-        gap: 10px;
+    .watch-title {
+        font-size: 15px;
     }
-
 
     .watch-card {
         min-height: auto;
