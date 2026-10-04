@@ -3296,7 +3296,7 @@ select:focus {
     border: 1px solid;
     border-radius: 999px;
 
-    font-size: 7px;
+    font-size: 12px;
     font-weight: 800;
 
     letter-spacing: 0.7px;
@@ -3321,8 +3321,8 @@ select:focus {
 
     color: #0f243e;
 
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 700;
 
     line-height: 1.15;
 
@@ -3333,7 +3333,7 @@ select:focus {
 .watch-text {
     color: #33485f;
 
-    font-size: 11px;
+    font-size: 14px;
 
     line-height: 1.4;
 }
@@ -3392,7 +3392,7 @@ select:focus {
 
     color: #0f243e;
 
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 800;
 }
 
@@ -3412,13 +3412,13 @@ select:focus {
 
     border-radius: 6px;
 
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 800;
 }
 
 
 .watch-score small {
-    font-size: 8px;
+    font-size: 14px;
     font-weight: 700;
 }
 
