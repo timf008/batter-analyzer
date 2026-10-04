@@ -569,34 +569,6 @@ return arr;
 
 }
 
-// -------------------------------
-// Individual Metric Gauges
-// -------------------------------
-function updateMetricGauge(id, score) {
-    const gauge = document.getElementById(id);
-    if (!gauge) return;
-
-    const numericScore = Number(score);
-
-    // Empty/reset state
-    if (!Number.isFinite(numericScore)) {
-        gauge.style.setProperty("--gauge-angle", "0deg");
-        return;
-    }
-
-    // Clamp to the existing 0–10 scoring scale
-    const safeScore = Math.max(0, Math.min(10, numericScore));
-
-    // 10 points = 180° semicircle
-    const angle = safeScore * 18;
-
-    gauge.style.setProperty(
-        "--gauge-angle",
-        `${angle}deg`
-    );
-}
-
-
 
 // -------------------------------
 // Battery fill updater
@@ -622,72 +594,25 @@ function updateOverall(score) {
     updateBattery("battery-overall", safeScore(score));
 }
 
+
 // -------------------------------
 // Universal metric updater
 // -------------------------------
-function updateMetric(rawId, gaugeId, scoreId, rawValue, scoreValue) {
-
+function updateMetric(rawId, batteryId, scoreId, rawValue, scoreValue) {
     document.getElementById(rawId).textContent = rawValue;
     document.getElementById(scoreId).textContent = safeFixed(scoreValue, 1);
-
-    updateMetricGauge(
-        gaugeId,
-        safeScore(scoreValue)
-    );
+    updateBattery(batteryId, safeScore(scoreValue));
 }
 
 // -------------------------------
 // Individual metric wrappers (Batting 5‑metric model)
 // -------------------------------
-function updateBA(raw, score) {
-    updateMetric(
-        "raw-ba",
-        "gauge-ba",
-        "score-ba",
-        stripZero(raw),
-        score
-    );
-}
+function updateBA(raw, score)      { updateMetric("raw-ba",    "battery-ba",    "score-ba",    stripZero(raw), score); }
+function updateOBP(raw, score)     { updateMetric("raw-obp",   "battery-obp",   "score-obp",   stripZero(raw), score); }
+function updateSLG(raw, score)     { updateMetric("raw-slg",   "battery-slg",   "score-slg",   stripZero(raw), score); }
+function updateKpct(raw, score)    { updateMetric("raw-kpct",  "battery-kpct",  "score-kpct",  raw, score); }
+function updateBBpct(raw, score)   { updateMetric("raw-bbpct", "battery-bbpct", "score-bbpct", raw, score); }
 
-function updateOBP(raw, score) {
-    updateMetric(
-        "raw-obp",
-        "gauge-obp",
-        "score-obp",
-        stripZero(raw),
-        score
-    );
-}
-
-function updateSLG(raw, score) {
-    updateMetric(
-        "raw-slg",
-        "gauge-slg",
-        "score-slg",
-        stripZero(raw),
-        score
-    );
-}
-
-function updateKpct(raw, score) {
-    updateMetric(
-        "raw-kpct",
-        "gauge-kpct",
-        "score-kpct",
-        raw,
-        score
-    );
-}
-
-function updateBBpct(raw, score) {
-    updateMetric(
-        "raw-bbpct",
-        "gauge-bbpct",
-        "score-bbpct",
-        raw,
-        score
-    );
-}
 
 // -------------------------------
 // Overall score + tier
@@ -1497,113 +1422,61 @@ items.forEach(item => {
     const selected = items.slice(0, 3);
 
 
-// --------------------------------
-// Build cards
-// --------------------------------
-watchGrid.innerHTML = selected.map(item => {
+    // --------------------------------
+    // Build cards
+    // --------------------------------
+    watchGrid.innerHTML = selected.map(item => {
 
-    let rawDisplay;
+        let rawDisplay;
 
-    if (
-        item.key === "BA" ||
-        item.key === "OBP" ||
-        item.key === "SLG"
-    ) {
-        rawDisplay = Number(item.raw)
-            .toFixed(3)
-            .replace(/^0/, "");
-    }
-    else {
-        rawDisplay =
-            Number(item.raw).toFixed(1) + "%";
-    }
+        if (
+    item.key === "BA" ||
+    item.key === "OBP" ||
+    item.key === "SLG"
+) {
+    rawDisplay = Number(item.raw).toFixed(3).replace(/^0/, "");
+}
+else {
+    rawDisplay = Number(item.raw).toFixed(1) + "%";
+}
 
-
-    const statLabel = {
-        BA: "BA",
-        OBP: "OBP",
-        SLG: "SLG",
-        Kpct: "K%",
-        BBpct: "BB%"
-    }[item.key];
+        const statLabel = {
+            BA: "BA",
+            OBP: "OBP",
+            SLG: "SLG",
+            Kpct: "K%",
+            BBpct: "BB%"
+        }[item.key];
 
 
-    // Translate existing classification
-    // into user-facing card language
-    const statusLabel = {
-        good: "STRENGTH",
-        neutral: "MONITOR",
-        bad: "CONCERN"
-    }[item.type] || "MONITOR";
-
-
-    return `
-        <div class="watch-card watch-${item.type}">
-
-            <div class="watch-card-top">
+        return `
+            <div class="watch-card watch-${item.type}">
 
                 <div class="watch-icon">
                     ${item.icon}
                 </div>
 
-                <div class="watch-status">
-                    ${statusLabel}
-                </div>
+                <div class="watch-content">
 
-            </div>
+                    <div class="watch-title">
+                        ${item.title}
+                    </div>
 
+                    <div class="watch-text">
+                        ${item.text}
+                    </div>
 
-            <div class="watch-content">
-
-                <div class="watch-title">
-                    ${item.title}
-                </div>
-
-                <div class="watch-text">
-                    ${item.text}
-                </div>
-
-            </div>
-
-
-            <div class="watch-evidence">
-
-                <div class="watch-stat">
-
-                    <span class="watch-stat-label">
-                        ${statLabel}
-                    </span>
-
-                    <strong class="watch-stat-value">
-                        ${rawDisplay}
-                    </strong>
-
-                </div>
-
-
-                <div class="watch-divider"></div>
-
-
-                <div class="watch-stat">
-
-                    <span class="watch-stat-label">
-                        SCORE
-                    </span>
-
-                    <strong class="watch-score">
-                        ${item.score.toFixed(1)}
-                        <small>/ 10</small>
-                    </strong>
+                    <div class="watch-stat">
+                        ${statLabel}: ${rawDisplay}
+                        (${item.score.toFixed(1)}/10)
+                    </div>
 
                 </div>
 
             </div>
+        `;
 
-        </div>
-    `;
-
-}).join("");
-
+    }).join("");
 }
 
 // -------------------------------
