@@ -859,6 +859,25 @@ function updateTier(score) {
         `<span class="tier-badge ${getTierClass(tier)}">${tier}</span>`;
 }
 
+// -------------------------------
+// Hitter Archetype
+// -------------------------------
+function updateArchetype(p) {
+
+    const archetypeEl =
+        document.getElementById("playerArchetype");
+
+    const matchEl =
+        document.getElementById("playerArchetypeMatch");
+
+    if (!archetypeEl || !matchEl) return;
+
+    archetypeEl.textContent =
+        p.Archetype || "--";
+
+    matchEl.textContent =
+        p.ArchetypeMatch || "--";
+}
 
 // -------------------------------
 // Scouting note generator (Batting 5‑metric model)
@@ -1237,6 +1256,7 @@ const overall = computeWeightedOverall({
 updateOverall(overall);
 updateParkAdjusted(p);
 updateTier(overall);
+updateArchetype(p);
 updateScoutingNote(p);
 updateXP(p.XP);
 updateIdentityBadge();
@@ -3568,6 +3588,8 @@ document.getElementById("scoutingNote").innerHTML = "--";
 document.getElementById("overallPercentile").textContent = "--";
 document.getElementById("xpScore").innerHTML = "--";
 document.getElementById("playerTab").textContent = "Player:--";
+document.getElementById("playerArchetype").textContent = "--";
+document.getElementById("playerArchetypeMatch").textContent = "--";
 
 
     // Clear Fantasy Edge badges/What to Watch
