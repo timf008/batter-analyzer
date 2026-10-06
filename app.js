@@ -1931,6 +1931,16 @@ async function handleTrend() {
             )
         );
 
+        setText(
+            "trendSLGRaw1",
+            stripZero(Number(prev.SLG).toFixed(3))
+        );
+
+        setText(
+            "trendSLGRaw2",
+            stripZero(Number(curr.SLG).toFixed(3))
+        );
+
 
         // ---------------------------------
         // Archetype
