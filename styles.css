@@ -1676,11 +1676,14 @@ select:focus {
 }
 
 
-/* Modal shell */
+/* -----------------------------------------
+   Modal Shell
+----------------------------------------- */
 
 #compareModal .compare-box {
-    width: 780px;
+    width: 980px;
     max-width: 95%;
+    max-height: 92dvh;
 
     padding: 0;
 
@@ -1688,7 +1691,8 @@ select:focus {
     color: #0f243e;
 
     border-radius: 16px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     box-shadow:
         0 18px 50px rgba(0, 0, 0, 0.28),
@@ -1705,7 +1709,7 @@ select:focus {
     align-items: center;
     justify-content: space-between;
 
-    padding: 12px 22px;
+    padding: 14px 22px;
 
     background: linear-gradient(135deg, #0b131d, #0f3e73);
 
@@ -1734,13 +1738,14 @@ select:focus {
 }
 
 
-/* Close button */
+/* Close Button */
 
 #compareClose {
     display: flex;
     align-items: center;
     justify-content: center;
 
+    flex: 0 0 34px;
     width: 34px;
     height: 34px;
 
@@ -1767,145 +1772,317 @@ select:focus {
 ----------------------------------------- */
 
 .compare-content {
-    padding: 18px 20px 16px;
+    padding: 18px 20px 20px;
 }
 
 
 /* -----------------------------------------
-   Comparison Table
+   Two Player Layout
 ----------------------------------------- */
 
-#compareTable {
-    width: 100%;
+.compare-player-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 18px;
 
-    border-collapse: separate;
-    border-spacing: 0;
+    margin-bottom: 14px;
+}
+
+
+/* -----------------------------------------
+   Player Headers
+----------------------------------------- */
+
+.compare-player-card {
+    padding: 15px 18px;
+
+    background: #ffffff;
 
     border: 1px solid #dbe4ee;
     border-radius: 12px;
 
-    overflow: hidden;
-
-    font-size: 15px;
+    text-align: center;
 }
 
-#compareTable th {
-    padding: 13px 10px;
+.compare-player-name {
+    color: #0f243e;
 
-    background: #f4f7fb;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+}
 
-    border-bottom: 1px solid #dbe4ee;
+.compare-player-team {
+    margin-top: 4px;
 
-    color: #405a78;
+    color: #607286;
 
     font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.4px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+
+/* -----------------------------------------
+   Overall / XP / Tier / Park
+----------------------------------------- */
+
+.compare-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe4ee;
+    border-radius: 10px;
+}
+
+.compare-summary-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+
+    padding: 11px 7px;
+
+    border-right: 1px solid #e2e8f0;
 
     text-align: center;
 }
 
-#compareTable td {
-    padding: 12px 10px;
+.compare-summary-stat:last-child {
+    border-right: none;
+}
 
-    border-bottom: 1px solid #edf1f5;
+.compare-summary-label {
+    margin-bottom: 4px;
 
-    text-align: center;
+    color: #607286;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.compare-summary-value {
+    color: #0f243e;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* -----------------------------------------
+   Archetype
+----------------------------------------- */
+
+.compare-archetype {
+    display: flex;
+    align-items: stretch;
+
+    overflow: hidden;
+
+    background: #f4f8fd;
+
+    border: 1px solid #d7e3f1;
+    border-radius: 10px;
+}
+
+.compare-archetype-main {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+
+    padding: 12px 16px;
+}
+
+.compare-archetype-label,
+.compare-match-label {
+    color: #607286;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.compare-archetype-name {
+    margin-top: 3px;
 
     color: #0f243e;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    line-height: 1.2;
 }
 
-#compareTable tbody tr:last-child td {
+.compare-archetype-match {
+    min-width: 105px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 12px;
+
+    background: #ffffff;
+
+    border-left: 1px solid #d7e3f1;
+}
+
+.compare-match-value {
+    display: inline-block;
+
+    margin-top: 5px;
+    padding: 4px 9px;
+
+    background: #eef3f8;
+
+    border: 1px solid #cbd6e2;
+    border-radius: 999px;
+
+    color: #536a82;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* -----------------------------------------
+   Profile Shape
+----------------------------------------- */
+
+.compare-profile {
+    margin-top: 4px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe4ee;
+    border-radius: 12px;
+}
+
+.compare-profile-row {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        80px
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    min-height: 62px;
+
+    border-bottom: 1px solid #edf1f5;
+}
+
+.compare-profile-row:last-child {
     border-bottom: none;
 }
 
-#compareTable tbody tr:nth-child(even) {
+.compare-profile-row:nth-child(even) {
     background: #fbfcfe;
 }
 
 
-/* Stat names */
+/* Player Meter Area */
 
-#compareTable td:first-child {
+.compare-profile-player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-width: 0;
+
+    padding: 10px 16px;
+}
+
+.compare-profile-score {
+    flex: 0 0 34px;
+
+    color: #2f80ed;
+
+    font-size: 16px;
     font-weight: 800;
+
+    text-align: center;
 }
 
 
-/* -----------------------------------------
-   Winner / Loser
------------------------------------------ */
+/* Meter */
 
-#compareTable .win {
-    color: #35a84a !important;
-    font-weight: 800;
+.compare-profile-meter {
+    flex: 1;
+
+    height: 12px;
+
+    overflow: hidden;
+
+    background: #e6ebf1;
+
+    border-radius: 999px;
 }
 
-#compareTable .lose {
-    color: #e53935 !important;
-    font-weight: 500;
-    opacity: 0.85;
+.compare-profile-fill {
+    width: 0%;
+    height: 100%;
+
+    background: #2f80ed;
+
+    border-radius: inherit;
+
+    transition: width 0.45s ease;
 }
 
-#compareTable .tie {
-    color: #9b9b9b !important;
-    font-weight: 700;
-}
 
+/* Center Metric Label */
 
-/* -----------------------------------------
-   Difference Pills
------------------------------------------ */
-
-.compare-difference {
-    display: inline-flex;
+.compare-profile-label {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    min-width: 72px;
-
-    padding: 5px 10px;
-
-    border-radius: 999px;
-
-    font-size: 12px;
-    font-weight: 800;
-}
-
-.compare-difference.positive {
-    color: #218838;
-    background: rgba(76, 175, 80, 0.14);
-}
-
-.compare-difference.negative {
-    color: #c62828;
-    background: rgba(229, 57, 53, 0.13);
-}
-
-.compare-difference.tie {
-    color: #777;
-    background: #f1f3f5;
-}
-
-
-/* -----------------------------------------
-   Footer
------------------------------------------ */
-
-.compare-footer {
-    margin-top: 14px;
-
-    padding: 10px 12px;
+    align-self: stretch;
 
     background: #f4f7fb;
 
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    border-left: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
 
-    color: #5d7189;
+    color: #0f243e;
 
-    font-size: 11px;
-    font-weight: 600;
+    text-align: center;
 }
+
+.compare-profile-label strong {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.compare-profile-label span {
+    margin-top: 2px;
+
+    color: #71849a;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
 
 /* -----------------------------------------
    Comparison Summary
@@ -1920,6 +2097,7 @@ select:focus {
     padding: 16px 18px;
 
     background: #f6f9fc;
+
     border: 1px solid #dbe4ee;
     border-radius: 12px;
 }
@@ -1934,9 +2112,11 @@ select:focus {
     height: 34px;
 
     background: #e7eef6;
+
     border-radius: 50%;
 
     color: #31577e;
+
     font-size: 18px;
     font-weight: 800;
 }
@@ -1950,16 +2130,17 @@ select:focus {
     margin-bottom: 5px;
 
     color: #102a49;
+
     font-size: 14px;
     font-weight: 800;
 }
 
 .comparison-summary-text {
     color: #425b76;
+
     font-size: 13px;
     line-height: 1.55;
 }
-
 
 
 /* -----------------------------------------
@@ -1975,6 +2156,7 @@ select:focus {
     #compareModal .compare-box {
         width: 100%;
         max-width: 100%;
+        max-height: 96dvh;
 
         border-radius: 12px;
     }
@@ -1993,17 +2175,129 @@ select:focus {
 
     .compare-content {
         padding: 12px;
-        overflow-x: auto;
     }
 
-    #compareTable {
-        min-width: 620px;
-        font-size: 13px;
+
+    /* Keep players side-by-side */
+
+    .compare-player-grid {
+        gap: 8px;
+        margin-bottom: 10px;
     }
 
-    #compareTable th,
-    #compareTable td {
-        padding: 9px 7px;
+    .compare-player-card {
+        padding: 11px 8px;
+    }
+
+    .compare-player-name {
+        font-size: 15px;
+    }
+
+    .compare-player-team {
+        font-size: 10px;
+    }
+
+
+    /* Summary Stats */
+
+    .compare-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .compare-summary-stat {
+        padding: 8px 4px;
+
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .compare-summary-stat:nth-child(2) {
+        border-right: none;
+    }
+
+    .compare-summary-stat:nth-child(3),
+    .compare-summary-stat:nth-child(4) {
+        border-bottom: none;
+    }
+
+    .compare-summary-value {
+        font-size: 14px;
+    }
+
+
+    /* Archetype */
+
+    .compare-archetype {
+        flex-direction: column;
+    }
+
+    .compare-archetype-main {
+        padding: 10px;
+    }
+
+    .compare-archetype-name {
+        font-size: 14px;
+    }
+
+    .compare-archetype-match {
+        min-width: 0;
+
+        flex-direction: row;
+        justify-content: space-between;
+
+        padding: 7px 10px;
+
+        border-left: none;
+        border-top: 1px solid #d7e3f1;
+    }
+
+    .compare-match-value {
+        margin-top: 0;
+    }
+
+
+    /* Profile Shape */
+
+    .compare-profile-row {
+        grid-template-columns:
+            minmax(0, 1fr)
+            54px
+            minmax(0, 1fr);
+
+        min-height: 54px;
+    }
+
+    .compare-profile-player {
+        gap: 6px;
+        padding: 8px 6px;
+    }
+
+    .compare-profile-score {
+        flex-basis: 27px;
+
+        font-size: 12px;
+    }
+
+    .compare-profile-meter {
+        height: 9px;
+    }
+
+    .compare-profile-label strong {
+        font-size: 12px;
+    }
+
+    .compare-profile-label span {
+        font-size: 8px;
+    }
+
+
+    /* Summary */
+
+    .comparison-summary {
+        padding: 13px;
+    }
+
+    .comparison-summary-text {
+        font-size: 12px;
     }
 }
 
