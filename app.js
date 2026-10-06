@@ -1931,15 +1931,68 @@ async function handleTrend() {
             )
         );
 
-        setText(
-            "trendSLGRaw1",
-            stripZero(Number(prev.SLG).toFixed(3))
-        );
+// ---------------------------------
+// Raw Profile Stats
+// ---------------------------------
 
-        setText(
-            "trendSLGRaw2",
-            stripZero(Number(curr.SLG).toFixed(3))
-        );
+// BA
+setText(
+    "trendBARaw1",
+    stripZero(Number(prev.BA).toFixed(3))
+);
+
+setText(
+    "trendBARaw2",
+    stripZero(Number(curr.BA).toFixed(3))
+);
+
+
+// OBP
+setText(
+    "trendOBPRaw1",
+    stripZero(Number(prev.OBP).toFixed(3))
+);
+
+setText(
+    "trendOBPRaw2",
+    stripZero(Number(curr.OBP).toFixed(3))
+);
+
+
+// SLG
+setText(
+    "trendSLGRaw1",
+    stripZero(Number(prev.SLG).toFixed(3))
+);
+
+setText(
+    "trendSLGRaw2",
+    stripZero(Number(curr.SLG).toFixed(3))
+);
+
+
+// K%
+setText(
+    "trendKRaw1",
+    `${Number(prev.Kpct).toFixed(1)}%`
+);
+
+setText(
+    "trendKRaw2",
+    `${Number(curr.Kpct).toFixed(1)}%`
+);
+
+
+// BB%
+setText(
+    "trendBBRaw1",
+    `${Number(prev.BBpct).toFixed(1)}%`
+);
+
+setText(
+    "trendBBRaw2",
+    `${Number(curr.BBpct).toFixed(1)}%`
+);
 
 
         // ---------------------------------
