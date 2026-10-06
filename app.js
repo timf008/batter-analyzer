@@ -3518,60 +3518,60 @@ async function showCompareModal() {
 // BA
 setText(
     "compareBARaw1",
-    stripZero(Number(p1.BA).toFixed(3))
+    stripZero(Number(profile1.BA).toFixed(3))
 );
 
 setText(
     "compareBARaw2",
-    stripZero(Number(p2.BA).toFixed(3))
+    stripZero(Number(profile2.BA).toFixed(3))
 );
 
 
 // OBP
 setText(
     "compareOBPRaw1",
-    stripZero(Number(p1.OBP).toFixed(3))
+    stripZero(Number(profile1.OBP).toFixed(3))
 );
 
 setText(
     "compareOBPRaw2",
-    stripZero(Number(p2.OBP).toFixed(3))
+    stripZero(Number(profile2.OBP).toFixed(3))
 );
 
 
 // SLG
 setText(
     "compareSLGRaw1",
-    stripZero(Number(p1.SLG).toFixed(3))
+    stripZero(Number(profile1.SLG).toFixed(3))
 );
 
 setText(
     "compareSLGRaw2",
-    stripZero(Number(p2.SLG).toFixed(3))
+    stripZero(Number(profile2.SLG).toFixed(3))
 );
 
 
 // K%
 setText(
     "compareKRaw1",
-    `${Number(p1.Kpct).toFixed(1)}%`
+    `${Number(profile1.Kpct).toFixed(1)}%`
 );
 
 setText(
     "compareKRaw2",
-    `${Number(p2.Kpct).toFixed(1)}%`
+    `${Number(profile2.Kpct).toFixed(1)}%`
 );
 
 
 // BB%
 setText(
     "compareBBRaw1",
-    `${Number(p1.BBpct).toFixed(1)}%`
+    `${Number(profile1.BBpct).toFixed(1)}%`
 );
 
 setText(
     "compareBBRaw2",
-    `${Number(p2.BBpct).toFixed(1)}%`
+    `${Number(profile2.BBpct).toFixed(1)}%`
 );
 
 
