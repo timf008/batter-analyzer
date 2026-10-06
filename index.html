@@ -851,12 +851,13 @@
 
     <div class="modal-content trend-modal">
 
+        <!-- Header -->
         <div class="trend-header">
 
             <div>
-                <h2 id="trendTitle">Season Comparison (Batting)</h2>
+                <h2 id="trendTitle">Batter Trend</h2>
                 <div class="trend-subtitle">
-                    Year-over-year performance by key batting metrics
+                    Season-to-season profile and performance movement
                 </div>
             </div>
 
@@ -864,39 +865,457 @@
 
         </div>
 
+
         <div class="trend-content">
 
-            <div id="trendBody">
-                <!-- JS injects comparison table here -->
+            <!-- =========================================
+                 PLAYER
+            ========================================== -->
+            <div class="trend-player">
+
+                <div class="trend-player-label">
+                    PLAYER
+                </div>
+
+                <div class="trend-player-name"
+                     id="trendPlayerName">
+                    --
+                </div>
+
+                <div class="trend-player-team"
+                     id="trendPlayerTeam">
+                    --
+                </div>
+
             </div>
 
-<!-- Trend Analysis -->
-    <div id="trendAnalysis" class="trend-analysis">
 
-        <div class="trend-analysis-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <line x1="5" y1="20" x2="5" y2="14"></line>
-                <line x1="12" y1="20" x2="12" y2="9"></line>
-                <line x1="19" y1="20" x2="19" y2="4"></line>
-            </svg>
-        </div>
+            <!-- =========================================
+                 SEASON HEADERS
+            ========================================== -->
+            <div class="trend-season-grid">
 
-        <div class="trend-analysis-content">
+                <div class="trend-season-card">
+                    <span class="trend-season-label">
+                        PRIOR SEASON
+                    </span>
 
-            <div class="trend-analysis-title">
-                Trend Analysis
+                    <span class="trend-season-year"
+                          id="trendSeason1">
+                        --
+                    </span>
+                </div>
+
+
+                <div class="trend-season-card">
+                    <span class="trend-season-label">
+                        CURRENT SEASON
+                    </span>
+
+                    <span class="trend-season-year"
+                          id="trendSeason2">
+                        --
+                    </span>
+                </div>
+
             </div>
 
-            <div id="trendAnalysisText" class="trend-analysis-text">
-                --
+
+            <!-- =========================================
+                 SUMMARY METRICS
+            ========================================== -->
+            <div class="trend-season-grid">
+
+                <!-- Prior Season -->
+                <div class="trend-summary-grid">
+
+                    <div class="trend-summary-stat">
+                        <span class="trend-summary-label">
+                            OVERALL
+                        </span>
+                        <span class="trend-summary-value"
+                              id="trendOverall1">
+                            --
+                        </span>
+                    </div>
+
+                    <div class="trend-summary-stat">
+                        <span class="trend-summary-label">
+                            XP
+                        </span>
+                        <span class="trend-summary-value"
+                              id="trendXP1">
+                            --
+                        </span>
+                    </div>
+
+                    <div class="trend-summary-stat">
+                        <span class="trend-summary-label">
+                            TIER
+                        </span>
+                        <span class="trend-summary-value"
+                              id="trendTier1">
+                            --
+                        </span>
+                    </div>
+
+                    <div class="trend-summary-stat">
+                        <span class="trend-summary-label">
+                            PARK ADJ
+                        </span>
+                        <span class="trend-summary-value"
+                              id="trendPark1">
+                            --
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- Current Season -->
+                <div class="trend-summary-grid">
+
+                    <div class="trend-summary-stat">
+                        <span class="trend-summary-label">
+                            OVERALL
+                        </span>
+                        <span class="trend-summary-value"
+                              id="trendOverall2">
+                            --
+                        </span>
+                    </div>
+
+                    <div class="trend-summary-stat">
+                        <span class="trend-summary-label">
+                            XP
+                        </span>
+                        <span class="trend-summary-value"
+                              id="trendXP2">
+                            --
+                        </span>
+                    </div>
+
+                    <div class="trend-summary-stat">
+                        <span class="trend-summary-label">
+                            TIER
+                        </span>
+                        <span class="trend-summary-value"
+                              id="trendTier2">
+                            --
+                        </span>
+                    </div>
+
+                    <div class="trend-summary-stat">
+                        <span class="trend-summary-label">
+                            PARK ADJ
+                        </span>
+                        <span class="trend-summary-value"
+                              id="trendPark2">
+                            --
+                        </span>
+                    </div>
+
+                </div>
+
             </div>
 
-        </div>
 
-    </div>
+            <!-- =========================================
+                 ARCHETYPE
+            ========================================== -->
+            <div class="trend-season-grid">
 
-            <div class="trend-footer">
-                Trend shows the direction of change between seasons.
+                <!-- Prior Season -->
+                <div class="trend-archetype">
+
+                    <div class="trend-archetype-main">
+
+                        <span class="trend-archetype-label">
+                            ARCHETYPE
+                        </span>
+
+                        <span class="trend-archetype-name"
+                              id="trendArchetype1">
+                            --
+                        </span>
+
+                    </div>
+
+                    <div class="trend-archetype-match">
+
+                        <span class="trend-match-label">
+                            MATCH
+                        </span>
+
+                        <span class="trend-match-value"
+                              id="trendMatch1">
+                            --
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Current Season -->
+                <div class="trend-archetype">
+
+                    <div class="trend-archetype-main">
+
+                        <span class="trend-archetype-label">
+                            ARCHETYPE
+                        </span>
+
+                        <span class="trend-archetype-name"
+                              id="trendArchetype2">
+                            --
+                        </span>
+
+                    </div>
+
+                    <div class="trend-archetype-match">
+
+                        <span class="trend-match-label">
+                            MATCH
+                        </span>
+
+                        <span class="trend-match-value"
+                              id="trendMatch2">
+                            --
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 PROFILE SHAPE
+            ========================================== -->
+            <div class="trend-profile">
+
+                <!-- BA -->
+                <div class="trend-profile-row">
+
+                    <div class="trend-profile-player">
+
+                        <span class="trend-profile-score"
+                              id="trendBAScore1">--</span>
+
+                        <div class="trend-profile-meter">
+                            <div class="trend-profile-fill"
+                                 id="trendBAMeter1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="trend-profile-label">
+                        <strong>BA</strong>
+                        <span>0–10</span>
+                    </div>
+
+                    <div class="trend-profile-player">
+
+                        <div class="trend-profile-meter">
+                            <div class="trend-profile-fill"
+                                 id="trendBAMeter2"></div>
+                        </div>
+
+                        <span class="trend-profile-score"
+                              id="trendBAScore2">--</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OBP -->
+                <div class="trend-profile-row">
+
+                    <div class="trend-profile-player">
+
+                        <span class="trend-profile-score"
+                              id="trendOBPScore1">--</span>
+
+                        <div class="trend-profile-meter">
+                            <div class="trend-profile-fill"
+                                 id="trendOBPMeter1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="trend-profile-label">
+                        <strong>OBP</strong>
+                        <span>0–10</span>
+                    </div>
+
+                    <div class="trend-profile-player">
+
+                        <div class="trend-profile-meter">
+                            <div class="trend-profile-fill"
+                                 id="trendOBPMeter2"></div>
+                        </div>
+
+                        <span class="trend-profile-score"
+                              id="trendOBPScore2">--</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SLG -->
+                <div class="trend-profile-row">
+
+                    <div class="trend-profile-player">
+
+                        <span class="trend-profile-score"
+                              id="trendSLGScore1">--</span>
+
+                        <div class="trend-profile-meter">
+                            <div class="trend-profile-fill"
+                                 id="trendSLGMeter1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="trend-profile-label">
+                        <strong>SLG</strong>
+                        <span>0–10</span>
+                    </div>
+
+                    <div class="trend-profile-player">
+
+                        <div class="trend-profile-meter">
+                            <div class="trend-profile-fill"
+                                 id="trendSLGMeter2"></div>
+                        </div>
+
+                        <span class="trend-profile-score"
+                              id="trendSLGScore2">--</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- K% -->
+                <div class="trend-profile-row">
+
+                    <div class="trend-profile-player">
+
+                        <span class="trend-profile-score"
+                              id="trendKScore1">--</span>
+
+                        <div class="trend-profile-meter">
+                            <div class="trend-profile-fill"
+                                 id="trendKMeter1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="trend-profile-label">
+                        <strong>K%</strong>
+                        <span>0–10</span>
+                    </div>
+
+                    <div class="trend-profile-player">
+
+                        <div class="trend-profile-meter">
+                            <div class="trend-profile-fill"
+                                 id="trendKMeter2"></div>
+                        </div>
+
+                        <span class="trend-profile-score"
+                              id="trendKScore2">--</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BB% -->
+                <div class="trend-profile-row">
+
+                    <div class="trend-profile-player">
+
+                        <span class="trend-profile-score"
+                              id="trendBBScore1">--</span>
+
+                        <div class="trend-profile-meter">
+                            <div class="trend-profile-fill"
+                                 id="trendBBMeter1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="trend-profile-label">
+                        <strong>BB%</strong>
+                        <span>0–10</span>
+                    </div>
+
+                    <div class="trend-profile-player">
+
+                        <div class="trend-profile-meter">
+                            <div class="trend-profile-fill"
+                                 id="trendBBMeter2"></div>
+                        </div>
+
+                        <span class="trend-profile-score"
+                              id="trendBBScore2">--</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 TREND ANALYSIS
+            ========================================== -->
+            <div id="trendAnalysis"
+                 class="trend-analysis">
+
+                <div class="trend-analysis-icon">
+
+                    <svg viewBox="0 0 24 24"
+                         aria-hidden="true">
+
+                        <line x1="5"
+                              y1="20"
+                              x2="5"
+                              y2="14"></line>
+
+                        <line x1="12"
+                              y1="20"
+                              x2="12"
+                              y2="9"></line>
+
+                        <line x1="19"
+                              y1="20"
+                              x2="19"
+                              y2="4"></line>
+
+                    </svg>
+
+                </div>
+
+                <div class="trend-analysis-content">
+
+                    <div class="trend-analysis-title">
+                        Trend Analysis
+                    </div>
+
+                    <div id="trendAnalysisText"
+                         class="trend-analysis-text">
+                        --
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
