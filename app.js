@@ -2174,34 +2174,34 @@ function generateBatterTrendAnalysis(curr, prev) {
     };
 
 
-    // ---------------------------------
-    // 2. Normalized metric-score movement
-    //
-    // Score changes determine magnitude,
-    // NOT direction.
-    // ---------------------------------
-    const scoreChanges = {
+// ---------------------------------
+// 2. TiM profile-score movement
+//
+// Use the normalized coordinates
+// already calculated by the backend.
+// ---------------------------------
+const scoreChanges = {
 
-        BA:
-            scoreBA(curr.BA) -
-            scoreBA(prev.BA),
+    BA:
+        Number(curr.BA_score) -
+        Number(prev.BA_score),
 
-        OBP:
-            scoreOBP(curr.OBP) -
-            scoreOBP(prev.OBP),
+    OBP:
+        Number(curr.OBP_score) -
+        Number(prev.OBP_score),
 
-        SLG:
-            scoreSLG(curr.SLG) -
-            scoreSLG(prev.SLG),
+    SLG:
+        Number(curr.SLG_score) -
+        Number(prev.SLG_score),
 
-        Kpct:
-            scoreKpct(curr.Kpct) -
-            scoreKpct(prev.Kpct),
+    Kpct:
+        Number(curr.Kpct_score) -
+        Number(prev.Kpct_score),
 
-        BBpct:
-            scoreBBpct(curr.BBpct) -
-            scoreBBpct(prev.BBpct)
-    };
+    BBpct:
+        Number(curr.BBpct_score) -
+        Number(prev.BBpct_score)
+};
 
 
     // ---------------------------------
@@ -2405,6 +2405,59 @@ function generateBatterTrendAnalysis(curr, prev) {
 
     const sentences =
         [classification];
+
+// ---------------------------------
+// Archetype Movement
+// ---------------------------------
+
+const currArchetype =
+    curr.Archetype || null;
+
+const prevArchetype =
+    prev.Archetype || null;
+
+const currMatch =
+    curr.ArchetypeMatch || null;
+
+const prevMatch =
+    prev.ArchetypeMatch || null;
+
+
+if (
+    currArchetype &&
+    prevArchetype &&
+    currArchetype !== prevArchetype
+) {
+
+    sentences.push(
+        `The underlying profile shifted from ${prevArchetype} to ${currArchetype}.`
+    );
+}
+
+else if (
+    currArchetype &&
+    prevArchetype &&
+    currArchetype === prevArchetype &&
+    currMatch &&
+    prevMatch &&
+    currMatch !== prevMatch
+) {
+
+    sentences.push(
+        `The profile remained closest to ${currArchetype}, with its archetype match moving from ${prevMatch.toLowerCase()} to ${currMatch.toLowerCase()}.`
+    );
+}
+
+else if (
+    currArchetype &&
+    prevArchetype &&
+    currArchetype === prevArchetype
+) {
+
+    sentences.push(
+        `The profile remained closest to the ${currArchetype} archetype across both seasons.`
+    );
+}
 
 
     // ---------------------------------
