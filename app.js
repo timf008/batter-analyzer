@@ -844,16 +844,23 @@ function getTierClass(tier) {
 }
 
 // -------------------------------
+// Get Tier (batting version)
+// -------------------------------
+function getBatterTier(score) {
+    if (score >= 8.5) return "Elite";
+    if (score >= 7.0) return "Impact";
+    if (score >= 5.5) return "Solid";
+    if (score >= 4.0) return "Developing";
+
+    return "Limited";
+}
+
+// -------------------------------
 // Tier assignment (batting version)
 // -------------------------------
 function updateTier(score) {
-    let tier = "—";
 
-    if (score >= 8.5) tier = "Elite";
-    else if (score >= 7.0) tier = "Impact";
-    else if (score >= 5.5) tier = "Solid";
-    else if (score >= 4.0) tier = "Developing";
-    else tier = "Limited";
+    const tier = getBatterTier(score);
 
     document.getElementById("overallTier").innerHTML =
         `<span class="tier-badge ${getTierClass(tier)}">${tier}</span>`;
@@ -2527,180 +2534,287 @@ function generateBatterComparisonSummary(
 
     const sentences = [];
 
-
     // ---------------------------
-    // Hitting / On-Base Profile
-    // BA + OBP
+    // TiM Profile Scores
     // ---------------------------
 
-    const p1Hitting =
-        Number(data1.BA) > Number(data2.BA) &&
-        Number(data1.OBP) > Number(data2.OBP);
+    const profile1 = {
+        BA: Number(data1.BA_score),
+        OBP: Number(data1.OBP_score),
+        SLG: Number(data1.SLG_score),
+        K: Number(data1.Kpct_score),
+        BB: Number(data1.BBpct_score)
+    };
 
-    const p2Hitting =
-        Number(data2.BA) > Number(data1.BA) &&
-        Number(data2.OBP) > Number(data1.OBP);
+    const profile2 = {
+        BA: Number(data2.BA_score),
+        OBP: Number(data2.OBP_score),
+        SLG: Number(data2.SLG_score),
+        K: Number(data2.Kpct_score),
+        BB: Number(data2.BBpct_score)
+    };
 
-    if (p1Hitting) {
+
+    // ---------------------------
+    // Archetype Relationship
+    // ---------------------------
+
+    const archetype1 = data1.Archetype;
+    const archetype2 = data2.Archetype;
+
+    if (
+        archetype1 &&
+        archetype2 &&
+        archetype1 === archetype2
+    ) {
 
         sentences.push(
-            `${p1} holds the stronger hitting and on-base profile with a higher BA and OBP.`
+            `${p1} and ${p2} share the ${archetype1} archetype, although their individual profile shapes differ.`
         );
 
     }
-    else if (p2Hitting) {
+    else if (archetype1 && archetype2) {
 
         sentences.push(
-            `${p2} holds the stronger hitting and on-base profile with a higher BA and OBP.`
+            `${p1} profiles closest to ${archetype1}, while ${p2} profiles closest to ${archetype2}.`
+        );
+
+    }
+
+
+    // ---------------------------
+    // Find Meaningful Profile
+    // Advantages
+    // ---------------------------
+
+    const metrics = [
+        {
+            key: "BA",
+            label: "BA"
+        },
+        {
+            key: "OBP",
+            label: "OBP"
+        },
+        {
+            key: "SLG",
+            label: "SLG"
+        },
+        {
+            key: "K",
+            label: "K%"
+        },
+        {
+            key: "BB",
+            label: "BB%"
+        }
+    ];
+
+
+    const p1Advantages = [];
+    const p2Advantages = [];
+
+    /*
+       A 0.5-point difference on the
+       normalized 0–10 scale is enough
+       to call out visually.
+
+       Smaller differences are treated
+       as broadly similar.
+    */
+
+    const PROFILE_THRESHOLD = 0.5;
+
+
+    metrics.forEach(metric => {
+
+        const value1 =
+            profile1[metric.key];
+
+        const value2 =
+            profile2[metric.key];
+
+        if (
+            !Number.isFinite(value1) ||
+            !Number.isFinite(value2)
+        ) {
+            return;
+        }
+
+        const difference =
+            value1 - value2;
+
+
+        if (difference >= PROFILE_THRESHOLD) {
+
+            p1Advantages.push(
+                metric.label
+            );
+
+        }
+        else if (
+            difference <= -PROFILE_THRESHOLD
+        ) {
+
+            p2Advantages.push(
+                metric.label
+            );
+
+        }
+
+    });
+
+
+    // ---------------------------
+    // Profile Shape Summary
+    // ---------------------------
+
+    function formatMetricList(list) {
+
+        if (list.length === 0) {
+            return "";
+        }
+
+        if (list.length === 1) {
+            return list[0];
+        }
+
+        if (list.length === 2) {
+            return `${list[0]} and ${list[1]}`;
+        }
+
+        return (
+            list.slice(0, -1).join(", ") +
+            `, and ${list[list.length - 1]}`
+        );
+    }
+
+
+    if (
+        p1Advantages.length > 0 &&
+        p2Advantages.length > 0
+    ) {
+
+        sentences.push(
+            `${p1} shows the stronger normalized profile in ${formatMetricList(p1Advantages)}, while ${p2} is stronger in ${formatMetricList(p2Advantages)}.`
+        );
+
+    }
+    else if (p1Advantages.length > 0) {
+
+        sentences.push(
+            `${p1} shows the stronger normalized profile in ${formatMetricList(p1Advantages)}, with the remaining dimensions relatively close.`
+        );
+
+    }
+    else if (p2Advantages.length > 0) {
+
+        sentences.push(
+            `${p2} shows the stronger normalized profile in ${formatMetricList(p2Advantages)}, with the remaining dimensions relatively close.`
         );
 
     }
     else {
 
-        const p1BetterBA =
-            Number(data1.BA) > Number(data2.BA);
+        sentences.push(
+            `The two hitters show very similar normalized profiles across the five TiM batting dimensions.`
+        );
 
-        const p2BetterBA =
-            Number(data2.BA) > Number(data1.BA);
+    }
 
-        const p1BetterOBP =
-            Number(data1.OBP) > Number(data2.OBP);
 
-        const p2BetterOBP =
-            Number(data2.OBP) > Number(data1.OBP);
+    // ---------------------------
+    // Overall + XP Context
+    // ---------------------------
 
-        if (p1BetterBA && p2BetterOBP) {
+    const overallDifference =
+        overall1 - overall2;
+
+    const xpDifference =
+        xp1 - xp2;
+
+
+    /*
+       Keep tiny differences from
+       generating unnecessary winner
+       language.
+    */
+
+    const OVERALL_THRESHOLD = 0.2;
+    const XP_THRESHOLD = 20;
+
+
+    const meaningfulOverall =
+        Math.abs(overallDifference) >=
+        OVERALL_THRESHOLD;
+
+    const meaningfulXP =
+        Math.abs(xpDifference) >=
+        XP_THRESHOLD;
+
+
+    if (
+        meaningfulOverall &&
+        meaningfulXP
+    ) {
+
+        const overallLeader =
+            overallDifference > 0
+                ? p1
+                : p2;
+
+        const xpLeader =
+            xpDifference > 0
+                ? p1
+                : p2;
+
+
+        if (overallLeader === xpLeader) {
 
             sentences.push(
-                `The hitting profile is split, with ${p1} holding the higher BA and ${p2} the higher OBP.`
+                `${overallLeader} also holds the advantage in both Overall Score and XP.`
             );
 
         }
-        else if (p2BetterBA && p1BetterOBP) {
+        else {
 
             sentences.push(
-                `The hitting profile is split, with ${p2} holding the higher BA and ${p1} the higher OBP.`
+                `${overallLeader} holds the stronger Overall Score, while ${xpLeader} holds the advantage in XP.`
             );
+
         }
+
     }
+    else if (meaningfulOverall) {
 
-
-    // ---------------------------
-    // Power
-    // SLG
-    // ---------------------------
-
-    if (Number(data1.SLG) > Number(data2.SLG)) {
+        const leader =
+            overallDifference > 0
+                ? p1
+                : p2;
 
         sentences.push(
-            `${p1} provides the stronger power profile with the higher SLG.`
+            `${leader} holds the stronger Overall Score, while XP is relatively close.`
         );
 
     }
-    else if (Number(data2.SLG) > Number(data1.SLG)) {
+    else if (meaningfulXP) {
+
+        const leader =
+            xpDifference > 0
+                ? p1
+                : p2;
 
         sentences.push(
-            `${p2} provides the stronger power profile with the higher SLG.`
-        );
-    }
-
-
-    // ---------------------------
-    // Plate Discipline
-    // Lower K% + Higher BB%
-    // ---------------------------
-
-    const p1Discipline =
-        Number(data1.Kpct) < Number(data2.Kpct) &&
-        Number(data1.BBpct) > Number(data2.BBpct);
-
-    const p2Discipline =
-        Number(data2.Kpct) < Number(data1.Kpct) &&
-        Number(data2.BBpct) > Number(data1.BBpct);
-
-    if (p1Discipline) {
-
-        sentences.push(
-            `${p1} owns the stronger plate-discipline profile with a lower K% and higher BB%.`
-        );
-
-    }
-    else if (p2Discipline) {
-
-        sentences.push(
-            `${p2} owns the stronger plate-discipline profile with a lower K% and higher BB%.`
+            `${leader} holds the advantage in XP, while Overall Score is relatively close.`
         );
 
     }
     else {
 
-        const p1BetterK =
-            Number(data1.Kpct) < Number(data2.Kpct);
-
-        const p2BetterK =
-            Number(data2.Kpct) < Number(data1.Kpct);
-
-        const p1BetterBB =
-            Number(data1.BBpct) > Number(data2.BBpct);
-
-        const p2BetterBB =
-            Number(data2.BBpct) > Number(data1.BBpct);
-
-        if (p1BetterK && p2BetterBB) {
-
-            sentences.push(
-                `The plate-discipline profile is split, with ${p1} holding the lower K% and ${p2} the higher BB%.`
-            );
-
-        }
-        else if (p2BetterK && p1BetterBB) {
-
-            sentences.push(
-                `The plate-discipline profile is split, with ${p2} holding the lower K% and ${p1} the higher BB%.`
-            );
-        }
-    }
-
-
-    // ---------------------------
-    // XP + Overall Score
-    // ---------------------------
-
-    const p1XP = xp1 > xp2;
-    const p2XP = xp2 > xp1;
-
-    const p1Overall = overall1 > overall2;
-    const p2Overall = overall2 > overall1;
-
-    if (p1XP && p1Overall) {
-
         sentences.push(
-            `${p1} finishes ahead in both XP and Overall Score.`
+            `Overall Score and XP are also relatively close between the two hitters.`
         );
 
-    }
-    else if (p2XP && p2Overall) {
-
-        sentences.push(
-            `${p2} finishes ahead in both XP and Overall Score.`
-        );
-
-    }
-    else {
-
-        if (p1XP) {
-            sentences.push(`${p1} holds the advantage in XP.`);
-        }
-        else if (p2XP) {
-            sentences.push(`${p2} holds the advantage in XP.`);
-        }
-
-        if (p1Overall) {
-            sentences.push(`${p1} holds the advantage in Overall Score.`);
-        }
-        else if (p2Overall) {
-            sentences.push(`${p2} holds the advantage in Overall Score.`);
-        }
     }
 
 
@@ -2711,251 +2825,489 @@ function generateBatterComparisonSummary(
 // Compare Button (Batting Version)
 // -------------------------------
 async function showCompareModal() {
+
     console.log("COMPARE BUTTON CLICKED");
 
-function formatName(name) {
-    return name
-        .split(' ')
-        .map(word =>
-            word
-                .split('-')
-                .map(part =>
-                    part.charAt(0).toUpperCase() +
-                    part.slice(1).toLowerCase()
-                )
-                .join('-')
-        )
-        .join(' ');
-}
+    function formatName(name) {
+        return name
+            .split(" ")
+            .map(word =>
+                word
+                    .split("-")
+                    .map(part =>
+                        part.charAt(0).toUpperCase() +
+                        part.slice(1).toLowerCase()
+                    )
+                    .join("-")
+            )
+            .join(" ");
+    }
+
+
+    // ----------------------------------
+    // Small display helpers
+    // ----------------------------------
+
+    function setText(id, value) {
+        const el = document.getElementById(id);
+
+        if (!el) return;
+
+        el.textContent =
+            value !== null &&
+            value !== undefined &&
+            value !== ""
+                ? value
+                : "--";
+    }
+
+
+    function setProfileMeter(id, score) {
+        const el = document.getElementById(id);
+
+        if (!el) return;
+
+        const value = Number(score);
+
+        if (!Number.isFinite(value)) {
+            el.style.width = "0%";
+            return;
+        }
+
+        const clamped =
+            Math.max(0, Math.min(10, value));
+
+        el.style.width = `${clamped * 10}%`;
+    }
+
+
+    function formatScore(score) {
+        const value = Number(score);
+
+        return Number.isFinite(value)
+            ? value.toFixed(1)
+            : "--";
+    }
+
+
+    function formatOverall(value) {
+        const number = Number(value);
+
+        return Number.isFinite(number)
+            ? number.toFixed(1)
+            : "--";
+    }
+
+
+    function formatXP(value) {
+        const number = Number(value);
+
+        return Number.isFinite(number)
+            ? Math.round(number)
+            : "--";
+    }
+
+
+    // ----------------------------------
+    // Inputs
+    // ----------------------------------
 
     try {
-        const p1_raw = document.getElementById("playerName").value.trim();
-        const s1 = document.getElementById("seasonSelect").value;
 
-        const p2_raw = document.getElementById("playerName2").value.trim();
-        const s2 = document.getElementById("seasonSelect2").value;
+        const p1_raw =
+            document.getElementById("playerName")
+                .value
+                .trim();
+
+        const s1 =
+            document.getElementById("seasonSelect")
+                .value;
+
+
+        const p2_raw =
+            document.getElementById("playerName2")
+                .value
+                .trim();
+
+        const s2 =
+            document.getElementById("seasonSelect2")
+                .value;
+
 
         if (!p1_raw || !p2_raw) {
             alert("Enter both batter names.");
             return;
         }
 
-        const data1Arr = await loadBatter(p1_raw, s1, true);
-        const data2Arr = await loadBatter(p2_raw, s2, true);
 
-        const data1 = Array.isArray(data1Arr) ? data1Arr[0] : data1Arr;
-        const data2 = Array.isArray(data2Arr) ? data2Arr[0] : data2Arr;
+        // ----------------------------------
+        // Load Players
+        // ----------------------------------
 
-        if (!data1 || data1.error || !data2 || data2.error) {
+        const data1Arr =
+            await loadBatter(p1_raw, s1, true);
+
+        const data2Arr =
+            await loadBatter(p2_raw, s2, true);
+
+
+        const data1 =
+            Array.isArray(data1Arr)
+                ? data1Arr[0]
+                : data1Arr;
+
+        const data2 =
+            Array.isArray(data2Arr)
+                ? data2Arr[0]
+                : data2Arr;
+
+
+        if (
+            !data1 ||
+            data1.error ||
+            !data2 ||
+            data2.error
+        ) {
             alert("One or both batters not found.");
             return;
         }
 
-        if (data1.BA == null || data2.BA == null) {
+
+        if (
+            data1.BA == null ||
+            data2.BA == null
+        ) {
             alert("Not enough data for comparison.");
             return;
         }
 
-        const p1_display = formatName(data1.Name || p1_raw);
-        const p2_display = formatName(data2.Name || p2_raw);
 
-        document.getElementById("compareName1").textContent = `${p1_display} (${s1})`;
-        document.getElementById("compareName2").textContent = `${p2_display} (${s2})`;
+        // ----------------------------------
+        // Player Names
+        // ----------------------------------
 
-        // ⭐ Batting scores
-        const s1_BA    = scoreBA(data1.BA);
-        const s1_OBP   = scoreOBP(data1.OBP);
-        const s1_SLG   = scoreSLG(data1.SLG);
-        const s1_Kpct  = scoreKpct(data1.Kpct);
-        const s1_BBpct = scoreBBpct(data1.BBpct);
+        const p1_display =
+            formatName(data1.Name || p1_raw);
 
-        const s2_BA    = scoreBA(data2.BA);
-        const s2_OBP   = scoreOBP(data2.OBP);
-        const s2_SLG   = scoreSLG(data2.SLG);
-        const s2_Kpct  = scoreKpct(data2.Kpct);
-        const s2_BBpct = scoreBBpct(data2.BBpct);
-
-        const overall1 = computeWeightedOverall({
-            baScore: s1_BA,
-            obpScore: s1_OBP,
-            slgScore: s1_SLG,
-            kpctScore: s1_Kpct,
-            bbpctScore: s1_BBpct
-        });
-
-        const overall2 = computeWeightedOverall({
-            baScore: s2_BA,
-            obpScore: s2_OBP,
-            slgScore: s2_SLG,
-            kpctScore: s2_Kpct,
-            bbpctScore: s2_BBpct
-        });
-
-        // Compute XP
-        const xp1 = computeBatterXP(data1);
-        const xp2 = computeBatterXP(data2);
-
-        const stats = [
-            ["BA",   data1.BA,    data2.BA,    stripZero(data1.BA.toFixed(3)),    stripZero(data2.BA.toFixed(3))],
-            ["OBP",  data1.OBP,   data2.OBP,   stripZero(data1.OBP.toFixed(3)),   stripZero(data2.OBP.toFixed(3))],
-            ["SLG",  data1.SLG,   data2.SLG,   stripZero(data1.SLG.toFixed(3)),   stripZero(data2.SLG.toFixed(3))],
-            ["K%",   data1.Kpct,  data2.Kpct,  data1.Kpct.toFixed(1),             data2.Kpct.toFixed(1)],
-            ["BB%",  data1.BBpct, data2.BBpct, data1.BBpct.toFixed(1),            data2.BBpct.toFixed(1)],
-
-            // ⭐ XP added here
-            ["XP", xp1, xp2, Math.round(xp1), Math.round(xp2)],
-
-            ["Overall Score", overall1, overall2, overall1.toFixed(1), overall2.toFixed(1)]
-        ];
-
-        const tbody = document.getElementById("compareBody");
-        tbody.innerHTML = "";
-
-        stats.forEach(([label, raw1, raw2, disp1, disp2]) => {
-
-    const row = document.createElement("tr");
-
-    let class1 = "tie";
-    let class2 = "tie";
-
-    let player1Wins = false;
-    let player2Wins = false;
-
-    if (raw1 != null && raw2 != null) {
-
-        // Lower is better for K%
-        if (label === "K%") {
-
-            if (raw1 < raw2) {
-                class1 = "win";
-                class2 = "lose";
-                player1Wins = true;
-            }
-            else if (raw2 < raw1) {
-                class1 = "lose";
-                class2 = "win";
-                player2Wins = true;
-            }
-
-        }
-
-        // Higher is better for everything else
-        else {
-
-            if (raw1 > raw2) {
-                class1 = "win";
-                class2 = "lose";
-                player1Wins = true;
-            }
-            else if (raw2 > raw1) {
-                class1 = "lose";
-                class2 = "win";
-                player2Wins = true;
-            }
-
-        }
-    }
+        const p2_display =
+            formatName(data2.Name || p2_raw);
 
 
-    // ----------------------------------
-    // Difference
-    // Player 1 minus Player 2
-    // ----------------------------------
+        setText(
+            "compareName1",
+            `${p1_display} (${s1})`
+        );
 
-    const difference = raw1 - raw2;
-
-    let differenceDisplay = "--";
-
-    if (label === "BA" || label === "OBP" || label === "SLG") {
-
-        differenceDisplay =
-            `${difference >= 0 ? "+" : ""}${difference.toFixed(3)}`;
-
-    }
-
-    else if (label === "K%" || label === "BB%") {
-
-        differenceDisplay =
-            `${difference >= 0 ? "+" : ""}${difference.toFixed(1)}`;
-
-    }
-
-    else if (label === "XP") {
-
-        differenceDisplay =
-            `${difference >= 0 ? "+" : ""}${Math.round(difference)}`;
-
-    }
-
-    else if (label === "Overall Score") {
-
-        differenceDisplay =
-            `${difference >= 0 ? "+" : ""}${difference.toFixed(1)}`;
-
-    }
+        setText(
+            "compareName2",
+            `${p2_display} (${s2})`
+        );
 
 
-    // Difference color represents whether Player 1's
-    // difference is favorable — NOT merely positive.
+        // ----------------------------------
+        // Team
+        // ----------------------------------
 
-    let differenceClass = "tie";
+        setText(
+            "compareTeam1",
+            data1.Team || "--"
+        );
 
-    if (player1Wins) {
-        differenceClass = "positive";
-    }
-    else if (player2Wins) {
-        differenceClass = "negative";
-    }
-
-
-    row.innerHTML = `
-        <td>${label}</td>
-
-        <td class="${class1}">
-            ${disp1}
-        </td>
-
-        <td class="${class2}">
-            ${disp2}
-        </td>
-
-        <td>
-            <span class="compare-difference ${differenceClass}">
-                ${differenceDisplay}
-            </span>
-        </td>
-    `;
-
-    tbody.appendChild(row);
-});
+        setText(
+            "compareTeam2",
+            data2.Team || "--"
+        );
 
 
-// ----------------------------------
-// Comparison Summary
-// ----------------------------------
+        // ----------------------------------
+        // Use TiM Engine Outputs
+        // ----------------------------------
 
-const comparisonSummary =
-    generateBatterComparisonSummary(
-        p1_display,
-        p2_display,
-        data1,
-        data2,
-        xp1,
-        xp2,
-        overall1,
-        overall2
-    );
+        const overall1 =
+            Number(data1.Overall);
 
-document.getElementById("comparisonSummaryText").textContent =
-    comparisonSummary;
+        const overall2 =
+            Number(data2.Overall);
 
 
-document.getElementById("compareModal").style.display = "flex";
+        const xp1 =
+            Number(data1.XP);
 
-        document.getElementById("compareModal").style.display = "flex";
+        const xp2 =
+            Number(data2.XP);
+
+
+        // ----------------------------------
+        // Summary Metrics
+        // ----------------------------------
+
+        setText(
+            "compareOverall1",
+            formatOverall(overall1)
+        );
+
+        setText(
+            "compareOverall2",
+            formatOverall(overall2)
+        );
+
+
+        setText(
+            "compareXP1",
+            formatXP(xp1)
+        );
+
+        setText(
+            "compareXP2",
+            formatXP(xp2)
+        );
+
+
+        /*
+           Tier:
+
+           For now this uses your existing
+           Overall values.
+
+           We'll wire this to your exact
+           Tier helper once we look at it.
+        */
+
+        setText(
+            "compareTier1",
+            getBatterTier(overall1)
+        );
+
+        setText(
+            "compareTier2",
+            getBatterTier(overall2)
+        );
+
+
+        // ----------------------------------
+        // Park Adjusted
+        // ----------------------------------
+
+        setText(
+            "comparePark1",
+            formatOverall(
+                data1.ParkAdjustedOverall
+            )
+        );
+
+        setText(
+            "comparePark2",
+            formatOverall(
+                data2.ParkAdjustedOverall
+            )
+        );
+
+
+        // ----------------------------------
+        // Archetype
+        // ----------------------------------
+
+        setText(
+            "compareArchetype1",
+            data1.Archetype
+        );
+
+        setText(
+            "compareArchetype2",
+            data2.Archetype
+        );
+
+
+        setText(
+            "compareMatch1",
+            data1.ArchetypeMatch
+        );
+
+        setText(
+            "compareMatch2",
+            data2.ArchetypeMatch
+        );
+
+
+        // ----------------------------------
+        // Profile Scores
+        // ----------------------------------
+
+        const profile1 = {
+            BA: data1.BA_score,
+            OBP: data1.OBP_score,
+            SLG: data1.SLG_score,
+            K: data1.Kpct_score,
+            BB: data1.BBpct_score
+        };
+
+
+        const profile2 = {
+            BA: data2.BA_score,
+            OBP: data2.OBP_score,
+            SLG: data2.SLG_score,
+            K: data2.Kpct_score,
+            BB: data2.BBpct_score
+        };
+
+
+        // ----------------------------------
+        // Profile Numbers
+        // ----------------------------------
+
+        setText(
+            "compareBAScore1",
+            formatScore(profile1.BA)
+        );
+
+        setText(
+            "compareBAScore2",
+            formatScore(profile2.BA)
+        );
+
+
+        setText(
+            "compareOBPScore1",
+            formatScore(profile1.OBP)
+        );
+
+        setText(
+            "compareOBPScore2",
+            formatScore(profile2.OBP)
+        );
+
+
+        setText(
+            "compareSLGScore1",
+            formatScore(profile1.SLG)
+        );
+
+        setText(
+            "compareSLGScore2",
+            formatScore(profile2.SLG)
+        );
+
+
+        setText(
+            "compareKScore1",
+            formatScore(profile1.K)
+        );
+
+        setText(
+            "compareKScore2",
+            formatScore(profile2.K)
+        );
+
+
+        setText(
+            "compareBBScore1",
+            formatScore(profile1.BB)
+        );
+
+        setText(
+            "compareBBScore2",
+            formatScore(profile2.BB)
+        );
+
+
+        // ----------------------------------
+        // Profile Meters
+        // ----------------------------------
+
+        setProfileMeter(
+            "compareBAMeter1",
+            profile1.BA
+        );
+
+        setProfileMeter(
+            "compareBAMeter2",
+            profile2.BA
+        );
+
+
+        setProfileMeter(
+            "compareOBPMeter1",
+            profile1.OBP
+        );
+
+        setProfileMeter(
+            "compareOBPMeter2",
+            profile2.OBP
+        );
+
+
+        setProfileMeter(
+            "compareSLGMeter1",
+            profile1.SLG
+        );
+
+        setProfileMeter(
+            "compareSLGMeter2",
+            profile2.SLG
+        );
+
+
+        setProfileMeter(
+            "compareKMeter1",
+            profile1.K
+        );
+
+        setProfileMeter(
+            "compareKMeter2",
+            profile2.K
+        );
+
+
+        setProfileMeter(
+            "compareBBMeter1",
+            profile1.BB
+        );
+
+        setProfileMeter(
+            "compareBBMeter2",
+            profile2.BB
+        );
+
+
+        // ----------------------------------
+        // Comparison Summary
+        // ----------------------------------
+
+        const comparisonSummary =
+            generateBatterComparisonSummary(
+                p1_display,
+                p2_display,
+                data1,
+                data2,
+                xp1,
+                xp2,
+                overall1,
+                overall2
+            );
+
+
+        setText(
+            "comparisonSummaryText",
+            comparisonSummary
+        );
+
+
+        // ----------------------------------
+        // Open Modal
+        // ----------------------------------
+
+        document.getElementById(
+            "compareModal"
+        ).style.display = "flex";
+
 
     } catch (err) {
-        console.error("Compare error:", err);
+
+        console.error(
+            "Compare error:",
+            err
+        );
+
     }
 }
 
