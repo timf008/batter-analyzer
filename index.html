@@ -924,43 +924,410 @@
 
         </div>
 
+        <!-- Compare Modal -->
+<div id="compareModal" class="modal">
+
+    <div class="modal-content compare-box">
+
+        <div class="compare-header">
+
+            <div>
+                <h2 id="compareTitle">Batter Comparison</h2>
+
+                <div class="compare-subtitle">
+                    Side-by-side comparison of key batting metrics and profile shape
+                </div>
+            </div>
+
+            <span id="compareClose" class="close">&times;</span>
+
+        </div>
+
+
         <div class="compare-content">
 
-            <table id="compareTable">
+            <!-- =========================================
+                 PLAYER HEADERS
+            ========================================== -->
+            <div class="compare-player-grid">
 
-                <thead>
-                    <tr>
-                        <th>Stat</th>
-                        <th id="compareName1">Player 1</th>
-                        <th id="compareName2">Player 2</th>
-                        <th>Difference</th>
-                    </tr>
-                </thead>
+                <!-- Player 1 -->
+                <div class="compare-player-card">
 
-                <tbody id="compareBody"></tbody>
+                    <div class="compare-player-name"
+                         id="compareName1">
+                        Player 1
+                    </div>
 
-            </table>
+                    <div class="compare-player-team"
+                         id="compareTeam1">
+                        --
+                    </div>
 
-<div id="comparisonSummary" class="comparison-summary">
+                </div>
 
-    <div class="comparison-summary-icon">
-        ≡
-    </div>
 
-    <div class="comparison-summary-content">
-        <div class="comparison-summary-title">
-            Comparison Summary
-        </div>
+                <!-- Player 2 -->
+                <div class="compare-player-card">
 
-        <div id="comparisonSummaryText" class="comparison-summary-text">
-            --
-        </div>
-    </div>
+                    <div class="compare-player-name"
+                         id="compareName2">
+                        Player 2
+                    </div>
 
-</div>
+                    <div class="compare-player-team"
+                         id="compareTeam2">
+                        --
+                    </div>
 
-            <div class="compare-footer">
-                Green indicates the stronger value for the metric.
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 SUMMARY METRICS
+            ========================================== -->
+            <div class="compare-player-grid">
+
+                <!-- Player 1 -->
+                <div class="compare-summary-grid">
+
+                    <div class="compare-summary-stat">
+                        <span class="compare-summary-label">OVERALL</span>
+                        <span class="compare-summary-value"
+                              id="compareOverall1">--</span>
+                    </div>
+
+                    <div class="compare-summary-stat">
+                        <span class="compare-summary-label">XP</span>
+                        <span class="compare-summary-value"
+                              id="compareXP1">--</span>
+                    </div>
+
+                    <div class="compare-summary-stat">
+                        <span class="compare-summary-label">TIER</span>
+                        <span class="compare-summary-value"
+                              id="compareTier1">--</span>
+                    </div>
+
+                    <div class="compare-summary-stat">
+                        <span class="compare-summary-label">PARK ADJ</span>
+                        <span class="compare-summary-value"
+                              id="comparePark1">--</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Player 2 -->
+                <div class="compare-summary-grid">
+
+                    <div class="compare-summary-stat">
+                        <span class="compare-summary-label">OVERALL</span>
+                        <span class="compare-summary-value"
+                              id="compareOverall2">--</span>
+                    </div>
+
+                    <div class="compare-summary-stat">
+                        <span class="compare-summary-label">XP</span>
+                        <span class="compare-summary-value"
+                              id="compareXP2">--</span>
+                    </div>
+
+                    <div class="compare-summary-stat">
+                        <span class="compare-summary-label">TIER</span>
+                        <span class="compare-summary-value"
+                              id="compareTier2">--</span>
+                    </div>
+
+                    <div class="compare-summary-stat">
+                        <span class="compare-summary-label">PARK ADJ</span>
+                        <span class="compare-summary-value"
+                              id="comparePark2">--</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 ARCHETYPE
+            ========================================== -->
+            <div class="compare-player-grid">
+
+                <!-- Player 1 -->
+                <div class="compare-archetype">
+
+                    <div class="compare-archetype-main">
+
+                        <span class="compare-archetype-label">
+                            ARCHETYPE
+                        </span>
+
+                        <span class="compare-archetype-name"
+                              id="compareArchetype1">
+                            --
+                        </span>
+
+                    </div>
+
+                    <div class="compare-archetype-match">
+
+                        <span class="compare-match-label">
+                            MATCH
+                        </span>
+
+                        <span class="compare-match-value"
+                              id="compareMatch1">
+                            --
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Player 2 -->
+                <div class="compare-archetype">
+
+                    <div class="compare-archetype-main">
+
+                        <span class="compare-archetype-label">
+                            ARCHETYPE
+                        </span>
+
+                        <span class="compare-archetype-name"
+                              id="compareArchetype2">
+                            --
+                        </span>
+
+                    </div>
+
+                    <div class="compare-archetype-match">
+
+                        <span class="compare-match-label">
+                            MATCH
+                        </span>
+
+                        <span class="compare-match-value"
+                              id="compareMatch2">
+                            --
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 PROFILE SHAPE
+            ========================================== -->
+            <div class="compare-profile">
+
+                <!-- BA -->
+                <div class="compare-profile-row">
+
+                    <div class="compare-profile-player">
+
+                        <span class="compare-profile-score"
+                              id="compareBAScore1">--</span>
+
+                        <div class="compare-profile-meter">
+                            <div class="compare-profile-fill"
+                                 id="compareBAMeter1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="compare-profile-label">
+                        <strong>BA</strong>
+                        <span>0–10</span>
+                    </div>
+
+                    <div class="compare-profile-player">
+
+                        <div class="compare-profile-meter">
+                            <div class="compare-profile-fill"
+                                 id="compareBAMeter2"></div>
+                        </div>
+
+                        <span class="compare-profile-score"
+                              id="compareBAScore2">--</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OBP -->
+                <div class="compare-profile-row">
+
+                    <div class="compare-profile-player">
+
+                        <span class="compare-profile-score"
+                              id="compareOBPScore1">--</span>
+
+                        <div class="compare-profile-meter">
+                            <div class="compare-profile-fill"
+                                 id="compareOBPMeter1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="compare-profile-label">
+                        <strong>OBP</strong>
+                        <span>0–10</span>
+                    </div>
+
+                    <div class="compare-profile-player">
+
+                        <div class="compare-profile-meter">
+                            <div class="compare-profile-fill"
+                                 id="compareOBPMeter2"></div>
+                        </div>
+
+                        <span class="compare-profile-score"
+                              id="compareOBPScore2">--</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SLG -->
+                <div class="compare-profile-row">
+
+                    <div class="compare-profile-player">
+
+                        <span class="compare-profile-score"
+                              id="compareSLGScore1">--</span>
+
+                        <div class="compare-profile-meter">
+                            <div class="compare-profile-fill"
+                                 id="compareSLGMeter1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="compare-profile-label">
+                        <strong>SLG</strong>
+                        <span>0–10</span>
+                    </div>
+
+                    <div class="compare-profile-player">
+
+                        <div class="compare-profile-meter">
+                            <div class="compare-profile-fill"
+                                 id="compareSLGMeter2"></div>
+                        </div>
+
+                        <span class="compare-profile-score"
+                              id="compareSLGScore2">--</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- K% -->
+                <div class="compare-profile-row">
+
+                    <div class="compare-profile-player">
+
+                        <span class="compare-profile-score"
+                              id="compareKScore1">--</span>
+
+                        <div class="compare-profile-meter">
+                            <div class="compare-profile-fill"
+                                 id="compareKMeter1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="compare-profile-label">
+                        <strong>K%</strong>
+                        <span>0–10</span>
+                    </div>
+
+                    <div class="compare-profile-player">
+
+                        <div class="compare-profile-meter">
+                            <div class="compare-profile-fill"
+                                 id="compareKMeter2"></div>
+                        </div>
+
+                        <span class="compare-profile-score"
+                              id="compareKScore2">--</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BB% -->
+                <div class="compare-profile-row">
+
+                    <div class="compare-profile-player">
+
+                        <span class="compare-profile-score"
+                              id="compareBBScore1">--</span>
+
+                        <div class="compare-profile-meter">
+                            <div class="compare-profile-fill"
+                                 id="compareBBMeter1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="compare-profile-label">
+                        <strong>BB%</strong>
+                        <span>0–10</span>
+                    </div>
+
+                    <div class="compare-profile-player">
+
+                        <div class="compare-profile-meter">
+                            <div class="compare-profile-fill"
+                                 id="compareBBMeter2"></div>
+                        </div>
+
+                        <span class="compare-profile-score"
+                              id="compareBBScore2">--</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 COMPARISON SUMMARY
+            ========================================== -->
+            <div id="comparisonSummary"
+                 class="comparison-summary">
+
+                <div class="comparison-summary-icon">
+                    ≡
+                </div>
+
+                <div class="comparison-summary-content">
+
+                    <div class="comparison-summary-title">
+                        Comparison Summary
+                    </div>
+
+                    <div id="comparisonSummaryText"
+                         class="comparison-summary-text">
+                        --
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
@@ -968,7 +1335,6 @@
     </div>
 
 </div>
-
 
 <div id="leadersModal" class="modal">
 
