@@ -3195,8 +3195,6 @@ function generateBatterComparisonSummary(
 // -------------------------------
 async function showCompareModal() {
 
-setButtonLoading("compareBtn", true);
-
     console.log("COMPARE BUTTON CLICKED");
 
     function formatName(name) {
@@ -3737,11 +3735,10 @@ setText(
 
     } catch (err) {
 
-        console.error("Compare error:", err);
-
-    } finally {
-
-        setButtonLoading("compareBtn", false);
+        console.error(
+            "Compare error:",
+            err
+        );
 
     }
 }
