@@ -527,6 +527,20 @@ function resetSimilarProfiles() {
 }
 
 // -------------------------------
+// Button Loading State
+// -------------------------------
+
+function setButtonLoading(buttonId, loading) {
+
+    const button = document.getElementById(buttonId);
+
+    if (!button) return;
+
+    button.classList.toggle("is-loading", loading);
+    button.disabled = loading;
+}
+
+// -------------------------------
 // Utility: Fetch batter data
 // -------------------------------
 async function loadBatter(name, season, silent = false) {
@@ -3181,6 +3195,8 @@ function generateBatterComparisonSummary(
 // -------------------------------
 async function showCompareModal() {
 
+setButtonLoading("compareBtn", true);
+
     console.log("COMPARE BUTTON CLICKED");
 
     function formatName(name) {
@@ -3721,10 +3737,11 @@ setText(
 
     } catch (err) {
 
-        console.error(
-            "Compare error:",
-            err
-        );
+        console.error("Compare error:", err);
+
+    } finally {
+
+        setButtonLoading("compareBtn", false);
 
     }
 }
