@@ -1255,6 +1255,8 @@ updateBBpct(safeFixed(p.BBpct, 1), bbpctScore);
 // -------------------------------
 // Season Production
 // -------------------------------
+console.log("Player TB:", p.TB);
+console.log("Player object:", p);
 document.getElementById("productionAB").textContent = p.AB ?? "--";
 document.getElementById("productionH").textContent = p.H ?? "--";
 document.getElementById("productionR").textContent = p.R ?? "--";
