@@ -1262,6 +1262,7 @@ document.getElementById("productionRBI").textContent = p.RBI ?? "--";
 document.getElementById("productionHR").textContent = p.HR ?? "--";
 document.getElementById("productionBB").textContent = p.BB ?? "--";
 document.getElementById("productionK").textContent = p.SO ?? "--";
+document.getElementById("productionTB").textContent = p.TB ?? "--";
 
 // -------------------------------
 // Calculate Overall
