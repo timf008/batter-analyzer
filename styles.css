@@ -5236,3 +5236,15 @@ input,select{border-radius:4px}
 /* Final main-page refinement: Fantasy Edge begins directly with three panels. */
 .tb-dashboard .fantasy-summary-grid { margin-top: 0 !important; }
 .tb-dashboard .fantasy-edge-header { margin-bottom: 10px !important; }
+
+/* Header refinement: remove top nav and align brand left / kicker right. */
+.tb-topnav{display:none!important}
+.container{margin-top:18px}
+.header.tb-brand-header{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:24px;padding:10px 0 17px;text-align:left}
+.header.tb-brand-header .batter-analyzer{display:block;flex:0 1 auto;width:auto;max-width:min(360px,55%);max-height:76px;height:auto;margin:0;object-fit:contain;object-position:left center}
+.header.tb-brand-header .tb-kicker{margin-left:auto;max-width:45%;text-align:right;line-height:1.6;font-size:11px;letter-spacing:1.7px}
+@media(max-width:620px){
+  .header.tb-brand-header{flex-direction:row;align-items:center;gap:12px;padding:8px 0 13px}
+  .header.tb-brand-header .batter-analyzer{max-width:55%;max-height:60px;margin:0}
+  .header.tb-brand-header .tb-kicker{max-width:42%;font-size:8px;letter-spacing:.7px}
+}
