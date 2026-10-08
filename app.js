@@ -4317,7 +4317,7 @@ if (xpMeter) {
         "productionRBI",
         "productionHR",
         "productionBB",
-        "productionK"
+        "productionK",
         "productionTB",
     ].forEach(id => {
         document.getElementById(id).textContent = "--";
