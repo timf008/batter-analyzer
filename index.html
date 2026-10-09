@@ -11,8 +11,8 @@
 <div class="container">
 <!-- Header -->
 <header class="header tb-brand-header">
-<img alt="Batter Analyzer" class="batter-analyzer" src="images/timbaseball-batteranalyzer.png"/>
-<div class="tb-kicker">THE ANALYTICS DESK <span> / </span> PLAYER EVALUATION</div>
+  <img alt="Batter Analyzer" class="batter-analyzer" src="images/timbaseball-batteranalyzer.png"/>
+  <div class="tb-kicker">THE ANALYTICS DESK <span> / </span> PLAYER EVALUATION</div>
 </header>
 <div id="batter-ticker">
 <div class="ticker-label">
@@ -166,6 +166,11 @@
 <!-- Player Name -->
 <div class="player-card-header">
 <div class="player-name-row">
+<img
+    id="playerHeadshot"
+    alt="MLB Player Headshot"
+    style="display:none;"
+>
 <span aria-hidden="true" class="team-color-panel" id="teamColorPanel">
 <span class="team-color-primary"></span>
 <span class="team-color-secondary"></span>
@@ -236,7 +241,30 @@
 </div>
 </div>
 <!-- Hitter Archetype -->
-
+<div class="archetype-row">
+<div class="archetype-main">
+<svg aria-hidden="true" class="archetype-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="6"></circle>
+<circle cx="12" cy="12" r="2"></circle>
+<path d="M12 2v4"></path>
+<path d="M12 18v4"></path>
+<path d="M2 12h4"></path>
+<path d="M18 12h4"></path>
+</svg>
+<div class="archetype-content">
+<span class="archetype-label">
+                            ARCHETYPE
+                        </span>
+<span class="archetype-name" id="playerArchetype">--</span>
+</div>
+</div>
+<div class="archetype-match">
+<span class="archetype-match-label">
+                        MATCH
+                    </span>
+<span class="archetype-match-badge" id="playerArchetypeMatch">--</span>
+</div>
+</div>
 </section>
 </div>
 </section><section class="metrics"><div class="tb-panel-title"><span>FIVE-FACTOR PROFILE</span><small>Normalized performance • 0–10 scale</small></div>
@@ -357,30 +385,7 @@
 <strong id="productionTB">--</strong>
 </div>
 </div>
-</section><div class="archetype-row">
-<div class="archetype-main">
-<svg aria-hidden="true" class="archetype-icon" viewbox="0 0 24 24">
-<circle cx="12" cy="12" r="6"></circle>
-<circle cx="12" cy="12" r="2"></circle>
-<path d="M12 2v4"></path>
-<path d="M12 18v4"></path>
-<path d="M2 12h4"></path>
-<path d="M18 12h4"></path>
-</svg>
-<div class="archetype-content">
-<span class="archetype-label">
-                            ARCHETYPE
-                        </span>
-<span class="archetype-name" id="playerArchetype">--</span>
-</div>
-</div>
-<div class="archetype-match">
-<span class="archetype-match-label">
-                        MATCH
-                    </span>
-<span class="archetype-match-badge" id="playerArchetypeMatch">--</span>
-</div>
-</div><div class="fantasy-edge-panel">
+</section><div class="fantasy-edge-panel">
 <div class="fantasy-edge-header">
 <img alt="Fantasy Edge" class="fantasy-edge" src="images/fantasy_edge.png"/>
 <div class="fantasy-edge-subtitle">
@@ -410,6 +415,7 @@
         </div>
 </div>
 <div id="fantasyPremiumContent">
+
 <div class="fantasy-summary-grid">
 <!-- Identity -->
 <div class="fantasy-summary-item identity-summary-card">
