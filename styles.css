@@ -5263,3 +5263,65 @@ input,select{border-radius:4px}
   .header.tb-brand-header .batter-analyzer{max-width:55%;max-height:60px;margin:0}
   .header.tb-brand-header .tb-kicker{max-width:42%;font-size:8px;letter-spacing:.7px}
 }
+
+/* ==========================================
+   PLAYER ANALYTICS - COMPACT PROFILE HEADER
+========================================== */
+
+.overall .player-card-header {
+    margin-bottom: 12px;
+}
+
+.overall .player-name-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 0;
+    padding: 0;
+}
+
+/* MLB Headshot */
+.overall #playerHeadshot {
+    width: 145px;
+    height: 175px;
+    object-fit: cover;
+    object-position: center top;
+    flex-shrink: 0;
+
+    border: 1px solid #d4dfec;
+    border-radius: 4px;
+    background: #f1f5f9;
+}
+
+/* Player Name */
+.overall .player-card-name {
+    flex: 1;
+    min-width: 0;
+    font-size: 23px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #10243e;
+}
+
+/* Team Color Accent */
+.overall .team-color-panel {
+    flex-shrink: 0;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .overall .player-name-row {
+        gap: 10px;
+    }
+
+    .overall #playerHeadshot {
+        width: 95px;
+        height: 120px;
+    }
+
+    .overall .player-card-name {
+        font-size: 18px;
+        overflow-wrap: anywhere;
+    }
+}
