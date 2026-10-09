@@ -1,5 +1,5 @@
 /* -----------------------------------------
-   Batter Analyzer CSS Styles
+Batter Analyzer CSS Styles
 ----------------------------------------- */
 
 .version-label {
@@ -14,7 +14,7 @@
 }
 
 /* -----------------------------------------
-   Global
+Global
 ----------------------------------------- */
 
 body {
@@ -37,12 +37,12 @@ body {
 }
 
 .section-title {
-  font-size: 1.2em;
-  font-weight: 600;
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
 /* -----------------------------------------
-   Batter Analyzer Wordmark Image
+Batter Analyzer Wordmark Image
 ----------------------------------------- */
 .header {
     text-align: center;
@@ -58,7 +58,7 @@ body {
 }
 
 /* -----------------------------------------
-   Batter Analyzer Tagline
+Batter Analyzer Tagline
 ----------------------------------------- */
 .analyzer-tagline {
     margin-top: 8px;
@@ -77,7 +77,7 @@ body {
 }
 
 /* -----------------------------------------
-   Header
+Header
 ----------------------------------------- */
 
 .header h1 {
@@ -93,7 +93,7 @@ body {
 }
 
 /* -----------------------------------------
-   Player Search Panel
+Player Search Panel
 ----------------------------------------- */
 
 .search-panel {
@@ -104,7 +104,6 @@ body {
     overflow: visible;
     box-shadow: 0 4px 14px rgba(15, 36, 62, 0.06);
 }
-
 
 /* Navy Header */
 
@@ -123,16 +122,14 @@ body {
     letter-spacing: 0.4px;
 }
 
-
 /* Search Body */
 
 .search-body {
     padding: 18px 20px 6px;
 }
 
-
 /* -----------------------------------------
-   Search Layout
+Search Layout
 ----------------------------------------- */
 
 .search-input-row {
@@ -150,7 +147,6 @@ body {
     overflow: visible;
 }
 
-
 /* Player + Season Pair */
 
 .player-search-group {
@@ -165,7 +161,6 @@ body {
     overflow: visible;
 }
 
-
 /* Player Name Takes Available Space */
 
 .player-input {
@@ -178,7 +173,6 @@ body {
     width: 100%;
 }
 
-
 /* Compact Season Selector */
 
 .season-input {
@@ -189,9 +183,8 @@ body {
     width: 82px;
 }
 
-
 /* -----------------------------------------
-   Player Autocomplete
+Player Autocomplete
 ----------------------------------------- */
 
 #playerSearchView {
@@ -202,7 +195,6 @@ body {
     position: relative;
     width: 100%;
 }
-
 
 /* Dropdown */
 
@@ -224,7 +216,6 @@ body {
 
     z-index: 1000;
 }
-
 
 /* Individual Player */
 
@@ -250,7 +241,6 @@ body {
     background: #f5f8fc;
 }
 
-
 /* Player Name */
 
 .autocomplete-player-name {
@@ -263,7 +253,6 @@ body {
     text-overflow: ellipsis;
 }
 
-
 /* Team */
 
 .autocomplete-player-team {
@@ -273,7 +262,6 @@ body {
 
     text-align: right;
 }
-
 
 /* Scrollbar */
 
@@ -294,9 +282,8 @@ body {
     background: #8fa1b2;
 }
 
-
 /* -----------------------------------------
-   Action Row
+Action Row
 ----------------------------------------- */
 
 .action-row {
@@ -312,9 +299,8 @@ body {
     padding: 0 10px;
 }
 
-
 /* -----------------------------------------
-   Inputs
+Inputs
 ----------------------------------------- */
 
 .input-group {
@@ -356,9 +342,8 @@ select:focus {
     box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.12);
 }
 
-
 /* -----------------------------------------
-   Action Buttons
+Action Buttons
 ----------------------------------------- */
 
 .controls.row button {
@@ -381,15 +366,14 @@ select:focus {
     cursor: pointer;
 
     box-shadow:
-        0 5px 10px rgba(15, 36, 62, 0.18),
-        0 1px 2px rgba(0, 0, 0, 0.10);
+    0 5px 10px rgba(15, 36, 62, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.10);
 
     transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        filter 0.18s ease;
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
 }
-
 
 /* Icon */
 
@@ -407,13 +391,11 @@ select:focus {
     line-height: 1;
 }
 
-
 /* Load */
 
 #loadBtn {
     background: linear-gradient(135deg, #0f243e);
 }
-
 
 /* Trend */
 
@@ -421,13 +403,11 @@ select:focus {
     background: linear-gradient(135deg, #0f243e);
 }
 
-
 /* Compare */
 
 #compareBtn {
     background: linear-gradient(135deg, #0f243e);
 }
-
 
 /* Leaders */
 
@@ -435,20 +415,17 @@ select:focus {
     background: linear-gradient(135deg, #0f243e);
 }
 
-
 /* Swap */
 
 #swapBtn {
     background: linear-gradient(135deg, #0f243e);
 }
 
-
 /* Reset */
 
 #resetBtn {
     background: linear-gradient(135deg, #c63737, #e04b47);
 }
-
 
 /* Hover */
 
@@ -458,10 +435,9 @@ select:focus {
     filter: brightness(1.06);
 
     box-shadow:
-        0 8px 16px rgba(15, 36, 62, 0.23),
-        0 2px 4px rgba(0, 0, 0, 0.10);
+    0 8px 16px rgba(15, 36, 62, 0.23),
+    0 2px 4px rgba(0, 0, 0, 0.10);
 }
-
 
 /* Press */
 
@@ -469,7 +445,7 @@ select:focus {
     transform: translateY(0);
 
     box-shadow:
-        0 3px 6px rgba(15, 36, 62, 0.18);
+    0 3px 6px rgba(15, 36, 62, 0.18);
 }
 
 .btn-icon svg {
@@ -486,7 +462,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Pitching Metrics Panel
+Pitching Metrics Panel
 ----------------------------------------- */
 
 .metrics {
@@ -500,7 +476,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Column Labels
+Column Labels
 ----------------------------------------- */
 
 .metrics-columns {
@@ -524,9 +500,8 @@ select:focus {
     text-align: center;
 }
 
-
 /* -----------------------------------------
-   Metric Rows
+Metric Rows
 ----------------------------------------- */
 
 .metric-row {
@@ -549,9 +524,8 @@ select:focus {
     background: #f9fbfe;
 }
 
-
 /* -----------------------------------------
-   Metric Name
+Metric Name
 ----------------------------------------- */
 
 .metric-name {
@@ -573,9 +547,8 @@ select:focus {
     color: #7a8da5;
 }
 
-
 /* -----------------------------------------
-   Raw Value
+Raw Value
 ----------------------------------------- */
 
 .metric-raw {
@@ -585,18 +558,16 @@ select:focus {
     text-align: center;
 }
 
-
 /* -----------------------------------------
-   Battery
+Battery
 ----------------------------------------- */
 
 .metric-row .battery {
     width: 100%;
 }
 
-
 /* -----------------------------------------
-   Score
+Score
 ----------------------------------------- */
 
 .metric-score {
@@ -616,7 +587,7 @@ select:focus {
 }
 
 /* --------------------------------------
-   Player Name + Team Colors
+Player Name + Team Colors
 -------------------------------------- */
 
 .player-name-row {
@@ -655,7 +626,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Player Analytics Panel
+Player Analytics Panel
 ----------------------------------------- */
 
 .analytics-panel {
@@ -693,7 +664,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Overall Section
+Overall Section
 ----------------------------------------- */
 
 .overall {
@@ -705,7 +676,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Overall Score / XP / Tier
+Overall Score / XP / Tier
 ----------------------------------------- */
 
 .overall-top {
@@ -725,7 +696,6 @@ select:focus {
 
     box-shadow: 0 2px 6px rgba(15, 36, 62, 0.06);
 }
-
 
 /* Each stat */
 
@@ -751,13 +721,11 @@ select:focus {
     text-align: center;
 }
 
-
 /* Vertical dividers */
 
 .overall-top p + p {
     border-left: 1px solid #d7e0e8;
 }
-
 
 /* Overall Score + XP values */
 
@@ -778,7 +746,6 @@ select:focus {
     text-transform: none;
 }
 
-
 /* Tier badge */
 
 .overall-top #overallTier .tier-badge {
@@ -790,7 +757,6 @@ select:focus {
 .overall-battery::after {
     background: var(--color);
 }
-
 
 /* Card container */
 .overall-card {
@@ -805,8 +771,8 @@ select:focus {
     margin: 40px auto 20px;
 
     box-shadow:
-        0 4px 12px rgba(15, 36, 62, 0.08),
-        0 1px 3px rgba(15, 36, 62, 0.05);
+    0 4px 12px rgba(15, 36, 62, 0.08),
+    0 1px 3px rgba(15, 36, 62, 0.05);
 
     position: relative;
 
@@ -815,7 +781,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Player Card Header
+Player Card Header
 ----------------------------------------- */
 
 .player-card-header {
@@ -832,7 +798,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Hitter Archetype
+Hitter Archetype
 ----------------------------------------- */
 
 .archetype-row {
@@ -853,9 +819,8 @@ select:focus {
     box-shadow: 0 2px 6px rgba(15, 36, 62, 0.04);
 }
 
-
 /* -----------------------------------------
-   Archetype Identity
+Archetype Identity
 ----------------------------------------- */
 
 .archetype-main {
@@ -867,7 +832,6 @@ select:focus {
 
     padding: 14px 18px;
 }
-
 
 .archetype-icon {
     width: 30px;
@@ -882,13 +846,11 @@ select:focus {
     stroke-linejoin: round;
 }
 
-
 .archetype-content {
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
-
 
 .archetype-label {
     color: #607286;
@@ -900,7 +862,6 @@ select:focus {
     text-transform: uppercase;
 }
 
-
 .archetype-name {
     color: #0f243e;
 
@@ -910,9 +871,8 @@ select:focus {
     line-height: 1.15;
 }
 
-
 /* -----------------------------------------
-   Archetype Match
+Archetype Match
 ----------------------------------------- */
 
 .archetype-match {
@@ -930,7 +890,6 @@ select:focus {
     background: #ffffff;
 }
 
-
 .archetype-match-label {
     margin-bottom: 6px;
 
@@ -942,7 +901,6 @@ select:focus {
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
-
 
 .archetype-match-badge {
     display: inline-block;
@@ -962,7 +920,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Scouting Note Panel
+Scouting Note Panel
 ----------------------------------------- */
 
 .scouting-note {
@@ -1028,7 +986,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Percentile
+Percentile
 ----------------------------------------- */
 
 .percentile-box {
@@ -1061,7 +1019,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Park Adjusted Overall
+Park Adjusted Overall
 ----------------------------------------- */
 
 /* Keep adjusted score + delta visually grouped */
@@ -1105,9 +1063,8 @@ select:focus {
     background: #edf1f5;
 }
 
-
 /* -----------------------------------------
-   Park Context
+Park Context
 ----------------------------------------- */
 
 .park-context {
@@ -1151,7 +1108,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Overall / XP Mini Meters
+Overall / XP Mini Meters
 ----------------------------------------- */
 
 .overall-top .analytics-meter {
@@ -1186,12 +1143,12 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Mobile
+Mobile
 ----------------------------------------- */
 
 @media (max-width: 700px) {
 
-        .archetype-row {
+    .archetype-row {
         flex-direction: column;
     }
 
@@ -1233,29 +1190,25 @@ select:focus {
     }
 }
 
-
-
 /* -----------------------------------------
-   Trend Modal
+Trend Modal
 ----------------------------------------- */
 .modal {
-  position: fixed;
-  inset: 0; /* replaces top:0; left:0; width:100%; height:100%; */
-  background: rgba(0,0,0,0.55);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
+    position: fixed;
+    inset: 0; /* replaces top:0; left:0; width:100%; height:100%; */
+    background: rgba(0,0,0,0.55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
-
 
 .modal-container {
     position: relative;
     z-index: 99999;
     background: #fff; /* prevents transparency */
 }
-
 
 .modal.hidden {
     display: none;
@@ -1285,7 +1238,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Trend Modal
+Trend Modal
 ----------------------------------------- */
 
 #trendModal {
@@ -1307,9 +1260,8 @@ select:focus {
     z-index: 9999;
 }
 
-
 /* -----------------------------------------
-   Modal Shell
+Modal Shell
 ----------------------------------------- */
 
 #trendModal .modal-content {
@@ -1329,13 +1281,12 @@ select:focus {
     overflow-x: hidden;
 
     box-shadow:
-        0 18px 50px rgba(0, 0, 0, 0.28),
-        0 4px 14px rgba(15, 36, 62, 0.15);
+    0 18px 50px rgba(0, 0, 0, 0.28),
+    0 4px 14px rgba(15, 36, 62, 0.15);
 }
 
-
 /* -----------------------------------------
-   Navy Header
+Navy Header
 ----------------------------------------- */
 
 .trend-header {
@@ -1370,9 +1321,8 @@ select:focus {
     color: #b9d4ef;
 }
 
-
 /* -----------------------------------------
-   Close Button
+Close Button
 ----------------------------------------- */
 
 #trendClose {
@@ -1402,18 +1352,16 @@ select:focus {
     transform: rotate(90deg);
 }
 
-
 /* -----------------------------------------
-   Modal Body
+Modal Body
 ----------------------------------------- */
 
 .trend-content {
     padding: 18px 20px 20px;
 }
 
-
 /* -----------------------------------------
-   Player Identity
+Player Identity
 ----------------------------------------- */
 
 .trend-player {
@@ -1455,9 +1403,8 @@ select:focus {
     font-weight: 700;
 }
 
-
 /* -----------------------------------------
-   Two-Season Layout
+Two-Season Layout
 ----------------------------------------- */
 
 .trend-season-grid {
@@ -1469,9 +1416,8 @@ select:focus {
     margin-bottom: 16px;
 }
 
-
 /* -----------------------------------------
-   Season Headers
+Season Headers
 ----------------------------------------- */
 
 .trend-season-card {
@@ -1507,9 +1453,8 @@ select:focus {
     font-weight: 800;
 }
 
-
 /* -----------------------------------------
-   Summary Metrics
+Summary Metrics
 ----------------------------------------- */
 
 .trend-summary-grid {
@@ -1567,9 +1512,8 @@ select:focus {
     text-overflow: ellipsis;
 }
 
-
 /* -----------------------------------------
-   Archetype
+Archetype
 ----------------------------------------- */
 
 .trend-archetype {
@@ -1652,9 +1596,8 @@ select:focus {
     white-space: nowrap;
 }
 
-
 /* -----------------------------------------
-   Profile Shape
+Profile Shape
 ----------------------------------------- */
 
 .trend-profile {
@@ -1671,9 +1614,9 @@ select:focus {
 .trend-profile-row {
     display: grid;
     grid-template-columns:
-        minmax(0, 1fr)
-        80px
-        minmax(0, 1fr);
+    minmax(0, 1fr)
+    80px
+    minmax(0, 1fr);
 
     align-items: center;
 
@@ -1785,9 +1728,8 @@ select:focus {
     font-weight: 700;
 }
 
-
 /* -----------------------------------------
-   Trend Analysis
+Trend Analysis
 ----------------------------------------- */
 
 .trend-analysis {
@@ -1854,9 +1796,8 @@ select:focus {
     line-height: 1.55;
 }
 
-
 /* -----------------------------------------
-   Mobile
+Mobile
 ----------------------------------------- */
 
 @media (max-width: 700px) {
@@ -1892,13 +1833,11 @@ select:focus {
         font-size: 19px;
     }
 
-
     /* Keep the two seasons side-by-side */
 
     .trend-season-grid {
         gap: 8px;
     }
-
 
     /* 4 metrics become 2 x 2 inside each season */
 
@@ -1924,7 +1863,6 @@ select:focus {
     .trend-summary-value {
         font-size: 13px;
     }
-
 
     /* Archetype stacks internally */
 
@@ -1953,14 +1891,13 @@ select:focus {
         border-left: none;
     }
 
-
     /* Profile remains season vs season */
 
     .trend-profile-row {
         grid-template-columns:
-            minmax(0, 1fr)
-            54px
-            minmax(0, 1fr);
+        minmax(0, 1fr)
+        54px
+        minmax(0, 1fr);
 
         min-height: 58px;
 
@@ -1991,7 +1928,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Compare Modal
+Compare Modal
 ----------------------------------------- */
 
 #compareModal {
@@ -2013,9 +1950,8 @@ select:focus {
     z-index: 9999;
 }
 
-
 /* -----------------------------------------
-   Modal Shell
+Modal Shell
 ----------------------------------------- */
 
 #compareModal .compare-box {
@@ -2033,13 +1969,12 @@ select:focus {
     overflow-x: hidden;
 
     box-shadow:
-        0 18px 50px rgba(0, 0, 0, 0.28),
-        0 4px 14px rgba(15, 36, 62, 0.15);
+    0 18px 50px rgba(0, 0, 0, 0.28),
+    0 4px 14px rgba(15, 36, 62, 0.15);
 }
 
-
 /* -----------------------------------------
-   Navy Header
+Navy Header
 ----------------------------------------- */
 
 .compare-header {
@@ -2075,7 +2010,6 @@ select:focus {
     color: #b9d4ef;
 }
 
-
 /* Close Button */
 
 #compareClose {
@@ -2104,18 +2038,16 @@ select:focus {
     transform: rotate(90deg);
 }
 
-
 /* -----------------------------------------
-   Body
+Body
 ----------------------------------------- */
 
 .compare-content {
     padding: 18px 20px 20px;
 }
 
-
 /* -----------------------------------------
-   Two Player Layout
+Two Player Layout
 ----------------------------------------- */
 
 .compare-player-grid {
@@ -2126,9 +2058,8 @@ select:focus {
     margin-bottom: 14px;
 }
 
-
 /* -----------------------------------------
-   Player Headers
+Player Headers
 ----------------------------------------- */
 
 .compare-player-card {
@@ -2160,9 +2091,8 @@ select:focus {
     letter-spacing: 0.5px;
 }
 
-
 /* -----------------------------------------
-   Overall / XP / Tier / Park
+Overall / XP / Tier / Park
 ----------------------------------------- */
 
 .compare-summary-grid {
@@ -2215,9 +2145,8 @@ select:focus {
     white-space: nowrap;
 }
 
-
 /* -----------------------------------------
-   Archetype
+Archetype
 ----------------------------------------- */
 
 .compare-archetype {
@@ -2298,9 +2227,8 @@ select:focus {
     white-space: nowrap;
 }
 
-
 /* -----------------------------------------
-   Profile Shape
+Profile Shape
 ----------------------------------------- */
 
 .compare-profile {
@@ -2317,9 +2245,9 @@ select:focus {
 .compare-profile-row {
     display: grid;
     grid-template-columns:
-        minmax(0, 1fr)
-        80px
-        minmax(0, 1fr);
+    minmax(0, 1fr)
+    80px
+    minmax(0, 1fr);
 
     align-items: center;
 
@@ -2335,7 +2263,6 @@ select:focus {
 .compare-profile-row:nth-child(even) {
     background: #fbfcfe;
 }
-
 
 /* Player Meter Area */
 
@@ -2379,7 +2306,6 @@ select:focus {
     line-height: 1;
 }
 
-
 /* Meter */
 
 .compare-profile-meter {
@@ -2404,7 +2330,6 @@ select:focus {
 
     transition: width 0.45s ease;
 }
-
 
 /* Center Metric Label */
 
@@ -2440,9 +2365,8 @@ select:focus {
     font-weight: 700;
 }
 
-
 /* -----------------------------------------
-   Comparison Summary
+Comparison Summary
 ----------------------------------------- */
 
 .comparison-summary {
@@ -2499,9 +2423,8 @@ select:focus {
     line-height: 1.55;
 }
 
-
 /* -----------------------------------------
-   Mobile
+Mobile
 ----------------------------------------- */
 
 @media (max-width: 700px) {
@@ -2534,7 +2457,6 @@ select:focus {
         padding: 12px;
     }
 
-
     /* Keep players side-by-side */
 
     .compare-player-grid {
@@ -2553,7 +2475,6 @@ select:focus {
     .compare-player-team {
         font-size: 10px;
     }
-
 
     /* Summary Stats */
 
@@ -2579,7 +2500,6 @@ select:focus {
     .compare-summary-value {
         font-size: 14px;
     }
-
 
     /* Archetype */
 
@@ -2611,14 +2531,13 @@ select:focus {
         margin-top: 0;
     }
 
-
     /* Profile Shape */
 
     .compare-profile-row {
         grid-template-columns:
-            minmax(0, 1fr)
-            54px
-            minmax(0, 1fr);
+        minmax(0, 1fr)
+        54px
+        minmax(0, 1fr);
 
         min-height: 54px;
     }
@@ -2646,7 +2565,6 @@ select:focus {
         font-size: 8px;
     }
 
-
     /* Summary */
 
     .comparison-summary {
@@ -2659,7 +2577,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Leaders Modal
+Leaders Modal
 ----------------------------------------- */
 
 #leadersModal {
@@ -2681,9 +2599,8 @@ select:focus {
     z-index: 9999;
 }
 
-
 /* -----------------------------------------
-   Modal Shell
+Modal Shell
 ----------------------------------------- */
 
 #leadersModal .modal-content {
@@ -2702,13 +2619,12 @@ select:focus {
     overflow: hidden;
 
     box-shadow:
-        0 18px 50px rgba(0, 0, 0, 0.28),
-        0 4px 14px rgba(15, 36, 62, 0.15);
+    0 18px 50px rgba(0, 0, 0, 0.28),
+    0 4px 14px rgba(15, 36, 62, 0.15);
 }
 
-
 /* -----------------------------------------
-   Navy Header
+Navy Header
 ----------------------------------------- */
 
 .leaders-header {
@@ -2743,9 +2659,8 @@ select:focus {
     color: #b9d4ef;
 }
 
-
 /* -----------------------------------------
-   Close Button
+Close Button
 ----------------------------------------- */
 
 #leadersClose {
@@ -2775,9 +2690,8 @@ select:focus {
     transform: rotate(90deg);
 }
 
-
 /* -----------------------------------------
-   Scroll Area
+Scroll Area
 ----------------------------------------- */
 
 .leaders-table-wrap {
@@ -2785,9 +2699,8 @@ select:focus {
     overflow-y: auto;
 }
 
-
 /* -----------------------------------------
-   Leaders Table
+Leaders Table
 ----------------------------------------- */
 
 .leaders-table {
@@ -2832,13 +2745,11 @@ select:focus {
     color: #0f243e;
 }
 
-
 /* Slight zebra striping */
 
 .leaders-table tbody tr:nth-child(even) {
     background: #fbfcfe;
 }
-
 
 /* Hover */
 
@@ -2850,9 +2761,8 @@ select:focus {
     background: #eef5fc;
 }
 
-
 /* -----------------------------------------
-   Rank Column
+Rank Column
 ----------------------------------------- */
 
 .leaders-table th:first-child,
@@ -2861,9 +2771,8 @@ select:focus {
     font-weight: 800;
 }
 
-
 /* -----------------------------------------
-   Clickable Player Name
+Clickable Player Name
 ----------------------------------------- */
 
 .leader-player-link {
@@ -2881,9 +2790,8 @@ select:focus {
     text-decoration: underline;
 }
 
-
 /* -----------------------------------------
-   Fantasy Identity Pills
+Fantasy Identity Pills
 ----------------------------------------- */
 
 .leader-identity {
@@ -2901,7 +2809,6 @@ select:focus {
     font-weight: 800;
 }
 
-
 /* Breakout */
 
 .leader-identity.breakout {
@@ -2909,7 +2816,6 @@ select:focus {
     background: rgba(126, 211, 33, 0.18);
     border: 1px solid rgba(126, 211, 33, 0.45);
 }
-
 
 /* Overperformer */
 
@@ -2919,7 +2825,6 @@ select:focus {
     border: 1px solid rgba(245, 166, 35, 0.45);
 }
 
-
 /* Sleeper */
 
 .leader-identity.sleeper {
@@ -2927,7 +2832,6 @@ select:focus {
     background: rgba(74, 144, 226, 0.16);
     border: 1px solid rgba(74, 144, 226, 0.4);
 }
-
 
 /* Consistent */
 
@@ -2937,7 +2841,6 @@ select:focus {
     border: 1px solid rgba(155, 155, 155, 0.35);
 }
 
-
 /* Neutral */
 
 .leader-identity.neutral {
@@ -2946,9 +2849,8 @@ select:focus {
     border: 1px solid #d6dbe1;
 }
 
-
 /* -----------------------------------------
-   Mobile
+Mobile
 ----------------------------------------- */
 
 @media (max-width: 700px) {
@@ -2986,27 +2888,25 @@ select:focus {
     }
 }
 
-
 /* -----------------------------------------
-   Modals
+Modals
 ----------------------------------------- */
-
 
 .modal.hidden {
     display: none;
 }
 
 .modal-content {
-  background: white;
-  border-radius: 10px;
-  max-width: 600px;         /* prevents full-width stretching */
-  width: 100%;
-  max-height: 90dvh;         /* ⭐ prevents vertical overflow */
-  overflow-y: auto;         /* ⭐ scrolls INSIDE the modal */
-  padding: 20px;
-  box-sizing: border-box;
-  text-align: center;
-  position: relative;
+    background: white;
+    border-radius: 10px;
+    max-width: 600px;         /* prevents full-width stretching */
+    width: 100%;
+    max-height: 90dvh;         /* ⭐ prevents vertical overflow */
+    overflow-y: auto;         /* ⭐ scrolls INSIDE the modal */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
 }
 
 .no-data-message {
@@ -3048,18 +2948,17 @@ select:focus {
     background-color: #e74c3c; /* red */
 }
 
-
 /* -----------------------------------------
-   Latest Update Timestamp
+Latest Update Timestamp
 ----------------------------------------- */
 .update-date {
-  font-size: 0.9rem;
-  color: #888;
-  margin-top: 6px;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 6px;
 }
 
 /* -----------------------------------------
-   Baseball Spinner
+Baseball Spinner
 ----------------------------------------- */
 .spin {
     display: inline-block;
@@ -3072,7 +2971,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Batter of the Day - Compact
+Batter of the Day - Compact
 ----------------------------------------- */
 
 #batter-ticker {
@@ -3094,7 +2993,6 @@ select:focus {
 
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
 }
-
 
 /* Navy label */
 
@@ -3122,7 +3020,6 @@ select:focus {
     font-size: 12px;
 }
 
-
 /* Player information */
 
 .ticker-player {
@@ -3140,7 +3037,6 @@ select:focus {
     font-size: 12px;
     font-weight: 500;
 }
-
 
 /* Dividers */
 
@@ -3188,18 +3084,18 @@ select:focus {
 }
 
 /* ==========================================
-   FANTASY EDGE
+FANTASY EDGE
 ========================================== */
 
 .fantasy-edge-panel {
     margin-top: 24px;
 
     background:
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #f7fbff 100%
-        );
+    linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f7fbff 100%
+    );
 
     border: 1px solid #cfdbe8;
     border-radius: 18px;
@@ -3207,12 +3103,11 @@ select:focus {
     overflow: hidden;
 
     box-shadow:
-        0 4px 14px rgba(15, 36, 62, 0.06);
+    0 4px 14px rgba(15, 36, 62, 0.06);
 }
 
-
 /* ==========================================
-   FANTASY EDGE HEADER
+FANTASY EDGE HEADER
 ========================================== */
 
 .fantasy-edge-header {
@@ -3220,7 +3115,6 @@ select:focus {
 
     text-align: center;
 }
-
 
 .fantasy-edge {
     display: block;
@@ -3230,7 +3124,6 @@ select:focus {
 
     margin: 0 auto;
 }
-
 
 .fantasy-edge-subtitle {
     display: flex;
@@ -3248,14 +3141,12 @@ select:focus {
     letter-spacing: 2px;
 }
 
-
 .fantasy-edge-subtitle span {
     color: #0077ff;
 }
 
-
 /* ==========================================
-   FANTASY SUMMARY
+FANTASY SUMMARY
 ========================================== */
 
 .fantasy-summary {
@@ -3269,12 +3160,11 @@ select:focus {
     border-radius: 16px;
 
     box-shadow:
-        0 4px 14px rgba(15, 36, 62, 0.05);
+    0 4px 14px rgba(15, 36, 62, 0.05);
 }
 
-
 /* ==========================================
-   SUMMARY HEADER
+SUMMARY HEADER
 ========================================== */
 
 .fantasy-summary-header {
@@ -3287,14 +3177,12 @@ select:focus {
     margin-bottom: 20px;
 }
 
-
 .fantasy-summary-title {
     color: #0f243e;
 
     font-size: 24px;
     font-weight: 800;
 }
-
 
 .fantasy-summary-subtitle {
     margin-top: 5px;
@@ -3306,7 +3194,6 @@ select:focus {
 
     letter-spacing: 1.8px;
 }
-
 
 .fantasy-summary-tagline {
     padding: 9px 14px;
@@ -3323,20 +3210,18 @@ select:focus {
     white-space: nowrap;
 }
 
-
 /* ==========================================
-   SUMMARY GRID
+SUMMARY GRID
 ========================================== */
 
 .fantasy-summary-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+    repeat(3, minmax(0, 1fr));
 
     gap: 16px;
 }
-
 
 .fantasy-summary-item {
     min-width: 0;
@@ -3349,51 +3234,47 @@ select:focus {
     border: 1px solid transparent;
 }
 
-
 /* Identity */
 
 .identity-summary-card {
     background:
-        linear-gradient(
-            135deg,
-            #edf6ff,
-            #fafcff
-        );
+    linear-gradient(
+    135deg,
+    #edf6ff,
+    #fafcff
+    );
 
     border-color: #d8eaff;
 }
-
 
 /* State */
 
 .state-summary-card {
     background:
-        linear-gradient(
-            135deg,
-            #ecfaf3,
-            #fbfefc
-        );
+    linear-gradient(
+    135deg,
+    #ecfaf3,
+    #fbfefc
+    );
 
     border-color: #d5f0e1;
 }
-
 
 /* Value */
 
 .value-summary-card {
     background:
-        linear-gradient(
-            135deg,
-            #fff3e9,
-            #fffaf6
-        );
+    linear-gradient(
+    135deg,
+    #fff3e9,
+    #fffaf6
+    );
 
     border-color: #ffe0c5;
 }
 
-
 /* ==========================================
-   CARD LABEL
+CARD LABEL
 ========================================== */
 
 .summary-card-label {
@@ -3407,9 +3288,8 @@ select:focus {
     letter-spacing: 1.5px;
 }
 
-
 /* ==========================================
-   CARD RESULT
+CARD RESULT
 ========================================== */
 
 .summary-card-result {
@@ -3426,14 +3306,12 @@ select:focus {
     line-height: 1.2;
 }
 
-
 .summary-card-result strong {
     font-weight: 800;
 }
 
-
 /* ==========================================
-   SUMMARY ACCENTS
+SUMMARY ACCENTS
 ========================================== */
 
 .summary-accent {
@@ -3447,7 +3325,6 @@ select:focus {
     position: relative;
 }
 
-
 .summary-accent::before {
     content: "";
 
@@ -3460,24 +3337,20 @@ select:focus {
     height: 2px;
 }
 
-
 .identity-summary-card .summary-accent::before {
     background: #0878e8;
 }
-
 
 .state-summary-card .summary-accent::before {
     background: #27a861;
 }
 
-
 .value-summary-card .summary-accent::before {
     background: #ff7a00;
 }
 
-
 /* ==========================================
-   SUMMARY TEXT
+SUMMARY TEXT
 ========================================== */
 
 .fantasy-summary-item p {
@@ -3489,9 +3362,8 @@ select:focus {
     line-height: 1.55;
 }
 
-
 /* ==========================================
-   INFO STRIP
+INFO STRIP
 ========================================== */
 
 .fantasy-summary-info {
@@ -3514,7 +3386,6 @@ select:focus {
     font-size: 12px;
 }
 
-
 .summary-info-icon {
     width: 20px;
     height: 20px;
@@ -3536,7 +3407,7 @@ select:focus {
 }
 
 /* ==========================================
-   RESPONSIVE
+RESPONSIVE
 ========================================== */
 
 @media (max-width: 900px) {
@@ -3546,7 +3417,6 @@ select:focus {
         gap: 10px;
     }
 
-
     .fantasy-summary-header {
         flex-direction: column;
         align-items: flex-start;
@@ -3555,11 +3425,9 @@ select:focus {
         margin-bottom: 14px;
     }
 
-
     .fantasy-summary {
         padding: 16px;
     }
-
 
     .fantasy-summary-item {
         min-height: 0;
@@ -3567,13 +3435,11 @@ select:focus {
         padding: 14px 16px;
     }
 
-
     .summary-card-label {
         margin-bottom: 5px;
 
         font-size: 9px;
     }
-
 
     .summary-card-result {
         min-height: 0;
@@ -3581,22 +3447,18 @@ select:focus {
         font-size: 19px;
     }
 
-
     .summary-accent {
         margin: 9px 0 10px;
     }
-
 
     .summary-accent::before {
         width: 50px;
     }
 
-
     .fantasy-summary-item p {
         font-size: 13px;
         line-height: 1.4;
     }
-
 
     .fantasy-summary-info {
         margin-top: 12px;
@@ -3607,9 +3469,8 @@ select:focus {
     }
 }
 
-
 /* ==========================================
-   MOBILE
+MOBILE
 ========================================== */
 
 @media (max-width: 600px) {
@@ -3618,11 +3479,9 @@ select:focus {
         padding: 22px 14px 18px;
     }
 
-
     .fantasy-edge {
         width: 90%;
     }
-
 
     .fantasy-edge-subtitle {
         flex-wrap: wrap;
@@ -3633,23 +3492,19 @@ select:focus {
         letter-spacing: 1px;
     }
 
-
     .fantasy-summary {
         margin: 0 14px 16px;
 
         padding: 14px;
     }
 
-
     .fantasy-summary-title {
         font-size: 21px;
     }
 
-
     .fantasy-summary-tagline {
         font-size: 11px;
     }
-
 
     .fantasy-summary-item {
         min-height: 0;
@@ -3657,14 +3512,13 @@ select:focus {
         padding: 14px;
     }
 
-
     .summary-card-result {
         font-size: 19px;
     }
 }
 
 /* -----------------------------------------
-   Footer
+Footer
 ----------------------------------------- */
 
 .footer {
@@ -3675,7 +3529,7 @@ select:focus {
 }
 
 /* -----------------------------------------
-   Profile Meter
+Profile Meter
 ----------------------------------------- */
 
 .battery {
@@ -3686,9 +3540,9 @@ select:focus {
     height: 18px;
 
     background: linear-gradient(
-        to bottom,
-        #edf2f7 0%,
-        #dfe6ee 100%
+    to bottom,
+    #edf2f7 0%,
+    #dfe6ee 100%
     );
 
     border: 1px solid #c7d2de;
@@ -3697,12 +3551,11 @@ select:focus {
     overflow: hidden;
 
     box-shadow:
-        inset 0 1px 3px rgba(15, 36, 62, 0.12),
-        0 1px 2px rgba(15, 36, 62, 0.04);
+    inset 0 1px 3px rgba(15, 36, 62, 0.12),
+    0 1px 2px rgba(15, 36, 62, 0.04);
 
     --fill: 0%;
 }
-
 
 /* Blue profile fill */
 
@@ -3723,9 +3576,8 @@ select:focus {
     transition: width 0.45s ease;
 
     box-shadow:
-        inset 0 1px 1px rgba(255, 255, 255, 0.28);
+    inset 0 1px 1px rgba(255, 255, 255, 0.28);
 }
-
 
 /* 0–10 profile divisions */
 
@@ -3740,16 +3592,16 @@ select:focus {
     pointer-events: none;
 
     background: repeating-linear-gradient(
-        to right,
-        transparent 0,
-        transparent calc(10% - 1px),
-        rgba(255, 255, 255, 0.30) calc(10% - 1px),
-        rgba(255, 255, 255, 0.30) 10%
+    to right,
+    transparent 0,
+    transparent calc(10% - 1px),
+    rgba(255, 255, 255, 0.30) calc(10% - 1px),
+    rgba(255, 255, 255, 0.30) 10%
     );
 }
 
 /* ==========================================
-   SEASON PRODUCTION
+SEASON PRODUCTION
 ========================================== */
 
 .season-production {
@@ -3764,12 +3616,11 @@ select:focus {
     overflow: hidden;
 
     box-shadow:
-        0 4px 14px rgba(15, 36, 62, 0.06);
+    0 4px 14px rgba(15, 36, 62, 0.06);
 }
 
-
 /* ==========================================
-   HEADER
+HEADER
 ========================================== */
 
 .season-production-header {
@@ -3781,7 +3632,6 @@ select:focus {
     background: #0f243e;
 }
 
-
 .season-production-header h2 {
     margin: 0;
 
@@ -3792,7 +3642,6 @@ select:focus {
 
     letter-spacing: 0.4px;
 }
-
 
 .season-production-header span {
     display: block;
@@ -3807,20 +3656,18 @@ select:focus {
     letter-spacing: 1.6px;
 }
 
-
 /* ==========================================
-   STAT GRID
+STAT GRID
 ========================================== */
 
 .season-production-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(7, minmax(0, 1fr));
+    repeat(7, minmax(0, 1fr));
 
     background: #ffffff;
 }
-
 
 .production-stat {
     position: relative;
@@ -3839,14 +3686,12 @@ select:focus {
     border-right: 1px solid #e3e9f0;
 }
 
-
 .production-stat:last-child {
     border-right: none;
 }
 
-
 /* ==========================================
-   LABEL
+LABEL
 ========================================== */
 
 .production-label {
@@ -3860,9 +3705,8 @@ select:focus {
     letter-spacing: 1.3px;
 }
 
-
 /* ==========================================
-   VALUE
+VALUE
 ========================================== */
 
 .production-stat strong {
@@ -3874,16 +3718,15 @@ select:focus {
     line-height: 1;
 }
 
-
 /* ==========================================
-   TABLET
+TABLET
 ========================================== */
 
 @media (max-width: 900px) {
 
     .season-production-grid {
         grid-template-columns:
-            repeat(7, minmax(0, 1fr));
+        repeat(7, minmax(0, 1fr));
     }
 
     .production-stat {
@@ -3899,16 +3742,15 @@ select:focus {
     }
 }
 
-
 /* ==========================================
-   MOBILE
+MOBILE
 ========================================== */
 
 @media (max-width: 600px) {
 
     .season-production-grid {
         grid-template-columns:
-            repeat(4, minmax(0, 1fr));
+        repeat(4, minmax(0, 1fr));
     }
 
     .production-stat {
@@ -3931,7 +3773,7 @@ select:focus {
 }
 
 /* ==========================================
-   WHAT TO WATCH PARENT PANEL
+WHAT TO WATCH PARENT PANEL
 ========================================== */
 
 .watch-section {
@@ -3947,9 +3789,8 @@ select:focus {
     box-shadow: none;
 }
 
-
 /* ==========================================
-   HEADER
+HEADER
 ========================================== */
 
 .watch-header {
@@ -3960,7 +3801,6 @@ select:focus {
 
     margin-bottom: 26px;
 }
-
 
 .watch-header h3 {
     margin: 0;
@@ -3975,7 +3815,6 @@ select:focus {
     white-space: nowrap;
 }
 
-
 .watch-subtitle {
     color: #748399;
 
@@ -3987,7 +3826,6 @@ select:focus {
     white-space: nowrap;
 }
 
-
 .watch-header-line {
     flex: 1;
 
@@ -3996,25 +3834,23 @@ select:focus {
     background: #cbd6e2;
 }
 
-
 /* ==========================================
-   CARD GRID
+CARD GRID
 ========================================== */
 
 .watch-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+    repeat(3, minmax(0, 1fr));
 
     gap: 14px;
 
     padding: 0;
 }
 
-
 /* ==========================================
-   WATCH CARD
+WATCH CARD
 ========================================== */
 
 .watch-card {
@@ -4038,7 +3874,6 @@ select:focus {
     box-shadow: none;
 }
 
-
 /* Colored top rail */
 
 .watch-card::before {
@@ -4053,9 +3888,8 @@ select:focus {
     height: 4px;
 }
 
-
 /* ==========================================
-   CARD TOP
+CARD TOP
 ========================================== */
 
 .watch-card-top {
@@ -4068,9 +3902,8 @@ select:focus {
     margin-bottom: 11px;
 }
 
-
 /* ==========================================
-   CARD ICON
+CARD ICON
 ========================================== */
 
 .watch-icon {
@@ -4093,9 +3926,8 @@ select:focus {
     line-height: 1;
 }
 
-
 /* ==========================================
-   STATUS BADGE
+STATUS BADGE
 ========================================== */
 
 .watch-status {
@@ -4112,9 +3944,8 @@ select:focus {
     white-space: nowrap;
 }
 
-
 /* ==========================================
-   CONTENT
+CONTENT
 ========================================== */
 
 .watch-content {
@@ -4122,7 +3953,6 @@ select:focus {
 
     min-width: 0;
 }
-
 
 .watch-title {
     margin-bottom: 7px;
@@ -4137,7 +3967,6 @@ select:focus {
     text-transform: uppercase;
 }
 
-
 .watch-text {
     color: #33485f;
 
@@ -4146,16 +3975,15 @@ select:focus {
     line-height: 1.4;
 }
 
-
 /* ==========================================
-   EVIDENCE STRIP
+EVIDENCE STRIP
 ========================================== */
 
 .watch-evidence {
     display: grid;
 
     grid-template-columns:
-        1fr 1px 1fr;
+    1fr 1px 1fr;
 
     align-items: center;
 
@@ -4171,7 +3999,6 @@ select:focus {
     border-radius: 7px;
 }
 
-
 .watch-stat {
     min-width: 0;
 
@@ -4179,7 +4006,6 @@ select:focus {
 
     text-align: center;
 }
-
 
 .watch-stat-label {
     display: block;
@@ -4194,7 +4020,6 @@ select:focus {
     letter-spacing: 0.7px;
 }
 
-
 .watch-stat-value {
     display: block;
 
@@ -4204,14 +4029,12 @@ select:focus {
     font-weight: 800;
 }
 
-
 .watch-divider {
     width: 1px;
     height: 30px;
 
     background: #d4dfea;
 }
-
 
 .watch-score {
     display: inline-block;
@@ -4224,26 +4047,22 @@ select:focus {
     font-weight: 800;
 }
 
-
 .watch-score small {
     font-size: 14px;
     font-weight: 700;
 }
 
-
 /* ==========================================
-   STRENGTH / GOOD
+STRENGTH / GOOD
 ========================================== */
 
 .watch-good::before {
     background: #18b66a;
 }
 
-
 .watch-good .watch-icon {
     background: #12a960;
 }
-
 
 .watch-good .watch-status {
     background: #e9f8f0;
@@ -4253,27 +4072,23 @@ select:focus {
     color: #07904e;
 }
 
-
 .watch-good .watch-score {
     background: #e7f8ef;
 
     color: #0a9d55;
 }
 
-
 /* ==========================================
-   MONITOR / NEUTRAL
+MONITOR / NEUTRAL
 ========================================== */
 
 .watch-neutral::before {
     background: #f5a623;
 }
 
-
 .watch-neutral .watch-icon {
     background: #f5a623;
 }
-
 
 .watch-neutral .watch-status {
     background: #fff6e7;
@@ -4283,27 +4098,23 @@ select:focus {
     color: #cf7d00;
 }
 
-
 .watch-neutral .watch-score {
     background: #fff5e5;
 
     color: #d47d00;
 }
 
-
 /* ==========================================
-   CONCERN / BAD
+CONCERN / BAD
 ========================================== */
 
 .watch-bad::before {
     background: #df554d;
 }
 
-
 .watch-bad .watch-icon {
     background: #d94d46;
 }
-
 
 .watch-bad .watch-status {
     background: #fff0ef;
@@ -4313,16 +4124,14 @@ select:focus {
     color: #c9433c;
 }
 
-
 .watch-bad .watch-score {
     background: #fff0ef;
 
     color: #c9433c;
 }
 
-
 /* ==========================================
-   MOBILE
+MOBILE
 ========================================== */
 
 @media (max-width: 600px) {
@@ -4330,7 +4139,6 @@ select:focus {
     .watch-section {
         padding: 20px 16px;
     }
-
 
     .watch-header {
         flex-wrap: wrap;
@@ -4340,11 +4148,9 @@ select:focus {
         margin-bottom: 18px;
     }
 
-
     .watch-header-line {
         display: none;
     }
-
 
     .watch-subtitle {
         width: 100%;
@@ -4352,13 +4158,11 @@ select:focus {
         white-space: normal;
     }
 
-
     .watch-grid {
         grid-template-columns: 1fr;
 
         gap: 10px;
     }
-
 
     .watch-card {
         min-height: auto;
@@ -4366,9 +4170,8 @@ select:focus {
 
 }
 
-
 /* --------------------------------
-   What to Watch - Placeholder State
+What to Watch - Placeholder State
 -------------------------------- */
 
 .watch-card.watch-placeholder {
@@ -4417,7 +4220,7 @@ select:focus {
 }
 
 /* --------------------------------------
-   Similar Profiles
+Similar Profiles
 -------------------------------------- */
 
 .similar-profiles-section {
@@ -4574,7 +4377,7 @@ select:focus {
 }
 
 /* ------------------------------
-   All Access - Locked Buttons
+All Access - Locked Buttons
 ------------------------------ */
 
 .premium-locked {
@@ -4588,7 +4391,7 @@ select:focus {
 }
 
 /* ------------------------------
-   Premium Park Lock
+Premium Park Lock
 ------------------------------ */
 
 .premium-value-lock {
@@ -4609,7 +4412,7 @@ select:focus {
 }
 
 /* ------------------------------
-   What to Watch - Premium Lock
+What to Watch - Premium Lock
 ------------------------------ */
 
 .watch-premium-lock {
@@ -4633,7 +4436,6 @@ select:focus {
     box-sizing: border-box;
 }
 
-
 /* Lock Icon */
 
 .watch-premium-icon {
@@ -4651,7 +4453,6 @@ select:focus {
     font-size: 40px;
     opacity: 0.75;
 }
-
 
 /* All Access Pill */
 
@@ -4672,7 +4473,6 @@ select:focus {
     white-space: nowrap;
 }
 
-
 /* Description */
 
 .watch-premium-text {
@@ -4682,9 +4482,8 @@ select:focus {
     font-weight: 700;
 }
 
-
 /* ------------------------------
-   Mobile
+Mobile
 ------------------------------ */
 
 @media (max-width: 850px) {
@@ -4702,7 +4501,7 @@ select:focus {
 }
 
 /* ------------------------------
-   Fantasy Edge - Premium Lock
+Fantasy Edge - Premium Lock
 ------------------------------ */
 
 .fantasy-premium-lock {
@@ -4728,7 +4527,6 @@ select:focus {
     box-sizing: border-box;
 }
 
-
 /* Lock */
 
 .fantasy-premium-icon {
@@ -4744,7 +4542,6 @@ select:focus {
     font-size: 40px;
     opacity: 0.75;
 }
-
 
 /* All Access */
 
@@ -4765,7 +4562,6 @@ select:focus {
     white-space: nowrap;
 }
 
-
 /* Title */
 
 .fantasy-premium-title {
@@ -4776,7 +4572,6 @@ select:focus {
     font-size: 17px;
     font-weight: 800;
 }
-
 
 /* Description */
 
@@ -4795,7 +4590,7 @@ select:focus {
 }
 
 /* ------------------------------
-   Percentile - Premium Lock
+Percentile - Premium Lock
 ------------------------------ */
 
 .percentile-premium-wrap {
@@ -4832,7 +4627,7 @@ select:focus {
 }
 
 /* ------------------------------
-   Fantasy Value Visual Legend
+Fantasy Value Visual Legend
 ------------------------------ */
 .value-context {
     margin: 14px 0 16px;
@@ -4854,7 +4649,7 @@ select:focus {
 }
 
 /* -------------------------------
-   Value Legend Bands
+Value Legend Bands
 -------------------------------- */
 
 .value-bands {
@@ -4905,7 +4700,7 @@ select:focus {
 }
 
 /* -------------------------------
-   Value Position Rail
+Value Position Rail
 -------------------------------- */
 
 .value-rail {
@@ -4929,7 +4724,7 @@ select:focus {
 }
 
 /* -------------------------------
-   Value Player Position Marker
+Value Player Position Marker
 -------------------------------- */
 
 .value-marker {
@@ -4954,7 +4749,7 @@ select:focus {
 }
 
 /* ------------------------------
-   Fantasy State Visual Legend
+Fantasy State Visual Legend
 ------------------------------ */
 .state-context {
     margin: 14px 0 16px;
@@ -5057,7 +4852,7 @@ select:focus {
 }
 
 /* ------------------------------
-   Fantasy Identity Visual Legend
+Fantasy Identity Visual Legend
 ------------------------------ */
 
 .identity-context {
@@ -5106,9 +4901,9 @@ select:focus {
 }
 
 /* =============================================================
-   TIMBASEBALL BLUE / BROADCAST EDITION
-   Added after the existing stylesheet. Preserves original JS IDs.
-   ============================================================= */
+TIMBASEBALL BLUE / BROADCAST EDITION
+Added after the existing stylesheet. Preserves original JS IDs.
+============================================================= */
 :root{--navy:#0f243e;--navy2:#173c64;--blue:#2678c9;--bright:#439af1;--ice:#eaf3fd;--border:#d6e2ee;--muted:#667b92;--ink:#152c45}
 *{box-sizing:border-box}
 body{background:#eaf0f6;color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif}
@@ -5179,73 +4974,72 @@ input,select{border-radius:4px}
 @media(max-width:800px){.tb-dashboard{grid-template-columns:1fr}.tb-sidebar{display:grid;grid-template-columns:1fr 1fr;align-items:start}.fantasy-summary-grid{grid-template-columns:1fr!important}}
 @media(max-width:620px){.container{width:calc(100% - 20px);margin-top:12px}.tb-nav-inner{padding:0 12px;min-height:58px}.tb-brand{font-size:19px}.tb-brand small,.tb-season{display:none}.header{align-items:flex-start;flex-direction:column}.header .batter-analyzer{margin:0;max-width:250px}.search-input-row{flex-direction:column;align-items:stretch}.player-search-group{width:100%}.action-row{flex-wrap:wrap}.action-row button{flex:1 1 28%;min-width:90px}.tb-sidebar{display:flex}.overall-top{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.overall-top p:nth-child(3){border-left:0;border-top:1px solid #d7e0e8}.overall-top p:nth-child(4){border-top:1px solid #d7e0e8}.analytics-panel .overall-card{padding:13px}.player-card-name{font-size:23px}.scouting-note{flex-direction:column}.percentile-box{border-left:0;border-top:1px solid #d7e0e8}.metrics-columns{grid-template-columns:62px 70px 1fr 50px;font-size:8px;padding:10px}.metric-row{grid-template-columns:58px 65px minmax(0,1fr) 48px;gap:6px;padding:10px}.metric-label{font-size:14px}.metric-direction{font-size:7px;letter-spacing:0}.metric-raw,.metric-score{font-size:13px}.metric-score{min-width:0;padding:5px}.tb-panel-title small{display:none}.season-production-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
 
-
 /* ==========================================================
-   TiMBaseball refinement: unboxed Fantasy Edge sidebar
-   Preserves all DOM IDs and existing behavior.
-   ========================================================== */
+TiMBaseball refinement: unboxed Fantasy Edge sidebar
+Preserves all DOM IDs and existing behavior.
+========================================================== */
 .tb-dashboard .fantasy-edge-panel {
-  display: block;
-  margin: 0;
-  padding: 0;
-  overflow: visible;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
 }
 .tb-dashboard .fantasy-edge-header {
-  padding: 13px 16px !important;
-  margin: 0 0 12px;
-  background: #ffffff !important;
-  border-radius: 4px !important;
-  box-shadow: 0 2px 7px rgba(15,36,62,.08);
+    padding: 13px 16px !important;
+    margin: 0 0 12px;
+    background: #ffffff !important;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 7px rgba(15,36,62,.08);
 }
 .tb-dashboard .fantasy-summary {
-  padding: 0 !important;
-  margin: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
+    padding: 0 !important;
+    margin: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
 }
 .tb-dashboard .fantasy-summary-header {
-  padding: 0 2px 11px !important;
-  margin: 0;
-  background: transparent;
-  border: 0;
+    padding: 0 2px 11px !important;
+    margin: 0;
+    background: transparent;
+    border: 0;
 }
 .tb-dashboard .fantasy-summary-grid {
-  display: grid;
-  grid-template-columns: minmax(0,1fr) !important;
-  gap: 13px !important;
-  padding: 0;
-  margin: 0;
-  background: transparent;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) !important;
+    gap: 13px !important;
+    padding: 0;
+    margin: 0;
+    background: transparent;
 }
 .tb-dashboard .fantasy-summary-item {
-  width: 100%;
-  min-width: 0 !important;
-  margin: 0 !important;
-  padding: 17px 18px !important;
-  background: #fff;
-  border: 1px solid #d6e2ee;
-  border-left: 4px solid #2678c9;
-  border-radius: 4px !important;
-  box-shadow: 0 2px 7px rgba(15,36,62,.06);
+    width: 100%;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 17px 18px !important;
+    background: #fff;
+    border: 1px solid #d6e2ee;
+    border-left: 4px solid #2678c9;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 7px rgba(15,36,62,.06);
 }
 .tb-dashboard .identity-summary-card { border-left-color: #4a90e2; }
 .tb-dashboard .state-summary-card { border-left-color: #299c83; }
 .tb-dashboard .value-summary-card { border-left-color: #ff7a00; }
 .tb-dashboard .fantasy-summary-info {
-  margin: 12px 0 0 !important;
-  padding: 10px 12px !important;
-  background: #e6eff8;
-  border: 1px solid #d4e2f0;
-  border-radius: 4px;
-  box-shadow: none;
+    margin: 12px 0 0 !important;
+    padding: 10px 12px !important;
+    background: #e6eff8;
+    border: 1px solid #d4e2f0;
+    border-radius: 4px;
+    box-shadow: none;
 }
 @media (max-width: 800px) {
-  .tb-dashboard .fantasy-summary-grid { grid-template-columns: 1fr !important; }
+    .tb-dashboard .fantasy-summary-grid { grid-template-columns: 1fr !important; }
 }
 
 /* Final main-page refinement: Fantasy Edge begins directly with three panels. */
@@ -5259,13 +5053,13 @@ input,select{border-radius:4px}
 .header.tb-brand-header .batter-analyzer{display:block;flex:0 1 auto;width:auto;max-width:min(360px,55%);max-height:76px;height:auto;margin:0;object-fit:contain;object-position:left center}
 .header.tb-brand-header .tb-kicker{margin-left:auto;max-width:45%;text-align:right;line-height:1.6;font-size:11px;letter-spacing:1.7px}
 @media(max-width:620px){
-  .header.tb-brand-header{flex-direction:row;align-items:center;gap:12px;padding:8px 0 13px}
-  .header.tb-brand-header .batter-analyzer{max-width:55%;max-height:60px;margin:0}
-  .header.tb-brand-header .tb-kicker{max-width:42%;font-size:8px;letter-spacing:.7px}
+    .header.tb-brand-header{flex-direction:row;align-items:center;gap:12px;padding:8px 0 13px}
+    .header.tb-brand-header .batter-analyzer{max-width:55%;max-height:60px;margin:0}
+    .header.tb-brand-header .tb-kicker{max-width:42%;font-size:8px;letter-spacing:.7px}
 }
 
 /* ==========================================
-   TiMBaseball - Player Headshot Refinement
+TiMBaseball - Player Headshot Refinement
 ========================================== */
 
 .analytics-panel .player-name-row {
@@ -5325,9 +5119,8 @@ input,select{border-radius:4px}
     }
 }
 
-
 /* --------------------------------
-   Player Profile Banner
+Player Profile Banner
 -------------------------------- */
 
 .player-profile-banner {
@@ -5392,4 +5185,3 @@ input,select{border-radius:4px}
         font-size: 20px;
     }
 }
-
