@@ -5272,7 +5272,7 @@ input,select{border-radius:4px}
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 14px;
+    gap: 10px;
     min-height: 0;
 }
 
@@ -5298,7 +5298,7 @@ input,select{border-radius:4px}
 
 /* Player name */
 .analytics-panel .player-card-name {
-    flex: 1;
+    flex: 0 1 auto;
     min-width: 0;
     overflow-wrap: anywhere;
     text-align: left;
