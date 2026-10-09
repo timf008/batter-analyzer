@@ -541,6 +541,34 @@ function setButtonLoading(buttonId, loading) {
 }
 
 // -------------------------------
+// Utility: Update MLB Headshot
+// -------------------------------
+function updateBatterHeadshot(mlbId) {
+    const img = document.getElementById("playerHeadshot");
+
+    if (!img) return;
+
+    const id = String(mlbId ?? "").trim();
+
+    if (!/^\d+$/.test(id)) {
+        img.removeAttribute("src");
+        img.style.display = "none";
+        return;
+    }
+
+    img.onerror = function () {
+        this.onerror = null;
+        this.removeAttribute("src");
+        this.style.display = "none";
+    };
+
+    img.style.display = "block";
+
+    img.src =
+        `https://img.mlbstatic.com/mlb-photos/image/upload/w_300,q_auto:best/v1/people/${id}/headshot/67/current`;
+}
+
+// -------------------------------
 // Utility: Fetch batter data
 // -------------------------------
 async function loadBatter(name, season, silent = false) {
@@ -559,9 +587,10 @@ async function loadBatter(name, season, silent = false) {
 // ⭐ Normalize backend output: ALWAYS return an array
 const arr = Array.isArray(data) ? data : [data];
 
-// Similar Profiles
+// Similar Profiles + MLB Headshot
 if (!silent && arr.length > 0) {
     updateSimilarProfiles(arr[0].SimilarProfiles);
+    updateBatterHeadshot(arr[0].mlbId);
 }
 
     // ⭐ Only update tab if NOT silent
