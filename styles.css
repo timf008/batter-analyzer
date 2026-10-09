@@ -5265,63 +5265,62 @@ input,select{border-radius:4px}
 }
 
 /* ==========================================
-   PLAYER ANALYTICS - COMPACT PROFILE HEADER
+   TiMBaseball - Player Headshot Refinement
 ========================================== */
 
-.overall .player-card-header {
-    margin-bottom: 12px;
-}
-
-.overall .player-name-row {
+.analytics-panel .player-name-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: flex-start;
+    gap: 14px;
     min-height: 0;
-    padding: 0;
 }
 
-/* MLB Headshot */
-.overall #playerHeadshot {
-    width: 145px;
-    height: 175px;
-    object-fit: cover;
-    object-position: center top;
-    flex-shrink: 0;
+/* Headshot */
+.analytics-panel #playerHeadshot {
+    width: 150px;
+    height: 180px;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center bottom;
 
-    border: 1px solid #d4dfec;
+    flex: 0 0 auto;
+
+    background: #f1f6fb;
+    border: 1px solid #dce6f0;
     border-radius: 4px;
-    background: #f1f5f9;
 }
 
-/* Player Name */
-.overall .player-card-name {
+/* Team accent */
+.analytics-panel .team-color-panel {
+    flex-shrink: 0;
+}
+
+/* Player name */
+.analytics-panel .player-card-name {
     flex: 1;
     min-width: 0;
-    font-size: 23px;
-    font-weight: 800;
-    line-height: 1.25;
-    color: #10243e;
+    overflow-wrap: anywhere;
+    text-align: left;
 }
 
-/* Team Color Accent */
-.overall .team-color-panel {
-    flex-shrink: 0;
+/* Compact spacing */
+.analytics-panel .player-card-header {
+    margin-bottom: 4px;
 }
 
 /* Mobile */
-@media (max-width: 600px) {
-
-    .overall .player-name-row {
-        gap: 10px;
+@media (max-width: 620px) {
+    .analytics-panel .player-name-row {
+        gap: 9px;
     }
 
-    .overall #playerHeadshot {
-        width: 95px;
-        height: 120px;
+    .analytics-panel #playerHeadshot {
+        width: 90px;
+        height: 115px;
     }
 
-    .overall .player-card-name {
-        font-size: 18px;
-        overflow-wrap: anywhere;
+    .analytics-panel .player-card-name {
+        font-size: 20px;
     }
 }
