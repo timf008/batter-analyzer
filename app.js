@@ -17,7 +17,7 @@ loadBatterOfDay(season);
 // true  = simulate Free Trial
 // false = simulate All Access
 
-const TEST_FREE_MODE = true;
+const TEST_FREE_MODE = false;
 
 
 // ------------------------------
