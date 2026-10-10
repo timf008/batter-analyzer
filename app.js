@@ -1213,6 +1213,172 @@ setupPlayerAutocomplete({
 });
 
 
+
+ // -------------------------------
+ // Player News — FantasyPros
+ // -------------------------------
+
+const PLAYER_NEWS_BACKEND =
+    "https://batter-analyzer-backend.onrender.com";
+
+let playerNewsRequest = 0;
+
+function resetPlayerNews() {
+    playerNewsRequest++;
+
+    const section = document.getElementById("playerNewsSection");
+    const list = document.getElementById("playerNewsList");
+
+    if (list) list.replaceChildren();
+    if (section) section.hidden = true;
+}
+
+function getPlayerMLBID(player) {
+    const id =
+        player?.MLBID ??
+        player?.MLBId ??
+        player?.mlbId ??
+        player?.mlb_id ??
+        player?.MLBAMID ??
+        player?.mlbamid ??
+        player?.mlb_id_mlbam;
+
+    return /^\d{6}$/.test(String(id ?? ""))
+        ? String(id)
+        : null;
+}
+
+function playerNewsMessage(message) {
+    const list = document.getElementById("playerNewsList");
+    if (!list) return;
+
+    list.replaceChildren();
+
+    const p = document.createElement("p");
+    p.className = "player-news-message";
+    p.textContent = message;
+    list.append(p);
+}
+
+async function loadPlayerNews(mlbId) {
+    const section = document.getElementById("playerNewsSection");
+    const list = document.getElementById("playerNewsList");
+
+    if (!section || !list) return;
+
+    const request = ++playerNewsRequest;
+    section.hidden = false;
+
+    if (!mlbId) {
+        playerNewsMessage(
+            "Player news unavailable: no MLBID in player data."
+        );
+        return;
+    }
+
+    playerNewsMessage("Loading player news...");
+
+    try {
+        const response = await fetch(
+            `${PLAYER_NEWS_BACKEND}/api/player-news/${mlbId}`
+        );
+
+        if (!response.ok) {
+            throw new Error(`News API returned ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Ignore outdated requests
+        if (request !== playerNewsRequest) return;
+
+        list.replaceChildren();
+
+        const articles = Array.isArray(data.articles)
+            ? data.articles.slice(0, 3)
+            : [];
+
+        if (!articles.length) {
+            playerNewsMessage("No recent player news available.");
+            return;
+        }
+
+        articles.forEach(article => {
+            const card = document.createElement("article");
+            card.className = "player-news-card";
+
+            const date = document.createElement("div");
+            date.className = "player-news-date";
+
+            const parsed = new Date(
+                String(article.date || "").replace(" ", "T") + "Z"
+            );
+
+            date.textContent = Number.isNaN(parsed.getTime())
+                ? ""
+                : parsed.toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                    timeZone: "UTC"
+                });
+
+            const title = document.createElement("h3");
+            title.textContent = article.title || "Player Update";
+
+            card.append(date, title);
+
+            if (article.description) {
+                const description = document.createElement("p");
+                description.textContent = article.description;
+                card.append(description);
+            }
+
+            if (article.impact) {
+                const impact = document.createElement("div");
+                impact.className = "player-news-impact";
+
+                const label = document.createElement("strong");
+                label.textContent = "FANTASY IMPACT";
+
+                const commentary = document.createElement("p");
+                commentary.textContent = article.impact;
+
+                impact.append(label, commentary);
+                card.append(impact);
+            }
+
+            if (
+                typeof article.link === "string" &&
+                article.link.startsWith(
+                    "https://www.fantasypros.com/"
+                )
+            ) {
+                const link = document.createElement("a");
+
+                link.href = article.link;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.textContent = "Read at FantasyPros ↗";
+
+                card.append(link);
+            }
+
+            list.append(card);
+        });
+
+    } catch (error) {
+        if (request !== playerNewsRequest) return;
+
+        console.error("Player news error:", error);
+        playerNewsMessage(
+            "Player news is temporarily unavailable."
+        );
+    }
+}
+
+
+
 // -------------------------------
 // Main: Load player + update UI (backend-only)
 // -------------------------------
@@ -1235,6 +1401,8 @@ async function handleLoad() {
         }
 
         const p = Array.isArray(data) ? data[0] : data;
+
+        loadPlayerNews(getPlayerMLBID(p));
 
         console.log("Loaded batter data:", p);
         console.log("HR value:", p.HR);
@@ -4385,6 +4553,7 @@ document.getElementById("playerArchetypeMatch").textContent = "--";
     renderWatchPlaceholders();
     resetTeamColorPanel();
     resetSimilarProfiles();
+    resetPlayerNews();
 
 
     // Clear Fantasy Summary
