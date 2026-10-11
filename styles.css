@@ -1684,7 +1684,7 @@ Profile Shape
 
     flex: 1;
 
-    height: 10px;
+    height: 12px;
 
     overflow: hidden;
 
@@ -5216,8 +5216,9 @@ Player Profile Banner
 
 .player-news-header h2 {
     margin: 0;
-    font-size: 1.05rem;
-    letter-spacing: 0.6px;
+    font-size: 14px;
+    font-weight: 850px;
+    letter-spacing: 1px;
 }
 
 .player-news-source {
