@@ -2081,7 +2081,7 @@ Mobile
     color: var(--compare-text);
 
     border: 1px solid var(--compare-border);
-    border-radius: 14px;
+    border-radius: 1px;
 
     overflow-y: auto;
     overflow-x: hidden;
