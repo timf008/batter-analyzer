@@ -1797,6 +1797,37 @@ Trend Analysis
     line-height: 1.55;
 }
 
+/* =========================================
+   TiMBASEBALL — TREND DASHBOARD THEME
+   Step 1: Modal Shell
+========================================= */
+
+#trendModal .modal-content {
+    background: #0c2442 !important;
+    color: #ffffff;
+
+    border: 1px solid #315477;
+    border-radius: 14px;
+
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.45),
+        0 0 30px rgba(47, 128, 237, 0.10);
+}
+
+#trendModal .trend-header {
+    background: linear-gradient(
+        135deg,
+        #091a30 0%,
+        #103b69 100%
+    );
+
+    border-bottom: 1px solid #315477;
+}
+
+#trendModal .trend-content {
+    background: #0c2442;
+}
+
 /* -----------------------------------------
 Mobile
 ----------------------------------------- */
