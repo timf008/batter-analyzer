@@ -1286,7 +1286,7 @@ Trend Modal
     color: var(--trend-text);
 
     border: 1px solid var(--trend-border);
-    border-radius: 14px;
+    border-radius: 1px;
 
     overflow-y: auto;
     overflow-x: hidden;
@@ -2034,18 +2034,27 @@ Mobile
     }
 }
 
+
 /* -----------------------------------------
-Compare Modal
+   Compare Modal — Dark Dashboard Theme
 ----------------------------------------- */
 
 #compareModal {
+    --compare-bg: #0c2442;
+    --compare-card: #183653;
+    --compare-elevated: #234563;
+    --compare-border: #315477;
+    --compare-text: #ffffff;
+    --compare-muted: #b9cce0;
+    --compare-blue: #55b6ff;
+
     position: fixed;
     inset: 0;
 
     width: 100%;
     height: 100dvh;
 
-    background: rgba(15, 36, 62, 0.55);
+    background: rgba(5, 15, 29, 0.78);
 
     display: none;
     justify-content: center;
@@ -2058,7 +2067,7 @@ Compare Modal
 }
 
 /* -----------------------------------------
-Modal Shell
+   Modal Shell
 ----------------------------------------- */
 
 #compareModal .compare-box {
@@ -2068,58 +2077,67 @@ Modal Shell
 
     padding: 0;
 
-    background: #ffffff !important;
-    color: #0f243e;
+    background: var(--compare-bg) !important;
+    color: var(--compare-text);
 
-    border-radius: 1px;
+    border: 1px solid var(--compare-border);
+    border-radius: 14px;
+
     overflow-y: auto;
     overflow-x: hidden;
 
     box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.28),
-    0 4px 14px rgba(15, 36, 62, 0.15);
+        0 22px 60px rgba(0, 0, 0, 0.45),
+        0 4px 16px rgba(0, 0, 0, 0.22);
 }
 
 /* -----------------------------------------
-Navy Header
+   Header
 ----------------------------------------- */
 
-.compare-header {
+#compareModal .compare-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
 
-    padding: 14px 22px;
+    padding: 16px 22px;
 
-    background: linear-gradient(135deg, #0b131d, #0f3e73);
+    background: linear-gradient(
+        135deg,
+        #091a30,
+        #103b69
+    );
 
     color: #ffffff;
 
-    border-radius: 1px;
+    border-bottom: 1px solid var(--compare-border);
 }
 
-#compareTitle {
+#compareModal #compareTitle {
     margin: 0;
 
     text-align: left;
+
+    color: #ffffff;
 
     font-size: 1.45rem;
     font-weight: 800;
     letter-spacing: 0.3px;
 }
 
-.compare-subtitle {
-    margin-top: 3px;
+#compareModal .compare-subtitle {
+    margin-top: 4px;
 
     font-size: 12px;
     font-weight: 500;
 
-    color: #b9d4ef;
+    color: var(--compare-muted);
 }
 
 /* Close Button */
 
-#compareClose {
+#compareModal #compareClose {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2137,61 +2155,65 @@ Navy Header
     font-size: 24px;
     cursor: pointer;
 
-    transition: 0.2s;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
-#compareClose:hover {
-    background: rgba(255, 255, 255, 0.22);
+#compareModal #compareClose:hover {
+    background: rgba(85, 182, 255, 0.25);
     transform: rotate(90deg);
 }
 
 /* -----------------------------------------
-Body
+   Body
 ----------------------------------------- */
 
-.compare-content {
-    padding: 18px 20px 20px;
+#compareModal .compare-content {
+    padding: 20px;
 }
 
 /* -----------------------------------------
-Two Player Layout
+   Two Player Layout
 ----------------------------------------- */
 
-.compare-player-grid {
+#compareModal .compare-player-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 18px;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
 
+    gap: 18px;
     margin-bottom: 14px;
 }
 
 /* -----------------------------------------
-Player Headers
+   Player Headers
 ----------------------------------------- */
 
-.compare-player-card {
-    padding: 15px 18px;
+#compareModal .compare-player-card {
+    padding: 17px 18px;
 
-    background: #ffffff;
+    background: var(--compare-card);
 
-    border: 1px solid #dbe4ee;
+    border: 1px solid var(--compare-border);
     border-radius: 12px;
 
     text-align: center;
 }
 
-.compare-player-name {
-    color: #0f243e;
+#compareModal .compare-player-name {
+    color: #ffffff;
 
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 800;
-    line-height: 1.2;
+    line-height: 1.25;
 }
 
-.compare-player-team {
-    margin-top: 4px;
+#compareModal .compare-player-team {
+    margin-top: 5px;
 
-    color: #607286;
+    color: var(--compare-muted);
 
     font-size: 12px;
     font-weight: 700;
@@ -2199,22 +2221,23 @@ Player Headers
 }
 
 /* -----------------------------------------
-Overall / XP / Tier / Park
+   Overall / XP / Tier / Park
 ----------------------------------------- */
 
-.compare-summary-grid {
+#compareModal .compare-summary-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
 
     overflow: hidden;
 
-    background: #ffffff;
+    background: var(--compare-card);
 
-    border: 1px solid #dbe4ee;
+    border: 1px solid var(--compare-border);
     border-radius: 10px;
 }
 
-.compare-summary-stat {
+#compareModal .compare-summary-stat {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2222,53 +2245,53 @@ Overall / XP / Tier / Park
 
     min-width: 0;
 
-    padding: 11px 7px;
+    padding: 13px 6px;
 
-    border-right: 1px solid #e2e8f0;
+    border-right: 1px solid var(--compare-border);
 
     text-align: center;
 }
 
-.compare-summary-stat:last-child {
+#compareModal .compare-summary-stat:last-child {
     border-right: none;
 }
 
-.compare-summary-label {
-    margin-bottom: 4px;
+#compareModal .compare-summary-label {
+    margin-bottom: 6px;
 
-    color: #607286;
+    color: var(--compare-muted);
 
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
 }
 
-.compare-summary-value {
-    color: #0f243e;
+#compareModal .compare-summary-value {
+    color: #ffffff;
 
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 800;
 
     white-space: nowrap;
 }
 
 /* -----------------------------------------
-Archetype
+   Archetype
 ----------------------------------------- */
 
-.compare-archetype {
+#compareModal .compare-archetype {
     display: flex;
     align-items: stretch;
 
     overflow: hidden;
 
-    background: #f4f8fd;
+    background: var(--compare-card);
 
-    border: 1px solid #d7e3f1;
+    border: 1px solid var(--compare-border);
     border-radius: 10px;
 }
 
-.compare-archetype-main {
+#compareModal .compare-archetype-main {
     flex: 1;
 
     display: flex;
@@ -2277,30 +2300,29 @@ Archetype
 
     min-width: 0;
 
-    padding: 12px 16px;
+    padding: 13px 16px;
 }
 
-.compare-archetype-label,
-.compare-match-label {
-    color: #607286;
+#compareModal .compare-archetype-label,
+#compareModal .compare-match-label {
+    color: var(--compare-muted);
 
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 1.3px;
+    letter-spacing: 1px;
 }
 
-.compare-archetype-name {
-    margin-top: 3px;
+#compareModal .compare-archetype-name {
+    margin-top: 5px;
 
-    color: #0f243e;
+    color: #ffffff;
 
     font-size: 17px;
     font-weight: 800;
-
-    line-height: 1.2;
+    line-height: 1.25;
 }
 
-.compare-archetype-match {
+#compareModal .compare-archetype-match {
     min-width: 105px;
 
     display: flex;
@@ -2310,23 +2332,23 @@ Archetype
 
     padding: 10px 12px;
 
-    background: #ffffff;
+    background: var(--compare-elevated);
 
-    border-left: 1px solid #d7e3f1;
+    border-left: 1px solid var(--compare-border);
 }
 
-.compare-match-value {
+#compareModal .compare-match-value {
     display: inline-block;
 
-    margin-top: 5px;
-    padding: 4px 9px;
+    margin-top: 6px;
+    padding: 5px 10px;
 
-    background: #eef3f8;
+    background: #294b6b;
 
-    border: 1px solid #cbd6e2;
+    border: 1px solid #46749b;
     border-radius: 999px;
 
-    color: #536a82;
+    color: #dceeff;
 
     font-size: 11px;
     font-weight: 800;
@@ -2335,45 +2357,45 @@ Archetype
 }
 
 /* -----------------------------------------
-Profile Shape
+   Profile Shape
 ----------------------------------------- */
 
-.compare-profile {
+#compareModal .compare-profile {
     margin-top: 4px;
 
     overflow: hidden;
 
-    background: #ffffff;
+    background: var(--compare-card);
 
-    border: 1px solid #dbe4ee;
+    border: 1px solid var(--compare-border);
     border-radius: 12px;
 }
 
-.compare-profile-row {
+#compareModal .compare-profile-row {
     display: grid;
     grid-template-columns:
-    minmax(0, 1fr)
-    80px
-    minmax(0, 1fr);
+        minmax(0, 1fr)
+        80px
+        minmax(0, 1fr);
 
     align-items: center;
 
-    min-height: 62px;
+    min-height: 64px;
 
-    border-bottom: 1px solid #edf1f5;
+    border-bottom: 1px solid var(--compare-border);
 }
 
-.compare-profile-row:last-child {
+#compareModal .compare-profile-row:last-child {
     border-bottom: none;
 }
 
-.compare-profile-row:nth-child(even) {
-    background: #fbfcfe;
+#compareModal .compare-profile-row:nth-child(even) {
+    background: #1c3c5b;
 }
 
 /* Player Meter Area */
 
-.compare-profile-player {
+#compareModal .compare-profile-player {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -2383,55 +2405,58 @@ Profile Shape
     padding: 10px 16px;
 }
 
-.compare-profile-score {
-    flex: 0 0 34px;
-
-    color: #2f80ed;
-
-    font-size: 16px;
-    font-weight: 800;
-
-    text-align: center;
-}
-
-.compare-profile-values {
+#compareModal .compare-profile-values {
     display: flex;
-    flex: 0 0 42px;
+    flex: 0 0 44px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.compare-profile-raw {
-    margin-top: 2px;
+#compareModal .compare-profile-score {
+    color: var(--compare-blue);
 
-    color: #8a9aab;
+    font-size: 17px;
+    font-weight: 800;
 
-    font-size: 10px;
+    text-align: center;
+}
+
+#compareModal .compare-profile-raw {
+    margin-top: 3px;
+
+    color: var(--compare-muted);
+
+    font-size: 11px;
     font-style: italic;
     font-weight: 600;
-    line-height: 1;
+    line-height: 1.1;
 }
 
 /* Meter */
 
-.compare-profile-meter {
+#compareModal .compare-profile-meter {
     flex: 1;
+    min-width: 0;
 
     height: 12px;
 
     overflow: hidden;
 
-    background: #e6ebf1;
+    background: #304d6b;
 
     border-radius: 999px;
 }
 
-.compare-profile-fill {
+#compareModal .compare-profile-fill {
     width: 0%;
     height: 100%;
 
-    background: #2f80ed;
+    background: linear-gradient(
+        90deg,
+        #2f80ed,
+        #55b6ff
+    );
 
     border-radius: inherit;
 
@@ -2440,7 +2465,7 @@ Profile Shape
 
 /* Center Metric Label */
 
-.compare-profile-label {
+#compareModal .compare-profile-label {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2448,49 +2473,50 @@ Profile Shape
 
     align-self: stretch;
 
-    background: #f4f7fb;
+    background: #102d4c;
 
-    border-left: 1px solid #e2e8f0;
-    border-right: 1px solid #e2e8f0;
+    border-left: 1px solid var(--compare-border);
+    border-right: 1px solid var(--compare-border);
 
-    color: #0f243e;
+    color: #ffffff;
 
     text-align: center;
 }
 
-.compare-profile-label strong {
+#compareModal .compare-profile-label strong {
     font-size: 15px;
     font-weight: 800;
 }
 
-.compare-profile-label span {
-    margin-top: 2px;
+#compareModal .compare-profile-label span {
+    margin-top: 3px;
 
-    color: #71849a;
+    color: var(--compare-muted);
 
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 700;
 }
 
 /* -----------------------------------------
-Comparison Summary
+   Comparison Summary
 ----------------------------------------- */
 
-.comparison-summary {
+#compareModal .comparison-summary {
     display: flex;
     align-items: flex-start;
     gap: 14px;
 
     margin-top: 18px;
-    padding: 16px 18px;
+    padding: 18px;
 
-    background: #f6f9fc;
+    background: var(--compare-card);
 
-    border: 1px solid #dbe4ee;
+    border: 1px solid var(--compare-border);
+    border-left: 4px solid var(--compare-blue);
     border-radius: 12px;
 }
 
-.comparison-summary-icon {
+#compareModal .comparison-summary-icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2499,35 +2525,184 @@ Comparison Summary
     width: 34px;
     height: 34px;
 
-    background: #e7eef6;
+    background: var(--compare-elevated);
 
     border-radius: 50%;
 
-    color: #31577e;
+    color: var(--compare-blue);
 
     font-size: 18px;
     font-weight: 800;
 }
 
-.comparison-summary-content {
+#compareModal .comparison-summary-content {
     flex: 1;
     min-width: 0;
 }
 
-.comparison-summary-title {
-    margin-bottom: 5px;
+#compareModal .comparison-summary-title {
+    margin-bottom: 7px;
 
-    color: #102a49;
+    color: #ffffff;
 
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 800;
 }
 
-.comparison-summary-text {
-    color: #425b76;
+#compareModal .comparison-summary-text {
+    color: #d2e1f0;
 
-    font-size: 13px;
-    line-height: 1.55;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+/* -----------------------------------------
+   Mobile Layout
+----------------------------------------- */
+
+@media (max-width: 700px) {
+
+    #compareModal {
+        padding: 10px;
+    }
+
+    #compareModal .compare-box {
+        width: 100%;
+        max-width: 100%;
+        max-height: 94dvh;
+    }
+
+    #compareModal .compare-header {
+        padding: 14px 16px;
+    }
+
+    #compareModal #compareTitle {
+        font-size: 1.25rem;
+    }
+
+    #compareModal .compare-subtitle {
+        font-size: 11px;
+    }
+
+    #compareModal .compare-content {
+        padding: 12px;
+    }
+
+    #compareModal .compare-player-grid {
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    #compareModal .compare-player-card {
+        padding: 12px 7px;
+    }
+
+    #compareModal .compare-player-name {
+        font-size: 16px;
+    }
+
+    #compareModal .compare-player-team {
+        font-size: 10px;
+    }
+
+    #compareModal .compare-summary-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    #compareModal .compare-summary-stat {
+        padding: 9px 3px;
+    }
+
+    #compareModal .compare-summary-stat:nth-child(2) {
+        border-right: none;
+    }
+
+    #compareModal .compare-summary-stat:nth-child(-n+2) {
+        border-bottom: 1px solid var(--compare-border);
+    }
+
+    #compareModal .compare-summary-label {
+        font-size: 9px;
+        letter-spacing: 0.3px;
+    }
+
+    #compareModal .compare-summary-value {
+        font-size: 15px;
+    }
+
+    #compareModal .compare-archetype {
+        flex-direction: column;
+    }
+
+    #compareModal .compare-archetype-main {
+        padding: 10px 8px;
+        text-align: center;
+    }
+
+    #compareModal .compare-archetype-name {
+        font-size: 14px;
+    }
+
+    #compareModal .compare-archetype-match {
+        min-width: 0;
+        padding: 8px;
+
+        border-left: none;
+        border-top: 1px solid var(--compare-border);
+    }
+
+    #compareModal .compare-profile-row {
+        grid-template-columns:
+            minmax(0, 1fr)
+            54px
+            minmax(0, 1fr);
+
+        min-height: 58px;
+    }
+
+    #compareModal .compare-profile-player {
+        gap: 5px;
+        padding: 8px 5px;
+    }
+
+    #compareModal .compare-profile-values {
+        flex-basis: 30px;
+    }
+
+    #compareModal .compare-profile-score {
+        font-size: 13px;
+    }
+
+    #compareModal .compare-profile-raw {
+        font-size: 9px;
+    }
+
+    #compareModal .compare-profile-meter {
+        height: 9px;
+    }
+
+    #compareModal .compare-profile-label strong {
+        font-size: 12px;
+    }
+
+    #compareModal .compare-profile-label span {
+        font-size: 9px;
+    }
+
+    #compareModal .comparison-summary {
+        padding: 13px;
+        gap: 10px;
+    }
+
+    #compareModal .comparison-summary-title {
+        font-size: 14px;
+    }
+
+    #compareModal .comparison-summary-text {
+        font-size: 12px;
+        line-height: 1.6;
+    }
 }
 
 /* -----------------------------------------
