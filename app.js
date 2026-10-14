@@ -3952,30 +3952,45 @@ setText(
 }
 
 
-// -------------------------------
-// Leaders Button
-// -------------------------------
-async function loadLeaders() {
 
-    try {
-        const season = document.getElementById("seasonSelect").value;
+ // -------------------------------
+ // Leaders Button
+ // -------------------------------
+ async function loadLeaders() {
 
-        const data = await fetch(
-            `https://batter-analyzer-backend.onrender.com/api/leaders?season=${season}`
-        ).then(r => r.json());
+     try {
 
-        if (!Array.isArray(data)) {
-            alert("No leaderboard data available.");
-            return;
-        }
+         // Show Universal Loading Spinner
+         showLoading();
 
-        buildLeadersTable(data);
+         const season =
+             document.getElementById("seasonSelect").value;
 
-    } catch (err) {
-        console.error("Leaders error:", err);
-        alert("Error loading leaderboard.");
-    }
-}
+         const data = await fetch(
+             `https://batter-analyzer-backend.onrender.com/api/leaders?season=${season}`
+         ).then(r => r.json());
+
+         if (!Array.isArray(data)) {
+             alert("No leaderboard data available.");
+             return;
+         }
+
+         buildLeadersTable(data);
+
+     }
+     catch (err) {
+
+         console.error("Leaders error:", err);
+         alert("Error loading leaderboard.");
+
+     }
+     finally {
+
+         hideLoading();
+
+     }
+ }
+
 
 
 // -------------------------------
