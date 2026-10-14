@@ -3508,6 +3508,8 @@ async function showCompareModal() {
         }
 
 
+showLoading();
+
         // ----------------------------------
         // Load Players
         // ----------------------------------
@@ -3932,12 +3934,19 @@ setText(
         ).style.display = "flex";
 
 
-    } catch (err) {
+        }
+    catch (err) {
 
         console.error(
             "Compare error:",
             err
         );
+
+    }
+    finally {
+
+
+        hideLoading();
 
     }
 }
