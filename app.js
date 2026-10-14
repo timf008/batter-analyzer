@@ -526,6 +526,22 @@ function resetSimilarProfiles() {
     `;
 }
 
+
+// ---------------------------------
+// Universal Loading Indicator
+// ---------------------------------
+
+function showLoading() {
+    document.getElementById("globalLoading")
+        .style.display = "flex";
+}
+
+function hideLoading() {
+    document.getElementById("globalLoading")
+        .style.display = "none";
+}
+
+
 // -------------------------------
 // Button Loading State
 // -------------------------------
@@ -1884,6 +1900,8 @@ async function handleTrend() {
         const lastSeason =
             season - 1;
 
+showLoading();
+
 
         // ---------------------------------
         // Fetch both seasons
@@ -2299,6 +2317,7 @@ setText(
             `Batter Trend (${lastSeason} → ${season})`;
 
 
+
         // ---------------------------------
         // Open Modal
         // ---------------------------------
@@ -2315,8 +2334,19 @@ setText(
             "Trend error:",
             err
         );
+
+    }
+    finally {
+
+        // ---------------------------------
+        // Hide Universal Loading Spinner
+        // ---------------------------------
+
+        hideLoading();
+
     }
 }
+
 
 // -------------------------------
 // Batter Trend Analysis
@@ -4027,7 +4057,7 @@ function buildLeadersTable(arr) {
 }
 
 // -------------------------------
-// Light Up Fantasy Badge
+// Fantasy Identity
 // -------------------------------
 
 // XP-only backbone
