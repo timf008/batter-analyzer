@@ -1409,6 +1409,8 @@ async function handleLoad() {
             return;
         }
 
+showLoading();
+
         const data = await loadBatter(name, season);
 
         if (!data || data.error || (Array.isArray(data) && data.length === 0)) {
@@ -1828,8 +1830,16 @@ if (!hasAllAccess()) {
             : "--";
 }
 
-} catch (err) {
+}
+catch (err) {
+
     console.error("Error loading player:", err);
+
+}
+finally {
+
+    hideLoading();
+
 }
 }
 
