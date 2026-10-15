@@ -1238,20 +1238,19 @@ Trend Modal
     font-weight: bold;
 }
 
-
 /* =========================================
    TiMBASEBALL — TREND MODAL
-   Dark Analytics Dashboard
+   Light Dashboard — Homepage Visual Language
 ========================================= */
 
 #trendModal {
-    --trend-bg: #0c2442;
-    --trend-card: #183653;
-    --trend-elevated: #234563;
-    --trend-border: #315477;
-    --trend-text: #ffffff;
-    --trend-muted: #b9cce0;
-    --trend-blue: #55b6ff;
+    --trend-bg: #edf3f9;
+    --trend-card: #ffffff;
+    --trend-elevated: #edf4fb;
+    --trend-border: #d2deeb;
+    --trend-text: #0e2848;
+    --trend-muted: #56718e;
+    --trend-blue: #2f80ed;
 
     position: fixed;
     inset: 0;
@@ -1286,14 +1285,14 @@ Trend Modal
     color: var(--trend-text);
 
     border: 1px solid var(--trend-border);
-    border-radius: 1px;
+    border-radius: 12px;
 
     overflow-y: auto;
     overflow-x: hidden;
 
     box-shadow:
         0 24px 70px rgba(0, 0, 0, 0.45),
-        0 0 30px rgba(47, 128, 237, 0.10);
+        0 0 30px rgba(47, 128, 237, 0.08);
 }
 
 /* -----------------------------------------
@@ -1441,7 +1440,7 @@ Trend Modal
     border: 1px solid var(--trend-border);
     border-radius: 10px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 8px rgba(20, 52, 86, 0.05);
 }
 
 #trendModal .trend-season-label {
@@ -1529,7 +1528,7 @@ Trend Modal
     border: 1px solid var(--trend-border);
     border-radius: 10px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 8px rgba(20, 52, 86, 0.05);
 }
 
 #trendModal .trend-archetype-main {
@@ -1579,11 +1578,11 @@ Trend Modal
     margin-top: 5px;
     padding: 5px 9px;
 
-    background: var(--trend-bg);
-    border: 1px solid #42688d;
+    background: #eef3f8;
+    border: 1px solid #cad8e6;
     border-radius: 999px;
 
-    color: #b9dcff;
+    color: #496781;
     font-size: 11px;
     font-weight: 800;
 
@@ -1672,7 +1671,7 @@ Trend Modal
     height: 12px;
     overflow: hidden;
 
-    background: #304d6b;
+    background: #e0e6ee;
     border-radius: 999px;
 }
 
@@ -1772,11 +1771,12 @@ Trend Modal
 }
 
 #trendModal .trend-analysis-text {
-    color: #c4d5e7;
+    color: #38516b;
 
     font-size: 13px;
     line-height: 1.65;
 }
+
 
 /* -----------------------------------------
    Mobile
