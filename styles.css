@@ -3076,36 +3076,102 @@ Modals
     font-weight: bold;
 }
 
+
+/* -----------------------------------------
+   TiMBaseball — Scouting Shield Tier Badge
+----------------------------------------- */
+
 .tier-badge {
-    display: inline-block;
-    padding: 4px 10px;
+    --tier-color: #3498db;
+    --tier-light: #eaf5ff;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 9px 15px;
+
+    border: 1.5px solid var(--tier-color);
     border-radius: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        var(--tier-light) 100%
+    );
+
+    box-shadow: 0 3px 9px rgba(15, 36, 62, 0.08);
+
+    color: var(--tier-color);
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.1;
+
     text-align: center;
+    white-space: nowrap;
 }
 
-/* Tier colors */
+/* Shield icon */
+.tier-badge::before {
+    content: "★";
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 32px;
+    flex-shrink: 0;
+
+    background: var(--tier-color);
+    color: #ffffff;
+
+    font-size: 15px;
+
+    clip-path: polygon(
+        50% 0%,
+        100% 17%,
+        100% 66%,
+        50% 100%,
+        0% 66%,
+        0% 17%
+    );
+}
+
+/* Existing tier color classes */
 .tier-great {
-    background-color: #d4af37; /* gold */
+    --tier-color: #c69b23;
+    --tier-light: #fff6d8;
 }
 
 .tier-good {
-    background-color: #2ecc71; /* green */
+    --tier-color: #229d5c;
+    --tier-light: #e5f8ed;
 }
 
 .tier-fair {
-    background-color: #3498db; /* blue */
+    --tier-color: #3498db;
+    --tier-light: #eaf5ff;
 }
 
 .tier-average {
-    background-color: #7f8c8d; /* gray */
+    --tier-color: #7f8c8d;
+    --tier-light: #f0f3f4;
 }
 
 .tier-belowavg {
-    background-color: #e74c3c; /* red */
+    --tier-color: #e74c3c;
+    --tier-light: #fff0ed;
 }
+
+/* Override existing white badge text */
+.overall-top #overallTier .tier-badge {
+    color: var(--tier-color) !important;
+    font-size: 18px;
+    font-weight: 800;
+}
+
 
 /* -----------------------------------------
 Latest Update Timestamp
