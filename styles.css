@@ -3139,26 +3139,41 @@ Modals
     );
 }
 
-/* Original TiMBaseball colors */
-.tier-elite {
+
+/* -----------------------------------------
+   TiMBaseball — Tier Color Mapping
+----------------------------------------- */
+
+/* Elite — Gold */
+.tier-elite,
+.tier-great {
     --tier-color: #d4af37;
 }
 
-.tier-impact {
+/* Impact — Green */
+.tier-impact,
+.tier-good {
     --tier-color: #2ecc71;
 }
 
-.tier-solid {
+/* Solid — Blue */
+.tier-solid,
+.tier-fair {
     --tier-color: #3498db;
 }
 
-.tier-developing {
+/* Developing — Gray */
+.tier-developing,
+.tier-average {
     --tier-color: #7f8c8d;
 }
 
-.tier-limited {
+/* Limited — Red */
+.tier-limited,
+.tier-belowavg {
     --tier-color: #e74c3c;
 }
+
 
 /* Override broad .overall-top span styling */
 .overall-top #overallTier .tier-badge {
