@@ -3111,9 +3111,9 @@ Modals
 }
 
 /* Shield stays to the LEFT of the text */
+
 .tier-badge::before {
     content: "★";
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3121,23 +3121,28 @@ Modals
     width: 25px;
     height: 29px;
     flex: 0 0 25px;
-
     margin: 0;
 
     background: var(--tier-color);
     color: #ffffff;
-
     font-size: 14px;
 
     clip-path: polygon(
         50% 0%,
-        100% 17%,
-        100% 66%,
+        85% 12%,
+        100% 15%,
+        100% 55%,
+        85% 78%,
         50% 100%,
-        0% 66%,
-        0% 17%
+        15% 78%,
+        0% 55%,
+        0% 15%,
+        15% 12%
     );
+
+    border-radius: 5px;
 }
+
 
 
 /* -----------------------------------------
@@ -3173,7 +3178,6 @@ Modals
 .tier-belowavg {
     --tier-color: #e74c3c;
 }
-
 
 /* Override broad .overall-top span styling */
 .overall-top #overallTier .tier-badge {
